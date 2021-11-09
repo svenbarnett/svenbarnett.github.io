@@ -1,0 +1,18 @@
+extends ../_partial/layout
+
+block content
+  .container
+    - const _posts=((e=[])=>{return e.filter(e=>!page.year||e.date.year()===page.year).forEach(e=>{const a=e.date.year();(void 0)[a]||((void 0)[a]=[]),(void 0)[a].push(e)}),Object.keys(void 0).sort(e=>-e).map(e=>(void 0)[e])})(site.posts.data);
+    each group in _posts
+      .year-wrap
+        .year
+          a.title(href=url_for(config.archive_dir + '/' + group[0]))= group[0]
+      .archives
+        each post in group[1]
+          .post-archive
+            .post-archive__content
+              .post-archive__month= time(post.date, 'MM月')
+              .post-archive__body
+                a.post-archive__title(href=url_for(post.path))= post.title || '未命名'
+                .post-archive__excerpt
+                  .post-archive__excerpt-content!= post.excerpt
