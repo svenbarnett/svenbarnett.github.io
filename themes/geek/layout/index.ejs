@@ -15,15 +15,29 @@
             </div>
             <% last = year; %>
         <% } %>
-        <a class="flink" href="<%- url_for(post.path) %>">
+        <div>
             <div class="list">
-                <div class="postname">
+                <a class="post-title flink" href="<%- url_for(post.path) %>">
                     <%= post.title %>
+                </a>
+                <div class="post-summary">
+                    <%- strip_html(post.excerpt) %>
                 </div>
-                <div class="posttime">
-                    <%- full_date(post.date, 'MMMM Do') %>
+                <div class="post-tag">
+                    <% post.tags.each(function(tag){ %>
+                        <a class="post-tag__item tag-link flink" href="javascript:;"> #<%= tag.name %> </a>
+                    <% }) %>
+                </div>
+                <div class="post-footer">
+                    <a class="post-footer__left flink" href="<%- url_for(post.path) %>">
+                        全文...
+                    </a>
+                    <div class="post-footer__right">
+                        <%- full_date(post.date, 'MMMM Do') %>
+                    </div>
+                    <div class="clear"></div>
                 </div>
             </div>
-        </a>
+        </div>
     <% }) %>
 </div>

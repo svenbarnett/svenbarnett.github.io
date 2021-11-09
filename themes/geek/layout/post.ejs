@@ -9,6 +9,11 @@
     <div class="post-content">
         <%- page.content %>
     </div>
+    <div class="post-tag">
+        <% page.tags.each(function(tag){ %>
+            <a class="post-tag__item tag-link flink" href="javascript:;"> #<%= tag.name %> </a>
+        <% }) %>
+    </div>
 
     <% if (theme.valine.enable && page.comments) { %>
         <hr class="fhr">
