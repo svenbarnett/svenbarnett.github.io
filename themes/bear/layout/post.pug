@@ -1,5 +1,9 @@
 extends ../_partial/layout
 
+block head 
+  meta(name="description", content=page.description)
+  meta(name="keyword", content=page.keywords)
+
 block content
   .container.post
     section.article

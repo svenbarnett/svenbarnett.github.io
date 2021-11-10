@@ -4,16 +4,17 @@
 
 # Site
 title: SIWEN.PENG's Blog
-subtitle: ''
-description: ''
-keywords:
+subtitle: 'blog'
+description: 'pswen blog,life,study,Java,solution'
+keywords: psw,彭思文,siwen,思文,sven,java,study,solution,blog
 author: SIWEN.PENG
 language: en
-timezone: ''
+timezone: 'Asia/Shanghai'
+seo: true
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: https://www.pswen.cn
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -97,7 +98,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: geek
+theme: bear
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -108,4 +109,17 @@ deploy:
 lazyload:
   enable: true 
   onlypost: true
-  loadingImg: /img/loading.gif 
+  loadingImg: /img/loading.gif
+
+# sitemap
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
+
+# nofollow
+nofollow:
+  enable: true
+  exclude:
+  - www.pswen.cn
+  - pswen.cn

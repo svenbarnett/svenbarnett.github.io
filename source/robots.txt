@@ -1,0 +1,11 @@
+User-agent: * Allow: /
+Allow: /
+Allow: /tags/
+Allow: /archives/
+Disallow: /categories/
+Disallow: /script/
+Disallow: /styles/
+Disallow: /fonts/
+Disallow: /fancybox/
+Sitemap: https://www.pswen.cn/sitemap.xml
+Sitemap: https://www.pswen.cn/baidusitemap.xml
