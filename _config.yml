@@ -103,3 +103,9 @@ theme: geek
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+# image lazyload
+lazyload:
+  enable: true 
+  onlypost: true
+  loadingImg: /img/loading.gif 
