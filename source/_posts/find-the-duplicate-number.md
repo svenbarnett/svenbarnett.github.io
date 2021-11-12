@@ -1,5 +1,5 @@
 ---
-title: 寻找重复数——二分法
+title: 寻找重复数——LeetCode287
 keywords: 寻找重复数,二分法,算法,leetcode
 description: 使用二分法解决寻找重复数，练习二分法使用
 date: 2021-11-11 21:02:11
@@ -7,6 +7,7 @@ tags:
 - leetcode
 - 算法
 - 二分法
+- 快慢指针
 ---
 
 给定一个包含 n + 1 个整数的数组 nums ，其数字都在 1 到 n 之间（包括 1 和 n），可知至少存在一个重复的整数。
@@ -117,5 +118,41 @@ class Solution {
 
 时间复杂度：`O(n * logn)`，其中 n为nums 数组的长度。二分查找最多需要二分`O(logn) `次，每次判断的时候需要`O(n)` 遍历 nums 数组求解小于等于mid 的数的个数，因此总时间复杂度为`O(n * logn)`。
 
+空间复杂度：`O(1)`。我们只需要常数空间存放若干变量。
+
+2. 快慢指针
+
+我们对 nums数组建图，每个位置 `i` 连一条 `i→nums[i]` 的边。由于存在的重复的数字 
+`target`因此 `target `这个位置一定有起码两条指向它的边，因此整张图一定存在环，且我们要找到的 
+`target`就是这个环的入口.
+
+我们先设置慢指针`slow 和快指针` `fast` ，慢指针每次走一步，快指针每次走两步，根据「Floyd 判圈算法」两个指针在有环的情况下一定会相遇，此时我们再将 `slow` 放置起点`0`，两个指针每次同时移动一步，相遇的点就是答案。
+
+代码实现：
+
+```java
+class Solution {
+    public int findDuplicate(int[] nums) {
+        int slow = 0, fast = 0;
+      	# 找环的入口
+        do {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        } while (slow != fast);
+        # 重置slow为起点
+        slow = 0;
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        # 再次相遇 就是环入口
+        return slow;
+    }
+}
+```
+
+复杂度分析
+
+时间复杂度：`O(n)`。「Floyd 判圈算法」时间复杂度为线性的时间复杂度。
 空间复杂度：`O(1)`。我们只需要常数空间存放若干变量。
 
