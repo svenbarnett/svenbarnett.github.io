@@ -1,13 +1,14 @@
 ---
 title: 寻找重复数——LeetCode287
-keywords: 寻找重复数,二分法,算法,leetcode
+keywords: '寻找重复数,二分法,算法,leetcode'
 description: 使用二分法解决寻找重复数，练习二分法使用
-date: 2021-11-11 21:02:11
 tags:
-- leetcode
-- 算法
-- 二分法
-- 快慢指针
+  - leetcode
+  - 算法
+  - 二分法
+  - 快慢指针
+abbrlink: 44752
+date: 2021-11-11 21:02:11
 ---
 
 给定一个包含 n + 1 个整数的数组 nums ，其数字都在 1 到 n 之间（包括 1 和 n），可知至少存在一个重复的整数。
