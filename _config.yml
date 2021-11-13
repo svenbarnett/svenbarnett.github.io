@@ -126,3 +126,22 @@ nofollow:
   exclude:
   - www.pswen.cn
   - pswen.cn
+
+# rrs
+#RSS订阅
+pfeed:
+  type: 
+  - atom
+  - rrs2
+  path: 
+  - atom.xml
+  - rrs2.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+  icon: icon.png
+  autodiscovery: true
+  template:

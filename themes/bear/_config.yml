@@ -1,6 +1,7 @@
 # Header
 menu:
   归档: /archives
+  RRS: /atom.xml
 rss: /atom.xml
 title: SIWEN.PENG's Blog
 
