@@ -9,6 +9,8 @@ tags:
 - 实习
 ---
 
+更多见全文
+
 <!-- more -->
 
 ![实习](olden-days-3/IMG_2498.JPG)

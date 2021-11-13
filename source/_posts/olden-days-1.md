@@ -9,6 +9,8 @@ tags:
 - 大学
 ---
 
+更多见全文
+
 <!-- more -->
 
 ![学位授予](olden-days-1/IMG_3952.JPG)

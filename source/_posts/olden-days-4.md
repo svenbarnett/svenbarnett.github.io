@@ -9,6 +9,8 @@ tags:
 - 年幼
 ---
 
+更多见全文
+
 <!-- more -->
 
 ![今夕](olden-days-4/IMG_4766.JPG)
