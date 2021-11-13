@@ -1,4 +1,4 @@
-User-agent: * Allow: /
+User-agent: * 
 Allow: /
 Allow: /tags/
 Allow: /archives/
@@ -7,5 +7,6 @@ Disallow: /script/
 Disallow: /styles/
 Disallow: /fonts/
 Disallow: /fancybox/
-Sitemap: https://www.pswen.cn/sitemap.xml
-Sitemap: https://www.pswen.cn/baidusitemap.xml
+Sitemap: /sitemap.xml
+Sitemap: /baidusitemap.xml
+
