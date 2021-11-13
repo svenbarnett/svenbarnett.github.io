@@ -51,3 +51,7 @@ twitter:
 google_plus:
 fb_admins:
 fb_app_id:
+
+# donate 打赏功能
+WeChatQR: /img/WeChatQR.jpg
+AliPayQR: /img/AliPayQR.jpg

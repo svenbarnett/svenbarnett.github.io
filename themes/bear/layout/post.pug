@@ -12,6 +12,9 @@ block content
       .content!= page.content
       if page.tags
         .tags!= list_tags(page.tags, { show_count: false, class: 'tag', style: false, separator: '' })
+      include ../_partial/donate.pug
+
+  
 
   .container
     ul.nav
