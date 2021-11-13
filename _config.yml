@@ -112,7 +112,7 @@ deploy:
 lazyload:
   enable: true 
   onlypost: true
-  loadingImg: /img/loading.gif
+  loadingImg: /img/loading.png
 
 # sitemap
 sitemap:
