@@ -9,6 +9,7 @@ block content
     section.article
       .title= page.title
       .date 写于#{moment(page.date).format(theme.date_format)}
+        include ../_partial/wordcount.pug
       .content!= page.content
       if page.tags
         .tags!= list_tags(page.tags, { show_count: false, class: 'tag', style: false, separator: '' })
