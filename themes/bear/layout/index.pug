@@ -3,7 +3,7 @@ extends ../_partial/layout
 block content
 
   .container.home
-    each post in site.posts.sort('date', -1).data
+    each post in site.posts.sort('date', -1).limit(config.per_page).data
       section.article
         a(href=url_for(post.path)).title= post.title || '未命名'
         div.content.excerpt!= post.excerpt || post.content
