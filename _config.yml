@@ -145,3 +145,21 @@ pfeed:
   icon: icon.png
   autodiscovery: true
   template:
+# hexo-neat
+neat_enable: true
+neat_html:
+  enable: true
+  exclude: 
+neat_css:
+  enable: true
+  exclude: 
+    - '*.min.css'
+    - '**/*.min.css'
+    - 'jquery.fancybox.min.css'
+neat_js:
+  enable: true
+  exclude:
+    - '*.min.js'
+    - '**/*.min.js'
+    - 'jquery.fancybox.min.js'
+    - 'jquery.fancybox.pack.js'
