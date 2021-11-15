@@ -1,6 +1,7 @@
 {
   "name": "hexo-site",
   "version": "0.0.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "build": "hexo clean && hexo generate",
@@ -33,5 +34,8 @@
     "hexo-renderer-stylus": "^2.0.0",
     "hexo-server": "^2.0.0",
     "hexo-wordcount": "^6.0.1"
+  },
+  "devDependencies": {
+    "gulp-imagemin": "^8.0.0"
   }
 }
