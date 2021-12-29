@@ -1,12 +1,13 @@
 ---
 title: gulp-imagemin在压缩图片
-keywords: gulp-imagemin,压缩图片,gulp
+keywords: 'gulp-imagemin,压缩图片,gulp'
 description: 使用gulp进行图片压缩，借助gulp-imagemin插件
-date: 2021-11-16 22:35:58
 tags:
-- gulp
-- 压缩图片
-- gulp-imagemin
+  - gulp
+  - 压缩图片
+  - gulp-imagemin
+abbrlink: 1009bbf4
+date: 2021-11-16 22:35:58
 ---
 
 图片上传太大了，导致页面加载太慢，站点带宽本来不够，碰到大图片就会导致站点加载缓慢
