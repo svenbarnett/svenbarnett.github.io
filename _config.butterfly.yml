@@ -627,7 +627,7 @@ aside:
       link: https://github.com/svenbarnett
   card_announcement:
     enable: true
-    content: 联系我VX:psw3197544360
+    content: 联系我，WeChat:psw3197544360
   card_recent_post:
     enable: true
     limit: 5 # if set 0 will show all
