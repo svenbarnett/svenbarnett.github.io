@@ -1,12 +1,13 @@
 ---
 title: linux生产免费的域名证书
-keywords: linux,cert,acme.sh
+keywords: 'linux,cert,acme.sh'
 description: Linux下使用acme.sh 配置https 免费证书
-date: 2021-12-29 21:59:07
 tags:
-- linux
-- acmesh
-- 域名证书
+  - linux
+  - acmesh
+  - 域名证书
+abbrlink: 4425fc35
+date: 2021-12-29 21:59:07
 ---
 
 简单来说acme.sh 实现了 acme 协议, 可以从 let‘s encrypt 生成免费的证书。
