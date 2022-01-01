@@ -34,7 +34,13 @@
     "hexo-renderer-stylus": "^2.0.0",
     "hexo-server": "^2.0.0",
     "hexo-wordcount": "^6.0.1",
-    "imagemin-pngquant": "^9.0.2"
+    "imagemin-pngquant": "^9.0.2",
+    "hexo-algoliasearch": "^0.4.2",
+    "hexo-autoprefixer": "^2.0.0",
+    "hexo-deployer-git": "^2.1.0",
+    "hexo-feed": "^1.0.2",
+    "hexo-renderer-multi-markdown-it": "^0.1.5",
+    "hexo-symbols-count-time": "^0.7.1"
   },
   "devDependencies": {
     "gulp-imagemin": "^8.0.0"
