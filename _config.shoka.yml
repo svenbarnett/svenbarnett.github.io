@@ -110,10 +110,10 @@ social:
   #google: https://plus.google.com/yourname || google
   #twitter: https://twitter.com/yourname || twitter || "#00aff0"
   #zhihu: https://www.zhihu.com/people/yourname || zhihu || "#1e88e5"
-  #music: https://music.163.com/#/user/home?id=yourid || cloud-music || "#e60026"
+  music: https://music.163.com/#/user/home?id=290919677 || cloud-music || "#e60026"
   #weibo: https://weibo.com/yourname || weibo || "#ea716e"
   #about: https://about.me/yourname || address-card || "#3b5998"
-  #email: mailto:yourname@mail.com || envelope || "#55acd5"
+  email: mailto:pengsiwen_2@163.com || envelope || "#55acd5"
   #facebook: https://www.facebook.com/yourname || facebook
   #stackoverflow: https://stackoverflow.com/yourname || stack-overflow
   #youtube: https://youtube.com/yourname || youtube
@@ -277,27 +277,3 @@ baidu_site_verification:
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO.
 baidu_push: false
-
-#! ---------------------------------------------------------------
-#! DO NOT EDIT THE FOLLOWING `vendors` SETTINGS
-#! UNLESS YOU KNOW WHAT YOU ARE DOING
-#! Script dependencies will be combined with jsDelivr (cdn.jsdelivr.net)
-#! ---------------------------------------------------------------
-vendors:
-  css:
-    katex: npm/katex@0.12.0/dist/katex.min.css
-    comment: css/comment.css
-    fancybox: combine/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css
-  js:
-    pace: npm/pace-js@1.0.2/pace.min.js
-    pjax: npm/pjax@0.2.8/pjax.min.js
-    fetch: npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js
-    anime: npm/animejs@3.2.0/lib/anime.min.js
-    algolia: npm/algoliasearch@4/dist/algoliasearch-lite.umd.js
-    instantsearch: npm/instantsearch.js@4/dist/instantsearch.production.min.js
-    lazyload: npm/lozad@1/dist/lozad.min.js
-    quicklink: npm/quicklink@2/dist/quicklink.umd.js
-    fancybox: combine/npm/jquery@3.5.1/dist/jquery.min.js,npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js,npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js
-    # valine: gh/amehime/MiniValine@4.2.2-beta10/dist/MiniValine.min.js
-    copy_tex: npm/katex@0.12.0/dist/contrib/copy-tex.min.js
-    chart: npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js
