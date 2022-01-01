@@ -114,7 +114,11 @@ hexo.extend.helper.register('_image_url', function(img, path = '') {
   if (img.startsWith('//') || img.startsWith('http')) {
     return img
   } else {
-    return url_for.call(this, statics + (post_asset_folder ? path : '') + img)
+    var imgurl = url_for.call(this, statics + (post_asset_folder ? path : '') + img)
+    // 修复imgurl多了/导致找不到图片
+    imgurl = imgurl.replace("//", "/")
+    console.info && console.info(imgurl)
+    return imgurl
   }
 })
 

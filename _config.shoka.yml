@@ -24,10 +24,11 @@ favicon:
 # By default, the page judges whether to turn on the dark mode according to the device settings or user selection
 # if `true`, the page will be displayed directly as Dark Mode, unless the user makes another choice
 darkmode: false
+highlight_theme: mac 
 
 # By default the page will automatically scroll to the last viewed position
 # if `false`, automatic positioning will be turned off
-auto_scroll: true
+auto_scroll: false
 
 # Whether to show the loading cat
 loader:
@@ -122,7 +123,7 @@ social:
 
 sidebar:
   # Sidebar Position.
-  position: right
+  position: left
   # position: right
   # Replace the default avatar image and set the url here.
   avatar: /img/avatar.jpg
@@ -142,12 +143,12 @@ footer:
     # Change the color of icon, using Hex Code.
     color: "#ffc0cb"
   # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
-  count: false
+  count: true
   powered: false
 
 post:
   # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
-  count: false
+  count: true
 
 # Reward (Donate)
 reward:
