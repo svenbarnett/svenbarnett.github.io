@@ -17,4 +17,5 @@ photos:
 - http://placehold.it/350x150.jpg
 keywords: 关键词
 description: 描述
+sticky: false
 ---

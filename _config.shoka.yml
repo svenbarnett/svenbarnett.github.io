@@ -32,7 +32,7 @@ auto_scroll: false
 
 # Whether to show the loading cat
 loader:
-  start: false # When entering the page
+  start: true # When entering the page
   switch: false # When switching to another page
 
 # click with Firework
@@ -91,14 +91,14 @@ iconfont: "1832207_igi8uaupcus"
 
 menu:
   home: / || home
-  about: /about/ || user
   posts:
     default: / || feather
     archives: /archives/ || list-alt
     categories: /categories/ || th
     tags: /tags/ || tags
-  # friends: /friends/ || heart
-  # links: /links/ || magic
+  about: /about/ || user
+  pics: /pics/ || heart
+  links: /links/ || magic
 
 # Social Links
 # Usage: `Key: permalink || icon || color`

@@ -32,14 +32,14 @@ Let's Encrypt免费证书客户端最简单的shell脚本。
 
 1.安装acme.sh
 
-```
+```java
 curl https://get.acme.sh | sh
 ```
 
 2.安装后的配置
 把 acme.sh 安装到你的 home 目录下:~/.acme.sh/并创建 一个 bash 的 alias, 方便你的使用:
 
-```
+```java
 alias acme.sh=~/.acme.sh/acme.sh
 echo 'alias acme.sh=~/.acme.sh/acme.sh' >>/etc/profile
 ```

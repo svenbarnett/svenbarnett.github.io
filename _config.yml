@@ -48,21 +48,20 @@ post_asset_folder: true
 relative_link: false
 future: true
 highlight:
-  enable: true
+  enable: false # edit for Theme.shoka
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace: ''
-  wrap: true
-  hljs: false
 prismjs:
-  enable: false
-  preprocess: true
-  line_number: true
-  tab_replace: ''
+  enable: false # edit for Theme.shoka
 
 # Category & Tag
 default_category: uncategorized
-category_map:
+category_map: # edit for Theme.shoka
+  计算机科学: computer-science
+  Java: java
+  二进制杂谈: note
+  图记: pic-record
 tag_map:
 
 # Metadata elements
