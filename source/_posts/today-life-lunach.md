@@ -6,6 +6,7 @@ tags:
   - 生活
   - 午餐
   - 图记
+cover: IMG_0073.JPG
 abbrlink: dbbc4a4a
 date: 2021-11-14 12:29:41
 ---
