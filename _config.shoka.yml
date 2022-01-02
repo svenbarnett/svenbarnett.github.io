@@ -139,7 +139,7 @@ footer:
   since: 2014
   beian: 湘ICP备2020021380号-1
   icon:
-    name: SVENWEN.PENG
+    name: star
     # Change the color of icon, using Hex Code.
     color: "#ffc0cb"
   # Dependencies: https://github.com/theme-next/hexo-symbols-count-time
