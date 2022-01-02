@@ -192,7 +192,7 @@ audio:
   #    - https://music.163.com/#/playlist?id=2031842656
 
 # random image api
-image_server: "//bing.ioliu.cn/v1/rand/?w=1024&h=768"
+image_server: #"//bing.ioliu.cn/v1/rand/?w=1024&h=768"
 
 # Algolia Search
 # For more information: https://www.algolia.com
