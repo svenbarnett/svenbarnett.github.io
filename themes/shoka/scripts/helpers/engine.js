@@ -15,12 +15,17 @@ const randomBG = function(count = 1, image_server = null, image_list = []) {
     if(count && count > 1) {
       var arr = new Array(count);
       for(var i=0; i < arr.length; i++){
-        arr[i] = image_server + '?' + Math.floor(Math.random() * 999999)
+        if (image_server.indexOf("?") > -1){
+          arr[i] = image_server + '&randomid=' + Math.floor(Math.random() * 999999)
+        }else{
+          arr[i] = image_server + '?' + Math.floor(Math.random() * 999999)
+        }
       }
-
       return arr;
     }
-
+    if (image_server.indexOf("?") > -1){
+      return image_server + '&randomid=' + Math.floor(Math.random() * 999999)
+    }
     return image_server + '?' + Math.floor(Math.random() * 999999)
   }
 

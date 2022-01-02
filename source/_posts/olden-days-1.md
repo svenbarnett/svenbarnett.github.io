@@ -5,7 +5,7 @@ description: 大学毕业照
 tags:
   - 往昔时光
   - 大学
-cover: olden-days-1/IMG_3952.JPG
+cover: IMG_3952.JPG
 abbrlink: 4166
 date: 2018-06-23 13:32:35
 ---
