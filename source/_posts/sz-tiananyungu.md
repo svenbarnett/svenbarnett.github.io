@@ -8,6 +8,7 @@ tags:
   - 夜景
 abbrlink: b10a7a0e
 date: 2021-12-18 21:06:30
+cover: IMG_0119.jpg
 ---
 
 ![IMG_0119](sz-tiananyungu/IMG_0119.jpg)

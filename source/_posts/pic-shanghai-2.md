@@ -7,6 +7,7 @@ tags:
   - 陆家嘴
 abbrlink: dfa3267e
 date: 2019-10-08 18:50:44
+cover: IMG_4474.JPG
 ---
 
 ![大厦](pic-shanghai-2/IMG_4474.JPG)

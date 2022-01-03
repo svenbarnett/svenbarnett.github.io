@@ -7,6 +7,7 @@ tags:
   - 上海
 abbrlink: 6617d304
 date: 2019-12-30 19:50:56
+cover: IMG_4526.JPG
 ---
 
 ![直插云霄](pic-shanghai-3/IMG_4526.JPG)

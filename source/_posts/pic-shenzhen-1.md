@@ -7,6 +7,7 @@ tags:
   - 云谷
 abbrlink: 4ee64d66
 date: 2021-08-27 18:50:09
+cover: IMG_0027.jpg
 ---
 
 ![晚霞的尾巴](pic-shenzhen-1/IMG_0027.jpg)

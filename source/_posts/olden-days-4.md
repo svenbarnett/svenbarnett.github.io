@@ -8,11 +8,8 @@ tags:
   - 年幼
 abbrlink: 51719
 date: 2021-02-12 13:43:18
+cover: IMG_4766.JPG
 ---
-
-更多见全文
-
-<!-- more -->
 
 ![今夕](olden-days-4/IMG_4766.JPG)
 

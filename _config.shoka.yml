@@ -96,9 +96,9 @@ menu:
     archives: /archives/ || list-alt
     categories: /categories/ || th
     tags: /tags/ || tags
-  about: /about/ || user
   pics: /pics/ || heart
   links: /links/ || magic
+  about: /about/ || user
 
 # Social Links
 # Usage: `Key: permalink || icon || color`

@@ -19,19 +19,19 @@ Leetcode-287 链接：https://leetcode-cn.com/problems/find-the-duplicate-number
 <!-- more -->
 
 示例 1：
-```
+```sh
 输入：nums = [1,3,4,2,2]
 输出：2
 ```
 
 示例 2：
-```
+```sh
 输入：nums = [3,1,3,4,2]
 输出：3
 ```
 
 示例 3：
-```
+```sh
 输入：nums = [1,1]
 输出：1
 ```
@@ -43,7 +43,7 @@ Leetcode-287 链接：https://leetcode-cn.com/problems/find-the-duplicate-number
 ```
 
 提示：
-```
+```sh
 1 <= n <= 105
 nums.length == n + 1
 1 <= nums[i] <= n

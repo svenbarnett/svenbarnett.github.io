@@ -32,14 +32,14 @@ Let's Encrypt免费证书客户端最简单的shell脚本。
 
 1.安装acme.sh
 
-```java
+```shell
 curl https://get.acme.sh | sh
 ```
 
 2.安装后的配置
 把 acme.sh 安装到你的 home 目录下:~/.acme.sh/并创建 一个 bash 的 alias, 方便你的使用:
 
-```java
+```shell
 alias acme.sh=~/.acme.sh/acme.sh
 echo 'alias acme.sh=~/.acme.sh/acme.sh' >>/etc/profile
 ```
@@ -49,7 +49,7 @@ acme.sh 实现了 acme 协议支持的所有验证协议. 一般有两种方式�
 
 HTTP 方式方法如下：
 
-```
+```sh
 acme.sh --issue -d epoint.pswen.cn --webroot /nginx网站根目录
 ```
 
@@ -68,13 +68,13 @@ Nginx服务：`systemctl restart nginx `。(centos7)
 
 nginx示例1:
 
-```
+```shell
 acme.sh --installcert -d epoint.pswen.cn --key-file /usr/local/nginx/ssl_cert/epoint.pswen.cn.key --fullchain-file /usr/local/nginx/ssl_cert/epoint.pswen.cn.cer --reloadcmd "service nginx force-reload"
 ```
 
 nginx示例2：
 
-```
+```sh
 acme.sh --install-cert -d chandao.test.com \
 --key-file /usr/local/nginx/ssl_cert/test.com/chandao.test.com.key \
 --fullchain-file /usr/local/nginx/ssl_cert/test.com/chandao.test.com.cer \
@@ -89,7 +89,7 @@ acme.sh --install-cert -d chandao.test.com \
 
 Nginx 配置Http和Https共存
 
-```
+```shell
 listen 80; #如果硬性要求全部走https协议，这一行去除
 listen 443 ssl http2; #如果硬性要求全部走https协议，这里去除ssl
 server_name chandao.test.com;
@@ -114,7 +114,7 @@ ssl_stapling_verify on;
 
 完整例子：
 
-```
+```shell
 server {
   listen 80;  #如果硬性要求全部走https协议，这一行去除
   listen       443 ssl http2;    #如果硬性要求全部走https协议，这里去除ssl
@@ -167,7 +167,7 @@ server {
 6.重启nginx
 保存退出后，通过nginx -t来检查配置文件是否正确，有错误的话改之即可。配置文件检测正确之后，通过service nginx force-reload来重载配置文件。
 
-```
+```shell
 nginx -t
 systemctl restart nginx
 ```

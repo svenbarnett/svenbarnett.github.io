@@ -8,11 +8,8 @@ tags:
   - 实习
 abbrlink: 48940
 date: 2017-06-17 10:39:52
+cover: IMG_2498.JPG
 ---
-
-更多见全文
-
-<!-- more -->
 
 ![实习](olden-days-3/IMG_2498.JPG)
 

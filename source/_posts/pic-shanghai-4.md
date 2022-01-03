@@ -7,6 +7,7 @@ tags:
   - 夜景
 abbrlink: ec5868f5
 date: 2020-05-20 21:35:39
+cover: IMG_4615.JPG
 ---
 
 ![朦胧的外滩](pic-shanghai-4/IMG_4615.JPG)
