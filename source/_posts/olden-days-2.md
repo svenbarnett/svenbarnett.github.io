@@ -7,7 +7,7 @@ tags:
   - 往昔时光
 abbrlink: 43666
 date: 2018-02-13 12:36:02
-cvoer: IMG_3586.JPG
+cover: IMG_3586.JPG
 ---
 
 ![可爱的他们](olden-days-2/IMG_3586.JPG)
