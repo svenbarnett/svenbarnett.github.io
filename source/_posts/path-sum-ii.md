@@ -7,11 +7,12 @@ tags:
   - 树
   - dfs
   - bfs
-photos:
-keywords: 二叉树,dfs,bfs,leetcode
-description:
+keywords: '二叉树,dfs,bfs,leetcode'
+cover: 'u=193842663,8061252&fm=26&fmt=auto.jpeg'
+abbrlink: 7d31a8bc
 date: 2022-01-05 22:27:28
-cover: u=193842663,8061252&fm=26&fmt=auto.jpeg
+photos:
+description:
 ---
 
 # 题目描述
