@@ -71,7 +71,6 @@ module.exports = function (cfg, site) {
 
         postMap = function (post) {
             var realpath = getRealPath(post.permalink)
-            console.info(realpath)
             return {
                 title: posts_props('title', post.title),
                 slug: posts_props('slug', post.slug),
@@ -81,9 +80,9 @@ module.exports = function (cfg, site) {
                 realpath: posts_props('realpath', realpath),
                 path: posts_props('path', 'api/articles/' + post.slug + '.json'),
                 excerpt: posts_props('excerpt', filterHTMLTags(post.excerpt)),
-                keywords: posts_props('keywords', cfg.keywords),
+                keywords: posts_props('keywords', post.keywords),
                 // cover: posts_props('cover',  fetchCover(post.content)),
-                cover: posts_props('cover', encodeURI(post.cveor ? realpath + post.cover : fetchCover(post.content))),
+                cover: posts_props('cover', encodeURI(post.cover ? realpath + post.cover : fetchCover(post.content))),
                 content: posts_props('content', post.content),
                 raw: posts_props('raw', post.raw),
                 categories: posts_props('categories', function () {
@@ -238,7 +237,6 @@ module.exports = function (cfg, site) {
         apiData = apiData.concat(posts.map(function (post) {
             var path = 'api/articles/' + post.slug + '.json';
             var realpath = getRealPath(post.permalink)
-            console.info(realpath)
             return {
                 path: path,
                 data: JSON.stringify({
@@ -251,7 +249,7 @@ module.exports = function (cfg, site) {
                     realpath: realpath,
                     excerpt: filterHTMLTags(post.excerpt),
                     cover: encodeURI(post.cover ? realpath + post.cover : fetchCover(post.content)),
-                    keywords: cfg.keyword,
+                    keywords: post.keyword,
                     content: post.content,
                     more: post.more,
                     categories: post.categories.map(function (cat) {
@@ -276,7 +274,6 @@ module.exports = function (cfg, site) {
             var safe_title = page.title.replace(/[^a-z0-9]/gi, '-').toLowerCase()
             var path = 'api/pages/' + safe_title + '.json';
             var realpath = getRealPath(page.permalink)
-            console.info(realpath)
             return {
                 path: path,
                 data: JSON.stringify({
