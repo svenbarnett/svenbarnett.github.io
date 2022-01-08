@@ -8,11 +8,8 @@ tags:
   - gulp-imagemin
 abbrlink: 1009bbf4
 date: 2021-11-16 22:35:58
+cover: src=http%3A%2F%2Fwww.ppthui.com%2Fzb_users%2Fupload%2F2020%2F03%2F202003221584842927256597.jpg&refer=http%3A%2F%2Fwww.ppthui.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg
 ---
-
-图片上传太大了，导致页面加载太慢，站点带宽本来不够，碰到大图片就会导致站点加载缓慢
-
-<!-- more -->
 
 经过各种研（bai）究（du），找到了一种方案：采用`gulp + gulp-imagemin`，对图片进行压缩，结合hexo进行对应图片压缩。
 
