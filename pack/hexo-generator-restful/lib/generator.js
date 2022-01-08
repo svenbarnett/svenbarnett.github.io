@@ -83,7 +83,7 @@ module.exports = function (cfg, site) {
                 excerpt: posts_props('excerpt', filterHTMLTags(post.excerpt)),
                 keywords: posts_props('keywords', cfg.keywords),
                 // cover: posts_props('cover',  fetchCover(post.content)),
-                cover: posts_props('cover', encodeURI(realpath + post.cover || fetchCover(post.content))),
+                cover: posts_props('cover', encodeURI(post.cveor ? realpath + post.cover : fetchCover(post.content))),
                 content: posts_props('content', post.content),
                 raw: posts_props('raw', post.raw),
                 categories: posts_props('categories', function () {
