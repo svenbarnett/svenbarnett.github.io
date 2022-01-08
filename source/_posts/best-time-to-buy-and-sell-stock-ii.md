@@ -83,14 +83,25 @@ description:
 class Solution {
     public int maxProfit(int[] prices) {
         int n = prices.length;
+        // 状态定义 x为天数  y为0为当天不持有 1为当天持有
         int[][] dp = new int[n][2];
+        // 定义起始状态
+        // 第一天 不持有，不花钱 收益为0
         dp[0][0] = 0;
-        dp[0][1] = -prices[0];
-        for (int i = 1; i < n; ++i) {
-            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
-            dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i]);
+        // 第一天 持有，花钱 收益为当天买股票的钱
+        dp[0][1] = - prices[0];
+        // 从第二天开始递推哈
+        //
+        for (int d = 1; d < n; d++) {
+            // 第二天不持有股票：
+            // 第一天不持有股票的收益 + （没买）0  |  第一天持有股票 + （卖出）第二天价格 ；
+            dp[d][0] = Math.max(dp[d-1][0], dp[d-1][1] + prices[d]);
+            // 第二天持有股票：
+            // 第一天不持有股票的收益 + 买入第二天价格  |  第一天持有股票 + 没买也没卖 ；
+            dp[d][1] = Math.max(dp[d-1][0] - prices[d], dp[d-1][1]);
         }
-        return dp[n - 1][0];
+        // 持有股票的收益必定小于不持有股票
+        return dp[n-1][0];
     }
 }
 ```
