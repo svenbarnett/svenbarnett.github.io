@@ -274,6 +274,14 @@ module.exports = function (cfg, site) {
             var safe_title = page.title.replace(/[^a-z0-9]/gi, '-').toLowerCase()
             var path = 'api/pages/' + safe_title + '.json';
             var realpath = getRealPath(page.permalink)
+            var photos = page.photos
+            var newphotos = []
+            if (photos){
+                // console.info(photos)
+                for (const item of photos) {
+                    newphotos.push(realpath + item)    
+                }
+            }
             return {
                 path: path,
                 data: JSON.stringify({
@@ -283,6 +291,7 @@ module.exports = function (cfg, site) {
                     comments: page.comments,
                     path: path,
                     realpath: realpath,
+                    photos: newphotos,
                     cover: encodeURI(page.cover ? realpath + page.cover : fetchCover(page.content)),
                     excerpt: filterHTMLTags(page.excerpt),
                     content: page.content

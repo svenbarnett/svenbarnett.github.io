@@ -276,7 +276,7 @@ restful:
     excerpt: true
     cover: true      # 封面图，取文章第一张图片
     content: true
-    keywords: false
+    keywords: true
     categories: true
     tags: true
   categories: true         # 分类数据
