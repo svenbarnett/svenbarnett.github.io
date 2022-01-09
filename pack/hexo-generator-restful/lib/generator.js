@@ -28,6 +28,32 @@ function getRealPath(path){
     return path.replace("index.html","").replace(config.url,"")
 }
 
+function removeRawHeader(str){
+    var i = str.indexOf('---\n', 5)
+    return str.substring( i + 5, str.length)
+}
+function fetchRawImgs(str) {
+    var temp,
+        imgURLs = [],
+        rex = /!\[.*\]\((.*)\)/g;
+    while ( temp = rex.exec( str ) ) {
+        imgURLs.push( temp[1] );
+    }
+    return imgURLs.length > 0 ? imgURLs : null;
+}
+function replaceImgPath(realpath, raw){
+    var imgs = fetchRawImgs(raw)
+    // console.info(imgs)
+    if(imgs){
+        for (const img of imgs) {
+            var i = img.indexOf('/')
+            var imgrealpath = realpath + img.substring(i + 1, img.length )
+            raw = raw.replace(img, imgrealpath)
+        }
+    }
+    return raw;
+}
+
 module.exports = function (cfg, site) {
     globalCfg = cfg
     var restful = cfg.hasOwnProperty('restful') ? cfg.restful :
@@ -237,6 +263,8 @@ module.exports = function (cfg, site) {
         apiData = apiData.concat(posts.map(function (post) {
             var path = 'api/articles/' + post.slug + '.json';
             var realpath = getRealPath(post.permalink)
+            var raw = removeRawHeader(post.raw);
+            raw = replaceImgPath(realpath, raw);
             return {
                 path: path,
                 data: JSON.stringify({
@@ -251,6 +279,7 @@ module.exports = function (cfg, site) {
                     cover: encodeURI(post.cover ? realpath + post.cover : fetchCover(post.content)),
                     keywords: post.keyword,
                     content: post.content,
+                    raw: raw,
                     more: post.more,
                     categories: post.categories.map(function (cat) {
                         return {
