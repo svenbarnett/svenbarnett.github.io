@@ -1,4 +1,12 @@
 <div class="status">
+
+  <div class="qrcode">
+      <div class="">
+        <img class="qrcode-mp" src="/images/img/mp.png"/>
+      </div>
+  </div>
+
+
   <div class="copyright">
     {% set copyright_year = date(null, 'YYYY') %}
     &copy; {% if theme.footer.since and theme.footer.since != copyright_year %}{{ theme.footer.since }} – {% endif %}
