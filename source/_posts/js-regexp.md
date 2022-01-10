@@ -6,14 +6,13 @@ tags:
   - 正则
   - js
   - 去除零
-photos:
-keywords: 正则,js,去除零
-description: 
-date: 2022-01-10 21:51:44
+keywords: '正则,js,去除零'
 cover: image.svg
+abbrlink: 9195a466
+date: 2022-01-10 21:51:44
+photos:
+description:
 ---
-
-
 
 直接上代码
 
@@ -149,6 +148,3 @@ print(res.group(1))
 {n,m}? 重复n到m次，但尽可能少重复
 {n,}? 重复n次以上，但尽可能少重复
 ```
-
-
-
