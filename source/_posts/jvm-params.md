@@ -116,7 +116,7 @@ JVM的`-X`参数是非标准参数，在不同版本的JVM中，参数可能会�
 
 ![interpreted-mode](jvm-params/20190729122640228.png)
 
-## -Xcomp参数
+### -Xcomp参数
 
 ```plaintext
 -Xcomp参数与-Xint正好相反，JVM在第一次使用时会把所有的字节码编译成本地代码，从而带来最大程度的优化。
@@ -211,7 +211,7 @@ public int  add(int a, int b , int c, int d){
 
 这样除了本身的相加逻辑的开销，比内联前减少了二次调用函数带来的额外开销。 
 
-## 内联条件
+### 内联条件
 
 一个方法如果满足以下条件就很可能被jvm内联。
 
