@@ -24,7 +24,11 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: Copy Pack js
-        run: bash .github\workflows\do_copy_pack.sh
+        shell: bash
+        working-directory: ./
+        run: |
+          cp ./pack/hexo-asset-image/index.js ./node_modules/hexo-asset-image/index.js
+          cp ./pack/hexo-generator-restful/lib/generator.js ./node_modules/hexo-generator-restful/lib/generator.js
       - name: Build
         run: npm run build
       - name: Deploy
