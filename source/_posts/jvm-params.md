@@ -1,5 +1,5 @@
 ---
-title: JVM调优——X参数,方法内联
+title: 'JVM调优——X参数,方法内联'
 categories:
   - java
 tags:
@@ -7,12 +7,13 @@ tags:
   - 混合模式
   - 解释模式
   - 纯编译模式
-photos:
-keywords: jvm调优,mixed,混合,xint,解释,comp,纯编译,方法内联
+keywords: 'jvm调优,mixed,混合,xint,解释,comp,纯编译,方法内联'
 description: jvm相关启动参数可以用来控制模式
-date: 2022-01-12 23:06:08
 cover: logo
 sticky: true
+abbrlink: 638c83fa
+date: 2022-01-12 23:06:08
+photos:
 ---
 
 JVM的`-X`参数是非标准参数，在不同版本的JVM中，参数可能会有所不同，可以通过`java -X`查看非标准参数
