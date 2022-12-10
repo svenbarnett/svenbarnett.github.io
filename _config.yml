@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: SIWEN.PENG's Blog
+title: PENG.SIWEN's Blog
 subtitle: '心怀浪漫宇宙|珍惜人间日常'
 description: '心怀浪漫宇宙|珍惜人间日常'
 keywords: psw,彭思文,siwen,思文,sven,java,study,solution,blog
@@ -14,7 +14,7 @@ seo: true
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://www.pswen.cn
+url: https://svenbarnett.github.io
 permalink: /p/:abbrlink/
 abbrlink:
   alg: crc32
