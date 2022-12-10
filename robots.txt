@@ -1,0 +1,12 @@
+User-agent: * 
+Allow: /
+Allow: /tags/
+Allow: /archives/
+Disallow: /categories/
+Disallow: /script/
+Disallow: /styles/
+Disallow: /fonts/
+Disallow: /fancybox/
+Sitemap: /sitemap.xml
+Sitemap: /baidusitemap.xml
+
