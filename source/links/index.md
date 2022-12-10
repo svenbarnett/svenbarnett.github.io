@@ -8,7 +8,7 @@ cover:
 {% links %}
 - site: 小明的家
   owner: 小明
-  url: https://www.baidu.com
+  url: https://www.pswen.cn
   desc: 说点啥
   image: 
   color: #555
