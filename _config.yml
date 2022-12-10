@@ -14,7 +14,8 @@ seo: true
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://svenbarnett.github.io
+# url: https://svenbarnett.github.io
+url: https://www.pswen.cn
 permalink: /p/:abbrlink/
 abbrlink:
   alg: crc32
