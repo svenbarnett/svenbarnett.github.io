@@ -23,10 +23,10 @@ jobs:
             ${{ runner.OS }}-npm-cache
       - name: Install Dependencies
         run: npm install
-      - name: Build
-        run: npm run build
       - name: Copy Pack js
         run: bash .github\workflows\do_copy_pack.sh
+      - name: Build
+        run: npm run build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
