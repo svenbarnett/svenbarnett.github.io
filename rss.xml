@@ -10,8 +10,8 @@
         </author>
         <description>心怀浪漫宇宙|珍惜人间日常</description>
         <language>zh-CN</language>
-        <pubDate>Tue, 08 Feb 2022 11:56:55 +0000</pubDate>
-        <lastBuildDate>Tue, 08 Feb 2022 11:56:55 +0000</lastBuildDate>
+        <pubDate>Mon, 12 Dec 2022 12:56:26 +0000</pubDate>
+        <lastBuildDate>Mon, 12 Dec 2022 12:56:26 +0000</lastBuildDate>
         <category term="psw" />
         <category term="彭思文" />
         <category term="siwen" />
@@ -21,6 +21,29 @@
         <category term="study" />
         <category term="solution" />
         <category term="blog" />
+        <item>
+            <guid isPermalink="true">https://www.pswen.cn/p/d223f900/</guid>
+            <title>疫情三年，是时候结束了！</title>
+            <link>https://www.pswen.cn/p/d223f900/</link>
+            <category term="杂记" scheme="https://www.pswen.cn/categories/%E6%9D%82%E8%AE%B0/" />
+            <category term="疫情" scheme="https://www.pswen.cn/tags/%E7%96%AB%E6%83%85/" />
+            <category term="杂记" scheme="https://www.pswen.cn/tags/%E6%9D%82%E8%AE%B0/" />
+            <pubDate>Mon, 12 Dec 2022 12:56:26 +0000</pubDate>
+            <description><![CDATA[ &lt;blockquote&gt;
+&lt;p&gt;疫情三年，什么变化了？什么没有变化呢？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;疫情三年变化的是，出现了健康码、行程码、核酸检测&lt;/p&gt;
+&lt;p&gt;疫情三年变化的是，到处都贴起了二维码、出行限制、经济发展滞缓&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/p/d223f900/image-20221212210631735.png&#34; alt=&#34;核酸检测点即将拆除&#34;&gt;&lt;/p&gt;
+&lt;p&gt;三年疫情，突然放开，大家还是有些许不适应&lt;/p&gt;
+&lt;p&gt;还是习惯的过门卡掏出手机，还是习惯每天准点测核酸&lt;/p&gt;
+&lt;p&gt;三年疫情对国家也有很大冲击，国家开始发行国债，用来弥补这三年的核酸检测国家政府开支&lt;/p&gt;
+&lt;p&gt;三年疫情对经济冲击夜很大，许多行业都开始收紧，业务调整，裁员潮，都开始 “过冬” 了&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/p/d223f900/image-20221212210553921.png&#34; alt=&#34;行程码下线&#34;&gt;&lt;/p&gt;
+&lt;p&gt;不变的是啥呢？&lt;/p&gt;
+&lt;p&gt;唯一不变的估计是人吗？&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://www.pswen.cn/p/52a5c0f5/</guid>
             <title>被围绕的区域——LeetCode130</title>
@@ -1082,16 +1105,6 @@ Leetcode-287 链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9s
             <pubDate>Fri, 12 Feb 2021 05:43:18 +0000</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img data-src=&#34;/p/51719/IMG_4766.JPG&#34; alt=&#34;今夕&#34;&gt;&lt;/p&gt;
 &lt;p&gt;小时候我们唯一的合照&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://www.pswen.cn/p/ec5868f5/</guid>
-            <title>图记——上海外滩</title>
-            <link>https://www.pswen.cn/p/ec5868f5/</link>
-            <category term="上海外滩" scheme="https://www.pswen.cn/tags/%E4%B8%8A%E6%B5%B7%E5%A4%96%E6%BB%A9/" />
-            <category term="夜景" scheme="https://www.pswen.cn/tags/%E5%A4%9C%E6%99%AF/" />
-            <pubDate>Wed, 20 May 2020 13:35:39 +0000</pubDate>
-            <description><![CDATA[ &lt;p&gt;&lt;img data-src=&#34;/p/ec5868f5/IMG_4615.JPG&#34; alt=&#34;朦胧的外滩&#34;&gt;&lt;/p&gt;
  ]]></description>
         </item>
     </channel>
