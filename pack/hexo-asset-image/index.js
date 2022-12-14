@@ -76,8 +76,12 @@ hexo.extend.filter.register('after_post_render', function(data){
             if(srcArray.length > 1)
             srcArray.shift();
             src = srcArray.join('/');
-            $(this).attr('data-src',  pageimageroot + src);
-            console.info && console.info("update link as:-->"+ pageimageroot + src);
+              var imgUrlPrefix = pageimageroot;
+              if (config.jsdelivr.enable){
+                imgUrlPrefix = config.jsdelivr.url
+              }
+            $(this).attr('data-src',  imgUrlPrefix + src);
+            console.info && console.info("update link as:-->"+ imgUrlPrefix + src);
           }
           
         }
