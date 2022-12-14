@@ -79,10 +79,10 @@ hexo.extend.filter.register('after_post_render', function(data){
             var imgUrlPrefix = pageimageroot;
             var imgurl =  imgUrlPrefix + src
             // 使用jsdelivr cdn加速
+            var imgurl =pageimageroot + src;
             if (config.jsdelivr.enable){
-              imgUrlPrefix = config.jsdelivr.url
-              imgurl =  imgUrlPrefix + src.replace('/p/', '/')
-            }            
+              imgurl = config.jsdelivr.url + imgurl
+            }           
             $(this).attr('data-src',  imgurl);
             console.info && console.info("update link as:-->"+ imgurl);
           }
