@@ -14,7 +14,7 @@ seo: true
 
 all_minifier: true
 
-jsdelivr
+jsdelivr:
   enable: true
   url: https://cdn.jsdelivr.net/gh/svenbarnett/svenbarnett.github.io/source/_posts
 
