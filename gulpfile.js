@@ -1,14 +1,26 @@
 import gulp from 'gulp';
-import imagemin from 'gulp-imagemin';
-import pngquant from 'imagemin-pngquant';
+import imagemin, {gifsicle, mozjpeg, optipng, svgo} from 'gulp-imagemin';
 
 gulp.task('minify-images', function (done) {
     gulp.src('public/p/**/*.{JPG,jpg,PNG,png,GIF,gif,SVG,svg,JPEG,jpeg}')
-		.pipe(imagemin({
-			optimizationLevel: 3,
-			progressive: true,
-			usa:[pngquant()]
-		}))
+		.pipe(imagemin([
+			gifsicle({interlaced: true}),
+			mozjpeg({quality: 75, progressive: true}),
+			optipng({optimizationLevel: 3}),
+			svgo({
+				plugins: [
+					{
+						name: 'removeViewBox',
+						active: true
+					},
+					{
+						name: 'cleanupIDs',
+						active: false
+					}
+				]
+			})
+		],{verbose: true}
+		))
 		.pipe(gulp.dest('public/p/'))
     done();
 });
