@@ -15,7 +15,7 @@ seo: true
 all_minifier: true
 
 jsdelivr:
-  enable: true
+  enable: false
   url: https://cdn.jsdelivr.net/gh/svenbarnett/svenbarnett.github.io@gh-pages
 
 # URL
