@@ -76,12 +76,15 @@ hexo.extend.filter.register('after_post_render', function(data){
             if(srcArray.length > 1)
             srcArray.shift();
             src = srcArray.join('/');
-              var imgUrlPrefix = pageimageroot;
-              if (config.jsdelivr.enable){
-                imgUrlPrefix = config.jsdelivr.url
-              }
-            $(this).attr('data-src',  imgUrlPrefix + src);
-            console.info && console.info("update link as:-->"+ imgUrlPrefix + src);
+            var imgUrlPrefix = pageimageroot;
+            var imgurl =  imgUrlPrefix + src
+            // 使用jsdelivr cdn加速
+            if (config.jsdelivr.enable){
+              imgUrlPrefix = config.jsdelivr.url
+              imgurl =  imgUrlPrefix + src.replace('/p/', '/')
+            }            
+            $(this).attr('data-src',  imgurl);
+            console.info && console.info("update link as:-->"+ imgurl);
           }
           
         }
