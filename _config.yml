@@ -12,6 +12,8 @@ language: zh-CN
 timezone: 'Asia/Shanghai'
 seo: true
 
+all_minifier: true
+
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 # url: https://svenbarnett.github.io
