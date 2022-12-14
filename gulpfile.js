@@ -6,7 +6,7 @@ gulp.task('minify-images', function (done) {
 		.pipe(imagemin([
 			gifsicle({interlaced: true}),
 			mozjpeg({quality: 75, progressive: true}),
-			optipng({optimizationLevel: 3}),
+			// optipng({optimizationLevel: 3}),
 			svgo({
 				plugins: [
 					{
