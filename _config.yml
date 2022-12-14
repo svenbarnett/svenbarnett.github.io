@@ -14,6 +14,10 @@ seo: true
 
 all_minifier: true
 
+jsdelivr
+  enable: true
+  url: https://cdn.jsdelivr.net/gh/svenbarnett/svenbarnett.github.io/source/_posts
+
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 # url: https://svenbarnett.github.io
