@@ -10,7 +10,7 @@ tags:
 keywords: 'jvm调优,mixed,混合,xint,解释,comp,纯编译,方法内联'
 description: jvm相关启动参数可以用来控制模式
 cover: logo
-sticky: true
+sticky: false
 abbrlink: 638c83fa
 date: 2022-01-12 23:06:08
 photos:
