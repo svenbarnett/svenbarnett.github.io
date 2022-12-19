@@ -10,8 +10,8 @@
         </author>
         <description>心怀浪漫宇宙|珍惜人间日常</description>
         <language>zh-CN</language>
-        <pubDate>Mon, 12 Dec 2022 12:56:26 +0000</pubDate>
-        <lastBuildDate>Mon, 12 Dec 2022 12:56:26 +0000</lastBuildDate>
+        <pubDate>Mon, 19 Dec 2022 12:46:23 +0000</pubDate>
+        <lastBuildDate>Mon, 19 Dec 2022 12:46:23 +0000</lastBuildDate>
         <category term="psw" />
         <category term="彭思文" />
         <category term="siwen" />
@@ -21,6 +21,17 @@
         <category term="study" />
         <category term="solution" />
         <category term="blog" />
+        <item>
+            <guid isPermalink="true">https://www.pswen.cn/p/850ce73f/</guid>
+            <title>室友“羊”了</title>
+            <link>https://www.pswen.cn/p/850ce73f/</link>
+            <category term="杂技" scheme="https://www.pswen.cn/categories/%E6%9D%82%E6%8A%80/" />
+            <category term="疫情" scheme="https://www.pswen.cn/tags/%E7%96%AB%E6%83%85/" />
+            <pubDate>Mon, 19 Dec 2022 12:46:23 +0000</pubDate>
+            <description><![CDATA[ &lt;p&gt;室友这几天不舒服，就测了，果不其然🐑了，我应该是很危险了。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;/p/850ce73f/image-20221219212509735.png&#34; alt=&#34;抗原检测阳性&#34;&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://www.pswen.cn/p/d223f900/</guid>
             <title>疫情三年，是时候结束了！</title>
@@ -1093,18 +1104,6 @@ Leetcode-287 链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9s
             <category term="上海" scheme="https://www.pswen.cn/tags/%E4%B8%8A%E6%B5%B7/" />
             <pubDate>Sun, 16 May 2021 05:50:28 +0000</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;img data-src=&#34;/p/9b051724/IMG_4609.jpg&#34; alt=&#34;武康大楼&#34;&gt;&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">https://www.pswen.cn/p/51719/</guid>
-            <title>往昔时光-我们</title>
-            <link>https://www.pswen.cn/p/51719/</link>
-            <category term="我们" scheme="https://www.pswen.cn/tags/%E6%88%91%E4%BB%AC/" />
-            <category term="年轻" scheme="https://www.pswen.cn/tags/%E5%B9%B4%E8%BD%BB/" />
-            <category term="年幼" scheme="https://www.pswen.cn/tags/%E5%B9%B4%E5%B9%BC/" />
-            <pubDate>Fri, 12 Feb 2021 05:43:18 +0000</pubDate>
-            <description><![CDATA[ &lt;p&gt;&lt;img data-src=&#34;/p/51719/IMG_4766.JPG&#34; alt=&#34;今夕&#34;&gt;&lt;/p&gt;
-&lt;p&gt;小时候我们唯一的合照&lt;/p&gt;
  ]]></description>
         </item>
     </channel>
