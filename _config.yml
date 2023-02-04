@@ -50,13 +50,6 @@ render_drafts: false
 post_asset_folder: true
 relative_link: false
 future: true
-highlight:
-  enable: false # edit for Theme.shoka
-  line_number: true
-  auto_detect: true
-  tab_replace: ''
-prismjs:
-  enable: false # edit for Theme.shoka
 
 
 # Metadata elements
