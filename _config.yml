@@ -151,7 +151,23 @@ baidu_url_submit:
 deploy:
 - type: baidu_url_submitter # 百度
 
-
+# 高亮.yml
+highlight:
+  enable: true
+  auto_detect: true
+  line_number: true
+  line_threshold: 0
+  tab_replace: ''
+  exclude_languages:
+    - example
+  wrap: true
+  hljs: false
+prismjs:
+  enable: false
+  preprocess: true
+  line_number: true
+  line_threshold: 0
+  tab_replace: ''
 
 # edit for Theme.shoka
 autoprefixer:
