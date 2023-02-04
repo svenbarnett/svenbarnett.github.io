@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "人间日常 • All posts by \"陆家嘴\" tag",
+    "description": "所行皆过往，所愿皆成真",
+    "home_page_url": "https://www.pswen.cn",
+    "items": [
+        {
+            "id": "https://www.pswen.cn/p/dfa3267e/",
+            "url": "https://www.pswen.cn/p/dfa3267e/",
+            "title": "图记——大厦",
+            "date_published": "2019-10-08T10:50:44.000Z",
+            "content_html": "<p><img src=\"/p/dfa3267e/IMG_4474.JPG\" alt=\"大厦\"></p>\n",
+            "tags": [
+                "上海",
+                "陆家嘴"
+            ]
+        }
+    ]
+}
