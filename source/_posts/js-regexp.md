@@ -31,7 +31,7 @@ arr.forEach((item)=>{
 // > 0.12001
 // > 0.000011111
 ```
-
+<!-- more -->
 正则可视化：
 
 ![image](js-regexp/image.svg)

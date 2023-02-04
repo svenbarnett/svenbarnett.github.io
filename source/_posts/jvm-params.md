@@ -17,7 +17,7 @@ photos:
 ---
 
 JVM的`-X`参数是非标准参数，在不同版本的JVM中，参数可能会有所不同，可以通过`java -X`查看非标准参数
-
+<!-- more -->
 ```plaintext
 > java -X
 
