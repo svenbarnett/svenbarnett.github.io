@@ -11,15 +11,6 @@
   </url>
   
   <url>
-    <loc>https://www.pswen.cn/p/fbb9fe6d/</loc>
-    
-    <lastmod>2023-02-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.pswen.cn/baidu_verify_code-MRgz5Zcb4E.html</loc>
     
     <lastmod>2023-02-04</lastmod>
@@ -30,6 +21,15 @@
   
   <url>
     <loc>https://www.pswen.cn/about/index.html</loc>
+    
+    <lastmod>2023-02-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pswen.cn/p/fbb9fe6d/</loc>
     
     <lastmod>2023-02-04</lastmod>
     
@@ -137,7 +137,34 @@
   </url>
   
   <url>
+    <loc>https://www.pswen.cn/p/4166/</loc>
+    
+    <lastmod>2023-02-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pswen.cn/p/43666/</loc>
+    
+    <lastmod>2023-02-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.pswen.cn/p/48940/</loc>
+    
+    <lastmod>2023-02-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pswen.cn/p/638c83fa/</loc>
     
     <lastmod>2023-02-04</lastmod>
     
@@ -156,24 +183,6 @@
   
   <url>
     <loc>https://www.pswen.cn/p/dfd6ab93/</loc>
-    
-    <lastmod>2023-02-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.pswen.cn/p/4166/</loc>
-    
-    <lastmod>2023-02-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.pswen.cn/p/43666/</loc>
     
     <lastmod>2023-02-04</lastmod>
     
@@ -237,15 +246,6 @@
   
   <url>
     <loc>https://www.pswen.cn/p/8239/</loc>
-    
-    <lastmod>2023-02-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.pswen.cn/p/638c83fa/</loc>
     
     <lastmod>2023-02-04</lastmod>
     
@@ -421,13 +421,6 @@
   </url>
   
   <url>
-    <loc>https://www.pswen.cn/tags/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/</loc>
-    <lastmod>2023-02-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.pswen.cn/tags/jvm%E8%B0%83%E4%BC%98/</loc>
     <lastmod>2023-02-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -450,6 +443,13 @@
   
   <url>
     <loc>https://www.pswen.cn/tags/%E7%BA%AF%E7%BC%96%E8%AF%91%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2023-02-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pswen.cn/tags/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/</loc>
     <lastmod>2023-02-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
