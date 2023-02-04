@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: PENG.SIWEN's Blog
-subtitle: '心怀浪漫宇宙|珍惜人间日常'
-description: '心怀浪漫宇宙|珍惜人间日常'
+title: 人间日常
+subtitle: '所行皆过往，所愿皆成真'
+description: '所行皆过往，所愿皆成真'
 keywords: psw,彭思文,siwen,思文,sven,java,study,solution,blog
 author: SIWEN.PENG
 language: zh-CN
@@ -13,10 +13,6 @@ timezone: 'Asia/Shanghai'
 seo: true
 
 all_minifier: true
-
-jsdelivr:
-  enable: false
-  url: https://cdn.jsdelivr.net/gh/svenbarnett/svenbarnett.github.io@gh-pages
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -62,14 +58,6 @@ highlight:
 prismjs:
   enable: false # edit for Theme.shoka
 
-# Category & Tag
-default_category: uncategorized
-category_map: # edit for Theme.shoka
-  计算机科学: computer-science
-  Java: java
-  二进制杂谈: note
-  图记: pic-record
-tag_map:
 
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
@@ -100,7 +88,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: shoka
+theme: Hacker
 
 
 # image lazyload
@@ -177,39 +165,6 @@ autoprefixer:
   exclude:
     - '*.min.css'
 
-markdown:
-  render: # 渲染器设置
-    html: false # 过滤 HTML 标签
-    xhtmlOut: true # 使用 '/' 来闭合单标签 （比如 <br />）。
-    breaks: true # 转换段落里的 '\n' 到 <br>。
-    linkify: true # 将类似 URL 的文本自动转换为链接。
-    typographer:
-    quotes: '“”‘’'
-  plugins: # markdown-it插件设置
-    - plugin:
-        name: markdown-it-toc-and-anchor
-        enable: true
-        options: # 文章目录以及锚点应用的class名称，shoka主题必须设置成这样
-          tocClassName: 'toc'
-          anchorClassName: 'anchor'
-    - plugin:
-        name: markdown-it-multimd-table
-        enable: true
-        options:
-          multiline: true
-          rowspan: true
-          headerless: true
-    - plugin:
-        name: ./markdown-it-furigana
-        enable: true
-        options:
-          fallbackParens: "()"
-    - plugin:
-        name: ./markdown-it-spoiler
-        enable: true
-        options:
-          title: "你知道得太多了"
-
 minify:
   html:
     enable: true
@@ -247,25 +202,6 @@ minify:
 #     - gallery
 #     - photos
 #     - tags
-
-feed:
-    limit: 20
-    order_by: "-date"
-    tag_dir: false
-    category_dir: false
-    rss:
-        enable: true
-        template: "themes/shoka/layout/_alternate/rss.ejs"
-        output: "rss.xml"
-    atom:
-        enable: true
-        template: "themes/shoka/layout/_alternate/atom.ejs"
-        output: "atom.xml"
-    jsonFeed:
-        enable: true
-        template: "themes/shoka/layout/_alternate/json.ejs"
-        output: "feed.json"
-
 
 # restful config
 restful:
