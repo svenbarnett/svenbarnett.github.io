@@ -235,7 +235,7 @@
 &lt;p&gt;为什么与 1 能判断奇偶？所谓的二进制就是满 2 进 1，那么好了，偶数的最低位肯定是 0（恰好满 2，对不对？），同理，奇数的最低位肯定是 1.int 类型的 1，前 31 位都是 0，无论是 1&amp;amp;0 还是 0&amp;amp;0 结果都是 0，那么有区别的就是 1 的最低位上的 1 了，若 n 的二进制最低位是 1（奇数）与上 1，结果为 1，反则结果为 0.&lt;/p&gt;
 &lt;h2 id=&#34;3-不用临时变量交换两个数&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#3-不用临时变量交换两个数&#34;&gt;#&lt;/a&gt; 3.   不用临时变量交换两个数&lt;/h2&gt;
 &lt;p&gt;在 int [] 数组首尾互换中，是不看到过这样的代码：&lt;/p&gt;
-&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&#34;highlight&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;public static int[] reverse(int[] nums)&amp;#123;&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;int i = 0;&lt;/code&gt;&lt;/li&gt;
