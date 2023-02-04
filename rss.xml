@@ -103,6 +103,7 @@
             <pubDate>Tue, 08 Feb 2022 11:56:55 +0000</pubDate>
             <description><![CDATA[ &lt;p&gt;给你一个  &lt;code&gt;m x n&lt;/code&gt;  的矩阵  &lt;code&gt;board&lt;/code&gt;  ，由若干字符  &lt;code&gt;&#39;X&#39;&lt;/code&gt;  和  &lt;code&gt;&#39;O&#39;&lt;/code&gt;  ，找到所有被  &lt;code&gt;&#39;X&#39;&lt;/code&gt;  围绕的区域，并将这些区域里所有的  &lt;code&gt;&#39;O&#39;&lt;/code&gt;  用  &lt;code&gt;&#39;X&#39;&lt;/code&gt;  填充。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/p/52a5c0f5/xogrid.jpg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
 &lt;p&gt;示例 1&lt;/p&gt;
 &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;输入：board = [[&amp;quot;X&amp;quot;,&amp;quot;X&amp;quot;,&amp;quot;X&amp;quot;,&amp;quot;X&amp;quot;],[&amp;quot;X&amp;quot;,&amp;quot;O&amp;quot;,&amp;quot;O&amp;quot;,&amp;quot;X&amp;quot;],[&amp;quot;X&amp;quot;,&amp;quot;X&amp;quot;,&amp;quot;O&amp;quot;,&amp;quot;X&amp;quot;],[&amp;quot;X&amp;quot;,&amp;quot;O&amp;quot;,&amp;quot;X&amp;quot;,&amp;quot;X&amp;quot;]]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;输出：[[&amp;quot;X&amp;quot;,&amp;quot;X&amp;quot;,&amp;quot;X&amp;quot;,&amp;quot;X&amp;quot;],[&amp;quot;X&amp;quot;,&amp;quot;X&amp;quot;,&amp;quot;X&amp;quot;,&amp;quot;X&amp;quot;],[&amp;quot;X&amp;quot;,&amp;quot;X&amp;quot;,&amp;quot;X&amp;quot;,&amp;quot;X&amp;quot;],[&amp;quot;X&amp;quot;,&amp;quot;O&amp;quot;,&amp;quot;X&amp;quot;,&amp;quot;X&amp;quot;]]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;解释：被围绕的区间不会存在于边界上，换句话说，任何边界上的 &amp;#x27;O&amp;#x27; 都不会被填充为 &amp;#x27;X&amp;#x27;。 任何不在边界上，或不与边界上的 &amp;#x27;O&amp;#x27; 相连的 &amp;#x27;O&amp;#x27; 最终都会被填充为 &amp;#x27;X&amp;#x27;。如果两个元素在水平或垂直方向相邻，则称它们是“相连”的。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;示例 2&lt;/p&gt;
@@ -229,6 +230,7 @@
 &lt;p&gt;正则可视化：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/p/9195a466/image.svg&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
 &lt;p&gt;推荐个可视化网址：&lt;a href=&#34;https://regexper.com/&#34;&gt;https://regexper.com/&lt;/a&gt;&lt;/p&gt;
+&lt;!-- more --&gt;
 &lt;p&gt;再解释下正则的意思 &lt;code&gt;(?:.0*|(.\d+?)0+)$&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;先分解成 4 部分&lt;/p&gt;
 &lt;ol&gt;
@@ -395,6 +397,7 @@
 每次转换只能改变一个字母。&lt;br&gt;
 转换过程中的中间单词必须是字典  &lt;code&gt;wordList&lt;/code&gt;  中的单词。&lt;br&gt;
 给你两个单词  &lt;code&gt;beginWord&lt;/code&gt;  和  &lt;code&gt;endWord&lt;/code&gt;  和一个字典  &lt;code&gt;wordList&lt;/code&gt;  ，找到从  &lt;code&gt;beginWord &lt;/code&gt; 到  &lt;code&gt;endWord&lt;/code&gt;  的 最短转换序列 中的 单词数目 。如果不存在这样的转换序列，返回  &lt;code&gt;0&lt;/code&gt; 。&lt;/p&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
 &lt;p&gt;示例 1：&lt;/p&gt;
 &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;输入：beginWord = &amp;quot;hit&amp;quot;, endWord = &amp;quot;cog&amp;quot;, wordList = [&amp;quot;hot&amp;quot;,&amp;quot;dot&amp;quot;,&amp;quot;dog&amp;quot;,&amp;quot;lot&amp;quot;,&amp;quot;log&amp;quot;,&amp;quot;cog&amp;quot;]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;输出：5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;解释：一个最短转换序列是 &amp;quot;hit&amp;quot; -&amp;gt; &amp;quot;hot&amp;quot; -&amp;gt; &amp;quot;dot&amp;quot; -&amp;gt; &amp;quot;dog&amp;quot; -&amp;gt; &amp;quot;cog&amp;quot;, 返回它的长度 5。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;示例 2：&lt;/p&gt;

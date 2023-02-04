@@ -74,6 +74,7 @@
 &lt;p&gt;正则可视化：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/p/9195a466/image.svg&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
 &lt;p&gt;推荐个可视化网址：&lt;a href=&#34;https://regexper.com/&#34;&gt;https://regexper.com/&lt;/a&gt;&lt;/p&gt;
+&lt;!-- more --&gt;
 &lt;p&gt;再解释下正则的意思 &lt;code&gt;(?:.0*|(.\d+?)0+)$&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;先分解成 4 部分&lt;/p&gt;
 &lt;ol&gt;

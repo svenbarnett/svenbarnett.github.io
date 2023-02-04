@@ -75,6 +75,7 @@
 每次转换只能改变一个字母。&lt;br&gt;
 转换过程中的中间单词必须是字典  &lt;code&gt;wordList&lt;/code&gt;  中的单词。&lt;br&gt;
 给你两个单词  &lt;code&gt;beginWord&lt;/code&gt;  和  &lt;code&gt;endWord&lt;/code&gt;  和一个字典  &lt;code&gt;wordList&lt;/code&gt;  ，找到从  &lt;code&gt;beginWord &lt;/code&gt; 到  &lt;code&gt;endWord&lt;/code&gt;  的 最短转换序列 中的 单词数目 。如果不存在这样的转换序列，返回  &lt;code&gt;0&lt;/code&gt; 。&lt;/p&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
 &lt;p&gt;示例 1：&lt;/p&gt;
 &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;输入：beginWord = &amp;quot;hit&amp;quot;, endWord = &amp;quot;cog&amp;quot;, wordList = [&amp;quot;hot&amp;quot;,&amp;quot;dot&amp;quot;,&amp;quot;dog&amp;quot;,&amp;quot;lot&amp;quot;,&amp;quot;log&amp;quot;,&amp;quot;cog&amp;quot;]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;输出：5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;解释：一个最短转换序列是 &amp;quot;hit&amp;quot; -&amp;gt; &amp;quot;hot&amp;quot; -&amp;gt; &amp;quot;dot&amp;quot; -&amp;gt; &amp;quot;dog&amp;quot; -&amp;gt; &amp;quot;cog&amp;quot;, 返回它的长度 5。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;示例 2：&lt;/p&gt;
