@@ -1,6 +1,8 @@
 ---
 title: 图记
 photos:
+  - /pics/2023/IMG_0681.jpg
+  - /pics/2023/IMG_1794.jpg
   - /pics/2022/2022_10_02.jpg
   - /pics/2022/2022_10_01.jpg
   - /pics/2022/2022_2.jpg
