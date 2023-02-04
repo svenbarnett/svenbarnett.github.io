@@ -38,6 +38,8 @@ arr.forEach((item)=>{
 
 推荐个可视化网址：https://regexper.com/
 
+<!-- more -->
+
 再解释下正则的意思`(?:.0*|(.\d+?)0+)$`
 
 先分解成4部分

@@ -23,6 +23,7 @@ description:
 转换过程中的中间单词必须是字典 `wordList` 中的单词。
 给你两个单词 `beginWord` 和 `endWord` 和一个字典 `wordList` ，找到从 `beginWord `到 `endWord` 的 最短转换序列 中的 单词数目 。如果不存在这样的转换序列，返回 `0`。
 
+<!-- more -->
 
 示例 1：
 ```plaintext
