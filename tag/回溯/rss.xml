@@ -20,6 +20,8 @@
         <category>gulp</category>
         <category>压缩图片</category>
         <category>gulp-imagemin</category>
+        <category>Java</category>
+        <category>位运算</category>
         <category>正则</category>
         <category>js</category>
         <category>去除零</category>
@@ -30,13 +32,11 @@
         <category>解释模式</category>
         <category>纯编译模式</category>
         <category>环形链表</category>
-        <category>Java</category>
-        <category>位运算</category>
         <category>往昔时光</category>
         <category>大学</category>
+        <category>高中</category>
         <category>往昔</category>
         <category>实习</category>
-        <category>高中</category>
         <category>我们</category>
         <category>年轻</category>
         <category>年幼</category>
@@ -47,19 +47,19 @@
         <category>上海</category>
         <category>陆家嘴</category>
         <category>三叉戟</category>
-        <category>晚霞</category>
-        <category>云谷</category>
         <category>上海外滩</category>
         <category>夜景</category>
+        <category>晚霞</category>
+        <category>云谷</category>
         <category>回溯</category>
         <category>矩阵</category>
         <category>深度遍历</category>
         <category>广度遍历</category>
         <category>图记</category>
         <category>天安云谷</category>
-        <category>单词接龙</category>
         <category>生活</category>
         <category>午餐</category>
+        <category>单词接龙</category>
         <item>
             <guid isPermalink="true">https://www.pswen.cn/p/ab179abd/</guid>
             <title>复原IP地址——LeetCode93</title>
