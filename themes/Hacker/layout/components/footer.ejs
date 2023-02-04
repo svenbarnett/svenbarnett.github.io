@@ -1,11 +1,11 @@
 <footer class="site-footer">
   <p class="site-info">
-    <%= config.footer.beian %>
+    <%= theme.footer.beian %> 
     </br>
     <% if (config.author){ %>
-    &copy; <%= config.footer.since %> - <%= new Date().getFullYear() %> <%= config.author %>
+    &copy; <%= theme.footer.since %> - <%= new Date().getFullYear() %> <%= config.author %>
     <% } else { %>
-    &copy; <%= config.footer.since %> - <%= new Date().getFullYear() %> <%= config.title %>
+    &copy; <%= theme.footer.since %> - <%= new Date().getFullYear() %> <%= config.title %>
     <% } %>
   </p>
 </footer>
