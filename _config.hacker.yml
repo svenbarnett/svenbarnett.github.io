@@ -1,0 +1,11 @@
+menu:
+  Home: /
+  Archives: /archives
+# whether to show read more button when showing article in excerpt in main page
+read_more_btn: true
+
+
+footer:
+  # Specify the date when the site was setup. If not defined, current year will be used.
+  since: 2014
+  beian: 湘ICP备2020021380号-1
