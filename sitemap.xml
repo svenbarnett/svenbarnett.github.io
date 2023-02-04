@@ -110,15 +110,6 @@
   </url>
   
   <url>
-    <loc>https://www.pswen.cn/p/9b051724/</loc>
-    
-    <lastmod>2023-02-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.pswen.cn/p/51719/</loc>
     
     <lastmod>2023-02-04</lastmod>
@@ -129,6 +120,15 @@
   
   <url>
     <loc>https://www.pswen.cn/p/7d31a8bc/</loc>
+    
+    <lastmod>2023-02-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pswen.cn/p/9b051724/</loc>
     
     <lastmod>2023-02-04</lastmod>
     
@@ -421,13 +421,6 @@
   </url>
   
   <url>
-    <loc>https://www.pswen.cn/tags/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/</loc>
-    <lastmod>2023-02-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.pswen.cn/tags/jvm%E8%B0%83%E4%BC%98/</loc>
     <lastmod>2023-02-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -450,6 +443,13 @@
   
   <url>
     <loc>https://www.pswen.cn/tags/%E7%BA%AF%E7%BC%96%E8%AF%91%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2023-02-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pswen.cn/tags/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/</loc>
     <lastmod>2023-02-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -682,13 +682,6 @@
   </url>
   
   <url>
-    <loc>https://www.pswen.cn/categories/%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2023-02-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.pswen.cn/categories/LeetCode/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2023-02-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -697,6 +690,13 @@
   
   <url>
     <loc>https://www.pswen.cn/categories/LeetCode/%E7%AE%97%E6%B3%95/java/</loc>
+    <lastmod>2023-02-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pswen.cn/categories/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2023-02-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
