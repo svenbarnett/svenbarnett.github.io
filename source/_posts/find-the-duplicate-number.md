@@ -15,7 +15,7 @@ date: 2021-11-11 21:02:11
 假设 nums 只有 一个重复的整数 ，找出 这个重复的数 。
 你设计的解决方案必须不修改数组 nums 且只用常量级 O(1) 的额外空间。
 Leetcode-287 链接：https://leetcode-cn.com/problems/find-the-duplicate-number
-
+<!-- more -->
 示例 1：
 ```sh
 输入：nums = [1,3,4,2,2]

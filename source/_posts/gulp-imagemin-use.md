@@ -12,7 +12,7 @@ cover: ppp
 ---
 
 经过各种研（bai）究（du），找到了一种方案：采用`gulp + gulp-imagemin`，对图片进行压缩，结合hexo进行对应图片压缩。
-
+<!-- more -->
 ### 安装
 
 ```sh
