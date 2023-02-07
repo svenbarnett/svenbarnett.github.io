@@ -86,9 +86,9 @@ theme: Hacker
 
 # image lazyload
 lazyload:
-  enable: false 
-  onlypost: true
-  loadingImg: /img/loading.png
+  enable: true 
+  onlypost: false
+  loadingImg: /images/loading.svg
 
 # sitemap
 sitemap:
@@ -197,21 +197,6 @@ minify:
     exclude:
       - '**/*.min.js'
 
-# algolia:
-#   appId:
-#   apiKey:
-#   adminApiKey:
-#   chunkSize: 5000
-#   indexName:
-#   fields:
-#     - title #必须配置
-#     - path #必须配置
-#     - categories #推荐配置
-#     - content:strip:truncate,0,4000
-#     - gallery
-#     - photos
-#     - tags
-
 # restful config
 restful:
   # site 可配置为数组选择性生成某些属性
@@ -237,36 +222,3 @@ restful:
   use_tag_slug: false      # Use slug for filename of tag data
   post: true               # 文章数据
   pages: true             # 额外的 Hexo 页面数据, 如 About
-
-markdown:
-  render: # 渲染器设置
-    html: false # 过滤 HTML 标签
-    xhtmlOut: true # 使用 '/' 来闭合单标签 （比如 <br />）。
-    breaks: true # 转换段落里的 '\n' 到 <br>。
-    linkify: true # 将类似 URL 的文本自动转换为链接。
-    typographer:
-    quotes: '“”‘’'
-  plugins: # markdown-it插件设置
-    - plugin:
-        name: markdown-it-toc-and-anchor
-        enable: true
-        options: # 文章目录以及锚点应用的class名称，shoka主题必须设置成这样
-          tocClassName: 'toc'
-          anchorClassName: 'anchor'
-    - plugin:
-        name: markdown-it-multimd-table
-        enable: true
-        options:
-          multiline: true
-          rowspan: true
-          headerless: true
-    - plugin:
-        name: ./markdown-it-furigana
-        enable: true
-        options:
-          fallbackParens: "()"
-    - plugin:
-        name: ./markdown-it-spoiler
-        enable: true
-        options:
-          title: "你知道得太多了"
