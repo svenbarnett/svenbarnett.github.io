@@ -33,19 +33,19 @@
         <category>解释模式</category>
         <category>纯编译模式</category>
         <category>环形链表</category>
-        <category>高中</category>
         <category>往昔时光</category>
         <category>大学</category>
+        <category>高中</category>
+        <category>往昔</category>
+        <category>实习</category>
+        <category>我们</category>
+        <category>年轻</category>
+        <category>年幼</category>
         <category>树</category>
         <category>dfs</category>
         <category>bfs</category>
         <category>武康大楼</category>
         <category>上海</category>
-        <category>我们</category>
-        <category>年轻</category>
-        <category>年幼</category>
-        <category>往昔</category>
-        <category>实习</category>
         <category>陆家嘴</category>
         <category>三叉戟</category>
         <category>上海外滩</category>
@@ -68,33 +68,36 @@
             <category>Java</category>
             <category>位运算</category>
             <pubDate>Wed, 29 Dec 2021 12:02:53 +0000</pubDate>
-            <description><![CDATA[ &lt;p&gt;日常开发中位运算不是很常用，但是巧妙的使用位运算可以大量减少运行开销，优化算法。举个例子，翻转操作比较常见，比如初始值为1，操作一次变为0，再操作一次变为1。可能的做法是使用三木运算符，判断原始值为1还是0，如果是1，设置为0，否则设置为0.但是使用位运算，不用判断原始值，直接改变值就可以：&lt;code&gt;1^num &lt;/code&gt;,num为原始值。当然，一条语句可能对代码没什么影响，但是在高重复，大数据量的情况下将会节省很多开销。&lt;/p&gt;
+            <description><![CDATA[ &lt;p&gt;日常开发中位运算不是很常用，但是巧妙的使用位运算可以大量减少运行开销，优化算法。举个例子，翻转操作比较常见，比如初始值为 1，操作一次变为 0，再操作一次变为 1。可能的做法是使用三木运算符，判断原始值为 1 还是 0，如果是 1，设置为 0，否则设置为 0. 但是使用位运算，不用判断原始值，直接改变值就可以： &lt;code&gt;1^num &lt;/code&gt; ,num 为原始值。当然，一条语句可能对代码没什么影响，但是在高重复，大数据量的情况下将会节省很多开销。&lt;/p&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
-
-&lt;h1 id=&#34;1-位运算符&#34;&gt;&lt;a href=&#34;#1-位运算符&#34; class=&#34;headerlink&#34; title=&#34;1. 位运算符&#34;&gt;&lt;/a&gt;1. 位运算符&lt;/h1&gt;&lt;h2 id=&#34;1-1-java支持的位运算符：&#34;&gt;&lt;a href=&#34;#1-1-java支持的位运算符：&#34; class=&#34;headerlink&#34; title=&#34;1.1 java支持的位运算符：&#34;&gt;&lt;/a&gt;1.1 java支持的位运算符：&lt;/h2&gt;&lt;p&gt;&amp;amp;：按位与。&lt;/p&gt;
+&lt;h1 id=&#34;1-位运算符&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#1-位运算符&#34;&gt;#&lt;/a&gt; 1. 位运算符&lt;/h1&gt;
+&lt;h2 id=&#34;11-java支持的位运算符&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#11-java支持的位运算符&#34;&gt;#&lt;/a&gt; 1.1 java 支持的位运算符：&lt;/h2&gt;
+&lt;p&gt;&amp;amp;：按位与。&lt;/p&gt;
 &lt;p&gt;|：按位或。&lt;/p&gt;
 &lt;p&gt;~：按位非。&lt;/p&gt;
 &lt;p&gt;^：按位异或。&lt;/p&gt;
 &lt;p&gt;&amp;lt;&amp;lt;：左位移运算符。&lt;/p&gt;
 &lt;p&gt;&amp;gt;&amp;gt;：右位移运算符。&lt;/p&gt;
 &lt;p&gt;&amp;lt;&amp;lt;&amp;lt;：无符号右移运算符。&lt;/p&gt;
-&lt;p&gt;位运 算 符 中 ,除 ～ 以 外 ,其余 均 为 二 元 运 算 符 。 操 作 数 只 能 为 整 型 和字 符 型 数 据 。&lt;/p&gt;
-&lt;p&gt;Java使用 补 码 来 表 示 二 进 制 数 ,在补 码 表 示 中 ,最高 位 为 符号 位 ,正数 的 符 号 位 为 0,负数 为 1。补 码 的 规 定 如 下 :&lt;/p&gt;
-&lt;p&gt;对 正 数 来 说 ,最高位为 0,其余 各 位 代 表 数 值 本 身 (以二 进制 表 示 ),如 +42的补码 为 00101010。&lt;/p&gt;
-&lt;p&gt;对 负 数 而 言 ,把该 数 绝 对 值 的 补 码 按 位 取 反 ,然后 对 整 个数 加 1,即得 该 数的 补 码 。 如 -1的补 码 为11111111111111111111111111111111(00000000000000000000000000000001按 位 取 反 11111111111111111111111111111110+1&amp;#x3D;11111111111111111111111111111111 )。为何有那么多0、1，java中int是32位的。&lt;/p&gt;
-&lt;h2 id=&#34;1-2-按位与（-amp-）&#34;&gt;&lt;a href=&#34;#1-2-按位与（-amp-）&#34; class=&#34;headerlink&#34; title=&#34;1.2  按位与（&amp;amp;）&#34;&gt;&lt;/a&gt;1.2  按位与（&amp;amp;）&lt;/h2&gt;&lt;p&gt;按位与的运算规则&lt;/p&gt;
+&lt;p&gt;位运 算 符 中，除 ～ 以 外，其余 均 为 二 元 运 算 符 。 操 作 数 只 能 为 整 型 和字 符 型 数 据 。&lt;/p&gt;
+&lt;p&gt;Java 使用 补 码 来 表 示 二 进 制 数，在补 码 表 示 中，最高 位 为 符号 位，正数 的 符 号 位 为 0, 负数 为 1。补 码 的 规 定 如 下 :&lt;/p&gt;
+&lt;p&gt;对 正 数 来 说，最高位为 0, 其余 各 位 代 表 数 值 本 身 (以二 进制 表 示), 如 +42 的补码 为 00101010。&lt;/p&gt;
+&lt;p&gt;对 负 数 而 言，把该 数 绝 对 值 的 补 码 按 位 取 反，然后 对 整 个数 加 1, 即得 该 数的 补 码 。 如 -1 的补 码 为 11111111111111111111111111111111 (00000000000000000000000000000001 按 位 取 反 11111111111111111111111111111110+1=11111111111111111111111111111111)。为何有那么多 0、1，java 中 int 是 32 位的。&lt;/p&gt;
+&lt;h2 id=&#34;12-按位与&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#12-按位与&#34;&gt;#&lt;/a&gt; 1.2  按位与（&amp;amp;）&lt;/h2&gt;
+&lt;p&gt;按位与的运算规则&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th&gt;操作数1&lt;/th&gt;
+&lt;th&gt;操作数 1&lt;/th&gt;
 &lt;th&gt;0&lt;/th&gt;
 &lt;th&gt;0&lt;/th&gt;
 &lt;th&gt;1&lt;/th&gt;
 &lt;th&gt;1&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
-&lt;tbody&gt;&lt;tr&gt;
-&lt;td&gt;操作数2&lt;/td&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;操作数 2&lt;/td&gt;
 &lt;td&gt;0&lt;/td&gt;
 &lt;td&gt;1&lt;/td&gt;
 &lt;td&gt;0&lt;/td&gt;
@@ -107,25 +110,28 @@
 &lt;td&gt;0&lt;/td&gt;
 &lt;td&gt;1&lt;/td&gt;
 &lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
-&lt;p&gt;规则总结：只有两个操作数对应位同为1时，结果为1，其余全为0. （或者是只要有一个操作数为0，结果就为0）。&lt;/p&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;规则总结：只有两个操作数对应位同为 1 时，结果为 1，其余全为 0. （或者是只要有一个操作数为 0，结果就为 0）。&lt;/p&gt;
 &lt;p&gt;举例：&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/p/7670a0f/Center.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/p/7670a0f/Center-20211229200705116.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/p/7670a0f/Center-20211229200704972.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;1-3-按位或（-）&#34;&gt;&lt;a href=&#34;#1-3-按位或（-）&#34; class=&#34;headerlink&#34; title=&#34;1.3 按位或（|）&#34;&gt;&lt;/a&gt;1.3 按位或（|）&lt;/h2&gt;&lt;p&gt;按位或的运算规则&lt;/p&gt;
+&lt;h2 id=&#34;13-按位或&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#13-按位或&#34;&gt;#&lt;/a&gt; 1.3 按位或（|）&lt;/h2&gt;
+&lt;p&gt;按位或的运算规则&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th&gt;操作数1&lt;/th&gt;
+&lt;th&gt;操作数 1&lt;/th&gt;
 &lt;th&gt;0&lt;/th&gt;
 &lt;th&gt;0&lt;/th&gt;
 &lt;th&gt;1&lt;/th&gt;
 &lt;th&gt;1&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
-&lt;tbody&gt;&lt;tr&gt;
-&lt;td&gt;操作数2&lt;/td&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;操作数 2&lt;/td&gt;
 &lt;td&gt;0&lt;/td&gt;
 &lt;td&gt;1&lt;/td&gt;
 &lt;td&gt;0&lt;/td&gt;
@@ -138,9 +144,11 @@
 &lt;td&gt;1&lt;/td&gt;
 &lt;td&gt;1&lt;/td&gt;
 &lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
-&lt;p&gt;规则总结：只有两个操作数对应位同为0时，结果为0，其余全为1.（或者是只要有一个操作数为1，结果就为1）。&lt;/p&gt;
-&lt;h2 id=&#34;1-4按位非（-）&#34;&gt;&lt;a href=&#34;#1-4按位非（-）&#34; class=&#34;headerlink&#34; title=&#34;1.4按位非（~）&#34;&gt;&lt;/a&gt;1.4按位非（~）&lt;/h2&gt;&lt;p&gt;按位非的运算规则&lt;/p&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;规则总结：只有两个操作数对应位同为 0 时，结果为 0，其余全为 1.（或者是只要有一个操作数为 1，结果就为 1）。&lt;/p&gt;
+&lt;h2 id=&#34;14按位非~&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#14按位非~&#34;&gt;#&lt;/a&gt; 1.4 按位非（~）&lt;/h2&gt;
+&lt;p&gt;按位非的运算规则&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -149,26 +157,30 @@
 &lt;th&gt;1&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
-&lt;tbody&gt;&lt;tr&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
 &lt;td&gt;按位或&lt;/td&gt;
 &lt;td&gt;1&lt;/td&gt;
 &lt;td&gt;0&lt;/td&gt;
 &lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;p&gt;在求负数的源码中使用过。&lt;/p&gt;
-&lt;h2 id=&#34;1-5-按位异或（-）&#34;&gt;&lt;a href=&#34;#1-5-按位异或（-）&#34; class=&#34;headerlink&#34; title=&#34;1.5 按位异或（^）&#34;&gt;&lt;/a&gt;1.5 按位异或（^）&lt;/h2&gt;&lt;p&gt;按位异或的运算规则&lt;/p&gt;
+&lt;h2 id=&#34;15-按位异或&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#15-按位异或&#34;&gt;#&lt;/a&gt; 1.5 按位异或（^）&lt;/h2&gt;
+&lt;p&gt;按位异或的运算规则&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th&gt;操作数1&lt;/th&gt;
+&lt;th&gt;操作数 1&lt;/th&gt;
 &lt;th&gt;0&lt;/th&gt;
 &lt;th&gt;0&lt;/th&gt;
 &lt;th&gt;1&lt;/th&gt;
 &lt;th&gt;1&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
-&lt;tbody&gt;&lt;tr&gt;
-&lt;td&gt;操作数2&lt;/td&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;操作数 2&lt;/td&gt;
 &lt;td&gt;0&lt;/td&gt;
 &lt;td&gt;1&lt;/td&gt;
 &lt;td&gt;0&lt;/td&gt;
@@ -181,43 +193,50 @@
 &lt;td&gt;1&lt;/td&gt;
 &lt;td&gt;0&lt;/td&gt;
 &lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;p&gt;规则总结：异：1.&lt;/p&gt;
-&lt;h2 id=&#34;1-6-左位移（-lt-lt-）&#34;&gt;&lt;a href=&#34;#1-6-左位移（-lt-lt-）&#34; class=&#34;headerlink&#34; title=&#34;1.6 左位移（&amp;lt;&amp;lt;）&#34;&gt;&lt;/a&gt;1.6 左位移（&amp;lt;&amp;lt;）&lt;/h2&gt;&lt;p&gt;算术右移（&amp;gt;&amp;gt;）: 符号位不变，低位补0。如：2&amp;lt;&amp;lt;2结果为8。&lt;/p&gt;
+&lt;h2 id=&#34;16-左位移&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#16-左位移&#34;&gt;#&lt;/a&gt; 1.6 左位移（&amp;lt;&amp;lt;）&lt;/h2&gt;
+&lt;p&gt;算术右移（&amp;gt;&amp;gt;）: 符号位不变，低位补 0。如：2&amp;lt;&amp;lt;2 结果为 8。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/p/7670a0f/Center-20211229200705119.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
-&lt;p&gt;当移动的位数超过数字本身的位数时，那么不就都需要补0操作，实际上不是的，java不可能做那么浪费资源的事情。在真正执行位移前，其对要移动的位数做了一些预处理，比如32处理为0，-1处理为31.&lt;/p&gt;
-&lt;h2 id=&#34;1-7-右位移（-gt-gt-）&#34;&gt;&lt;a href=&#34;#1-7-右位移（-gt-gt-）&#34; class=&#34;headerlink&#34; title=&#34;1.7 右位移（&amp;gt;&amp;gt;）&#34;&gt;&lt;/a&gt;1.7 右位移（&amp;gt;&amp;gt;）&lt;/h2&gt;&lt;p&gt;低位溢出，符号位不变，并用符号位补溢出的高位。如：-6&amp;gt;&amp;gt;2结果为-2。&lt;/p&gt;
+&lt;p&gt;当移动的位数超过数字本身的位数时，那么不就都需要补 0 操作，实际上不是的，java 不可能做那么浪费资源的事情。在真正执行位移前，其对要移动的位数做了一些预处理，比如 32 处理为 0，-1 处理为 31.&lt;/p&gt;
+&lt;h2 id=&#34;17-右位移&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#17-右位移&#34;&gt;#&lt;/a&gt; 1.7 右位移（&amp;gt;&amp;gt;）&lt;/h2&gt;
+&lt;p&gt;低位溢出，符号位不变，并用符号位补溢出的高位。如：-6&amp;gt;&amp;gt;2 结果为 - 2。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/p/7670a0f/Center-20211229200705083.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
-&lt;h2 id=&#34;1-8-无符号右移（-gt-gt-gt-）&#34;&gt;&lt;a href=&#34;#1-8-无符号右移（-gt-gt-gt-）&#34; class=&#34;headerlink&#34; title=&#34;1.8 无符号右移（&amp;gt;&amp;gt;&amp;gt;）&#34;&gt;&lt;/a&gt;1.8 无符号右移（&amp;gt;&amp;gt;&amp;gt;）&lt;/h2&gt;&lt;p&gt;低位溢出，高位补0。注意，无符号右移（&amp;gt;&amp;gt;&amp;gt;）中的符号位（最高位）也跟着变，无符号的意思是将符号位当作数字位看待。如：-1&amp;gt;&amp;gt;&amp;gt;1结果为2147483647。这个数字应该比较熟悉，看两个输出语句就知道是什么了：&lt;/p&gt;
+&lt;h2 id=&#34;18-无符号右移&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#18-无符号右移&#34;&gt;#&lt;/a&gt; 1.8 无符号右移（&amp;gt;&amp;gt;&amp;gt;）&lt;/h2&gt;
+&lt;p&gt;低位溢出，高位补 0。注意，无符号右移（&amp;gt;&amp;gt;&amp;gt;）中的符号位（最高位）也跟着变，无符号的意思是将符号位当作数字位看待。如：-1&amp;gt;&amp;gt;&amp;gt;1 结果为 2147483647。这个数字应该比较熟悉，看两个输出语句就知道是什么了：&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;System.out.println(Integer.toBinaryString(-1&amp;gt;&amp;gt;&amp;gt;1));&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;System.out.println(Integer.toBinaryString(Integer.MAX_VALUE));&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;输出结果为：&lt;/p&gt;
 &lt;p&gt;1111111111111111111111111111111&lt;/p&gt;
 &lt;p&gt;1111111111111111111111111111111&lt;/p&gt;
-&lt;p&gt;-1&amp;gt;&amp;gt;&amp;gt;1竟然得到了int所能表示的最大整数，精彩。&lt;/p&gt;
+&lt;p&gt;-1&amp;gt;&amp;gt;&amp;gt;1 竟然得到了 int 所能表示的最大整数，精彩。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/p/7670a0f/Center-20211229200704949.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
-&lt;p&gt;除了使用-1&amp;gt;&amp;gt;&amp;gt;1能得到Integer.MAX_VALUE，以下的也能得到同样的结果：&lt;/p&gt;
-&lt;p&gt;​    &amp;#x2F;&amp;#x2F;maxInt&lt;/p&gt;
+&lt;p&gt;除了使用 - 1&amp;gt;&amp;gt;&amp;gt;1 能得到 Integer.MAX_VALUE，以下的也能得到同样的结果：&lt;/p&gt;
+&lt;p&gt;​    //maxInt&lt;/p&gt;
 &lt;p&gt;​    System.&lt;em&gt;out&lt;/em&gt;.println(~(1 &amp;lt;&amp;lt; 31));&lt;/p&gt;
 &lt;p&gt;​    System.&lt;em&gt;out&lt;/em&gt;.println((1 &amp;lt;&amp;lt; -1)-1);&lt;/p&gt;
 &lt;p&gt;​    System.&lt;em&gt;out&lt;/em&gt;.println(~(1 &amp;lt;&amp;lt; -1));&lt;/p&gt;
 &lt;p&gt;使用位运算往往能很巧妙的实现某些算法完成一些复杂的功能。&lt;/p&gt;
-&lt;h1 id=&#34;常见使用&#34;&gt;&lt;a href=&#34;#常见使用&#34; class=&#34;headerlink&#34; title=&#34;常见使用&#34;&gt;&lt;/a&gt;常见使用&lt;/h1&gt;&lt;h2 id=&#34;1-m-2-n&#34;&gt;&lt;a href=&#34;#1-m-2-n&#34; class=&#34;headerlink&#34; title=&#34;1.   m*2^n&#34;&gt;&lt;/a&gt;1.   m*2^n&lt;/h2&gt;&lt;p&gt;可以使用m&amp;lt;&amp;lt;n求得结果，如：&lt;/p&gt;
-&lt;p&gt;​    System.&lt;em&gt;out&lt;/em&gt;.println(“2^3&amp;#x3D;” + (1&amp;lt;&amp;lt;3));&amp;#x2F;&amp;#x2F;2^3&amp;#x3D;8&lt;/p&gt;
-&lt;p&gt;​    System.&lt;em&gt;out&lt;/em&gt;.println(“3&lt;em&gt;2^3&amp;#x3D;” + (3&amp;lt;&amp;lt;3));&amp;#x2F;&amp;#x2F;3&lt;/em&gt;2^3&amp;#x3D;24&lt;/p&gt;
-&lt;p&gt;计算结果是不是很正确呢？如果非要说2&amp;lt;&amp;lt;-1为什么不等于0.5，前面说过，位运算的操作数只能是整型和字符型。在求int所能表示的最小值时，可以使用&lt;/p&gt;
-&lt;p&gt;&amp;#x2F;&amp;#x2F;minInt&lt;/p&gt;
+&lt;h1 id=&#34;常见使用&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#常见使用&#34;&gt;#&lt;/a&gt; 常见使用&lt;/h1&gt;
+&lt;h2 id=&#34;1-m2n&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#1-m2n&#34;&gt;#&lt;/a&gt; 1.   m*2^n&lt;/h2&gt;
+&lt;p&gt;可以使用 m&amp;lt;&amp;lt;n 求得结果，如：&lt;/p&gt;
+&lt;p&gt;​    System.&lt;em&gt;out&lt;/em&gt;.println(“2^3=” + (1&amp;lt;&amp;lt;3));//2^3=8&lt;/p&gt;
+&lt;p&gt;​    System.&lt;em&gt;out&lt;/em&gt;.println(&amp;quot;3&lt;em&gt;2^3=&amp;quot; + (3&amp;lt;&amp;lt;3));//3&lt;/em&gt;2^3=24&lt;/p&gt;
+&lt;p&gt;计算结果是不是很正确呢？如果非要说 2&amp;lt;&amp;lt;-1 为什么不等于 0.5，前面说过，位运算的操作数只能是整型和字符型。在求 int 所能表示的最小值时，可以使用&lt;/p&gt;
+&lt;p&gt;//minInt&lt;/p&gt;
 &lt;p&gt;System.&lt;em&gt;out&lt;/em&gt;.println(1 &amp;lt;&amp;lt; 31);&lt;/p&gt;
 &lt;p&gt;System.&lt;em&gt;out&lt;/em&gt;.println(1 &amp;lt;&amp;lt; -1);&lt;/p&gt;
-&lt;p&gt;可以发现左移31位和-1位所得的结果是一样的，同理，左移30位和左移-2所得的结果也是一样的。移动一个负数位，是不是等同于右移该负数的绝对值位呢？输出一下就能发现不是的。java中int所能表示的最大数值是31位，加上符号位共32位。在这里可以有这样的位移法则：&lt;/p&gt;
-&lt;p&gt;法则一：任何数左移（右移）32的倍数位等于该数本身。&lt;/p&gt;
-&lt;p&gt;法则二：在位移运算m&amp;lt;&amp;lt;n的计算中，若n为正数，则实际移动的位数为n%32，若n为负数，则实际移动的位数为(32+n%32)，右移，同理。&lt;/p&gt;
-&lt;p&gt;左移是乘以2的幂，对应着右移则是除以2的幂。&lt;/p&gt;
-&lt;h2 id=&#34;2-判断一个数n的奇偶性&#34;&gt;&lt;a href=&#34;#2-判断一个数n的奇偶性&#34; class=&#34;headerlink&#34; title=&#34;2.   判断一个数n的奇偶性&#34;&gt;&lt;/a&gt;2.   判断一个数n的奇偶性&lt;/h2&gt;&lt;p&gt;n&amp;amp;1 &amp;#x3D;&amp;#x3D; 1?”奇数”:”偶数”&lt;/p&gt;
-&lt;p&gt;为什么与1能判断奇偶？所谓的二进制就是满2进1，那么好了，偶数的最低位肯定是0（恰好满2，对不对？），同理，奇数的最低位肯定是1.int类型的1，前31位都是0，无论是1&amp;amp;0还是0&amp;amp;0结果都是0，那么有区别的就是1的最低位上的1了，若n的二进制最低位是1（奇数）与上1，结果为1，反则结果为0.&lt;/p&gt;
-&lt;h2 id=&#34;3-不用临时变量交换两个数&#34;&gt;&lt;a href=&#34;#3-不用临时变量交换两个数&#34; class=&#34;headerlink&#34; title=&#34;3.   不用临时变量交换两个数&#34;&gt;&lt;/a&gt;3.   不用临时变量交换两个数&lt;/h2&gt;&lt;p&gt;在int[]数组首尾互换中，是不看到过这样的代码：&lt;/p&gt;
+&lt;p&gt;可以发现左移 31 位和 - 1 位所得的结果是一样的，同理，左移 30 位和左移 - 2 所得的结果也是一样的。移动一个负数位，是不是等同于右移该负数的绝对值位呢？输出一下就能发现不是的。java 中 int 所能表示的最大数值是 31 位，加上符号位共 32 位。在这里可以有这样的位移法则：&lt;/p&gt;
+&lt;p&gt;法则一：任何数左移（右移）32 的倍数位等于该数本身。&lt;/p&gt;
+&lt;p&gt;法则二：在位移运算 m&amp;lt;&amp;lt;n 的计算中，若 n 为正数，则实际移动的位数为 n%32，若 n 为负数，则实际移动的位数为 (32+n%32)，右移，同理。&lt;/p&gt;
+&lt;p&gt;左移是乘以 2 的幂，对应着右移则是除以 2 的幂。&lt;/p&gt;
+&lt;h2 id=&#34;2-判断一个数n的奇偶性&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#2-判断一个数n的奇偶性&#34;&gt;#&lt;/a&gt; 2.   判断一个数 n 的奇偶性&lt;/h2&gt;
+&lt;p&gt;n&amp;amp;1 == 1?” 奇数”:” 偶数”&lt;/p&gt;
+&lt;p&gt;为什么与 1 能判断奇偶？所谓的二进制就是满 2 进 1，那么好了，偶数的最低位肯定是 0（恰好满 2，对不对？），同理，奇数的最低位肯定是 1.int 类型的 1，前 31 位都是 0，无论是 1&amp;amp;0 还是 0&amp;amp;0 结果都是 0，那么有区别的就是 1 的最低位上的 1 了，若 n 的二进制最低位是 1（奇数）与上 1，结果为 1，反则结果为 0.&lt;/p&gt;
+&lt;h2 id=&#34;3-不用临时变量交换两个数&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#3-不用临时变量交换两个数&#34;&gt;#&lt;/a&gt; 3.   不用临时变量交换两个数&lt;/h2&gt;
+&lt;p&gt;在 int [] 数组首尾互换中，是不看到过这样的代码：&lt;/p&gt;
 &lt;figure class=&#34;highlight&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt; &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;public static int[] reverse(int[] nums)&amp;#123;&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;int i = 0;&lt;/code&gt;&lt;/li&gt;
@@ -234,22 +253,23 @@
 &lt;/ol&gt;
 &lt;p&gt;连续三次使用异或，并没有临时变量就完成了两个数字交换，怎么实现的呢？&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/p/7670a0f/Center-20211229200705072.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
-&lt;p&gt;上面的计算主要遵循了一个计算公式：b^(a^b)&amp;#x3D;a。&lt;/p&gt;
+&lt;p&gt;上面的计算主要遵循了一个计算公式：b&lt;sup&gt;(a&lt;/sup&gt;b)=a。&lt;/p&gt;
 &lt;p&gt;我们可以对以上公式做如下的推导：&lt;/p&gt;
-&lt;p&gt;任何数异或本身结果为0.且有定理a^b&amp;#x3D;b^a。异或是一个无顺序的运算符，则b^a^b&amp;#x3D;b^b^a，结果为0^a。&lt;/p&gt;
+&lt;p&gt;任何数异或本身结果为 0. 且有定理 a&lt;sup&gt;b=b&lt;/sup&gt;a。异或是一个无顺序的运算符，则 b&lt;sup&gt;a&lt;/sup&gt;b=b&lt;sup&gt;b&lt;/sup&gt;a，结果为 0^a。&lt;/p&gt;
 &lt;p&gt;再次列出异或的计算表:&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th&gt;操作数1&lt;/th&gt;
+&lt;th&gt;操作数 1&lt;/th&gt;
 &lt;th&gt;0&lt;/th&gt;
 &lt;th&gt;0&lt;/th&gt;
 &lt;th&gt;1&lt;/th&gt;
 &lt;th&gt;1&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
-&lt;tbody&gt;&lt;tr&gt;
-&lt;td&gt;操作数2&lt;/td&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;操作数 2&lt;/td&gt;
 &lt;td&gt;0&lt;/td&gt;
 &lt;td&gt;1&lt;/td&gt;
 &lt;td&gt;0&lt;/td&gt;
@@ -262,19 +282,21 @@
 &lt;td&gt;1&lt;/td&gt;
 &lt;td&gt;0&lt;/td&gt;
 &lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
-&lt;p&gt;可以发现，异或0具有保持的特点，而异或1具有翻转的特点。使用这些特点可以进行取数的操作。&lt;/p&gt;
-&lt;p&gt;​     那么0^a，使用异或0具有保持的特点，最终结果就是a。&lt;/p&gt;
-&lt;p&gt;其实java中的异或运算法则完全遵守数学中的计算法则：&lt;/p&gt;
-&lt;p&gt;①  a ^ a &amp;#x3D;0&lt;/p&gt;
-&lt;p&gt;②  a ^ b &amp;#x3D;b ^ a&lt;/p&gt;
-&lt;p&gt;③  a ^b ^ c &amp;#x3D; a ^ (b ^ c) &amp;#x3D; (a ^ b) ^ c;&lt;/p&gt;
-&lt;p&gt;④  d &amp;#x3D; a ^b ^ c 可以推出 a &amp;#x3D; d ^ b ^ c.&lt;/p&gt;
-&lt;p&gt;⑤  a ^ b ^a &amp;#x3D; b.&lt;/p&gt;
-&lt;h2 id=&#34;4-取绝对值&#34;&gt;&lt;a href=&#34;#4-取绝对值&#34; class=&#34;headerlink&#34; title=&#34;4.   取绝对值&#34;&gt;&lt;/a&gt;4.   取绝对值&lt;/h2&gt;&lt;p&gt;(a^(a&amp;gt;&amp;gt;31))-(a&amp;gt;&amp;gt;31)&lt;/p&gt;
-&lt;p&gt;先整理一下使用位运算取绝对值的思路：若a为正数，则不变，需要用异或0保持的特点；若a为负数，则其补码为源码翻转每一位后+1，先求其源码，补码-1后再翻转每一位，此时需要使用异或1具有翻转的特点。&lt;/p&gt;
-&lt;p&gt;任何正数右移31后只剩符号位0，最终结果为0，任何负数右移31后也只剩符号位1，溢出的31位截断，空出的31位补符号位1，最终结果为-1.右移31操作可以取得任何整数的符号位。&lt;/p&gt;
-&lt;p&gt;那么综合上面的步骤，可得到公式。a&amp;gt;&amp;gt;31取得a的符号，若a为正数，a&amp;gt;&amp;gt;31等于0，a^0&amp;#x3D;a，不变；若a为负数,a&amp;gt;&amp;gt;31等于-1 ，a^-1翻转每一位.&lt;/p&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;可以发现，异或 0 具有保持的特点，而异或 1 具有翻转的特点。使用这些特点可以进行取数的操作。&lt;/p&gt;
+&lt;p&gt;​     那么 0^a，使用异或 0 具有保持的特点，最终结果就是 a。&lt;/p&gt;
+&lt;p&gt;其实 java 中的异或运算法则完全遵守数学中的计算法则：&lt;/p&gt;
+&lt;p&gt;①  a ^ a =0&lt;/p&gt;
+&lt;p&gt;②  a ^ b =b ^ a&lt;/p&gt;
+&lt;p&gt;③  a ^b ^ c = a ^ (b ^ c) = (a ^ b) ^ c;&lt;/p&gt;
+&lt;p&gt;④  d = a ^b ^ c 可以推出 a = d ^ b ^ c.&lt;/p&gt;
+&lt;p&gt;⑤  a ^ b ^a = b.&lt;/p&gt;
+&lt;h2 id=&#34;4-取绝对值&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#4-取绝对值&#34;&gt;#&lt;/a&gt; 4.   取绝对值&lt;/h2&gt;
+&lt;p&gt;(a^(a&amp;gt;&amp;gt;31))-(a&amp;gt;&amp;gt;31)&lt;/p&gt;
+&lt;p&gt;先整理一下使用位运算取绝对值的思路：若 a 为正数，则不变，需要用异或 0 保持的特点；若 a 为负数，则其补码为源码翻转每一位后 + 1，先求其源码，补码 - 1 后再翻转每一位，此时需要使用异或 1 具有翻转的特点。&lt;/p&gt;
+&lt;p&gt;任何正数右移 31 后只剩符号位 0，最终结果为 0，任何负数右移 31 后也只剩符号位 1，溢出的 31 位截断，空出的 31 位补符号位 1，最终结果为 - 1. 右移 31 操作可以取得任何整数的符号位。&lt;/p&gt;
+&lt;p&gt;那么综合上面的步骤，可得到公式。a&amp;gt;&amp;gt;31 取得 a 的符号，若 a 为正数，a&amp;gt;&amp;gt;31 等于 0，a^0=a，不变；若 a 为负数，a&amp;gt;&amp;gt;31 等于 - 1 ，a^-1 翻转每一位.&lt;/p&gt;
  ]]></description>
         </item>
     </channel>
