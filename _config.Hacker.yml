@@ -10,3 +10,6 @@ footer:
   # Specify the date when the site was setup. If not defined, current year will be used.
   since: 2014
   beian: 湘ICP备2020021380号-1
+  
+# baidu analytics
+baiduTrackId: 83fbb968d837cac86cb15c97ddd8cdd4
