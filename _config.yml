@@ -196,6 +196,7 @@ minify:
     compress:
     exclude:
       - '**/*.min.js'
+      - '**/readmore.js'
 
 # restful config
 restful:

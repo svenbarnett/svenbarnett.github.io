@@ -1,1 +1,18 @@
 <%- partial('components/article', {item: page, index: false}) %>
+
+<% if (theme.readmore && theme.readmore.enable) { %>
+    <% if (theme.readmore.cssUrl) { %>
+    <link rel="stylesheet" href="<%- theme.readmore.cssUrl %>" media="screen" type="text/css">
+    <% } %> 
+    <script src="<%- theme.readmore.libUrl %>" type="text/javascript"></script>
+    <script>
+        const btw = new BTWPlugin();
+        btw.init({
+            id: 'container',
+            blogId: '<%- theme.readmore.blogId %>',
+            name: '<%- theme.readmore.name %>',
+            qrcode: '<%- theme.readmore.qrcode %>',
+            keyword: '<%- theme.readmore.keyword %>',
+        });
+    </script>
+  <% } %>
