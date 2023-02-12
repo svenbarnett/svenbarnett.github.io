@@ -1,3 +1,10 @@
 #btw-modal-input{
     color: black;
 }
+#btw-footer{
+    display: none;
+}
+#btw-modal-input-code{
+    padding-bottom: 20px;
+    border-radius: 10px;
+}
