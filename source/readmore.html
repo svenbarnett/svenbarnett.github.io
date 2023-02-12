@@ -1,0 +1,36 @@
+<style type="text/css">
+    .h3 {}
+
+    .code {
+        color: darkred;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .desc {
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+
+    .footer {
+        font-size: 14px;
+        color: grey;
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.get("https://readmore.openwrite.cn/code/generate?blogId=31136-1676194002310-704",function(data, status){
+            var res = data.match(/<div class=\"code\">(\d+)<\/div>/)
+            $('.code').text(res[1])
+        });
+    });
+</script>
+<div style="text-align: center; padding-top: 20px;">
+    <h3>验证码</h3>
+    <div class="code">xxxxxx</div>
+    <div class="desc">60秒后失效，请尽快使用！</div>
+</div>
