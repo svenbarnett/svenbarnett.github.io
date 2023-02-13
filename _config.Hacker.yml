@@ -29,3 +29,7 @@ readmore:
   libUrl: '/js/readmore/readmore.js'
   # 自定义的 CSS 资源链接，可用于适配不同风格的博客
   cssUrl: '/js/readmore/readmore.css'
+
+baidustatic:
+   # 是否启用
+  enable: true
