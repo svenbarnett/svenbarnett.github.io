@@ -3,9 +3,11 @@
 <%- partial('components/head') %>
 
 <body>
+<% if( theme.adsense && theme.adsense.enable) { %>
 <amp-auto-ads type="adsense"
   data-ad-client="ca-pub-3643487522951220">
 </amp-auto-ads>
+<% } %>
 <div class="blog">
   <div class="content">
 
