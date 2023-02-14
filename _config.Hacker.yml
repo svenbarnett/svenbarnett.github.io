@@ -33,3 +33,7 @@ readmore:
 adsense:
    # 是否启用
   enable: true
+
+baidustatic:
+   # 是否启用
+  enable: true
