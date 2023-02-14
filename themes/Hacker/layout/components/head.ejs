@@ -75,7 +75,7 @@
   <link href="<%- config.root %>avatar.jpg" rel="icon">
   <link rel="alternate" href="<% if (theme.rss){ %><%- theme.rss %><% } else { %><%- config.root %>atom.xml<% } %>" title="<%= config.title %>" type="application/atom+xml">
   <link rel="stylesheet" href="<%- config.root %>css/style.css" media="screen" type="text/css">
-  <% if( theme.baidustatic && theme.baidustatic.enable) { %>
-  <script type="text/javascript" src="//cpro.baidustatic.com/cpro/ui/cm.js"></script>
+  <% if( theme.google-adsense && theme.google-adsense.enable) { %>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
   <% } %>
 </head>
