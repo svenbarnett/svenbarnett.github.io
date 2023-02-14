@@ -744,13 +744,6 @@
   </url>
   
   <url>
-    <loc>https://www.pswen.cn/categories/%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2023-02-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.pswen.cn/categories/LeetCode/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2023-02-14</lastmod>
     <changefreq>weekly</changefreq>
@@ -759,6 +752,13 @@
   
   <url>
     <loc>https://www.pswen.cn/categories/LeetCode/%E7%AE%97%E6%B3%95/java/</loc>
+    <lastmod>2023-02-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pswen.cn/categories/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2023-02-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
