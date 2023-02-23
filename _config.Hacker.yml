@@ -16,7 +16,7 @@ baiduTrackId: 83fbb968d837cac86cb15c97ddd8cdd4
 
 readmore:
   # 是否启用
-  enable: false
+  enable: true
   # 已申请的博客 ID
   blogId: '31136-1676194002310-704'
   # 已申请的微信公众号名称
