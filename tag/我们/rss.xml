@@ -13,23 +13,26 @@
         <category>元宵节</category>
         <category>QQ</category>
         <category>那些年</category>
+        <category>Apollo</category>
+        <category>Spring</category>
+        <category>动态配置</category>
         <category>linux</category>
         <category>acmesh</category>
         <category>域名证书</category>
         <category>leetcode</category>
         <category>算法</category>
-        <category>二分法</category>
-        <category>快慢指针</category>
         <category>贪心</category>
         <category>动态规划</category>
+        <category>二分法</category>
+        <category>快慢指针</category>
+        <category>gulp</category>
+        <category>压缩图片</category>
+        <category>gulp-imagemin</category>
         <category>Java</category>
         <category>位运算</category>
         <category>正则</category>
         <category>js</category>
         <category>去除零</category>
-        <category>gulp</category>
-        <category>压缩图片</category>
-        <category>gulp-imagemin</category>
         <category>jvm</category>
         <category>类加载</category>
         <category>jvm调优</category>
