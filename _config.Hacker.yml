@@ -32,8 +32,8 @@ readmore:
 
 adsense:
    # 是否启用
-  enable: true
+  enable: false
 
 baidustatic:
    # 是否启用
-  enable: true
+  enable: false
