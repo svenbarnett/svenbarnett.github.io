@@ -40,10 +40,11 @@
     "hexo-renderer-stylus": "^2.1.0",
     "hexo-server": "^3.0.0",
     "hexo-symbols-count-time": "^0.7.1",
-    "hexo-wordcount": "^6.0.1"
+    "hexo-wordcount": "^6.0.1",
+    "typed.js": "^2.0.132"
   },
   "devDependencies": {
-    "gulp":"^4.0.2",
+    "gulp": "^4.0.2",
     "gulp-imagemin": "^8.0.0",
     "imagemin-pngquant": "^9.0.2"
   }
