@@ -19,6 +19,9 @@
         <category>动态配置</category>
         <category>聚会</category>
         <category>悼念</category>
+        <category>linux</category>
+        <category>acmesh</category>
+        <category>域名证书</category>
         <category>leetcode</category>
         <category>算法</category>
         <category>贪心</category>
@@ -30,9 +33,6 @@
         <category>gulp-imagemin</category>
         <category>Java</category>
         <category>位运算</category>
-        <category>linux</category>
-        <category>acmesh</category>
-        <category>域名证书</category>
         <category>正则</category>
         <category>js</category>
         <category>去除零</category>
@@ -51,11 +51,11 @@
         <category>我们</category>
         <category>年轻</category>
         <category>年幼</category>
-        <category>武康大楼</category>
-        <category>上海</category>
         <category>树</category>
         <category>dfs</category>
         <category>bfs</category>
+        <category>武康大楼</category>
+        <category>上海</category>
         <category>陆家嘴</category>
         <category>三叉戟</category>
         <category>上海外滩</category>
@@ -78,7 +78,7 @@
             <category>Apollo</category>
             <category>Spring</category>
             <pubDate>Sun, 26 Feb 2023 12:39:24 +0000</pubDate>
-            <description><![CDATA[ &lt;blockquote&gt;
+            <description><![CDATA[ &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;blockquote&gt;
 &lt;p&gt;Apollo 动态配置其实本质就是利用 Spring Bean 的生命周期的扩展点，这个扩展点超级多，不可能全部列出来，只说核心的扩展点。这也就是为什么 Spring 的扩展性很好的原因，开了很多的口子，尽可能让某个功能高内聚松耦合，用户需要哪个功能就用哪个，而不是直接来一个大而全的东西。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;我们先通过学习核心的，然后后续对照 Apollo 用到了哪些再对照，就会发现很多地方就能理解的很好了&lt;/p&gt;
@@ -111,7 +111,7 @@
 &lt;p&gt;实例化 -&amp;gt; 属性赋值 -&amp;gt; 初始化 -&amp;gt; 销毁&lt;/p&gt;
 &lt;p&gt;只有四个步骤，这样拆解的话是不是感觉也不难？不像其他人写的那样直接一上来就各种 BeanPostProcessor、BeanFactoryPostProcessor 全部怼进流程里去，别说读者看着头大，自己写的可能短时间内还记得流程，隔个一段时间，你可能都不知道自己写了个啥。&lt;/p&gt;
 &lt;p&gt;通过 Bean 创建流程入口 &lt;code&gt;AbstractApplicationContext#refresh()&lt;/code&gt;  方法的  &lt;code&gt;finishBeanFactoryInitialization(beanFactory)&lt;/code&gt;  处带大家跟一下源码，想了想还是不带入过多的代码进来，直接给到最终的主要逻辑。&lt;/p&gt;
-&lt;div class=&#34;highlight-wrap&#34;autocomplete=&#34;off&#34; autocorrect=&#34;off&#34; autocapitalize=&#34;off&#34; spellcheck=&#34;false&#34; contenteditable=&#34;false&#34;data-rel=&#34;JAVA&#34;&gt;&lt;figure class=&#34;iseeu highlight java&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;protected&lt;/span&gt; Object &lt;span class=&#34;title function_&#34;&gt;doCreateBean&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(String beanName, RootBeanDefinition mbd, &lt;span class=&#34;meta&#34;&gt;@Nullable&lt;/span&gt; Object[] args)&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;throws&lt;/span&gt; BeanCreationException &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;type&#34;&gt;BeanWrapper&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;instanceWrapper&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;literal&#34;&gt;null&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (mbd.isSingleton()) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        instanceWrapper = (BeanWrapper)&lt;span class=&#34;built_in&#34;&gt;this&lt;/span&gt;.factoryBeanInstanceCache.remove(beanName);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (instanceWrapper == &lt;span class=&#34;literal&#34;&gt;null&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    	&lt;span class=&#34;comment&#34;&gt;// 实例化阶段&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        instanceWrapper = &lt;span class=&#34;built_in&#34;&gt;this&lt;/span&gt;.createBeanInstance(beanName, mbd, args);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ...&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;type&#34;&gt;Object&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;exposedObject&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; bean;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;try&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    	&lt;span class=&#34;comment&#34;&gt;// 属性赋值阶段&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;built_in&#34;&gt;this&lt;/span&gt;.populateBean(beanName, mbd, instanceWrapper);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// 初始化阶段&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        exposedObject = &lt;span class=&#34;built_in&#34;&gt;this&lt;/span&gt;.initializeBean(beanName, exposedObject, mbd);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125; &lt;span class=&#34;keyword&#34;&gt;catch&lt;/span&gt; (Throwable var18) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        ...&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ...&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/div&gt;
+&lt;div class=&#34;highlight-wrap&#34; autocomplete=&#34;off&#34; autocorrect=&#34;off&#34; autocapitalize=&#34;off&#34; spellcheck=&#34;false&#34; contenteditable=&#34;false&#34; data-rel=&#34;JAVA&#34;&gt;&lt;figure class=&#34;iseeu highlight java&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;protected&lt;/span&gt; Object &lt;span class=&#34;title function_&#34;&gt;doCreateBean&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(String beanName, RootBeanDefinition mbd, &lt;span class=&#34;meta&#34;&gt;@Nullable&lt;/span&gt; Object[] args)&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;throws&lt;/span&gt; BeanCreationException {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;type&#34;&gt;BeanWrapper&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;instanceWrapper&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;literal&#34;&gt;null&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (mbd.isSingleton()) {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        instanceWrapper = (BeanWrapper)&lt;span class=&#34;built_in&#34;&gt;this&lt;/span&gt;.factoryBeanInstanceCache.remove(beanName);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    }&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (instanceWrapper == &lt;span class=&#34;literal&#34;&gt;null&lt;/span&gt;) {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    	&lt;span class=&#34;comment&#34;&gt;// 实例化阶段&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        instanceWrapper = &lt;span class=&#34;built_in&#34;&gt;this&lt;/span&gt;.createBeanInstance(beanName, mbd, args);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    }&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ...&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;type&#34;&gt;Object&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;exposedObject&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; bean;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;try&lt;/span&gt; {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    	&lt;span class=&#34;comment&#34;&gt;// 属性赋值阶段&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;built_in&#34;&gt;this&lt;/span&gt;.populateBean(beanName, mbd, instanceWrapper);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// 初始化阶段&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        exposedObject = &lt;span class=&#34;built_in&#34;&gt;this&lt;/span&gt;.initializeBean(beanName, exposedObject, mbd);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    } &lt;span class=&#34;keyword&#34;&gt;catch&lt;/span&gt; (Throwable var18) {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        ...&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    }&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ...&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;}&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/div&gt;
 &lt;p&gt;至于销毁，是在容器关闭时调用的，详见  &lt;code&gt;ConfigurableApplicationContext#close()&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;是不是很清爽了？至于 BeanPostProcessor、BeanFactoryPostProcessor 以及其他的类，只不过是对主流程四个步骤的一系列扩展点而已。&lt;/p&gt;
 &lt;h2 id=&#34;spring-bean-的生命周期的扩展点&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#spring-bean-的生命周期的扩展点&#34;&gt;#&lt;/a&gt; Spring Bean 的生命周期的扩展点&lt;/h2&gt;
@@ -194,7 +194,7 @@ pds：PropertyDescriptor 对象数组，PropertyDescriptor 相当于存储类的
 &lt;li&gt;调用 BeanDefinitionRegistryPostProcessor#postProcessBeanDefinitionRegistry (registry) 方法。参数 beanFactoryPostProcessors 传入的优先处理掉。然后获取容器注册的，对于这些 Bean 按照 PriorityOrdered 接口、Ordered、没有排序接口的实例分别进行处理。&lt;/li&gt;
 &lt;li&gt;调用 BeanFactoryPostProcessor#postProcessBeanFactory (beanFactory) 方法。备注：BeanDefinitionRegistryPostProcessor 属于 BeanFactoryPostProcessor 子接口。先处理属于 BeanDefinitionRegistryPostProcessor 接口实例的 postProcessBeanFactory (beanFactory) 方法，然后获取容器注册的。对于这些 Bean 按照 PriorityOrdered 接口、Ordered、没有排序接口的实例分别进行处理。&lt;/li&gt;
 &lt;/ul&gt;
- ]]></description>
+&lt;/body&gt;&lt;/html&gt; ]]></description>
         </item>
         <item>
             <guid isPermalink="true">https://www.pswen.cn/p/e352a76e/</guid>
@@ -204,11 +204,11 @@ pds：PropertyDescriptor 对象数组，PropertyDescriptor 相当于存储类的
             <category>Spring</category>
             <category>动态配置</category>
             <pubDate>Thu, 23 Feb 2023 14:29:54 +0000</pubDate>
-            <description><![CDATA[ &lt;blockquote&gt;
+            <description><![CDATA[ &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;blockquote&gt;
 &lt;p&gt;最近工作碰到需要写一个类似携程 Apollo 的动态配置功能，以此系统学习该原理，熟练掌握下 Spring 的各种机制&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Apollo 动态配置原理简述&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Apollo 配置中心动态生效机制，是基于 Http 长轮询请求和 Spring 扩展机制实现的，在 Spring 容器启动过程中，Apollo 通过自定义的 &lt;code&gt;BeanPostProcessor&lt;/code&gt;  和 &lt;code&gt;BeanFactoryPostProcessor&lt;/code&gt;  將参数中包含 &lt;code&gt;$&amp;#123;…&amp;#125;&lt;/code&gt;  占位符和 &lt;code&gt;@Value&lt;/code&gt;  注解的 Bean 注册到 Apollo 框架中定义的注册表中。然后通过 Http 长轮询不断的去获取服务端的配置信息，一旦配置发生变化，Apollo 会根据变化的配置的 Key 找到对应的 Bean，然后修改 Bean 的属性，从而实现了配置动态生效的特性。&lt;/p&gt;
+&lt;p&gt;Apollo 配置中心动态生效机制，是基于 Http 长轮询请求和 Spring 扩展机制实现的，在 Spring 容器启动过程中，Apollo 通过自定义的 &lt;code&gt;BeanPostProcessor&lt;/code&gt;  和 &lt;code&gt;BeanFactoryPostProcessor&lt;/code&gt;  將参数中包含 &lt;code&gt;${…}&lt;/code&gt;  占位符和 &lt;code&gt;@Value&lt;/code&gt;  注解的 Bean 注册到 Apollo 框架中定义的注册表中。然后通过 Http 长轮询不断的去获取服务端的配置信息，一旦配置发生变化，Apollo 会根据变化的配置的 Key 找到对应的 Bean，然后修改 Bean 的属性，从而实现了配置动态生效的特性。&lt;/p&gt;
 &lt;p&gt;需要注意的是，Apollo 在配置变化后，只能修改 Bean 的属性，例如我们数据源的属性发生变化，新创建的 Connection 对象是没问题的，但是连接池中已经创建的 Connection 对象相关信息是不能动态修改的，所以依然需要重启应用。&lt;/p&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
 &lt;p&gt;其中涉及到的 Spring 的扩展机制有：&lt;/p&gt;
@@ -257,7 +257,7 @@ pds：PropertyDescriptor 对象数组，PropertyDescriptor 相当于存储类的
 &lt;p&gt;上述分别对应使用 Spring 的扩展能力 &lt;code&gt;BeanFactoryPostProcessor&lt;/code&gt; 、 &lt;code&gt;BeanPostProcessor&lt;/code&gt; 、 &lt;code&gt;BeanPostProcessor&lt;/code&gt;  和 &lt;code&gt;BeanFactoryPostProcessor&lt;/code&gt; 、 &lt;code&gt;BeanDefinitionRegistryPostProcessor&lt;/code&gt; 、 &lt;code&gt;BeanPostProcessor&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;我们这个系列也会对 apollo 基于 spring 提供的扩展点来嵌入自己的能力。主要为 BeanFactoryPostProcessor、BeanPostProcessor 这两个扩展点；先简单说一下：&lt;em&gt;&lt;strong&gt;只需要知道，BeanFactoryPostProcessor、BeanDefinitionRegistryPostProcessor 在生成所有 beandefinition 之后调用，而 BeanPostProcessor 在通过 beandefinition 实例化 bean 的过程中调用即可。&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;那这些实现我们就下篇见了！！！&lt;/p&gt;
- ]]></description>
+&lt;/body&gt;&lt;/html&gt; ]]></description>
         </item>
     </channel>
 </rss>

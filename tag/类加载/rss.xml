@@ -19,6 +19,9 @@
         <category>动态配置</category>
         <category>聚会</category>
         <category>悼念</category>
+        <category>linux</category>
+        <category>acmesh</category>
+        <category>域名证书</category>
         <category>leetcode</category>
         <category>算法</category>
         <category>贪心</category>
@@ -30,9 +33,6 @@
         <category>gulp-imagemin</category>
         <category>Java</category>
         <category>位运算</category>
-        <category>linux</category>
-        <category>acmesh</category>
-        <category>域名证书</category>
         <category>正则</category>
         <category>js</category>
         <category>去除零</category>
@@ -51,11 +51,11 @@
         <category>我们</category>
         <category>年轻</category>
         <category>年幼</category>
-        <category>武康大楼</category>
-        <category>上海</category>
         <category>树</category>
         <category>dfs</category>
         <category>bfs</category>
+        <category>武康大楼</category>
+        <category>上海</category>
         <category>陆家嘴</category>
         <category>三叉戟</category>
         <category>上海外滩</category>
@@ -78,7 +78,7 @@
             <category>jvm</category>
             <category>类加载</category>
             <pubDate>Fri, 12 Nov 2021 14:55:27 +0000</pubDate>
-            <description><![CDATA[ &lt;p&gt;在 Java 语言里面，类型的加载、连接和初始化过程都是在程序运行期间完成的，这种策略虽然会令类加载时稍微增加一些性能开销，但是会为 Java 应用程序提供高度的灵活性，Java 里天生可以动态扩展的语言特性就是依赖于运行期动态加载和动态连接这个特点实现的。&lt;/p&gt;
+            <description><![CDATA[ &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;在 Java 语言里面，类型的加载、连接和初始化过程都是在程序运行期间完成的，这种策略虽然会令类加载时稍微增加一些性能开销，但是会为 Java 应用程序提供高度的灵活性，Java 里天生可以动态扩展的语言特性就是依赖于运行期动态加载和动态连接这个特点实现的。&lt;/p&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
 &lt;p&gt;例如，如果编写一个面向接口的应用程序，可以等到运行时再指定其实际的实现类；用户可以通过 Java 预定义的和自定义类加载器，让一个本地的应用程序可以在运行时从网络或其他地方加载一个二进制流作为程序代码的一部分，这种组装应用程序的方式目前已广泛应用于 Java 程序之中。从最基础的 Applet、JSP 到相对复杂的 OSGI 技术，都使用了 Java 语言运行期类加载的特性。&lt;/p&gt;
 &lt;h2 id=&#34;类加载机制&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#类加载机制&#34;&gt;#&lt;/a&gt; 类加载机制&lt;/h2&gt;
@@ -100,7 +100,7 @@
 &lt;li&gt;被 finla 修饰的静态字段，会进行常量传播优化，实际上这个字段已经和这个类没啥关系了&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;初始化第三种情况下，对于接口有个特例情况：一个类初始化时要求父类全部初始化，而接口，不要求其父接口全部都完成初始化，只有在使用到才会初始化。&lt;/p&gt;
- ]]></description>
+&lt;/body&gt;&lt;/html&gt; ]]></description>
         </item>
     </channel>
 </rss>

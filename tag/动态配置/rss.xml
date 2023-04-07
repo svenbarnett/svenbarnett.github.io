@@ -19,6 +19,9 @@
         <category>动态配置</category>
         <category>聚会</category>
         <category>悼念</category>
+        <category>linux</category>
+        <category>acmesh</category>
+        <category>域名证书</category>
         <category>leetcode</category>
         <category>算法</category>
         <category>贪心</category>
@@ -30,9 +33,6 @@
         <category>gulp-imagemin</category>
         <category>Java</category>
         <category>位运算</category>
-        <category>linux</category>
-        <category>acmesh</category>
-        <category>域名证书</category>
         <category>正则</category>
         <category>js</category>
         <category>去除零</category>
@@ -51,11 +51,11 @@
         <category>我们</category>
         <category>年轻</category>
         <category>年幼</category>
-        <category>武康大楼</category>
-        <category>上海</category>
         <category>树</category>
         <category>dfs</category>
         <category>bfs</category>
+        <category>武康大楼</category>
+        <category>上海</category>
         <category>陆家嘴</category>
         <category>三叉戟</category>
         <category>上海外滩</category>
@@ -79,11 +79,11 @@
             <category>Spring</category>
             <category>动态配置</category>
             <pubDate>Thu, 23 Feb 2023 14:29:54 +0000</pubDate>
-            <description><![CDATA[ &lt;blockquote&gt;
+            <description><![CDATA[ &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;blockquote&gt;
 &lt;p&gt;最近工作碰到需要写一个类似携程 Apollo 的动态配置功能，以此系统学习该原理，熟练掌握下 Spring 的各种机制&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Apollo 动态配置原理简述&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Apollo 配置中心动态生效机制，是基于 Http 长轮询请求和 Spring 扩展机制实现的，在 Spring 容器启动过程中，Apollo 通过自定义的 &lt;code&gt;BeanPostProcessor&lt;/code&gt;  和 &lt;code&gt;BeanFactoryPostProcessor&lt;/code&gt;  將参数中包含 &lt;code&gt;$&amp;#123;…&amp;#125;&lt;/code&gt;  占位符和 &lt;code&gt;@Value&lt;/code&gt;  注解的 Bean 注册到 Apollo 框架中定义的注册表中。然后通过 Http 长轮询不断的去获取服务端的配置信息，一旦配置发生变化，Apollo 会根据变化的配置的 Key 找到对应的 Bean，然后修改 Bean 的属性，从而实现了配置动态生效的特性。&lt;/p&gt;
+&lt;p&gt;Apollo 配置中心动态生效机制，是基于 Http 长轮询请求和 Spring 扩展机制实现的，在 Spring 容器启动过程中，Apollo 通过自定义的 &lt;code&gt;BeanPostProcessor&lt;/code&gt;  和 &lt;code&gt;BeanFactoryPostProcessor&lt;/code&gt;  將参数中包含 &lt;code&gt;${…}&lt;/code&gt;  占位符和 &lt;code&gt;@Value&lt;/code&gt;  注解的 Bean 注册到 Apollo 框架中定义的注册表中。然后通过 Http 长轮询不断的去获取服务端的配置信息，一旦配置发生变化，Apollo 会根据变化的配置的 Key 找到对应的 Bean，然后修改 Bean 的属性，从而实现了配置动态生效的特性。&lt;/p&gt;
 &lt;p&gt;需要注意的是，Apollo 在配置变化后，只能修改 Bean 的属性，例如我们数据源的属性发生变化，新创建的 Connection 对象是没问题的，但是连接池中已经创建的 Connection 对象相关信息是不能动态修改的，所以依然需要重启应用。&lt;/p&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
 &lt;p&gt;其中涉及到的 Spring 的扩展机制有：&lt;/p&gt;
@@ -132,7 +132,7 @@
 &lt;p&gt;上述分别对应使用 Spring 的扩展能力 &lt;code&gt;BeanFactoryPostProcessor&lt;/code&gt; 、 &lt;code&gt;BeanPostProcessor&lt;/code&gt; 、 &lt;code&gt;BeanPostProcessor&lt;/code&gt;  和 &lt;code&gt;BeanFactoryPostProcessor&lt;/code&gt; 、 &lt;code&gt;BeanDefinitionRegistryPostProcessor&lt;/code&gt; 、 &lt;code&gt;BeanPostProcessor&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;我们这个系列也会对 apollo 基于 spring 提供的扩展点来嵌入自己的能力。主要为 BeanFactoryPostProcessor、BeanPostProcessor 这两个扩展点；先简单说一下：&lt;em&gt;&lt;strong&gt;只需要知道，BeanFactoryPostProcessor、BeanDefinitionRegistryPostProcessor 在生成所有 beandefinition 之后调用，而 BeanPostProcessor 在通过 beandefinition 实例化 bean 的过程中调用即可。&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;那这些实现我们就下篇见了！！！&lt;/p&gt;
- ]]></description>
+&lt;/body&gt;&lt;/html&gt; ]]></description>
         </item>
     </channel>
 </rss>

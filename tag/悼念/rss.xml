@@ -19,6 +19,9 @@
         <category>动态配置</category>
         <category>聚会</category>
         <category>悼念</category>
+        <category>linux</category>
+        <category>acmesh</category>
+        <category>域名证书</category>
         <category>leetcode</category>
         <category>算法</category>
         <category>贪心</category>
@@ -30,9 +33,6 @@
         <category>gulp-imagemin</category>
         <category>Java</category>
         <category>位运算</category>
-        <category>linux</category>
-        <category>acmesh</category>
-        <category>域名证书</category>
         <category>正则</category>
         <category>js</category>
         <category>去除零</category>
@@ -51,11 +51,11 @@
         <category>我们</category>
         <category>年轻</category>
         <category>年幼</category>
-        <category>武康大楼</category>
-        <category>上海</category>
         <category>树</category>
         <category>dfs</category>
         <category>bfs</category>
+        <category>武康大楼</category>
+        <category>上海</category>
         <category>陆家嘴</category>
         <category>三叉戟</category>
         <category>上海外滩</category>
@@ -77,7 +77,7 @@
             <link>https://www.pswen.cn/p/15a97059/</link>
             <category>悼念</category>
             <pubDate>Tue, 28 Mar 2023 14:07:43 +0000</pubDate>
-            <description><![CDATA[ &lt;p&gt;我的爷爷于 2023 年 03 月 27 日 10:36 分去世了。&lt;/p&gt;
+            <description><![CDATA[ &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;我的爷爷于 2023 年 03 月 27 日 10:36 分去世了。&lt;/p&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
 &lt;h4 id=&#34;简要生平&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#简要生平&#34;&gt;#&lt;/a&gt; 简要生平&lt;/h4&gt;
 &lt;p&gt;我的爷爷，彭明辉，出生于 1938 年，享年 85 岁。在我爸的悼念中写道：&lt;/p&gt;
@@ -106,7 +106,7 @@
 &lt;p&gt;种种的点点滴滴，和我们看到的爷爷完全是两个类型的人，此时他如此细腻、如此多愁善感、如此耐心&lt;/p&gt;
 &lt;p&gt;此时，不觉令人发醒：人终归黄土，而如何让人长久活在大家记忆之中？&lt;/p&gt;
 &lt;p&gt;我觉无非就是他给这个世界留下了什么！&lt;/p&gt;
-&lt;iframe height=&#34;498&#34; width=&#34;510&#34; style=&#34;width: 100%;&#34; src=&#34;20230328/1.mp4&#34;&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;video src=&#34;/p/15a97059/1.mp4&#34;&gt;&lt;/video&gt;&lt;/p&gt;
 &lt;p&gt;从前&lt;br&gt;
 您带我们扫墓烧钱，&lt;br&gt;
 您教我们叩头作揖，&lt;br&gt;
@@ -119,7 +119,7 @@
 我们只能从仅存照片中回忆您的故事&lt;/p&gt;
 &lt;p&gt;您长眠，我常念；爷爷，一路走好！&lt;/p&gt;
 &lt;p&gt;视频制作 By 彭丽娜&lt;/p&gt;
- ]]></description>
+&lt;/body&gt;&lt;/html&gt; ]]></description>
         </item>
     </channel>
 </rss>
