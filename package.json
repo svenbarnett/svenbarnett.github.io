@@ -13,6 +13,7 @@
     "version": "6.3.0"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
     "hexo": "^6.3.0",
     "hexo-abbrlink": "^2.2.1",
     "hexo-algoliasearch": "^1.0.0",
