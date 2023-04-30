@@ -46,9 +46,12 @@ hexo.extend.filter.register('after_post_render', function(data){
                     });
                     if(srcArray.length > 1)
                     srcArray.shift();
-                    src = srcArray.join('/');                     
-                    $(this).attr('src',  pageimageroot + src);
-                    console.info && console.info("update video link as:-->"+ pageimageroot + src);
+                    src = pageimageroot + srcArray.join('/');           
+                    $(this).attr('src',  src);
+                    let $source = $('<source src="'+src+'" type="video/mp4">')
+                    $(this).attr('controls', '');
+                    $source.appendTo($(this))
+                    console.info && console.info("update video html:-->"+ $(this));
                 }
             });
             data[key] = $.html();        
