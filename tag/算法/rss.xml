@@ -19,25 +19,25 @@
         <category>动态配置</category>
         <category>聚会</category>
         <category>悼念</category>
-        <category>linux</category>
-        <category>acmesh</category>
-        <category>域名证书</category>
         <category>leetcode</category>
         <category>算法</category>
         <category>贪心</category>
         <category>动态规划</category>
+        <category>linux</category>
+        <category>acmesh</category>
+        <category>域名证书</category>
         <category>二分法</category>
         <category>快慢指针</category>
         <category>gulp</category>
         <category>压缩图片</category>
         <category>gulp-imagemin</category>
-        <category>Java</category>
-        <category>位运算</category>
         <category>正则</category>
         <category>js</category>
         <category>去除零</category>
         <category>jvm</category>
         <category>类加载</category>
+        <category>Java</category>
+        <category>位运算</category>
         <category>jvm调优</category>
         <category>混合模式</category>
         <category>解释模式</category>
@@ -45,9 +45,9 @@
         <category>环形链表</category>
         <category>往昔时光</category>
         <category>大学</category>
-        <category>高中</category>
         <category>往昔</category>
         <category>实习</category>
+        <category>高中</category>
         <category>我们</category>
         <category>年轻</category>
         <category>年幼</category>
@@ -63,18 +63,18 @@
         <category>晚霞</category>
         <category>云谷</category>
         <category>回溯</category>
+        <category>图记</category>
+        <category>天安云谷</category>
         <category>矩阵</category>
         <category>深度遍历</category>
         <category>广度遍历</category>
-        <category>图记</category>
-        <category>天安云谷</category>
         <category>生活</category>
         <category>午餐</category>
         <category>单词接龙</category>
         <item>
-            <guid isPermalink="true">https://www.pswen.cn/p/fbb9fe6d/</guid>
+            <guid isPermalink="true">https://www.pswen.cn/p/fbb9fe6d/index.html</guid>
             <title>单词接龙——leetcode127</title>
-            <link>https://www.pswen.cn/p/fbb9fe6d/</link>
+            <link>https://www.pswen.cn/p/fbb9fe6d/index.html</link>
             <category>leetcode</category>
             <category>算法</category>
             <category>单词接龙</category>
@@ -119,9 +119,9 @@
 &lt;/body&gt;&lt;/html&gt; ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://www.pswen.cn/p/f883163f/</guid>
+            <guid isPermalink="true">https://www.pswen.cn/p/f883163f/index.html</guid>
             <title>买卖股票的最佳时机 II——LeetCode122</title>
-            <link>https://www.pswen.cn/p/f883163f/</link>
+            <link>https://www.pswen.cn/p/f883163f/index.html</link>
             <category>leetcode</category>
             <category>算法</category>
             <category>贪心</category>
@@ -180,9 +180,9 @@
 &lt;/body&gt;&lt;/html&gt; ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://www.pswen.cn/p/ab179abd/</guid>
+            <guid isPermalink="true">https://www.pswen.cn/p/ab179abd/index.html</guid>
             <title>复原IP地址——LeetCode93</title>
-            <link>https://www.pswen.cn/p/ab179abd/</link>
+            <link>https://www.pswen.cn/p/ab179abd/index.html</link>
             <category>leetcode</category>
             <category>算法</category>
             <category>回溯</category>
@@ -222,9 +222,9 @@ s 仅由数字组成&lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt; ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://www.pswen.cn/p/dfd6ab93/</guid>
+            <guid isPermalink="true">https://www.pswen.cn/p/dfd6ab93/index.html</guid>
             <title>最长回文子串——Leetcode5</title>
-            <link>https://www.pswen.cn/p/dfd6ab93/</link>
+            <link>https://www.pswen.cn/p/dfd6ab93/index.html</link>
             <category>leetcode</category>
             <category>算法</category>
             <category>动态规划</category>
@@ -257,7 +257,7 @@ s 仅由数字和英文字母（大写和 / 或小写）组成&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;那么我们就可以写出动态规划的状态转移方程：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/dfd6ab93/image-20220104210656306.png&#34; alt=&#34;状态转移方程&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/dfd6ab93/index.htmlimage-20220104210656306.png&#34; alt=&#34;状态转移方程&#34;&gt;&lt;/p&gt;
 &lt;p&gt;也就是说，只有  &lt;code&gt;s[i+1:j−1] &lt;/code&gt; 是回文串，并且  &lt;code&gt;s&lt;/code&gt;  的第 &lt;code&gt;i&lt;/code&gt;  和  &lt;code&gt;j&lt;/code&gt;  个字母相同时， &lt;code&gt;s[i:j]&lt;/code&gt;  才会是回文串。&lt;/p&gt;
 &lt;p&gt;上文的所有讨论是建立在子串长度大于 2 的前提之上的，我们还需要考虑动态规划中的&lt;strong&gt;边界条件&lt;/strong&gt;，即子串的长度为 1 或 2。&lt;/p&gt;
 &lt;ul&gt;
@@ -269,7 +269,7 @@ s 仅由数字和英文字母（大写和 / 或小写）组成&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;因此我们就可以写出动态规划的边界条件：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/dfd6ab93/image-20220104210730308.png&#34; alt=&#34;边界条件&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/dfd6ab93/index.htmlimage-20220104210730308.png&#34; alt=&#34;边界条件&#34;&gt;&lt;/p&gt;
 &lt;p&gt;根据这个思路，我们就可以完成动态规划了，最终的答案即为所有 &lt;code&gt; P(i, j) = true&lt;/code&gt;  中  &lt;code&gt;j−i+1&lt;/code&gt; （即子串长度）的最大值。注意：在状态转移方程中，我们是从长度较短的字符串向长度较长的字符串进行转移的，因此一定要注意动态规划的循环顺序。&lt;/p&gt;
 &lt;h2 id=&#34;代码实现&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#代码实现&#34;&gt;#&lt;/a&gt; 代码实现&lt;/h2&gt;
 &lt;div class=&#34;highlight-wrap&#34; autocomplete=&#34;off&#34; autocorrect=&#34;off&#34; autocapitalize=&#34;off&#34; spellcheck=&#34;false&#34; contenteditable=&#34;false&#34; data-rel=&#34;JAVA&#34;&gt;&lt;figure class=&#34;iseeu highlight java&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;49&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Solution&lt;/span&gt; {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; String &lt;span class=&#34;title function_&#34;&gt;longestPalindrome&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(String s)&lt;/span&gt; {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;len&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; s.length();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (len &amp;lt; &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;) {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; s;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        }&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;maxLen&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;begin&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// dp[i][j] 表示 s[i..j] 是否是回文串&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;boolean&lt;/span&gt;[][] dp = &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;boolean&lt;/span&gt;[len][len];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// 初始化：所有长度为 1 的子串都是回文串&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; (&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;; i &amp;lt; len; i++) {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            dp[i][i] = &lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        }&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;char&lt;/span&gt;[] charArray = s.toCharArray();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// 递推开始&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// 先枚举子串长度&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; (&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;L&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;; L &amp;lt;= len; L++) {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;comment&#34;&gt;// 枚举左边界，左边界的上限设置可以宽松一些&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;keyword&#34;&gt;for&lt;/span&gt; (&lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;; i &amp;lt; len; i++) {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;comment&#34;&gt;// 由 L 和 i 可以确定右边界，即 j - i + 1 = L 得&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;type&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; L + i - &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;comment&#34;&gt;// 如果右边界越界，就可以退出当前循环&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (j &amp;gt;= len) {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                    &lt;span class=&#34;keyword&#34;&gt;break&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                }&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (charArray[i] != charArray[j]) {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                    dp[i][j] = &lt;span class=&#34;literal&#34;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                } &lt;span class=&#34;keyword&#34;&gt;else&lt;/span&gt; {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                    &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (j - i &amp;lt; &lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;) {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                        dp[i][j] = &lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                    } &lt;span class=&#34;keyword&#34;&gt;else&lt;/span&gt; {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                        dp[i][j] = dp[i + &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;][j - &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                    }&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                }&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;comment&#34;&gt;// 只要 dp[i][L] == true 成立，就表示子串 s[i..L] 是回文，此时记录回文长度和起始位置&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (dp[i][j] &amp;amp;&amp;amp; j - i + &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt; &amp;gt; maxLen) {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                    maxLen = j - i + &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                    begin = i;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                }&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            }&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        }&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; s.substring(begin, begin + maxLen);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    }&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;}&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/div&gt;
@@ -279,9 +279,9 @@ s 仅由数字和英文字母（大写和 / 或小写）组成&lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt; ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://www.pswen.cn/p/1426/</guid>
+            <guid isPermalink="true">https://www.pswen.cn/p/1426/index.html</guid>
             <title>环形链表——LeetCode141</title>
-            <link>https://www.pswen.cn/p/1426/</link>
+            <link>https://www.pswen.cn/p/1426/index.html</link>
             <category>算法</category>
             <category>快慢指针</category>
             <category>环形链表</category>
@@ -292,13 +292,13 @@ s 仅由数字和英文字母（大写和 / 或小写）组成&lt;/p&gt;
 LeetCode-141 链接：&lt;a href=&#34;https://leetcode-cn.com/problems/linked-list-cycle&#34;&gt;https://leetcode-cn.com/problems/linked-list-cycle&lt;/a&gt;&lt;/p&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt; 
 &lt;p&gt;示例 1：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1426/circularlinkedlist.png&#34; alt=&#34;环形链表-示例1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/1426/index.htmlcircularlinkedlist.png&#34; alt=&#34;环形链表-示例1&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight-wrap&#34; autocomplete=&#34;off&#34; autocorrect=&#34;off&#34; autocapitalize=&#34;off&#34; spellcheck=&#34;false&#34; contenteditable=&#34;false&#34; data-rel=&#34;BASH&#34;&gt;&lt;figure class=&#34;iseeu highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;输入：&lt;span class=&#34;built_in&#34;&gt;head&lt;/span&gt; = [3,2,0,-4], pos = 1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;输出：&lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;解释：链表中有一个环，其尾部连接到第二个节点。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/div&gt;
 &lt;p&gt;示例 2：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1426/circularlinkedlist_test2.png&#34; alt=&#34;环形链表-示例2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/1426/index.htmlcircularlinkedlist_test2.png&#34; alt=&#34;环形链表-示例2&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight-wrap&#34; autocomplete=&#34;off&#34; autocorrect=&#34;off&#34; autocapitalize=&#34;off&#34; spellcheck=&#34;false&#34; contenteditable=&#34;false&#34; data-rel=&#34;BASH&#34;&gt;&lt;figure class=&#34;iseeu highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;输入：&lt;span class=&#34;built_in&#34;&gt;head&lt;/span&gt; = [1,2], pos = 0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;输出：&lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;解释：链表中有一个环，其尾部连接到第一个节点。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/div&gt;
 &lt;p&gt;示例 3：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1426/circularlinkedlist_test3.png&#34; alt=&#34;环形链表-示例3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/1426/index.htmlcircularlinkedlist_test3.png&#34; alt=&#34;环形链表-示例3&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight-wrap&#34; autocomplete=&#34;off&#34; autocorrect=&#34;off&#34; autocapitalize=&#34;off&#34; spellcheck=&#34;false&#34; contenteditable=&#34;false&#34; data-rel=&#34;BASH&#34;&gt;&lt;figure class=&#34;iseeu highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;输入：&lt;span class=&#34;built_in&#34;&gt;head&lt;/span&gt; = [1], pos = -1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;输出：&lt;span class=&#34;literal&#34;&gt;false&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;解释：链表中没有环。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/div&gt;
 &lt;p&gt;提示：&lt;/p&gt;
 &lt;div class=&#34;highlight-wrap&#34; autocomplete=&#34;off&#34; autocorrect=&#34;off&#34; autocapitalize=&#34;off&#34; spellcheck=&#34;false&#34; contenteditable=&#34;false&#34; data-rel=&#34;REASONML&#34;&gt;&lt;figure class=&#34;iseeu highlight reasonml&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;链表中节点的数目范围是 &lt;span class=&#34;literal&#34;&gt;[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;104&lt;/span&gt;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-&lt;span class=&#34;number&#34;&gt;105&lt;/span&gt; &amp;lt;= &lt;span class=&#34;module-access&#34;&gt;&lt;span class=&#34;module&#34;&gt;&lt;span class=&#34;identifier&#34;&gt;Node&lt;/span&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;keyword&#34;&gt;val&lt;/span&gt; &amp;lt;= &lt;span class=&#34;number&#34;&gt;105&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;pos 为 -&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt; 或者链表中的一个 有效索引 。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/div&gt;
@@ -319,7 +319,7 @@ LeetCode-141 链接：&lt;a href=&#34;https://leetcode-cn.com/problems/linked-li
 &lt;p&gt;方法需要读者对「Floyd 判圈算法」（又称龟兔赛跑算法）有所了解。&lt;/p&gt;
 &lt;p&gt;假想「乌龟」和「兔子」在链表上移动，「兔子」跑得快，「乌龟」跑得慢。当「乌龟」和「兔子」从链表上的同一个节点开始移动时，如果该链表中没有环，那么「兔子」将一直处于「乌龟」的前方；如果该链表中有环，那么「兔子」会先于「乌龟」进入环，并且一直在环内移动。等到「乌龟」进入环时，由于「兔子」的速度快，它一定会在某个时刻与乌龟相遇，即套了「乌龟」若干圈。&lt;/p&gt;
 &lt;p&gt;我们可以根据上述思路来解决本题。具体地，我们定义两个指针，一快一满。慢指针每次只移动一步，而快指针每次移动两步。初始时，慢指针在位置 head，而快指针在位置 head.next。这样一来，如果在移动的过程中，快指针反过来追上慢指针，就说明该链表为环形链表。否则快指针将到达链表尾部，该链表不为环形链表。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1426/2.png&#34; alt=&#34;龟兔赛跑&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/1426/index.html2.png&#34; alt=&#34;龟兔赛跑&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;为什么我们要规定初始时慢指针在位置 head，快指针在位置 head.next，而不是两个指针都在位置 head（即与「乌龟」和「兔子」中的叙述相同）？&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -338,9 +338,9 @@ LeetCode-141 链接：&lt;a href=&#34;https://leetcode-cn.com/problems/linked-li
 &lt;/body&gt;&lt;/html&gt; ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://www.pswen.cn/p/44752/</guid>
+            <guid isPermalink="true">https://www.pswen.cn/p/44752/index.html</guid>
             <title>寻找重复数——LeetCode287</title>
-            <link>https://www.pswen.cn/p/44752/</link>
+            <link>https://www.pswen.cn/p/44752/index.html</link>
             <category>leetcode</category>
             <category>算法</category>
             <category>二分法</category>

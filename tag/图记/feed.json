@@ -5,11 +5,11 @@
     "home_page_url": "https://www.pswen.cn",
     "items": [
         {
-            "id": "https://www.pswen.cn/p/b10a7a0e/",
-            "url": "https://www.pswen.cn/p/b10a7a0e/",
+            "id": "https://www.pswen.cn/p/b10a7a0e/index.html",
+            "url": "https://www.pswen.cn/p/b10a7a0e/index.html",
             "title": "夜中云谷",
             "date_published": "2021-12-18T13:06:30.000Z",
-            "content_html": "<html><head></head><body><p><img src=\"/p/b10a7a0e/IMG_0119.jpg\" alt=\"IMG_0119\"></p>\n</body></html>",
+            "content_html": "<html><head></head><body><p><img src=\"/p/b10a7a0e/index.htmlIMG_0119.jpg\" alt=\"IMG_0119\"></p>\n</body></html>",
             "tags": [
                 "夜景",
                 "图记",
@@ -17,11 +17,11 @@
             ]
         },
         {
-            "id": "https://www.pswen.cn/p/dbbc4a4a/",
-            "url": "https://www.pswen.cn/p/dbbc4a4a/",
+            "id": "https://www.pswen.cn/p/dbbc4a4a/index.html",
+            "url": "https://www.pswen.cn/p/dbbc4a4a/index.html",
             "title": "图记——今日午餐",
             "date_published": "2021-11-14T04:29:41.000Z",
-            "content_html": "<html><head></head><body><p><img src=\"/p/dbbc4a4a/IMG_0073.JPG\" alt=\"今日午餐\"></p>\n</body></html>",
+            "content_html": "<html><head></head><body><p><img src=\"/p/dbbc4a4a/index.htmlIMG_0073.JPG\" alt=\"今日午餐\"></p>\n</body></html>",
             "tags": [
                 "图记",
                 "生活",

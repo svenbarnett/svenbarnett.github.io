@@ -19,25 +19,25 @@
         <category>动态配置</category>
         <category>聚会</category>
         <category>悼念</category>
-        <category>linux</category>
-        <category>acmesh</category>
-        <category>域名证书</category>
         <category>leetcode</category>
         <category>算法</category>
         <category>贪心</category>
         <category>动态规划</category>
+        <category>linux</category>
+        <category>acmesh</category>
+        <category>域名证书</category>
         <category>二分法</category>
         <category>快慢指针</category>
         <category>gulp</category>
         <category>压缩图片</category>
         <category>gulp-imagemin</category>
-        <category>Java</category>
-        <category>位运算</category>
         <category>正则</category>
         <category>js</category>
         <category>去除零</category>
         <category>jvm</category>
         <category>类加载</category>
+        <category>Java</category>
+        <category>位运算</category>
         <category>jvm调优</category>
         <category>混合模式</category>
         <category>解释模式</category>
@@ -45,9 +45,9 @@
         <category>环形链表</category>
         <category>往昔时光</category>
         <category>大学</category>
-        <category>高中</category>
         <category>往昔</category>
         <category>实习</category>
+        <category>高中</category>
         <category>我们</category>
         <category>年轻</category>
         <category>年幼</category>
@@ -63,18 +63,18 @@
         <category>晚霞</category>
         <category>云谷</category>
         <category>回溯</category>
+        <category>图记</category>
+        <category>天安云谷</category>
         <category>矩阵</category>
         <category>深度遍历</category>
         <category>广度遍历</category>
-        <category>图记</category>
-        <category>天安云谷</category>
         <category>生活</category>
         <category>午餐</category>
         <category>单词接龙</category>
         <item>
-            <guid isPermalink="true">https://www.pswen.cn/p/4425fc35/</guid>
+            <guid isPermalink="true">https://www.pswen.cn/p/4425fc35/index.html</guid>
             <title>linux生产免费的域名证书</title>
-            <link>https://www.pswen.cn/p/4425fc35/</link>
+            <link>https://www.pswen.cn/p/4425fc35/index.html</link>
             <category>linux</category>
             <category>acmesh</category>
             <category>域名证书</category>
@@ -117,7 +117,7 @@ Let’s Encrypt 免费证书客户端最简单的 shell 脚本。&lt;br&gt;
 &lt;p&gt;nginx 示例 2：&lt;/p&gt;
 &lt;div class=&#34;highlight-wrap&#34; autocomplete=&#34;off&#34; autocorrect=&#34;off&#34; autocapitalize=&#34;off&#34; spellcheck=&#34;false&#34; contenteditable=&#34;false&#34; data-rel=&#34;SH&#34;&gt;&lt;figure class=&#34;iseeu highlight sh&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;acme.sh --install-cert -d chandao.test.com \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--key-file /usr/local/nginx/ssl_cert/test.com/chandao.test.com.key \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--fullchain-file /usr/local/nginx/ssl_cert/test.com/chandao.test.com.cer \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;--reloadcmd      &lt;span class=&#34;string&#34;&gt;&#34;service nginx force-reload&#34;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/div&gt;
 &lt;p&gt;附带完成前面 1-4 步骤的截图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/4425fc35/867078-20190326175923357-720763416.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/4425fc35/index.html867078-20190326175923357-720763416.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
 &lt;ol start=&#34;5&#34;&gt;
 &lt;li&gt;Nginx 服务器安装 SSL 证书&lt;/li&gt;
 &lt;/ol&gt;
