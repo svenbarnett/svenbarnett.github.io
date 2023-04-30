@@ -39,6 +39,7 @@ hexo.extend.filter.register('after_post_render', function(data){
             });
 
             $('video').each(function(){
+                
                 if ($(this).attr('src')){
                     var src = $(this).attr('src').replace('\\', '/');
                     var srcArray = src.split('/').filter(function(elem){
@@ -46,7 +47,8 @@ hexo.extend.filter.register('after_post_render', function(data){
                     });
                     if(srcArray.length > 1)
                     srcArray.shift();
-                    src = pageimageroot + srcArray.join('/');           
+                    src = pageimageroot + srcArray.join('/');
+                    src = src.replace('index.html', appendLink)
                     $(this).attr('src',  src);
                     let $source = $('<source src="'+src+'" type="video/mp4">')
                     $(this).attr('controls', '');
