@@ -45,9 +45,9 @@
         <category>环形链表</category>
         <category>往昔时光</category>
         <category>大学</category>
-        <category>高中</category>
         <category>往昔</category>
         <category>实习</category>
+        <category>高中</category>
         <category>我们</category>
         <category>年轻</category>
         <category>年幼</category>
@@ -56,8 +56,8 @@
         <category>bfs</category>
         <category>武康大楼</category>
         <category>上海</category>
-        <category>陆家嘴</category>
         <category>三叉戟</category>
+        <category>陆家嘴</category>
         <category>上海外滩</category>
         <category>夜景</category>
         <category>晚霞</category>
@@ -83,7 +83,7 @@
 &lt;div class=&#34;highlight-wrap&#34; autocomplete=&#34;off&#34; autocorrect=&#34;off&#34; autocapitalize=&#34;off&#34; spellcheck=&#34;false&#34; contenteditable=&#34;false&#34; data-rel=&#34;JSX&#34;&gt;&lt;figure class=&#34;iseeu highlight jsx&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; arr=[&lt;span class=&#34;string&#34;&gt;&#39;1200.00100&#39;&lt;/span&gt;,&lt;span class=&#34;string&#34;&gt;&#39;1200.00000&#39;&lt;/span&gt;,&lt;span class=&#34;string&#34;&gt;&#39;1200.&#39;&lt;/span&gt;,&lt;span class=&#34;string&#34;&gt;&#39;1200&#39;&lt;/span&gt;,&lt;span class=&#34;string&#34;&gt;&#39;1200.10000&#39;&lt;/span&gt;,&lt;span class=&#34;string&#34;&gt;&#39;0.120010000&#39;&lt;/span&gt;,&lt;span class=&#34;string&#34;&gt;&#39;0.000011111&#39;&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; regexp=&lt;span class=&#34;regexp&#34;&gt;/(?:\.0*|(\.\d+?)0+)$/&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;arr.&lt;span class=&#34;title function_&#34;&gt;forEach&lt;/span&gt;(&lt;span class=&#34;function&#34;&gt;(&lt;span class=&#34;params&#34;&gt;item&lt;/span&gt;)=&amp;gt;&lt;/span&gt;{&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;variable language_&#34;&gt;console&lt;/span&gt;.&lt;span class=&#34;title function_&#34;&gt;log&lt;/span&gt;(item.&lt;span class=&#34;title function_&#34;&gt;replace&lt;/span&gt;(regexp,&lt;span class=&#34;string&#34;&gt;&#39;$1&#39;&lt;/span&gt;))&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;})&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// &amp;gt; 1200.001&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// &amp;gt; 1200&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// &amp;gt; 1200&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// &amp;gt; 1200&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// &amp;gt; 1200.1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// &amp;gt; 0.12001&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// &amp;gt; 0.000011111&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/div&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
 &lt;p&gt;正则可视化：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/9195a466/image.svg&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/9195a466/index/image.svg&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;
 &lt;p&gt;推荐个可视化网址：&lt;a href=&#34;https://regexper.com/&#34;&gt;https://regexper.com/&lt;/a&gt;&lt;/p&gt;
 &lt;!-- more --&gt;
 &lt;p&gt;再解释下正则的意思 &lt;code&gt;(?:.0*|(.\d+?)0+)$&lt;/code&gt;&lt;/p&gt;

@@ -45,9 +45,9 @@
         <category>环形链表</category>
         <category>往昔时光</category>
         <category>大学</category>
-        <category>高中</category>
         <category>往昔</category>
         <category>实习</category>
+        <category>高中</category>
         <category>我们</category>
         <category>年轻</category>
         <category>年幼</category>
@@ -56,8 +56,8 @@
         <category>bfs</category>
         <category>武康大楼</category>
         <category>上海</category>
-        <category>陆家嘴</category>
         <category>三叉戟</category>
+        <category>陆家嘴</category>
         <category>上海外滩</category>
         <category>夜景</category>
         <category>晚霞</category>
@@ -85,13 +85,13 @@
 LeetCode-141 链接：&lt;a href=&#34;https://leetcode-cn.com/problems/linked-list-cycle&#34;&gt;https://leetcode-cn.com/problems/linked-list-cycle&lt;/a&gt;&lt;/p&gt;
 &lt;span id=&#34;more&#34;&gt;&lt;/span&gt; 
 &lt;p&gt;示例 1：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1426/circularlinkedlist.png&#34; alt=&#34;环形链表-示例1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/1426/index/circularlinkedlist.png&#34; alt=&#34;环形链表-示例1&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight-wrap&#34; autocomplete=&#34;off&#34; autocorrect=&#34;off&#34; autocapitalize=&#34;off&#34; spellcheck=&#34;false&#34; contenteditable=&#34;false&#34; data-rel=&#34;BASH&#34;&gt;&lt;figure class=&#34;iseeu highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;输入：&lt;span class=&#34;built_in&#34;&gt;head&lt;/span&gt; = [3,2,0,-4], pos = 1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;输出：&lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;解释：链表中有一个环，其尾部连接到第二个节点。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/div&gt;
 &lt;p&gt;示例 2：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1426/circularlinkedlist_test2.png&#34; alt=&#34;环形链表-示例2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/1426/index/circularlinkedlist_test2.png&#34; alt=&#34;环形链表-示例2&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight-wrap&#34; autocomplete=&#34;off&#34; autocorrect=&#34;off&#34; autocapitalize=&#34;off&#34; spellcheck=&#34;false&#34; contenteditable=&#34;false&#34; data-rel=&#34;BASH&#34;&gt;&lt;figure class=&#34;iseeu highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;输入：&lt;span class=&#34;built_in&#34;&gt;head&lt;/span&gt; = [1,2], pos = 0&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;输出：&lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;解释：链表中有一个环，其尾部连接到第一个节点。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/div&gt;
 &lt;p&gt;示例 3：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1426/circularlinkedlist_test3.png&#34; alt=&#34;环形链表-示例3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/1426/index/circularlinkedlist_test3.png&#34; alt=&#34;环形链表-示例3&#34;&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight-wrap&#34; autocomplete=&#34;off&#34; autocorrect=&#34;off&#34; autocapitalize=&#34;off&#34; spellcheck=&#34;false&#34; contenteditable=&#34;false&#34; data-rel=&#34;BASH&#34;&gt;&lt;figure class=&#34;iseeu highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;输入：&lt;span class=&#34;built_in&#34;&gt;head&lt;/span&gt; = [1], pos = -1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;输出：&lt;span class=&#34;literal&#34;&gt;false&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;解释：链表中没有环。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/div&gt;
 &lt;p&gt;提示：&lt;/p&gt;
 &lt;div class=&#34;highlight-wrap&#34; autocomplete=&#34;off&#34; autocorrect=&#34;off&#34; autocapitalize=&#34;off&#34; spellcheck=&#34;false&#34; contenteditable=&#34;false&#34; data-rel=&#34;REASONML&#34;&gt;&lt;figure class=&#34;iseeu highlight reasonml&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;链表中节点的数目范围是 &lt;span class=&#34;literal&#34;&gt;[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;104&lt;/span&gt;]&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-&lt;span class=&#34;number&#34;&gt;105&lt;/span&gt; &amp;lt;= &lt;span class=&#34;module-access&#34;&gt;&lt;span class=&#34;module&#34;&gt;&lt;span class=&#34;identifier&#34;&gt;Node&lt;/span&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;keyword&#34;&gt;val&lt;/span&gt; &amp;lt;= &lt;span class=&#34;number&#34;&gt;105&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;pos 为 -&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt; 或者链表中的一个 有效索引 。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/div&gt;
@@ -112,7 +112,7 @@ LeetCode-141 链接：&lt;a href=&#34;https://leetcode-cn.com/problems/linked-li
 &lt;p&gt;方法需要读者对「Floyd 判圈算法」（又称龟兔赛跑算法）有所了解。&lt;/p&gt;
 &lt;p&gt;假想「乌龟」和「兔子」在链表上移动，「兔子」跑得快，「乌龟」跑得慢。当「乌龟」和「兔子」从链表上的同一个节点开始移动时，如果该链表中没有环，那么「兔子」将一直处于「乌龟」的前方；如果该链表中有环，那么「兔子」会先于「乌龟」进入环，并且一直在环内移动。等到「乌龟」进入环时，由于「兔子」的速度快，它一定会在某个时刻与乌龟相遇，即套了「乌龟」若干圈。&lt;/p&gt;
 &lt;p&gt;我们可以根据上述思路来解决本题。具体地，我们定义两个指针，一快一满。慢指针每次只移动一步，而快指针每次移动两步。初始时，慢指针在位置 head，而快指针在位置 head.next。这样一来，如果在移动的过程中，快指针反过来追上慢指针，就说明该链表为环形链表。否则快指针将到达链表尾部，该链表不为环形链表。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/1426/2.png&#34; alt=&#34;龟兔赛跑&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/1426/index/2.png&#34; alt=&#34;龟兔赛跑&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;为什么我们要规定初始时慢指针在位置 head，快指针在位置 head.next，而不是两个指针都在位置 head（即与「乌龟」和「兔子」中的叙述相同）？&lt;/p&gt;
 &lt;/blockquote&gt;

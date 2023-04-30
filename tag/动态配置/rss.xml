@@ -45,9 +45,9 @@
         <category>环形链表</category>
         <category>往昔时光</category>
         <category>大学</category>
-        <category>高中</category>
         <category>往昔</category>
         <category>实习</category>
+        <category>高中</category>
         <category>我们</category>
         <category>年轻</category>
         <category>年幼</category>
@@ -56,8 +56,8 @@
         <category>bfs</category>
         <category>武康大楼</category>
         <category>上海</category>
-        <category>陆家嘴</category>
         <category>三叉戟</category>
+        <category>陆家嘴</category>
         <category>上海外滩</category>
         <category>夜景</category>
         <category>晚霞</category>
@@ -99,7 +99,7 @@
 &lt;p&gt;其中每一个都是非常关键的点，我们后续会一一进行学习。&lt;/p&gt;
 &lt;h2 id=&#34;apollo启动过程&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#apollo启动过程&#34;&gt;#&lt;/a&gt; Apollo 启动过程&lt;/h2&gt;
 &lt;p&gt;首先，我们先看一张图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/e352a76e/image-20230223224050610.png&#34; alt=&#34;Apollo启动图&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/e352a76e/index/image-20230223224050610.png&#34; alt=&#34;Apollo启动图&#34;&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Spring 启动，扫描 bean，将相关变量参数注册到 Apollo 属性注册表&lt;/p&gt;

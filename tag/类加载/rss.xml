@@ -45,9 +45,9 @@
         <category>环形链表</category>
         <category>往昔时光</category>
         <category>大学</category>
-        <category>高中</category>
         <category>往昔</category>
         <category>实习</category>
+        <category>高中</category>
         <category>我们</category>
         <category>年轻</category>
         <category>年幼</category>
@@ -56,8 +56,8 @@
         <category>bfs</category>
         <category>武康大楼</category>
         <category>上海</category>
-        <category>陆家嘴</category>
         <category>三叉戟</category>
+        <category>陆家嘴</category>
         <category>上海外滩</category>
         <category>夜景</category>
         <category>晚霞</category>
@@ -83,7 +83,7 @@
 &lt;p&gt;例如，如果编写一个面向接口的应用程序，可以等到运行时再指定其实际的实现类；用户可以通过 Java 预定义的和自定义类加载器，让一个本地的应用程序可以在运行时从网络或其他地方加载一个二进制流作为程序代码的一部分，这种组装应用程序的方式目前已广泛应用于 Java 程序之中。从最基础的 Applet、JSP 到相对复杂的 OSGI 技术，都使用了 Java 语言运行期类加载的特性。&lt;/p&gt;
 &lt;h2 id=&#34;类加载机制&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#类加载机制&#34;&gt;#&lt;/a&gt; 类加载机制&lt;/h2&gt;
 &lt;p&gt;生命周期：加载（Loading）、验证（Verification）、准备（Preparation）、解析（Resolution）、初始化（Initialzation）、使用（Using）和卸载（Unloading）7 个阶段。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/8239/20160719124551909.jpeg&#34; alt=&#34;生命周期&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/p/8239/index/20160719124551909.jpeg&#34; alt=&#34;生命周期&#34;&gt;&lt;/p&gt;
 &lt;p&gt;什么情况下需要开始进行类加载过程的第一阶段呢？没有明确约束，虚拟机自由把握；&lt;/p&gt;
 &lt;p&gt;而初始化阶段有严格规范，以下五种情况必须理解对类进行初始化。&lt;/p&gt;
 &lt;ol&gt;
