@@ -56,8 +56,9 @@ hexo.extend.filter.register('after_post_render', function(data){
             if(srcArray.length > 1)
             srcArray.shift();
             src = srcArray.join('/');
-            $(this).attr('src',  pageimageroot + src);
-            console.info && console.info("update link as:-->"+ pageimageroot + src);
+            src = (pageimageroot + src).replace('index.html','')
+            $(this).attr('src',  src);
+            console.info && console.info("update link as:-->"+ src);
           }
         }else{
           console.info&&console.info("no src attr, from data-src!");
@@ -82,7 +83,8 @@ hexo.extend.filter.register('after_post_render', function(data){
             var imgurl =pageimageroot + src;
             if (config.jsdelivr.enable){
               imgurl = config.jsdelivr.url + imgurl
-            }           
+            }
+            imgurl = imgurl.replace('index.html','')
             $(this).attr('data-src',  imgurl);
             console.info && console.info("update link as:-->"+ imgurl);
           }
