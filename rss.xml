@@ -48,9 +48,9 @@
         <category>解释模式</category>
         <category>纯编译模式</category>
         <category>环形链表</category>
+        <category>高中</category>
         <category>往昔时光</category>
         <category>大学</category>
-        <category>高中</category>
         <category>往昔</category>
         <category>实习</category>
         <category>我们</category>
@@ -67,14 +67,14 @@
         <category>夜景</category>
         <category>晚霞</category>
         <category>云谷</category>
+        <category>回溯</category>
         <category>矩阵</category>
         <category>深度遍历</category>
         <category>广度遍历</category>
-        <category>回溯</category>
-        <category>图记</category>
-        <category>天安云谷</category>
         <category>生活</category>
         <category>午餐</category>
+        <category>图记</category>
+        <category>天安云谷</category>
         <category>单词接龙</category>
         <item>
             <guid isPermalink="true">https://www.pswen.cn/p/1726970c/index.html</guid>
@@ -85,6 +85,7 @@
             <category>分片下载</category>
             <pubDate>Sat, 08 Jul 2023 13:41:08 +0000</pubDate>
             <description><![CDATA[ &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;对于文件服务器通常会面临大量文件下载请求，除了带宽、IO 等硬件上的约束条件外，在极度消耗影响资源情况下，非常容易对文件服务器造成压力，导致服务器崩溃，故此需要通过一些技术手段保证服务器稳定，并且也能持有一定下载速度。&lt;/p&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
 &lt;h2 id=&#34;文件下载的几种优化方式&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#文件下载的几种优化方式&#34;&gt;#&lt;/a&gt; 文件下载的几种优化方式&lt;/h2&gt;
 &lt;p&gt;1、CDN 加速，主要就是将对应文件缓存到各个 CDN 节点，后续就近给用户访问最优节点&lt;/p&gt;
 &lt;p&gt;如图：&lt;img src=&#34;/p/1726970c/index/image-20230708215634360.png&#34; alt=&#34;CDN示意图&#34;&gt;&lt;/p&gt;
@@ -1387,9 +1388,9 @@ Let’s Encrypt 免费证书客户端最简单的 shell 脚本。&lt;br&gt;
             <guid isPermalink="true">https://www.pswen.cn/p/dbbc4a4a/index.html</guid>
             <title>图记——今日午餐</title>
             <link>https://www.pswen.cn/p/dbbc4a4a/index.html</link>
-            <category>图记</category>
             <category>生活</category>
             <category>午餐</category>
+            <category>图记</category>
             <pubDate>Sun, 14 Nov 2021 04:29:41 +0000</pubDate>
             <description><![CDATA[ &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&#34;/p/dbbc4a4a/index/IMG_0073.JPG&#34; alt=&#34;今日午餐&#34;&gt;&lt;/p&gt;
 &lt;/body&gt;&lt;/html&gt; ]]></description>
@@ -1669,8 +1670,8 @@ Leetcode-287 链接：&lt;a href=&#34;https://leetcode-cn.com/problems/find-the-
             <guid isPermalink="true">https://www.pswen.cn/p/43666/index.html</guid>
             <title>往昔时光-可爱的他们</title>
             <link>https://www.pswen.cn/p/43666/index.html</link>
-            <category>往昔时光</category>
             <category>高中</category>
+            <category>往昔时光</category>
             <pubDate>Tue, 13 Feb 2018 04:36:02 +0000</pubDate>
             <description><![CDATA[ &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&#34;/p/43666/index/IMG_3586.JPG&#34; alt=&#34;可爱的他们&#34;&gt;&lt;/p&gt;
 &lt;p&gt;可爱的他们&lt;/p&gt;
