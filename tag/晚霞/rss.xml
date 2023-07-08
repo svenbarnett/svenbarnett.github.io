@@ -21,6 +21,9 @@
         <category>悼念</category>
         <category>婚礼</category>
         <category>游园婚礼</category>
+        <category>文件下载</category>
+        <category>P2P</category>
+        <category>分片下载</category>
         <category>linux</category>
         <category>acmesh</category>
         <category>域名证书</category>
@@ -64,10 +67,10 @@
         <category>夜景</category>
         <category>晚霞</category>
         <category>云谷</category>
-        <category>回溯</category>
         <category>矩阵</category>
         <category>深度遍历</category>
         <category>广度遍历</category>
+        <category>回溯</category>
         <category>图记</category>
         <category>天安云谷</category>
         <category>生活</category>
