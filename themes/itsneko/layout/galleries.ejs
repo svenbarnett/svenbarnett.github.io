@@ -155,7 +155,7 @@
                 %>
                 <% for (var i = 0, len = photos.length; i < len; i++) { %>
                     <% var my_album = photos[i]; %>                   
-                        <a href="<%- my_album.img_url %>" data-caption="<%- my_album.title %>">
+                        <a href="<%- my_album.img_url %>index.html" data-caption="<%- my_album.title %>">
                             <img class="mat" src="/medias/loading.svg" data-src="<%- my_album.img_url %>" alt="img"+<%- i %> >
                         </a>                   
                 <% } %>

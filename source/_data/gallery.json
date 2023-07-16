@@ -4,7 +4,7 @@
       "cover": "images/1.jpg",
       "date": "生活的點點滴滴",
       "description": "生活图记",
-      "url_name": "图记",
+      "url_name": "图记/index.html",
       "album": [
           {
               "img_url": "images/2023/IMG_0803.jpg",
@@ -62,7 +62,7 @@
         "cover": "images/1.jpg",
         "date": "have a deep love for",
         "description": "itsNeko博主的绘画作品",
-        "url_name": "itsNeko博主的绘画作品",
+        "url_name": "itsNeko博主的绘画作品/index.html",
         "album": [
             {
                 "img_url": "images/1.jpg",
