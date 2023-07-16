@@ -3,8 +3,6 @@ title: 单词接龙——leetcode127
 categories:
   - 算法
 tags:
-  - 算法
-  - leetcode
   - 单词接龙
 keywords: '算法,leetcode,单词接龙'
 cover: leetcode127.png
