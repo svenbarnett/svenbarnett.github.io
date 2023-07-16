@@ -1,0 +1,1000 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>文件下载原理详解和解决方案</title>
+      <link href="/posts/1726970c.html"/>
+      <url>/posts/1726970c.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p>对于文件服务器通常会面临大量文件下载请求，除了带宽、IO等硬件上的约束条件外，在极度消耗影响资源情况下，非常容易对文件服务器造成压力，导致服务器崩溃，故此需要通过一些技术手段保证服务器稳定，并且也能持有一定下载速度。</p><span id="more"></span><h2 id="文件下载的几种优化方式"><a href="#文件下载的几种优化方式" class="headerlink" title="文件下载的几种优化方式"></a>文件下载的几种优化方式</h2><p>1、CDN加速，主要就是将对应文件缓存到各个CDN节点，后续就近给用户访问最优节点</p><p>如图：<img src="/posts/1726970c/image-20230708215634360.png" alt="CDN示意图"></p><p>2、S3存储，主要是强调文件存储，特点是用户海量、无限扩容、廉价，同时远程访问速度通过全球节点，速度都有保证，它综合了NAS和SAN的优点，同时具有SAN的高速直接访问和NAS的分布式数据共享等优势，提供了具有高性能、高可靠性、跨平台以及安全的数据共享的存储体系结构。</p><p>3、客户端并发多线程下载，该方式是常用方式</p><p>4、客户端分片并发下载，通常配合断点续传</p><p>5、P2P技术，传统的下载是C/S模式，即提供资源的人作为唯一的服务器，需要下载资源的人，都向这个唯一的服务器发送请求，当同时存在多个下载请求时，服务器的下载速率就会大大降低，因此P2P下载出现了。P2P下载是一种分布式存在下载速率受限的情况。</p><blockquote><p> <strong>综合分析来看</strong></p><p>对于CDN技术主要针对公共资源类文件，大家都可以统一访问，而S3主要作为一种存储服务，对文件的管理粒度无法和业务更好切合，那对于优化文件加速，常用主要是通过多线程并发下载、分片并发下载，而P2P技术似乎可以看作一个终极解决大量文件下载对服务端压力的解决方案</p></blockquote><h3 id="文件下载优化手段"><a href="#文件下载优化手段" class="headerlink" title="文件下载优化手段"></a>文件下载优化手段</h3><p>主要介绍多线程并发下载、分片并发下载和P2P技术</p><h4 id="多线程并发下载"><a href="#多线程并发下载" class="headerlink" title="多线程并发下载"></a>多线程并发下载</h4><p>针对需要下载多个批量文件，通过通过线程池，多个文件并行下载，此举会对服务端带宽、IO造成极大压力，会最大程度消耗硬件网络资源，并且该方式主要是针对多个文件，文件不可中断，中断后必须重新下载，而且，对于其中有大文件还会导致长时间连接的http</p><h4 id="分片并发下载"><a href="#分片并发下载" class="headerlink" title="分片并发下载"></a>分片并发下载</h4><p>主要通过http协议中Range 请求头来进行控制，通过它来控制下载对应的数据块，并且此方法还可以兼容普通下载，此方法同样支持普通下载，不传入Range头就可进行普通下载；也可一次只下载一段（传入一个range:bytes=0-10240）；也可下载多段(传入多个range:bytes=0-10240,10241-20480)；也可一次下载完文件（range范围为整个文件即可:bytes=0-102400）</p><p>同时，块之间可以并发下载，只需要在最后一块任务执行完成后，进行文件合并操作即可；并且如此客户端还可以做断点续传</p><h4 id="P2P技术"><a href="#P2P技术" class="headerlink" title="P2P技术"></a>P2P技术</h4><p>传统的http下载是从服务器上直接复制数据给客户端，这种传输方式对于速度的限制很大，主要是带宽的限制，如果一个服务器的带宽是100，而同时有十个人在这个服务器中下载文件，那么每个人的带宽就会受到限制只有10，在早期下载器开会员可以下载的更快，就是给会员分配到了更快的带宽中了，但是不管怎么划分，资源还是有限的，像是那些超大型网站，特定时段有上亿的点击量，所以为了应付庞大的下载量p2p就应运而生了。<br>而运用p2p下载时，服务器与http中所担任的责任不同，这回服务器只负责将文件的基本信息放在客户端之间，而自己并没有文件，而p2p软件将一个文件拆分成多份，而客户端可以下载这若干份中的一个，就像一杯水被分成若干份，最后倒在一起还是那一杯水，另外相对于HTTP的下载方式如果服务器停机了你就下不了了，但是p2p不同如果服务器停机了你可以下载别人的这个文件，而你在下载别人的文件的同时也在将自己所下载的文件共享出去。可以说下载的用户越多下载的越快。<br>另外P2P传输中有“种子”这种说法。所谓的“种子”，就是指那些已经将文件下载完成的人，他们拥有全部的区块。发布资源的人自己就有一个完整的文件，所以下载时人们会先下载他的完整文件，直到更多的完整完整种子出现。当种子消失时会发生两种情况，一是缺少区块，剩下的客户端最多下载到完全相同的进度；另一种就是区块正好完整，只不过分布在不同的客户端上而已，这样下去就会有人下载完，成为种子。所以p2p可以将一个文件不断的变成种子在不同中的用户间传播。</p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 文件下载 </tag>
+            
+            <tag> P2P </tag>
+            
+            <tag> 分片下载 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>参加斐哥婚礼</title>
+      <link href="/posts/ceb24869.html"/>
+      <url>/posts/ceb24869.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p>周末参加了斐哥和晓念婚礼…</p><span id="more"></span><p>仪式现场：</p><p><img src="/posts/ceb24869/IMG_0842.JPG" alt="IMG_0842"></p><p>新郎新娘互相的说的话：</p><p><img src="/posts/ceb24869/image-20230514211926900.png" alt="image-20230514211926900"></p><p>咱们的合影：</p><p><img src="/posts/ceb24869/image-20230514212029128.png" alt="image-20230514212029128"></p><p>这些都是真花</p><p><img src="/posts/ceb24869/IMG_0852.JPG" alt="IMG_0852"></p><p>晚上烟花：</p><p><img src="/posts/ceb24869/IMG_0855.JPG" alt="IMG_0855"></p><p>最后恭喜斐哥、晓念新婚快乐！！！</p></body></html>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 婚礼 </tag>
+            
+            <tag> 游园婚礼 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>世界少了一个人，而我失去了爷爷</title>
+      <link href="/posts/15a97059.html"/>
+      <url>/posts/15a97059.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p>我的爷爷于2023年03月27日10:36分去世了。</p><span id="more"></span><h4 id="简要生平"><a href="#简要生平" class="headerlink" title="简要生平"></a>简要生平</h4><p>我的爷爷，彭明辉，出生于1938年，享年85岁。在我爸的悼念中写道：</p><blockquote><p>父亲大人出生于1938年5月14日贫农家庭，高小文化，1954年起参加潭湾初级社，六联乡高级社，横烟大队的基层工作，</p><p><img src="/posts/15a97059/IMG_0776.JPG" alt="IMG_0776"></p><p>1956年7月加入中国共产党，在党和政府的培养下，加强学习，得到了领导的推荐，进入人民公社，乡人民政府从事民政、企业会计(助理会计师职称)等职务工作,</p><p><img src="/posts/15a97059/IMG_0775.JPG" alt="IMG_0775"></p><p>在几十年的工作中，勤奋努力、兢兢业业、任劳任怨，奉献自己力量，教子有方，儿孙绕膝，一生精力全部奉献给后裔，</p><p><img src="/posts/15a97059/IMG_0777.JPG" alt="IMG_0777"></p><p>严父因年迈突发重病，经多方医治无效，不幸于本闰二月初六日，上午10.36时分寿终正寝，享寿85年，生前感谢亲友族的亲切关怀，在此我表示深深哀谢！</p></blockquote><p>而我们在整理遗物时，找回了很多年前的回忆，也看到他的意气风发！</p><h4 id="我们的回忆"><a href="#我们的回忆" class="headerlink" title="我们的回忆"></a>我们的回忆</h4><p>小时候，我们一群孙辈环绕在他身旁，那时候他应该是很幸福</p><p><img src="/posts/15a97059/IMG_0769.jpg" alt="IMG_0769"></p><p>但是这些记忆直到我们找到照片也记不起，此时我们就像生活在两个平行空间，没有记忆的交集</p><p>相信他也曾无数次翻开这些充满他回忆的照片，也会情不自禁的笑出来</p><p><img src="/posts/15a97059/IMG_0768.jpg" alt="IMG_0768"></p><h4 id="他的意气风发"><a href="#他的意气风发" class="headerlink" title="他的意气风发"></a>他的意气风发</h4><p>从他收藏学习生活材料记录来看，他年轻时也是一个爱学习、万事皆计划、喜爱记录、善于整理、非常细心的一个帅气年轻小伙</p><p>记录的家庭成员的生辰八字</p><p><img src="/posts/15a97059/IMG_0788.JPG" alt="IMG_0788"></p><p>写的悼词</p><p><img src="/posts/15a97059/IMG_0774.JPG" alt="IMG_0774"></p><p>种种的点点滴滴，和我们看到的爷爷完全是两个类型的人，此时他如此细腻、如此多愁善感、如此耐心</p><p>此时，不觉令人发醒：人终归黄土，而如何让人长久活在大家记忆之中？</p><p>我觉无非就是他给这个世界留下了什么！</p><video src="/posts/15a97059/1.mp4" controls=""><source src="/posts/15a97059/1.mp4" type="video/mp4"></video><p>从前<br>您带我们扫墓烧钱，<br>您教我们叩头作揖，<br>您教我们写您的祖考<br>您给我们讲述您的辉煌故事</p><p>以后<br>我们给您扫墓烧钱，<br>我们给您叩头作揖，<br>您变成了我们的祖考<br>我们只能从仅存照片中回忆您的故事</p><p>您长眠，我常念；爷爷，一路走好！</p><p>视频制作By彭丽娜</p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 悼念 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>希望传递温暖，让异乡变家乡</title>
+      <link href="/posts/3255df9f.html"/>
+      <url>/posts/3255df9f.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p>希望480的同学在全国各地遇到来出差的同学都主动约一下，让大家都能感受四面八方同学的温暖！！！</p><span id="more"></span><p>在深圳合気屋下沙店聚一下</p><p><img src="/posts/3255df9f/IMG_0743.jpg" alt="地点：深圳下沙合気屋"></p><p>回去路上还挺远</p><p><img src="/posts/3255df9f/IMG_0745.jpg" alt="回去路线"></p><p>后面K了一下歌</p><p><img src="/posts/3255df9f/IMG_0752.JPG" alt="K歌"></p></body></html>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 聚会 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>从Apollo动态配置原理学Spring(二)</title>
+      <link href="/posts/4c633c0c.html"/>
+      <url>/posts/4c633c0c.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><blockquote><p>Apollo动态配置其实本质就是利用Spring Bean 的生命周期的扩展点，这个扩展点超级多，不可能全部列出来，只说核心的扩展点。这也就是为什么 Spring 的扩展性很好的原因，开了很多的口子，尽可能让某个功能高内聚松耦合，用户需要哪个功能就用哪个，而不是直接来一个大而全的东西。</p></blockquote><p>我们先通过学习核心的，然后后续对照Apollo用到了哪些再对照，就会发现很多地方就能理解的很好了</p><span id="more"></span><p><strong>什么是 Spring Bean 的生命周期</strong></p><p>对于普通的 Java 对象，当 new 的时候创建对象，然后该对象就能够使用了。一旦该对象不再被使用，则由 Java 自动进行垃圾回收。</p><p>而 Spring 中的对象是 bean，bean 和普通的 Java 对象没啥大的区别，只不过 Spring 不再自己去 new 对象了，而是由 IoC 容器去帮助我们实例化对象并且管理它，我们需要哪个对象，去问 IoC 容器要即可。IoC 其实就是解决对象之间的耦合问题，Spring Bean 的生命周期完全由容器控制。</p><h2 id="Spring-Bean-的生命周期"><a href="#Spring-Bean-的生命周期" class="headerlink" title="Spring Bean 的生命周期"></a>Spring Bean 的生命周期</h2><p>这里要提一下，这里我们说的 Spring Bean 的生命周期主要指的是 singleton bean，对于 prototype 的 bean ，Spring 在创建好交给使用者之后则不会再管理后续的生命周期。</p><p>我们也来复习下 Spring 中的 bean 的作用域有哪些?</p><ul><li><code>singleton</code> : 唯一 bean 实例，Spring 中的 bean 默认都是单例的。</li><li><code>prototype</code> : 每次请求都会创建一个新的 bean 实例。</li><li><code>request</code> : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP request 内有效。</li><li><code>session</code> : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP session 内有效。</li><li><code>global-session</code>： 全局 session 作用域，仅仅在基于 Portlet 的 web 应用中才有意义，Spring5 已经没有了。Portlet 是能够生成语义代码（例如：HTML）片段的小型 Java Web 插件。它们基于 portlet 容器，可以像 servlet 一样处理 HTTP 请求。但是，与 servlet 不同，每个 portlet 都有不同的会话。</li></ul><p>我们知道对于普通的 Java 对象来说，它们的生命周期就是：</p><ul><li>实例化</li><li>该对象不再被使用时通过垃圾回收机制进行回收</li></ul><p>而对于 Spring Bean 的生命周期来说：</p><ul><li>实例化 Instantiation</li><li>属性赋值 Populate</li><li>初始化 Initialization</li><li>销毁 Destruction</li></ul><p>实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁</p><p>只有四个步骤，这样拆解的话是不是感觉也不难？不像其他人写的那样直接一上来就各种 BeanPostProcessor、BeanFactoryPostProcessor 全部怼进流程里去，别说读者看着头大，自己写的可能短时间内还记得流程，隔个一段时间，你可能都不知道自己写了个啥。</p><p>通过 Bean 创建流程入口<code>AbstractApplicationContext#refresh()</code> 方法的 <code>finishBeanFactoryInitialization(beanFactory)</code> 处带大家跟一下源码，想了想还是不带入过多的代码进来，直接给到最终的主要逻辑。</p><pre class=" language-lang-java"><code class="language-lang-java">protected Object doCreateBean(String beanName, RootBeanDefinition mbd, @Nullable Object[] args) throws BeanCreationException {    BeanWrapper instanceWrapper = null;    if (mbd.isSingleton()) {        instanceWrapper = (BeanWrapper)this.factoryBeanInstanceCache.remove(beanName);    }    if (instanceWrapper == null) {        // 实例化阶段        instanceWrapper = this.createBeanInstance(beanName, mbd, args);    }    ...    Object exposedObject = bean;    try {        // 属性赋值阶段        this.populateBean(beanName, mbd, instanceWrapper);        // 初始化阶段        exposedObject = this.initializeBean(beanName, exposedObject, mbd);    } catch (Throwable var18) {        ...    }    ...}</code></pre><p>至于销毁，是在容器关闭时调用的，详见 <code>ConfigurableApplicationContext#close()</code></p><p>是不是很清爽了？至于 BeanPostProcessor、BeanFactoryPostProcessor 以及其他的类，只不过是对主流程四个步骤的一系列扩展点而已。</p><h2 id="Spring-Bean-的生命周期的扩展点"><a href="#Spring-Bean-的生命周期的扩展点" class="headerlink" title="Spring Bean 的生命周期的扩展点"></a>Spring Bean 的生命周期的扩展点</h2><p>Spring Bean 的生命周期的扩展点超级多，老周这里不可能全部列出来，只说核心的扩展点。这也就是为什么 Spring 的扩展性很好的原因，开了很多的口子，尽可能让某个功能高内聚松耦合，用户需要哪个功能就用哪个，而不是直接来一个大而全的东西。</p><p><strong>Bean 自身的方法</strong></p><p>比如构造函数、getter/setter 以及 init-method 和 destory-method 所指定的方法等，也就对应着上文说的实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁四个阶段。</p><p><img src="/posts/4c633c0c/20210707002134280.png" alt="阶段示意图"></p><p><strong>容器级的方法（BeanPostProcessor 一系列接口）</strong></p><p>主要是后处理器方法，比如下图的 <code>InstantiationAwareBeanPostProcessor</code>、<code>BeanPostProcessor</code> 接口方法。这些接口的实现类是独立于 Bean 的，并且会注册到 Spring 容器中。在 Spring 容器创建任何 Bean 的时候，这些后处理器都会发生作用。</p><p><img src="/posts/4c633c0c/20210707225212729.png" alt="扩展点"></p><p> <strong>InstantiationAwareBeanPostProcessor 源码分析</strong></p><p>我们翻一下源码发现 InstantiationAwareBeanPostProcessor 是继承了 BeanPostProcessor</p><p><img src="/posts/4c633c0c/20210707230505579.png" alt="InstantiationAwareBeanPostProcessor "></p><p><img src="/posts/4c633c0c/20210707230919307.png" alt="BeanPostProcessor"></p><ul><li><code>InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation</code> 调用点</li></ul><blockquote><p>Object postProcessBeforeInstantiation(Class&lt;?&gt; beanClass, String beanName)<br>返回值：如果返回的不为null，那么后续的Bean的创建流程【实例化、初始化afterProperties】都不会执行，而是直接使用返回的快捷Bean，此时的正常执行顺序如下：<br>InstantiationAwareBeanPostProcessor接口中的postProcessBeforeInstantiation，在实例化之前调用。<br>BeanPostProcessor接口中的postProcessAfterInitialization，在实例化之后调用。</p></blockquote><p><img src="https://img-blog.csdnimg.cn/20210707233026943.png" alt="createbean"></p><p><img src="/posts/4c633c0c/20210707235533784.png" alt="resolveBeforeInstantiation"></p><p><img src="/posts/4c633c0c/20210708000228655.png" alt="applyBean"></p><p>总之，postProcessBeforeInstantiation 在 doCreateBean 之前调用，也就是在 bean 实例化之前调用的，英文源码注释解释道该方法的返回值会替换原本的 Bean 作为代理，这也是 <a href="https://so.csdn.net/so/search?q=AOP&amp;spm=1001.2101.3001.7020">AOP</a> 等功能实现的关键点。</p><ul><li><code>InstantiationAwareBeanPostProcessor#postProcessAfterInstantiation</code> 调用点</li></ul><blockquote><p>boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException<br>正常情况下在实例化之后在执行populateBean之前调用<br>返回值：如果有指定的bean的时候返回false，那么后续的属性填充和属性依赖注入【populateBean】将不会执行，同时后续的postProcessPropertyValues将不会执行,但是初始化和BeanPostProcessor的仍然会执行。</p></blockquote><p><img src="/posts/4c633c0c/20210708005050274.png" alt="populateBean"></p><p>public PropertyValues postProcessPropertyValues(PropertyValues pvs, PropertyDescriptor[] pds, Object bean, String beanName)<br>实例化之后调用，在方法applyPropertyValues【属性填充】之前<br>返回值：如果返回null，那么将不会进行后续的属性填充，比如依赖注入等，如果返回的pvs额外的添加了属性，那么后续会填充到该类对应的属性中。<br>pvs：PropertyValues对象，用于封装指定类的对象，简单来说就是PropertyValue的集合，里面相当于以key-value形式存放类的属性和值。<br>pds：PropertyDescriptor对象数组，PropertyDescriptor相当于存储类的属性，不过可以调用set，get方法设置和获取对应属性的值。</p><p><img src="/posts/4c633c0c/20210708010057366.png" alt="postProcessPropertyValues"></p><p><strong>BeanPostProcessor 源码分析</strong></p><blockquote><p>org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#doCreateBean</p></blockquote><p><img src="/posts/4c633c0c/20210708232740951.png" alt="在这里插入图片描述"><br>进入初始化接口：</p><p><img src="/posts/4c633c0c/20210708233139731.png" alt="在这里插入图片描述"><br>我们先来看</p><blockquote><p>org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#applyBeanPostProcessorsBeforeInitialization</p></blockquote><p><img src="/posts/4c633c0c/20210708233742525.png" alt="在这里插入图片描述"></p><ul><li>首先获取到所有的后置处理器 getBeanPostProcessors()</li><li>在 for 循环中依次调用后置处理器的方法 <code>processor.postProcessBeforeInitialization(result, beanName);</code></li><li>进入 postProcessBeforeInitialization 方法</li></ul><blockquote><p>org.springframework.context.support.ApplicationContextAwareProcessor#postProcessBeforeInitialization</p></blockquote><p><img src="/posts/4c633c0c/20210708234443215.png" alt="在这里插入图片描述"></p><p>进入 <code>invokeAwareInterfaces(bean);</code> 方法，当前 bean 实现了 ApplicationContextAware 接口。</p><p><img src="/posts/4c633c0c/20210708234639952.png" alt="在这里插入图片描述"></p><ul><li><code>ApplicationContextAwareProcessor#postProcessBeforeInitialization</code> 首先判断此 bean 是不是各种的Aware，如果是它列举的那几个 Aware 就获取 Bean 工厂的权限，可以向容器中导入相关的上下文环境，目的是为了 Bean 实例能够获取到相关的上下文，如果不是它列举的几个 Aware，那就调用 <code>invokeAwareInterfaces(bean)</code>，向容器中添加相关接口的上下文环境。</li></ul><p><strong>3.3 工厂后处理器方法（BeanFactoryProcessor 一系列接口）</strong></p><p>包括 <code>AspectJWeavingEnabler</code>、<code>CustomAutowireConfigurer</code>、<code>ConfigurationClassPostProcessor</code> 等。这些都是 Spring 框架中已经实现好的 BeanFactoryPostProcessor，用来实现某些特定的功能。</p><p>我们知道 Spring IoC 容器初始化的关键环节就在 <code>org.springframework.context.support.AbstractApplicationContext#refresh</code> 方法中 ，容器创建的主体流程都在这个方法里面，这个方法是真的重要！！！</p><p>对于工厂后处理器方法老周这里直接带你看 <code>invokeBeanFactoryPostProcessors(beanFactory);</code> 方法，这个方法处理的是 <code>BeanFactoryPostProcessor</code> 接口的 Bean。调用方法如下：</p><p><img src="/posts/4c633c0c/20210709231013239.png" alt="在这里插入图片描述"><br>跟到最重要的方法里去，代码虽长，但逻辑中规中矩。</p><p><code>BeanFactoryPostProcessor</code>：一切处理 BeanFactory 的父接口<br><code>BeanDefinitionRegistryPostProcessor</code>：实现了 BeanFactoryPostProcessor 接口的接口</p><p><img src="/posts/4c633c0c/20210709233225102.png" alt="在这里插入图片描述"><br>流程说明：</p><ul><li>调用 BeanDefinitionRegistryPostProcessor#postProcessBeanDefinitionRegistry(registry) 方法。参数 beanFactoryPostProcessors 传入的优先处理掉。然后获取容器注册的，对于这些 Bean 按照 PriorityOrdered 接口、Ordered、没有排序接口的实例分别进行处理。</li><li>调用 BeanFactoryPostProcessor#postProcessBeanFactory(beanFactory) 方法。备注：BeanDefinitionRegistryPostProcessor 属于 BeanFactoryPostProcessor 子接口。先处理属于 BeanDefinitionRegistryPostProcessor 接口实例的 postProcessBeanFactory(beanFactory) 方法，然后获取容器注册的。对于这些 Bean 按照 PriorityOrdered 接口、Ordered、没有排序接口的实例分别进行处理。</li></ul></body></html>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Apollo </tag>
+            
+            <tag> Spring </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>从Apollo动态配置原理学Spring(一)</title>
+      <link href="/posts/e352a76e.html"/>
+      <url>/posts/e352a76e.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><blockquote><p>最近工作碰到需要写一个类似携程Apollo的动态配置功能，以此系统学习该原理，熟练掌握下Spring的各种机制</p></blockquote><p><strong>Apollo动态配置原理简述</strong></p><p>Apollo配置中心动态生效机制，是基于Http长轮询请求和Spring扩展机制实现的，在Spring容器启动过程中，Apollo通过自定义的<code>BeanPostProcessor</code>和<code>BeanFactoryPostProcessor</code>將参数中包含<code>${…}</code>占位符和<code>@Value</code>注解的Bean注册到Apollo框架中定义的注册表中。然后通过Http长轮询不断的去获取服务端的配置信息，一旦配置发生变化，Apollo会根据变化的配置的Key找到对应的Bean，然后修改Bean的属性，从而实现了配置动态生效的特性。</p><p>需要注意的是，Apollo在配置变化后，只能修改Bean的属性，例如我们数据源的属性发生变化，新创建的Connection对象是没问题的，但是连接池中已经创建的Connection对象相关信息是不能动态修改的，所以依然需要重启应用。</p><span id="more"></span><p>其中涉及到的Spring的扩展机制有：</p><ul><li>BeanFactoryPostProcessor</li><li>BeanPostProcessor</li><li>BeanDefinitionRegistry</li><li>PropertySource</li><li>ImportBeanDefinitionRegistrar</li><li>PropertySourcesPlaceholderConfigurer</li></ul><p>…</p><p>其中每一个都是非常关键的点，我们后续会一一进行学习。</p><h2 id="Apollo启动过程"><a href="#Apollo启动过程" class="headerlink" title="Apollo启动过程"></a>Apollo启动过程</h2><p>首先，我们先看一张图：</p><p><img src="/posts/e352a76e/image-20230223224050610.png" alt="Apollo启动图"></p><ol><li><p>Spring启动，扫描bean，将相关变量参数注册到Apollo属性注册表</p></li><li><p>通过RemoteConfigRepository获取配置，持久化本地，后续读取从本地读取,通过<code>PropertySourcesProcessor</code>执行如下步骤</p><p>（1）根据命名空间从配置中心获取配置信息，创建RemoteConfigRepository和LocalFileConfigRepository对象。RemoteConfigRepository表示远程配置中心资源，LocalFileConfigRepository表示本地缓存配置资源。</p><p>（2）LocalFileConfigRepository对象缓存配置信息到C:\opt\data 或者/opt/data目录</p><p>（3）RemoteConfigRepository开启HTTP长轮询请求定时任务，默认2s请求一次。</p><p>（4）將本地缓存配置信息转换为PropertySource对象（Apollo自定义了Spring的PropertySource），加载到Spring的Environment对象中。至此静态配置就已经加入到环境变量中</p><p>（5）將自定义的ConfigPropertySource注册为观察者。一旦RemoteConfigRepository发现远程配置中心信息发生变化，ConfigPropertySource对象会得到通知。</p></li><li><p>通过一个自定义监听器，监听对应事件</p></li><li><p>后续通过长轮询请求监听到配置变化，根据配置读取注册表里面的key和对应的bean，通过反射修改bean对应属性值</p></li></ol><h2 id="Apollo扩展点"><a href="#Apollo扩展点" class="headerlink" title="Apollo扩展点"></a>Apollo扩展点</h2><ol><li><code>PropertySourcesProcessor</code>初始化Apollo配置、接入Spring environment，初始化Apollo监听器</li><li><code>ApolloAnnotationProcessor</code>提供Apollo一些注解支持<code>@ApolloConfig</code>，<code>@ApolloConfigChangeListener</code></li><li><code>SpringValueProcessor</code>提供对<code>@Value</code>动态生效能力 针对实例bean</li><li><code>SpringValueDefinitionProcessor</code>提供对<code>@Value</code>动态生效能力 针对bean定义</li><li><code>ApolloJsonValueProcessor</code>提供对<code>@ApolloJsonValue</code> 支持</li></ol><p>上述分别对应使用Spring的扩展能力<code>BeanFactoryPostProcessor</code>、<code>BeanPostProcessor</code>、<code>BeanPostProcessor</code>和<code>BeanFactoryPostProcessor</code>、<code>BeanDefinitionRegistryPostProcessor</code>、<code>BeanPostProcessor</code></p><p>我们这个系列也会对apollo基于spring提供的扩展点来嵌入自己的能力。主要为BeanFactoryPostProcessor、BeanPostProcessor这两个扩展点；先简单说一下：<strong><em>只需要知道，BeanFactoryPostProcessor、BeanDefinitionRegistryPostProcessor在生成所有beandefinition之后调用，而BeanPostProcessor在通过beandefinition实例化bean的过程中调用即可。</em></strong></p><p>那这些实现我们就下篇见了！！！</p></body></html>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Apollo </tag>
+            
+            <tag> Spring </tag>
+            
+            <tag> 动态配置 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>QQ上线了24周年注册全球排名这个活动</title>
+      <link href="/posts/75466bf9.html"/>
+      <url>/posts/75466bf9.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p>2023年2月10日是QQ24周年的日子，在这天QQ上线了24周年注册全球排名这个活动，玩家可以在这里看到自己是什么时候创建的账号，并且还可以看到自己的排名信息哦。</p><span id="more"></span><p><img src="/posts/75466bf9/20230210161435_71813.jpg" alt="QQ"></p><h3 id="QQ24周年全球排名查看攻略"><a href="#QQ24周年全球排名查看攻略" class="headerlink" title="QQ24周年全球排名查看攻略"></a>QQ24周年全球排名查看攻略</h3><p>这个活动的查看有着两种方式，分别如下：</p><p>1、点击链接（<strong>24周年全球排名网址&gt;&gt;</strong><a href="https://ti.qq.com/open_qq/newIndex.html?url=https%3A%2F%2Fti.qq.com%2Fact%2Fqq24th%2Findex.html%3F_wv%3D16777219%26_wwv%3D128%26source%3D2">点击查看</a>）</p><p>点击上方的24周年全球排名网址链接，这个会直接唤起qq。</p><p>点击立即查看我们就可以看到自己的排名，需要同意协议。</p><p>下面是我的排名：</p><p><img src="/posts/75466bf9/IMG_0057.JPG" alt="IMG_0057"></p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> QQ </tag>
+            
+            <tag> 那些年 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>元宵节，放了烟花</title>
+      <link href="/posts/277fd0ba.html"/>
+      <url>/posts/277fd0ba.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p>烟花又称[花炮]、烟火、焰火、[炮仗]，根据《中国[烟花爆竹]标准—安全与质量》对烟花爆竹的定义为：以烟火药为原料，用于产生声光色的娱乐用品。中国劳动人民较早发明，常用于盛大的典礼或表演中。</p><p>烟花其实和爆竹的结构类似，其结构都包含黑[火药]和药引。为了达到好的表演效果，[焰火]和[礼花弹]中填充了大量用于发射以及爆炸的火药，例如，一个直径为20厘米的礼花弹在发射后，要上升到大概200米的高空才会爆炸，而这些星星点点覆盖的[半径]大约可以有80米左右。</p><span id="more"></span><p><img src="/posts/277fd0ba/IMG_0698_1.jpeg" alt="小区放烟花"></p><p>醴陵花炮起源最早可上溯至唐代，已经有着上千年的历史，以产地醴陵而被概括命名。当地是烟花的发祥地，也是花炮祖师李畋的故乡，被誉为名副其实的“花炮之乡”。</p><p>浏阳花炮，湖南省浏阳市特产，中国国家地理标志产品。<br>浏阳市是世界著名的花炮之乡。浏阳花炮造型美观，色彩鲜艳，质量可靠，素有“浏阳花炮震天下”的美名。2002年10月，在浏阳闭幕的首届国际花炮合作与贸易大会上，浏阳成为国际花炮协会总部永久所在地。2007年，“浏阳花炮”被正式认定为中国驰名商标。 [3]<br>2003年03月06日，原国家质检总局批准对“浏阳花炮”实施地理标志产品保护。</p><p>作为醴陵人，说实话，浏阳花炮的科技量要比醴陵花炮高，这几年醴陵也在紧追猛赶！加油！</p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 烟花 </tag>
+            
+            <tag> 元宵节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2023兔年春节</title>
+      <link href="/posts/ebb8427d.html"/>
+      <url>/posts/ebb8427d.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><h3 id="1-春节年前，家县城进行烟花表演："><a href="#1-春节年前，家县城进行烟花表演：" class="headerlink" title="1. 春节年前，家县城进行烟花表演："></a>1. 春节年前，家县城进行烟花表演：</h3><p><img src="/posts/ebb8427d/IMG_0650.PNG" alt="烟花表演1"></p><p>估计是增加了延迟拍摄</p><span id="more"></span><p><img src="/posts/ebb8427d/IMG_0651.PNG" alt="烟花表演2"></p><p><img src="/posts/ebb8427d/IMG_0652.PNG" alt="烟花表演3"></p><p>还是得加滤镜啊</p><p><img src="/posts/ebb8427d/IMG_0653.PNG" alt="烟花表演4"></p><h3 id="2-大伯家客厅搞了个“灯”"><a href="#2-大伯家客厅搞了个“灯”" class="headerlink" title="2. 大伯家客厅搞了个“灯”"></a>2. 大伯家客厅搞了个“灯”</h3><p><img src="/posts/ebb8427d/IMG_0656.JPG" alt="大伯家的“灯”"></p><h3 id="3-玩游戏的小外甥"><a href="#3-玩游戏的小外甥" class="headerlink" title="3. 玩游戏的小外甥"></a>3. 玩游戏的小外甥</h3><p><img src="/posts/ebb8427d/IMG_0657.jpg" alt="认真玩游戏"></p><h3 id="4-外婆家合照"><a href="#4-外婆家合照" class="headerlink" title="4. 外婆家合照"></a>4. 外婆家合照</h3><p><img src="/posts/ebb8427d/IMG_0681.jpg" alt="外婆家合照"></p><h3 id="5-老表们"><a href="#5-老表们" class="headerlink" title="5. 老表们"></a>5. 老表们</h3><p><img src="/posts/ebb8427d/IMG_1794.jpg" alt="我和老表们"></p><h3 id="6-主公，我是忠臣"><a href="#6-主公，我是忠臣" class="headerlink" title="6. 主公，我是忠臣"></a>6. 主公，我是忠臣</h3><p>特别说明:服务员也太不走心，少拍了一个人都说挺好，那个人是“望叔”，给望叔郑重道歉！</p><p><img src="/posts/ebb8427d/IMG_0690.JPG" alt="同学聚合照"></p><h3 id="7-王家码头"><a href="#7-王家码头" class="headerlink" title="7. 王家码头"></a>7. 王家码头</h3><p><img src="/posts/ebb8427d/IMG_0691.JPG" alt="王家码头"></p><h3 id="8-家族祠堂"><a href="#8-家族祠堂" class="headerlink" title="8. 家族祠堂"></a>8. 家族祠堂</h3><p><img src="/posts/ebb8427d/IMG_0692.JPG" alt="祠堂"></p><h3 id="9-返程堵车"><a href="#9-返程堵车" class="headerlink" title="9. 返程堵车"></a>9. 返程堵车</h3><p>原本的12h变成20多小时，真是辛苦司机了。</p><p><img src="/posts/ebb8427d/IMG_0694.JPG" alt="堵车"></p></body></html>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 春节 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>室友“羊”了</title>
+      <link href="/posts/850ce73f.html"/>
+      <url>/posts/850ce73f.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p>室友这几天不舒服，就测了，果不其然🐑了，我应该是很危险了。</p><span id="more"></span><p><img src="/posts/850ce73f/image-20221219212509735.png" alt="抗原检测阳性"></p></body></html>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 疫情 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>疫情三年，是时候结束了！</title>
+      <link href="/posts/d223f900.html"/>
+      <url>/posts/d223f900.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><blockquote><p>疫情三年，什么变化了？什么没有变化呢？</p></blockquote><p>疫情三年变化的是，出现了健康码、行程码、核酸检测</p><p>疫情三年变化的是，到处都贴起了二维码、出行限制、经济发展滞缓</p><span id="more"></span><p><img src="/posts/d223f900/image-20221212210631735.png" alt="核酸检测点即将拆除"></p><p>三年疫情，突然放开，大家还是有些许不适应</p><p>还是习惯的过门卡掏出手机，还是习惯每天准点测核酸</p><p>三年疫情对国家也有很大冲击，国家开始发行国债，用来弥补这三年的核酸检测国家政府开支</p><p>三年疫情对经济冲击夜很大，许多行业都开始收紧，业务调整，裁员潮，都开始“过冬”了</p><p><img src="/posts/d223f900/image-20221212210553921.png" alt="行程码下线"></p><p>不变的是啥呢？</p><p>唯一不变的估计是人吗？</p></body></html>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 疫情 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>被围绕的区域——LeetCode130</title>
+      <link href="/posts/52a5c0f5.html"/>
+      <url>/posts/52a5c0f5.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p>给你一个 <code>m x n</code> 的矩阵 <code>board</code> ，由若干字符 <code>'X'</code> 和 <code>'O'</code> ，找到所有被 <code>'X'</code> 围绕的区域，并将这些区域里所有的 <code>'O'</code> 用 <code>'X'</code> 填充。</p><p><img src="/posts/52a5c0f5/xogrid.jpg" alt="img"></p><span id="more"></span><p>示例1</p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：board = [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]]输出：[["X","X","X","X"],["X","X","X","X"],["X","X","X","X"],["X","O","X","X"]]解释：被围绕的区间不会存在于边界上，换句话说，任何边界上的 'O' 都不会被填充为 'X'。 任何不在边界上，或不与边界上的 'O' 相连的 'O' 最终都会被填充为 'X'。如果两个元素在水平或垂直方向相邻，则称它们是“相连”的。</code></pre><p>示例2</p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：board = [["X"]]输出：[["X"]]</code></pre><p>提示：</p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">m == board.lengthn == board[i].length1 <= m, n <= 200board[i][j] 为 'X' 或 'O'</code></pre><h3 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h3><p>写在前面<br>本题给定的矩阵中有三种元素：</p><ul><li><p>字母 X；</p></li><li><p>被字母 X 包围的字母 O；</p></li><li><p>没有被字母 X 包围的字母 O。</p></li></ul><p>本题要求将所有被字母 X 包围的字母 O都变为字母 X ，但很难判断哪些 O 是被包围的，哪些 O 不是被包围的。</p><p>注意到题目解释中提到：<code>任何边界上的 O 都不会被填充为 X</code>。 我们可以想到，所有的不被包围的 O 都直接或间接与边界上的 O 相连。我们可以利用这个性质判断 O 是否在边界上，具体地说：</p><ul><li>对于每一个边界上的 O，我们以它为起点，标记所有与它直接或间接相连的字母 O；<br>最后我们遍历这个矩阵，对于每一个字母：</li><li>如果该字母被标记过，则该字母为没有被字母 X 包围的字母 O，我们将其还原为字母 O；<br>如果该字母没有被标记过，则该字母为被字母 X 包围的字母 O，我们将其修改为字母 X。</li></ul><h3 id="方法一：深度优先搜索"><a href="#方法一：深度优先搜索" class="headerlink" title="方法一：深度优先搜索"></a>方法一：深度优先搜索</h3><h4 id="思路及解法"><a href="#思路及解法" class="headerlink" title="思路及解法"></a>思路及解法</h4><p>我们可以使用深度优先搜索实现标记操作。在下面的代码中，我们把标记过的字母 O 修改为字母 A。</p><pre class=" language-lang-java"><code class="language-lang-java">class Solution {    int n, m;    public void solve(char[][] board) {        n = board.length;        if (n == 0) {            return;        }        m = board[0].length;        for (int i = 0; i < n; i++) {            dfs(board, i, 0);            dfs(board, i, m - 1);        }        for (int i = 1; i < m - 1; i++) {            dfs(board, 0, i);            dfs(board, n - 1, i);        }        for (int i = 0; i < n; i++) {            for (int j = 0; j < m; j++) {                if (board[i][j] == 'A') {                    board[i][j] = 'O';                } else if (board[i][j] == 'O') {                    board[i][j] = 'X';                }            }        }    }    public void dfs(char[][] board, int x, int y) {        if (x < 0 || x >= n || y < 0 || y >= m || board[x][y] != 'O') {            return;        }        board[x][y] = 'A';        dfs(board, x + 1, y);        dfs(board, x - 1, y);        dfs(board, x, y + 1);        dfs(board, x, y - 1);    }}</code></pre><h4 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h4><ul><li><p>时间复杂度：<code>O(n×m)</code>，其中 <code>n</code> 和 <code>m</code>分别为矩阵的行数和列数。深度优先搜索过程中，每一个点至多只会被标记一次。</p></li><li><p>空间复杂度：<code>O(n×m)</code>，其中 <code>n</code> 和 <code>m</code> 分别为矩阵的行数和列数。主要为深度优先搜索的栈的开销。</p></li></ul><h3 id="方法二：广度优先搜索"><a href="#方法二：广度优先搜索" class="headerlink" title="方法二：广度优先搜索"></a>方法二：广度优先搜索</h3><h4 id="思路及解法-1"><a href="#思路及解法-1" class="headerlink" title="思路及解法"></a>思路及解法</h4><p>我们可以使用广度优先搜索实现标记操作。在下面的代码中，我们把标记过的字母 <code>O</code> 修改为字母 <code>A</code>。</p><pre class=" language-lang-java"><code class="language-lang-java">class Solution {    int[] dx = {1, -1, 0, 0};    int[] dy = {0, 0, 1, -1};    public void solve(char[][] board) {        int n = board.length;        if (n == 0) {            return;        }        int m = board[0].length;        Queue<int[]> queue = new LinkedList<int[]>();        for (int i = 0; i < n; i++) {            if (board[i][0] == 'O') {                queue.offer(new int[]{i, 0});                board[i][0] = 'A';            }            if (board[i][m - 1] == 'O') {                queue.offer(new int[]{i, m - 1});                board[i][m - 1] = 'A';            }        }        for (int i = 1; i < m - 1; i++) {            if (board[0][i] == 'O') {                queue.offer(new int[]{0, i});                board[0][i] = 'A';            }            if (board[n - 1][i] == 'O') {                queue.offer(new int[]{n - 1, i});                board[n - 1][i] = 'A';            }        }        while (!queue.isEmpty()) {            int[] cell = queue.poll();            int x = cell[0], y = cell[1];            for (int i = 0; i < 4; i++) {                int mx = x + dx[i], my = y + dy[i];                if (mx < 0 || my < 0 || mx >= n || my >= m || board[mx][my] != 'O') {                    continue;                }                queue.offer(new int[]{mx, my});                board[mx][my] = 'A';            }        }        for (int i = 0; i < n; i++) {            for (int j = 0; j < m; j++) {                if (board[i][j] == 'A') {                    board[i][j] = 'O';                } else if (board[i][j] == 'O') {                    board[i][j] = 'X';                }            }        }    }}</code></pre><h4 id="复杂度分析-1"><a href="#复杂度分析-1" class="headerlink" title="复杂度分析"></a>复杂度分析</h4><ul><li><p>时间复杂度：<code>O(n×m)</code>，其中 <code>n</code> 和 <code>m</code> 分别为矩阵的行数和列数。广度优先搜索过程中，每一个点至多只会被标记一次。</p></li><li><p>空间复杂度：<code>O(n×m)</code>，其中 <code>n</code> 和 <code>m</code>分别为矩阵的行数和列数。主要为广度优先搜索的队列的开销。</p></li></ul></body></html>]]></content>
+      
+      
+      <categories>
+          
+          <category> LeetCode </category>
+          
+          <category> 算法 </category>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 矩阵 </tag>
+            
+            <tag> 深度遍历 </tag>
+            
+            <tag> 广度遍历 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>JVM调优——X参数,方法内联</title>
+      <link href="/posts/638c83fa.html"/>
+      <url>/posts/638c83fa.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p>JVM的<code>-X</code>参数是非标准参数，在不同版本的JVM中，参数可能会有所不同，可以通过<code>java -X</code>查看非标准参数<br><span id="more"></span></p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">> java -X    -Xbatch           禁用后台编译    -Xbootclasspath/a:<以 : 分隔的目录和 zip/jar 文件>                      附加在引导类路径末尾    -Xcheck:jni       对 JNI 函数执行其他检查    -Xcomp            强制在首次调用时编译方法    -Xdebug           不执行任何操作。为实现向后兼容而提供。    -Xdiag            显示附加诊断消息    -Xfuture          启用最严格的检查，预期将来的默认值。                      此选项已过时，可能会在                      未来发行版中删除。    -Xint             仅解释模式执行    -Xinternalversion                      显示比 -version 选项更详细的                      JVM 版本信息    -Xlog:<opts>      配置或启用采用 Java 虚拟                      机 (Java Virtual Machine, JVM) 统一记录框架进行事件记录。使用 -Xlog:help                      可了解详细信息。    -Xloggc:<file>    将 GC 状态记录在文件中（带时间戳）。                      此选项已过时，可能会在                      将来的发行版中删除。它将替换为 -Xlog:gc:<file>。    -Xmixed           混合模式执行（默认值）    -Xmn<size>        为年轻代（新生代）设置初始和最大堆大小                      （以字节为单位）    -Xms<size>        设置初始 Java 堆大小    -Xmx<size>        设置最大 Java 堆大小    -Xnoclassgc       禁用类垃圾收集    -Xrs              减少 Java/VM 对操作系统信号的使用（请参见文档）    -Xshare:auto      在可能的情况下使用共享类数据（默认值）    -Xshare:off       不尝试使用共享类数据    -Xshare:on        要求使用共享类数据，否则将失败。                      这是一个测试选项，可能导致间歇性                      故障。不应在生产环境中使用它。    -XshowSettings    显示所有设置并继续    -XshowSettings:all                      显示所有设置并继续    -XshowSettings:locale                      显示所有与区域设置相关的设置并继续    -XshowSettings:properties                      显示所有属性设置并继续    -XshowSettings:vm                      显示所有与 vm 相关的设置并继续    -XshowSettings:system                      （仅 Linux）显示主机系统或容器                      配置并继续    -Xss<size>        设置 Java 线程堆栈大小    -Xverify          设置字节码验证器的模式                      请注意，选项 -Xverify:none 已过时，                      可能会在未来发行版中删除。    --add-reads <module>=<target-module>(,<target-module>)*                      更新 <module> 以读取 <target-module>，而无论                      模块如何声明。                      <target-module> 可以是 ALL-UNNAMED，将读取所有未命名                      模块。    --add-exports <module>/<package>=<target-module>(,<target-module>)*                      更新 <module> 以将 <package> 导出到 <target-module>，                      而无论模块如何声明。                      <target-module> 可以是 ALL-UNNAMED，将导出到所有                      未命名模块。    --add-opens <module>/<package>=<target-module>(,<target-module>)*                      更新 <module> 以在 <target-module> 中打开                      <package>，而无论模块如何声明。    --illegal-access=<value>                      允许或拒绝通过未命名模块中的代码对命名模块中的                      类型成员进行访问。                      <value> 为 "deny"、"permit"、"warn" 或 "debug" 之一                      此选项将在未来发行版中删除。    --limit-modules <module name>[,<module name>...]                      限制可观察模块的领域    --patch-module <module>=<file>(:<file>)*                      使用 JAR 文件或目录中的类和资源                      覆盖或增强模块。    --source <version>                      设置源文件模式中源的版本。这些额外选项如有更改, 恕不另行通知。以下选项是特定于 macOS 的选项：    -XstartOnFirstThread                      在第一个 (AppKit) 线程上运行 main() 方法    -Xdock:name=<application name>                      覆盖停靠栏中显示的默认应用程序名称    -Xdock:icon=<path to icon file>                     覆盖停靠栏中显示的默认图标</code></pre><h2 id="Xint、-Xcomp与-Xmixed参数"><a href="#Xint、-Xcomp与-Xmixed参数" class="headerlink" title="-Xint、-Xcomp与-Xmixed参数"></a>-Xint、-Xcomp与-Xmixed参数</h2><h3 id="Xint参数"><a href="#Xint参数" class="headerlink" title="-Xint参数"></a>-Xint参数</h3><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">在解释模式（interpreted mode）下，-Xint标记会强制JVM执行所有的字节码，这当然会降低运行速度，通常低10倍或更多。</code></pre><p><img src="/posts/638c83fa/20190729122640228.png" alt="interpreted-mode"></p><h3 id="Xcomp参数"><a href="#Xcomp参数" class="headerlink" title="-Xcomp参数"></a>-Xcomp参数</h3><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">-Xcomp参数与-Xint正好相反，JVM在第一次使用时会把所有的字节码编译成本地代码，从而带来最大程度的优化。</code></pre><p><img src="/posts/638c83fa/20190729122919297.png" alt="compiled-mode"></p><p>然而，很多应用在使用-Xcomp也会有一些性能损失，当然这笔-Xint损失的少，原因是-Xcomp没有让JVM启用JIT编译器的全部功能。JIT编译器可以对是否需要编译做出判断。如果所有代码都需要进行编译的话，对于一些只执行一次的代码就没有意义了。</p><h3 id="Xmixed参数"><a href="#Xmixed参数" class="headerlink" title="-Xmixed参数"></a>-Xmixed参数</h3><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">-Xmixed是混合模式，将解释模式和变异模式进行混合使用，有JVM自己决定，这是JVM的默认模式，也是推荐模式</code></pre><p><img src="/posts/638c83fa/2019072913573773.png" alt="mixed-model"></p><h2 id="JVM方法内联优化"><a href="#JVM方法内联优化" class="headerlink" title="JVM方法内联优化"></a>JVM方法内联优化</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在日常中工作中，我们时不时会代码进行一些优化，比如用新的算法，简化计算逻辑，减少计算量等。对于java程序来说，除了开发者本身对代码优化之外，还有一个”人”也在背后默默的优化我们的代码，这个”人”就是jvm。jvm会帮我们分析出热点代码，优化代码逻辑。其中jvm最常做的优化之一就是：方法内联优化。</p><h3 id="方法内联"><a href="#方法内联" class="headerlink" title="方法内联"></a>方法内联</h3><p>什么是方法内联？又可以叫做函数内联，java中方法可等同于其它语言中的函数。关于方法内联维基百科上面解释是：</p><blockquote><p>在计算机科学中，内联函数（有时称作在线函数或编译时期展开函数）是一种编程语言结构，用来建议编译器对一些特殊函数进行内联扩展（有时称作在线扩展）；也就是说<strong>建议编译器将指定的函数体插入并取代每一处调用该函数的地方（上下文），从而节省了每次调用函数带来的额外时间开支。</strong></p></blockquote><p>简单通俗的讲就是把方法内部调用的其它方法的逻辑，嵌入到自身的方法中去，变成自身的一部分，之后不再调用该方法，从而节省调用函数带来的额外开支。</p><h3 id="函数调用开销"><a href="#函数调用开销" class="headerlink" title="函数调用开销"></a>函数调用开销</h3><p>之所以出现方法内联是因为函数调用除了执行自身逻辑的开销外，还有一些不为人知的额外开销。这部分额外的开销主要来自方法栈帧的生成、参数字段的压入、栈帧的弹出、还有指令执行地址的跳转。比如有下面这样代码：</p><pre class=" language-lang-java"><code class="language-lang-java">public static void function_A(int a, int b){    //do something    function_B(a,b);}public static void function_B(int c, int d){    //do something}public static void main(String[] args){     function_A(1,2);}</code></pre><p>则代码的执行过程如下：</p><p><img src="/posts/638c83fa/247487dfbaf1ec956441e9e5e2f85817_1440w.jpg" alt="img"></p><p>所以如果java中方法调用嵌套过多或者方法过多，这种额外的开销就越多。</p><p>试想一下想get/set这种方法调用：</p><pre class=" language-lang-java"><code class="language-lang-java">public int getI() {    return i;}public void setI(int i) {    this.i = i;}</code></pre><p>很可能自身执行逻辑的开销还比不上为了调用这个方法的额外开锁。如果类似的方法被频繁的调用，则真正相对执行效率就会很低，虽然这类方法的执行时间很短。这也是为什么jvm会在热点代码中执行方法内联的原因，这样的话就可以省去调用调用函数带来的额外开支。</p><p>这里举个内联的可能形式：</p><pre class=" language-lang-java"><code class="language-lang-java">public int  add(int a, int b , int c, int d){      return add(a, b) + add(c, d);}public int add(int a, int b){    return a + b;}</code></pre><p>内联之后：</p><pre class=" language-lang-java"><code class="language-lang-java">public int  add(int a, int b , int c, int d){      return a + b + c + d;}</code></pre><p>这样除了本身的相加逻辑的开销，比内联前减少了二次调用函数带来的额外开销。 </p><h3 id="内联条件"><a href="#内联条件" class="headerlink" title="内联条件"></a>内联条件</h3><p>一个方法如果满足以下条件就很可能被jvm内联。</p><p>1、热点代码： 如果一个方法的执行频率很高就表示优化的潜在价值就越大。那代码执行多少次才能确定为热点代码？这是根据编译器的编译模式来决定的。如果是客户端编译模式则次数是1500，服务端编译模式是10000。次数的大小可以通过-XX:CompileThreshold来调整。</p><p>2、方法体不能太大：jvm中被内联的方法会编译成机器码放在code cache中。如果方法体太大，则能缓存热点方法就少，反而会影响性能。</p><p>3、如果希望方法被内联，尽量用private、static、final修饰，这样jvm可以直接内联。如果是public、protected修饰方法jvm则需要进行类型判断，因为这些方法可以被子类继承和覆盖，jvm需要判断内联究竟内联是父类还是其中某个子类的方法。</p><blockquote><p> 所以了解jvm方法内联机制之后，会有助于我们工作中写出能让jvm更容易优化的代码，有助于提升程序的性能。</p></blockquote></body></html>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> jvm调优 </tag>
+            
+            <tag> 混合模式 </tag>
+            
+            <tag> 解释模式 </tag>
+            
+            <tag> 纯编译模式 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>巧妙使用正则——去除小数点后多余的零</title>
+      <link href="/posts/9195a466.html"/>
+      <url>/posts/9195a466.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p>直接上代码</p><pre class=" language-lang-jsx"><code class="language-lang-jsx">const arr=['1200.00100','1200.00000','1200.','1200','1200.10000','0.120010000','0.000011111']const regexp=/(?:\.0*|(\.\d+?)0+)$/arr.forEach((item)=>{    console.log(item.replace(regexp,'$1'))})// > 1200.001// > 1200// > 1200// > 1200// > 1200.1// > 0.12001// > 0.000011111</code></pre><span id="more"></span><p>正则可视化：</p><p><img src="/posts/9195a466/image.svg" alt="image"></p><p>推荐个可视化网址：<a href="https://regexper.com/">https://regexper.com/</a></p><!-- more --><p>再解释下正则的意思<code>(?:.0*|(.\d+?)0+)$</code></p><p>先分解成4部分</p><ol><li><code>(?:reg1|reg2)</code> - 它是一个正则分组非捕获组，要么匹配reg1，要么匹配reg2，优先匹配reg1，加上?:不对捕获组记录</li><li><code>.0*</code> - 表示匹配一个.开头，后边跟着0或0个以上数量的0，且不进行捕获，所以在填充$1时，就是个空值</li><li><code>(.\d+?)0+</code> - 它是一个捕获组，匹配一个.开头后边跟着非贪婪（懒惰）匹配任意数字，接着在末尾尽可能多的匹配0这个字符，匹配完成后，生成一个捕获组内容</li><li><code>$</code> - 表示匹配结果需要以0作为结尾</li></ol><h2 id="正则分组"><a href="#正则分组" class="headerlink" title="正则分组"></a>正则分组</h2><ul><li><p>普通捕获组</p><p>从正则表达式左侧开始，每出现一个左括号”(“记做一个分组，分组编号从 1 开始。0 代表整个表达式。</p><p>对于时间字符串：2017-04-25，表达式如下</p><pre class=" language-lang-js"><code class="language-lang-js">(\\d{4})-((\\d{2})-(\\d{2}))</code></pre><p>有 4 个左括号，所以有 4 个分组:</p><p>| 编号 | 捕获组                    | 匹配       |<br>| :—- | :———————————— | :————- |<br>| 0    | (\d{4})-((\d{2})-(\d{2})) | 2017-04-25 |<br>| 1    | (\d{4})                   | 2017       |<br>| 2    | ((\d{2})-(\d{2}))         | 04-25      |<br>| 3    | (\d{2})                   | 04         |<br>| 4    | (\d{2})                   | 25         |</p></li><li><p>命名捕获组</p><p>每个以左括号开始的捕获组，都紧跟着 <strong>?</strong>，而后才是正则表达式。</p><p>对于时间字符串：2017-04-25，表达式如下:</p><pre class=" language-lang-js"><code class="language-lang-js">(?<year>\\d{4})-(?<md>(?<month>\\d{2})-(?<date>\\d{2}))</code></pre><p>有 4 个命名的捕获组，分别是:</p><p>| 编号 | 名称  | 捕获组                        | 匹配       |<br>| :—- | :—— | :—————————————— | :————- |<br>| 0    | 0     | (?\d{4})-(?(?\d{2})-(?\d{2})) | 2017-04-25 |<br>| 1    | year  | (?\d{4})-                     | 2017       |<br>| 2    | md    | (?(?\d{2})-(?\d{2}))          | 04-25      |<br>| 3    | month | (?\d{2})                      | 04         |<br>| 4    | date  | (?\d{2})                      | 25         |</p><p>命名的捕获组同样也可以使用编号获取相应值。</p></li></ul><h2 id="非捕获组"><a href="#非捕获组" class="headerlink" title="非捕获组"></a>非捕获组</h2><p>在左括号后紧跟 <code>?:</code>，而后再加上正则表达式，构成非捕获组 <strong>(?:Expression)</strong>。</p><p>对于时间字符串：2017-04-25，表达式如下:</p><pre class=" language-lang-js"><code class="language-lang-js">(?:\\d{4})-((\\d{2})-(\\d{2}))</code></pre><p>这个正则表达式虽然有四个左括号，理论上有 4 个捕获组。但是第一组 <strong>(?:\d{4})</strong>，其实是被忽略的。当使用 matcher.group(4) 时，系统会报错。</p><div class="table-container"><table><thead><tr><th style="text-align:left">编号</th><th style="text-align:left">捕获组</th><th style="text-align:left">匹配</th></tr></thead><tbody><tr><td style="text-align:left">0</td><td style="text-align:left">(\d{4})-((\d{2})-(\d{2}))</td><td style="text-align:left">2017-04-25</td></tr><tr><td style="text-align:left">1</td><td style="text-align:left">((\d{2})-(\d{2}))</td><td style="text-align:left">04-25</td></tr><tr><td style="text-align:left">2</td><td style="text-align:left">(\d{2})</td><td style="text-align:left">04</td></tr><tr><td style="text-align:left">3</td><td style="text-align:left">(\d{2})</td><td style="text-align:left">25</td></tr></tbody></table></div><h2 id="非贪婪-懒惰-匹配"><a href="#非贪婪-懒惰-匹配" class="headerlink" title="非贪婪(懒惰)匹配"></a>非贪婪(懒惰)匹配</h2><p><strong>贪婪匹配:</strong>正则表达式一般趋向于最大长度匹配，也就是所谓的贪婪匹配。如上面使用模式p匹配字符串str，结果就是匹配到：<strong>abcaxc</strong>(ab*c)。</p><p><strong>非贪婪匹配</strong>：就是匹配到结果就好，就少的匹配字符。如上面使用模式p匹配字符串str，结果就是匹配到：<strong>abc</strong>(ab*c)。</p><p>问号可以表示重复前面内容的0次或一次，也就是要么不出现，要么出现一次</p><p>示例1：</p><pre class=" language-lang-java"><code class="language-lang-java">string pattern1 = @"a.*?c";   // non-greedy match Regex regex = new Regex(pattern1);regex.Match("abcabc"); // return "abc"## 结果：abc</code></pre><p>示例2：</p><pre class=" language-lang-python"><code class="language-lang-python">import res='hello 1234567 world'res = re.match('he.*?(\d).*rld$',s)print(res.group(1))## 结果：123456</code></pre><p>常用非贪婪表达式</p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">*? 重复任意次，但尽可能少重复+? 重复1次或更多次，但尽可能少重复?? 重复0次或1次，但尽可能少重复{n,m}? 重复n到m次，但尽可能少重复{n,}? 重复n次以上，但尽可能少重复</code></pre></body></html>]]></content>
+      
+      
+      <categories>
+          
+          <category> 前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 正则 </tag>
+            
+            <tag> js </tag>
+            
+            <tag> 去除零 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>单词接龙——leetcode127</title>
+      <link href="/posts/fbb9fe6d.html"/>
+      <url>/posts/fbb9fe6d.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>字典 wordList 中从单词 beginWord 和 endWord 的 转换序列 是一个按下述规格形成的序列：<br>序列中第一个单词是 <code>beginWord</code> 。<br>序列中最后一个单词是 <code>endWord</code>。<br>每次转换只能改变一个字母。<br>转换过程中的中间单词必须是字典 <code>wordList</code> 中的单词。<br>给你两个单词 <code>beginWord</code> 和 <code>endWord</code> 和一个字典 <code>wordList</code> ，找到从 <code>beginWord</code>到 <code>endWord</code> 的 最短转换序列 中的 单词数目 。如果不存在这样的转换序列，返回 <code>0</code>。</p><span id="more"></span><p>示例 1：</p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"]输出：5解释：一个最短转换序列是 "hit" -> "hot" -> "dot" -> "dog" -> "cog", 返回它的长度 5。</code></pre><p>示例 2：</p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log"]输出：0解释：endWord "cog" 不在字典中，所以无法进行转换。</code></pre><p>提示：</p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">1 <= beginWord.length <= 10endWord.length == beginWord.length1 <= wordList.length <= 5000wordList[i].length == beginWord.lengthbeginWord、endWord 和 wordList[i] 由小写英文字母组成beginWord != endWordwordList 中的所有字符串 互不相同</code></pre><h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><h3 id="方法一：广度优先搜索-优化建图"><a href="#方法一：广度优先搜索-优化建图" class="headerlink" title="方法一：广度优先搜索 + 优化建图"></a>方法一：广度优先搜索 + 优化建图</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>本题要求的是最短转换序列的长度，看到最短首先想到的就是广度优先搜索。想到广度优先搜索自然而然的就能想到图，但是本题并没有直截了当的给出图的模型，因此我们需要把它抽象成图的模型。</p><p>我们可以把每个单词都抽象为一个点，如果两个单词可以只改变一个字母进行转换，那么说明他们之间有一条双向边。因此我们只需要把满足转换条件的点相连，就形成了一张图。</p><p>基于该图，我们以 beginWord 为图的起点，以 endWord 为终点进行广度优先搜索，寻找 beginWord 到 endWord 的最短路径。</p><h4 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h4><p>基于上面的思路我们考虑如何编程实现。</p><p>首先为了方便表示，我们先给每一个单词标号，即给每个单词分配一个 id。创建一个由单词 word 到 id 对应的映射 wordId，并将 beginWord 与 wordList 中所有的单词都加入这个映射中。之后我们检查 endWord 是否在该映射内，若不存在，则输入无解。我们可以使用哈希表实现上面的映射关系。</p><p>然后我们需要建图，依据朴素的思路，我们可以枚举每一对单词的组合，判断它们是否恰好相差一个字符，以判断这两个单词对应的节点是否能够相连。但是这样效率太低，我们可以优化建图。</p><p>具体地，我们可以创建虚拟节点。对于单词 hit，我们创建三个虚拟节点 <em>it、h</em>t、hi*，并让 hit 向这三个虚拟节点分别连一条边即可。如果一个单词能够转化为 hit，那么该单词必然会连接到这三个虚拟节点之一。对于每一个单词，我们枚举它连接到的虚拟节点，把该单词对应的 id 与这些虚拟节点对应的 id 相连即可。</p><p>最后我们将起点加入队列开始广度优先搜索，当搜索到终点时，我们就找到了最短路径的长度。注意因为添加了虚拟节点，所以我们得到的距离为实际最短路径长度的两倍。同时我们并未计算起点对答案的贡献，所以我们应当返回距离的一半再加一的结果。</p><h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre class=" language-lang-java"><code class="language-lang-java">class Solution {    Map<String, Integer> wordId = new HashMap<String, Integer>();    List<List<Integer>> edge = new ArrayList<List<Integer>>();    int nodeNum = 0;    public int ladderLength(String beginWord, String endWord, List<String> wordList) {        for (String word : wordList) {            addEdge(word);        }        addEdge(beginWord);        if (!wordId.containsKey(endWord)) {            return 0;        }        int[] dis = new int[nodeNum];        Arrays.fill(dis, Integer.MAX_VALUE);        int beginId = wordId.get(beginWord), endId = wordId.get(endWord);        dis[beginId] = 0;        Queue<Integer> que = new LinkedList<Integer>();        que.offer(beginId);        while (!que.isEmpty()) {            int x = que.poll();            if (x == endId) {                return dis[endId] / 2 + 1;            }            for (int it : edge.get(x)) {                if (dis[it] == Integer.MAX_VALUE) {                    dis[it] = dis[x] + 1;                    que.offer(it);                }            }        }        return 0;    }    public void addEdge(String word) {        addWord(word);        int id1 = wordId.get(word);        char[] array = word.toCharArray();        int length = array.length;        for (int i = 0; i < length; ++i) {            char tmp = array[i];            array[i] = '*';            String newWord = new String(array);            addWord(newWord);            int id2 = wordId.get(newWord);            edge.get(id1).add(id2);            edge.get(id2).add(id1);            array[i] = tmp;        }    }    public void addWord(String word) {        if (!wordId.containsKey(word)) {            wordId.put(word, nodeNum++);            edge.add(new ArrayList<Integer>());        }    }}</code></pre><h4 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h4><ul><li>时间复杂度：<code>O(N×C2)</code>。其中  N 为 wordList 的长度， C 为列表中单词的长度。</li></ul><p>建图过程中，对于每一个单词，我们需要枚举它连接到的所有虚拟节点，时间复杂度为  <code>O(C)</code>，将这些单词加入到哈希表中，时间复杂度为 <code>O(N×C)</code>，因此总时间复杂度为 <code>O(N×C)</code>。</p><p>广度优先搜索的时间复杂度最坏情况下是 O(N \times C)O(N×C)。每一个单词需要拓展出 O(C)O(C) 个虚拟节点，因此节点数 O(N \times C)O(N×C)。</p><ul><li>空间复杂度：<code>O(N×C2)</code>。其中 N 为 wordList 的长度，C 为列表中单词的长度。哈希表中包含 <code>O(N×C)</code> 个节点，每个节点占用空间 <code>O(C)</code>，因此总的空间复杂度为 <code>O(N×C^2)</code>。</li></ul></body></html>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 单词接龙 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>买卖股票的最佳时机 II——LeetCode122</title>
+      <link href="/posts/f883163f.html"/>
+      <url>/posts/f883163f.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定一个数组 prices ，其中 prices[i] 是一支给定股票第 i 天的价格。</p><p>设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。</p><p>注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p><span id="more"></span><p>示例 1:</p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入: prices = [7,1,5,3,6,4]输出: 7</code></pre><p>解释: 在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。<br>随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6-3 = 3 。</p><p>示例 2:</p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入: prices = [1,2,3,4,5]输出: 4</code></pre><p>解释: 在第 1 天（股票价格 = 1）的时候买入，在第 5 天 （股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。<br>注意你不能在第 1 天和第 2 天接连购买股票，之后再将它们卖出。因为这样属于同时参与了多笔交易，你必须在再次购买前出售掉之前的股票。</p><p>示例 3:</p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入: prices = [7,6,4,3,1]输出: 0</code></pre><p>解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。</p><p>提示：<br>]<br>1 &lt;= prices.length &lt;= 3 * 10^4<br>0 &lt;= prices[i] &lt;= 10^4</p><h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><h2 id="解法一：动态规划"><a href="#解法一：动态规划" class="headerlink" title="解法一：动态规划"></a>解法一：动态规划</h2><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>虑到「不能同时参与多笔交易」，因此每天交易结束后只可能存在手里有一支股票或者没有股票的状态。</p><p>定义状态<code>dp[i][0]</code> 表示第 i 天交易完后手里没有股票的最大利润，<code>dp[i][1]</code> 表示第 i天交易完后手里持有一支股票的最大利润（i 从 0 开始）。(<strong>定义状态</strong>)</p><p>考虑<code>dp[i][0]</code> 的转移方程，如果这一天交易完后手里没有股票，那么可能的转移状态为前一天已经没有股票，即 <code>dp[i−1][0]</code>，或者前一天结束的时候手里持有一支股票，即 <code>dp[i−1][1]</code>，这时候我们要将其卖出，并获得 <code>prices[i]</code> 的收益。因此为了收益最大化，我们列出如下的转移方程：</p><p><code>dp[i][0] = max{ dp[i−1][0] , dp[i−1][1] + prices[i]}</code></p><p>再来考虑<code>dp[i][1]</code>，按照同样的方式考虑转移状态，那么可能的转移状态为前一天已经持有一支股票，即<code>dp[i−1][1]</code>，或者前一天结束时还没有股票，即 <code>dp[i−1][0]</code>，这时候我们要将其买入，并减少<code>prices[i]</code> 的收益。可以列出如下的转移方程：</p><p><code>dp[i][1] = max{ dp[i−1][1], dp[i−1][0]−prices[i] }</code></p><p>对于初始状态，根据状态定义我们可以知道第 00 天交易结束的时候 <code>dp[0][0]=0</code>，<code>dp[0][1]=−prices[0]</code>。</p><p>因此，我们只要从前往后依次计算状态即可。由于全部交易结束后，持有股票的收益一定低于不持有股票的收益，因此这时候 <code>dp[n−1][0]</code> 的收益必然是大于<code>dp[n−1][1]</code> 的，最后的答案即为 <code>dp[n−1][0]</code>。</p><h3 id="解题-1"><a href="#解题-1" class="headerlink" title="解题"></a>解题</h3><pre class=" language-lang-java"><code class="language-lang-java">class Solution {    public int maxProfit(int[] prices) {        int n = prices.length;        // 状态定义 x为天数  y为0为当天不持有 1为当天持有        int[][] dp = new int[n][2];        // 定义起始状态        // 第一天 不持有，不花钱 收益为0        dp[0][0] = 0;        // 第一天 持有，花钱 收益为当天买股票的钱        dp[0][1] = - prices[0];        // 从第二天开始递推哈        //        for (int d = 1; d < n; d++) {            // 第二天不持有股票：            // 第一天不持有股票的收益 + （没买）0  |  第一天持有股票 + （卖出）第二天价格 ；            dp[d][0] = Math.max(dp[d-1][0], dp[d-1][1] + prices[d]);            // 第二天持有股票：            // 第一天不持有股票的收益 + 买入第二天价格  |  第一天持有股票 + 没买也没卖 ；            dp[d][1] = Math.max(dp[d-1][0] - prices[d], dp[d-1][1]);        }        // 持有股票的收益必定小于不持有股票        return dp[n-1][0];    }}</code></pre><p>注意到上面的状态转移方程中，每一天的状态只与前一天的状态有关，而与更早的状态都无关，因此我们不必存储这些无关的状态，只需要将<code>dp[i−1][0]</code>和<code>dp[i−1][1]</code> 存放在两个变量中，通过它们计算出<code>dp[i][0]</code> 和<code>dp[i][1]</code>并存回对应的变量，以便于第<code>i+1</code> 天的状态转移即可。</p><pre class=" language-lang-java"><code class="language-lang-java">class Solution {    public int maxProfit(int[] prices) {        int n = prices.length;        int dp0 = 0, dp1 = -prices[0];        for (int i = 1; i < n; ++i) {            int newDp0 = Math.max(dp0, dp1 + prices[i]);            int newDp1 = Math.max(dp1, dp0 - prices[i]);            dp0 = newDp0;            dp1 = newDp1;        }        return dp0;    }}</code></pre><h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><ul><li><p>时间复杂度：<code>O(n)</code>，其中 n 为数组的长度。一共有 2n 个状态，每次状态转移的时间复杂度为 <code>O(1)</code>，因此时间复杂度为<code>O(2n)=O(n)</code>。</p></li><li><p>空间复杂度：<code>O(n)</code>。我们需要开辟<code>O(n)</code> 空间存储动态规划中的所有状态。如果使用空间优化，空间复杂度可以优化至 <code>O(1)</code>。</p></li></ul><h2 id="解法二：贪心"><a href="#解法二：贪心" class="headerlink" title="解法二：贪心"></a>解法二：贪心</h2><h3 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h3><h3 id="解题-2"><a href="#解题-2" class="headerlink" title="解题"></a>解题</h3><pre class=" language-lang-java"><code class="language-lang-java">class Solution {    public int maxProfit(int[] prices) {        int ans = 0;        int n = prices.length;        for (int i = 1; i < n; ++i) {            ans += Math.max(0, prices[i] - prices[i - 1]);        }        return ans;    }}</code></pre><h3 id="复杂度分析-1"><a href="#复杂度分析-1" class="headerlink" title="复杂度分析"></a>复杂度分析</h3></body></html>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 贪心 </tag>
+            
+            <tag> 动态规划 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>路径总和 II——LeetCode113</title>
+      <link href="/posts/7d31a8bc.html"/>
+      <url>/posts/7d31a8bc.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给你二叉树的根节点 root 和一个整数目标和 targetSum ，找出所有 从根节点到叶子节点 路径总和等于给定目标和的路径。</p><p>叶子节点 是指没有子节点的节点。<br><span id="more"></span></p><p>示例 1：</p><p><img src="/posts/7d31a8bc/pathsumii1.jpg" alt=""></p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：root = [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum = 22输出：[[5,4,11,2],[5,8,4,5]]</code></pre><p>示例 2：</p><p><img src="/posts/7d31a8bc/pathsum2.jpg" alt="img"></p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：root = [1,2,3], targetSum = 5输出：[]</code></pre><p>示例 3：</p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：root = [1,2], targetSum = 0输出：[]</code></pre><p>提示：</p><p>树中节点总数在范围 [0, 5000] 内<br>-1000 &lt;= Node.val &lt;= 1000<br>-1000 &lt;= targetSum &lt;= 1000</p><h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><h2 id="dfs解法"><a href="#dfs解法" class="headerlink" title="dfs解法"></a>dfs解法</h2><ul><li><p>前言<br>注意到本题的要求是，找到所有满足从「根节点」到某个「叶子节点」经过的路径上的节点之和等于目标和的路径。核心思想是对树进行一次遍历，在遍历时记录从根节点到当前节点的路径和，以防止重复计算。</p></li><li><p>思路及算法</p><p>我们可以采用深度优先搜索的方式，枚举每一条从根节点到叶子节点的路径。当我们遍历到叶子节点，且此时路径和恰为目标和时，我们就找到了一条满足条件的路径。</p></li><li><p>代码实现</p></li></ul><pre class=" language-lang-java"><code class="language-lang-java">class Solution {    List<List<Integer>> ret = new LinkedList<List<Integer>>();    Deque<Integer> path = new LinkedList<Integer>();    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {        dfs(root, targetSum);        return ret;    }    public void dfs(TreeNode root, int targetSum) {        if (root == null) {            return;        }        path.offerLast(root.val);        targetSum -= root.val;        if (root.left == null && root.right == null && targetSum == 0) {            ret.add(new LinkedList<Integer>(path));        }        dfs(root.left, targetSum);        dfs(root.right, targetSum);        path.pollLast();    }}</code></pre><ul><li>复杂度分析</li></ul><p>复杂度分析</p><p>时间复杂度：<code>O(N^2)</code>·，其中 N 是树的节点数。在最坏情况下，树的上半部分为链状，下半部分为完全二叉树，并且从根节点到每一个叶子节点的路径都符合题目要求。此时，路径的数目为 <code>O(N)</code>，并且每一条路径的节点个数也为 O(N)O(N)，因此要将这些路径全部添加进答案中，时间复杂度为 <code>O(N^2)</code></p><p>空间复杂度：<code>O(N)</code>，其中 N 是树的节点数。空间复杂度主要取决于栈空间的开销，栈中的元素个数不会超过树的节点数。</p><h2 id="bfs解法"><a href="#bfs解法" class="headerlink" title="bfs解法"></a>bfs解法</h2><ul><li>思路及算法</li></ul><p>我们也可以采用广度优先搜索的方式，遍历这棵树。当我们遍历到叶子节点，且此时路径和恰为目标和时，我们就找到了一条满足条件的路径。</p><p>为了节省空间，我们使用哈希表记录树中的每一个节点的父节点。每次找到一个满足条件的节点，我们就从该节点出发不断向父节点迭代，即可还原出从根节点到当前节点的路径。</p><ul><li>代码实现</li></ul><pre class=" language-lang-java"><code class="language-lang-java">class Solution {    List<List<Integer>> ret = new LinkedList<List<Integer>>();    Map<TreeNode, TreeNode> map = new HashMap<TreeNode, TreeNode>();    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {        if (root == null) {            return ret;        }        Queue<TreeNode> queueNode = new LinkedList<TreeNode>();        Queue<Integer> queueSum = new LinkedList<Integer>();        queueNode.offer(root);        queueSum.offer(0);        while (!queueNode.isEmpty()) {            TreeNode node = queueNode.poll();            int rec = queueSum.poll() + node.val;            if (node.left == null && node.right == null) {                if (rec == targetSum) {                    getPath(node);                }            } else {                if (node.left != null) {                    map.put(node.left, node);                    queueNode.offer(node.left);                    queueSum.offer(rec);                }                if (node.right != null) {                    map.put(node.right, node);                    queueNode.offer(node.right);                    queueSum.offer(rec);                }            }        }        return ret;    }    public void getPath(TreeNode node) {        List<Integer> temp = new LinkedList<Integer>();        while (node != null) {            temp.add(node.val);            node = map.get(node);        }        Collections.reverse(temp);        ret.add(new LinkedList<Integer>(temp));    }}</code></pre><ul><li>复杂度分析</li></ul><p>时间复杂度：<code>O(N^2)</code>，其中 NN 是树的节点数。分析思路与方法一相同。</p><p>空间复杂度：<code>O(N)</code>，其中 NN 是树的节点数。空间复杂度主要取决于哈希表和队列空间的开销，哈希表需要存储除根节点外的每个节点的父节点，队列中的元素个数不会超过树的节点数</p></body></html>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+            <tag> 树 </tag>
+            
+            <tag> dfs </tag>
+            
+            <tag> bfs </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>复原IP地址——LeetCode93</title>
+      <link href="/posts/ab179abd.html"/>
+      <url>/posts/ab179abd.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>有效 IP 地址 正好由四个整数（每个整数位于 0 到 255 之间组成，且不能含有前导 0），整数之间用 ‘.’ 分隔。</p><p>例如：”0.1.2.201” 和 “192.168.1.1” 是 有效 IP 地址，但是 “0.011.255.245”、”192.168.1.312” 和 “192.168@1.1” 是 无效 IP 地址。<br>给定一个只包含数字的字符串 s ，用以表示一个 IP 地址，返回所有可能的有效 IP 地址，这些地址可以通过在 s 中插入 ‘.’ 来形成。你不能重新排序或删除 s 中的任何数字。你可以按 任何 顺序返回答案。</p><span id="more"></span><h2 id="用例"><a href="#用例" class="headerlink" title="用例"></a>用例</h2><p>示例 1：</p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：s = "25525511135"输出：["255.255.11.135","255.255.111.35"]</code></pre><p>示例 2：</p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：s = "0000"输出：["0.0.0.0"]</code></pre><p>示例 3：</p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：s = "1111"输出：["1.1.1.1"]</code></pre><p>示例 4：</p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：s = "010010"输出：["0.10.0.10","0.100.1.0"]</code></pre><p>示例 5：</p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：s = "101023"输出：["1.0.10.23","1.0.102.3","10.1.0.23","10.10.2.3","101.0.2.3"]</code></pre><p>提示：</p><p>0 &lt;= s.length &lt;= 20<br>s 仅由数字组成</p><h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>由于我们需要找出所有可能复原出的 IP 地址，因此可以考虑使用<strong>回溯</strong>的方法，对<strong>所有可能的字符串分隔方式</strong>进行搜索，并筛选出满足要求的作为答案。</p><p>设题目中给出的字符串为 s。我们用递归函数 <code>dfs(segId,segStart)</code> 表示我们正在从<code>s[segStart]</code>的位置开始，搜索 IP 地址中的第 segId 段，其中<code>segId∈{0,1,2,3}</code>。由于 IP 地址的每一段必须是 <code>[0, 255]</code>中的整数，因此我们从 segStart 开始，从小到大依次枚举当前这一段 IP 地址的结束位置segEnd。如果满足要求，就递归地进行下一段搜索，调用递归函数<code>dfs(segId+1,segEnd+1)</code>。</p><p>特别地，由于 IP 地址的每一段不能有前导零，因此如果 <code>s[segStart]</code> 等于字符 0，那么 IP 地址的第 segId 段只能为 0，需要作为特殊情况进行考虑。</p><p>在搜索的过程中，如果我们已经得到了全部的 4 段 IP 地址（即segId=4），并且遍历完了整个字符串（即 <code>segStart=∣s∣</code>，其中 <code>|s|</code>表示字符串 s 的长度），那么就复原出了一种满足题目要求的 IP 地址，我们将其加入答案。在其它的时刻，如果提前遍历完了整个字符串，那么我们需要结束搜索，回溯到上一步。</p><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><pre class=" language-lang-java"><code class="language-lang-java">class Solution {    static final int SEG_COUNT = 4;    List<String> ans = new ArrayList<String>();    int[] segments = new int[SEG_COUNT];    public List<String> restoreIpAddresses(String s) {        segments = new int[SEG_COUNT];        dfs(s, 0, 0);        return ans;    }    public void dfs(String s, int segId, int segStart) {        // 如果找到了 4 段 IP 地址并且遍历完了字符串，那么就是一种答案        if (segId == SEG_COUNT) {            if (segStart == s.length()) {                StringBuffer ipAddr = new StringBuffer();                for (int i = 0; i < SEG_COUNT; ++i) {                    ipAddr.append(segments[i]);                    if (i != SEG_COUNT - 1) {                        ipAddr.append('.');                    }                }                ans.add(ipAddr.toString());            }            return;        }        // 如果还没有找到 4 段 IP 地址就已经遍历完了字符串，那么提前回溯        if (segStart == s.length()) {            return;        }        // 由于不能有前导零，如果当前数字为 0，那么这一段 IP 地址只能为 0        if (s.charAt(segStart) == '0') {            segments[segId] = 0;            dfs(s, segId + 1, segStart + 1);        }        // 一般情况，枚举每一种可能性并递归        int addr = 0;        for (int segEnd = segStart; segEnd < s.length(); ++segEnd) {            addr = addr * 10 + (s.charAt(segEnd) - '0');            if (addr > 0 && addr <= 0xFF) {                segments[segId] = addr;                dfs(s, segId + 1, segEnd + 1);            } else {                break;            }        }    }}</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><p>复杂度分析</p><p>我们用SEG_COUNT=4 表示 IP 地址的段数。</p><p>时间复杂度：<code>O(3^SEG_COUNT × ∣s∣)</code>。由于 IP 地址的每一段的位数不会超过 3，因此在递归的每一层，我们最多只会深入到下一层的 33 种情况。由于 SEG_COUNT=4，对应着递归的最大层数. 如果我们复原出了一种满足题目要求的 IP 地址，那么需要 <code>O(∣s∣)</code>的时间将其加入答案数组中，因此总时间复杂度为<code>O(3 ^SEG_COUNT ×∣s∣)</code>。</p><p>空间复杂度：<code>O(SEG_COUNT)</code>，这里只计入除了用来存储答案数组以外的额外空间复杂度。递归使用的空间与递归的最大深度 \text{SEG_COUNT}SEG_COUNT 成正比。并且在上面的代码中，我们只额外使用了长度为 <code>SEG_COUNT</code> 的数组 <code>segments</code> 存储已经搜索过的 IP 地址，因此空间复杂度为<code>O(SEG_COUNT)</code>。</p></body></html>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 回溯 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>最长回文子串——Leetcode5</title>
+      <link href="/posts/dfd6ab93.html"/>
+      <url>/posts/dfd6ab93.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给你一个字符串 s，找到 s 中最长的回文子串。 </p><span id="more"></span><p>示例 1：</p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：s = "babad"输出："bab"解释："aba" 同样是符合题意的答案。</code></pre><p>示例 2：</p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：s = "cbbd"输出："bb"</code></pre><p>示例 3：</p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：s = "a"输出："a"</code></pre><p>示例 4：</p><pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：s = "ac"输出："a"</code></pre><p>提示：</p><p><code>1 &lt;= s.length &lt;= 1000</code><br>s 仅由数字和英文字母（大写和/或小写）组成</p><h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>对于一个子串而言，如果它是回文串，并且长度大于 22，那么将它首尾的两个字母去除之后，它仍然是个回文串。例如对于字符串“ababa”，如果我们已经知道 “bab” 是回文串，那么“ababa” 一定是回文串，这是因为它的首尾两个字母都是“a”。</p><p>根据这样的思路，我们就可以用动态规划的方法解决本题。我们用 <code>P(i,j)</code>表示字符串 s 的第 i 到 j 个字母组成的串（下文表示成 <code>s[i:j]</code>）是否为回文串：如果字符串s从i到j是回文串，那么<code>P(i,j)= true</code>，否则为<code>P(i,j)= true</code>；</p><p>这里的「否」包含两种可能性：</p><ul><li><p><code>s[i,j]</code> 本身不是一个回文串；</p></li><li><p><code>i&gt;j</code>，此时 <code>s[i,j]</code> 本身不合法。</p></li></ul><p>那么我们就可以写出动态规划的状态转移方程：</p><p><img src="/posts/dfd6ab93/image-20220104210656306.png" alt="状态转移方程"></p><p>也就是说，只有 <code>s[i+1:j−1]</code>是回文串，并且 <code>s</code> 的第<code>i</code> 和 <code>j</code> 个字母相同时，<code>s[i:j]</code> 才会是回文串。</p><p>上文的所有讨论是建立在子串长度大于 2 的前提之上的，我们还需要考虑动态规划中的<strong>边界条件</strong>，即子串的长度为 1 或 2。</p><ul><li><p>对于长度为 1 的子串，它显然是个回文串；</p></li><li><p>对于长度为 2 的子串，只要它的两个字母相同，它就是一个回文串。</p></li></ul><p>因此我们就可以写出动态规划的边界条件：</p><p><img src="/posts/dfd6ab93/image-20220104210730308.png" alt="边界条件"></p><p>根据这个思路，我们就可以完成动态规划了，最终的答案即为所有<code>P(i, j) = true</code> 中 <code>j−i+1</code>（即子串长度）的最大值。注意：在状态转移方程中，我们是从长度较短的字符串向长度较长的字符串进行转移的，因此一定要注意动态规划的循环顺序。</p><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><pre class=" language-lang-java"><code class="language-lang-java">public class Solution {    public String longestPalindrome(String s) {        int len = s.length();        if (len < 2) {            return s;        }        int maxLen = 1;        int begin = 0;        // dp[i][j] 表示 s[i..j] 是否是回文串        boolean[][] dp = new boolean[len][len];        // 初始化：所有长度为 1 的子串都是回文串        for (int i = 0; i < len; i++) {            dp[i][i] = true;        }        char[] charArray = s.toCharArray();        // 递推开始        // 先枚举子串长度        for (int L = 2; L <= len; L++) {            // 枚举左边界，左边界的上限设置可以宽松一些            for (int i = 0; i < len; i++) {                // 由 L 和 i 可以确定右边界，即 j - i + 1 = L 得                int j = L + i - 1;                // 如果右边界越界，就可以退出当前循环                if (j >= len) {                    break;                }                if (charArray[i] != charArray[j]) {                    dp[i][j] = false;                } else {                    if (j - i < 3) {                        dp[i][j] = true;                    } else {                        dp[i][j] = dp[i + 1][j - 1];                    }                }                // 只要 dp[i][L] == true 成立，就表示子串 s[i..L] 是回文，此时记录回文长度和起始位置                if (dp[i][j] && j - i + 1 > maxLen) {                    maxLen = j - i + 1;                    begin = i;                }            }        }        return s.substring(begin, begin + maxLen);    }}</code></pre><h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><p>时间复杂度：<code>O(n^2)</code>其中 n 是字符串的长度。动态规划的状态总数为 <code>O(n^2)</code>对于每个状态，我们需要转移的时间为 <code>O(1)</code>。</p><p>空间复杂度：<code>O(n^2)</code>，即存储动态规划状态需要的空间。</p></body></html>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 动态规划 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>linux生产免费的域名证书</title>
+      <link href="/posts/4425fc35.html"/>
+      <url>/posts/4425fc35.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p>简单来说acme.sh 实现了 acme 协议, 可以从 let‘s encrypt 生成免费的证书。<br>acme.sh 有以下特点：<br>一个纯粹用Shell（Unix shell）语言编写的ACME协议客户端。<br>完整的ACME协议实施。 支持ACME v1和ACME v2 支持ACME v2通配符证书<br>简单，功能强大且易于使用。你只需要3分钟就可以学习它。<br>Let’s Encrypt免费证书客户端最简单的shell脚本。<br>纯粹用Shell编写，不依赖于python或官方的Let’s Encrypt客户端。<br>只需一个脚本即可自动颁发，续订和安装证书。 不需要root/sudoer访问权限。<br>支持在Docker内使用，支持IPv6</p><span id="more"></span><p><strong>安装环境：</strong><br><strong>操作系统：centos 7 X64</strong><br><strong>SSL证书来源：Let’s Encrypt</strong><br><strong>安装用脚本：acme.sh</strong><br><strong>服务器：nginx</strong><br><strong>域名：epoint.pswen.cn</strong></p><p>1.安装acme.sh</p><pre class=" language-lang-shell"><code class="language-lang-shell">curl https://get.acme.sh | sh</code></pre><p>2.安装后的配置<br>把 acme.sh 安装到你的 home 目录下:~/.acme.sh/并创建 一个 bash 的 alias, 方便你的使用:</p><pre class=" language-lang-shell"><code class="language-lang-shell">alias acme.sh=~/.acme.sh/acme.shecho 'alias acme.sh=~/.acme.sh/acme.sh' >>/etc/profile</code></pre><p>3.申请证书<br>acme.sh 实现了 acme 协议支持的所有验证协议. 一般有两种方式验证: http 和 dns 验证（本文不提供dns方式申请，dns手动模式，不能自动更新证书。在续订证书时，您必须手动向域中添加新的txt记录。）</p><p>HTTP 方式方法如下：</p><pre class=" language-lang-sh"><code class="language-lang-sh">acme.sh --issue -d epoint.pswen.cn --webroot /nginx网站根目录</code></pre><p>只需要指定域名, 并指定域名所在的网站根目录【命令中根目录路径】. acme.sh 会全自动的生成验证文件, 并放到网站的根目录, 然后自动完成验证. 最后会聪明的删除验证文件. 整个过程没有任何副作用.</p><p>4.证书的安装<br>注意, 默认生成的证书都放在安装目录下: ~/.acme.sh/, 请不要直接使用此目录下的文件,<br>例如: 不要直接让 nginx/apache 的配置文件使用这下面的文件.<br>这里面的文件都是内部使用, 而且目录结构可能会变化.</p><p>正确的使用方法是使用 —installcert 命令,并指定目标位置, 然后证书文件会被copy到相应的位置,</p><p>Nginx服务：<code>service nginx force-reload</code>。(centos6)</p><p>Nginx服务：<code>systemctl restart nginx</code>。(centos7)</p><p>nginx示例1:</p><pre class=" language-lang-shell"><code class="language-lang-shell">acme.sh --installcert -d epoint.pswen.cn --key-file /usr/local/nginx/ssl_cert/epoint.pswen.cn.key --fullchain-file /usr/local/nginx/ssl_cert/epoint.pswen.cn.cer --reloadcmd "service nginx force-reload"</code></pre><p>nginx示例2：</p><pre class=" language-lang-sh"><code class="language-lang-sh">acme.sh --install-cert -d chandao.test.com \--key-file /usr/local/nginx/ssl_cert/test.com/chandao.test.com.key \--fullchain-file /usr/local/nginx/ssl_cert/test.com/chandao.test.com.cer \--reloadcmd      "service nginx force-reload"</code></pre><p>附带完成前面1-4步骤的截图：</p><p><img src="/posts/4425fc35/867078-20190326175923357-720763416.png" alt="img"></p><ol><li>Nginx服务器安装SSL证书</li></ol><p>Nginx 配置Http和Https共存</p><pre class=" language-lang-shell"><code class="language-lang-shell">listen 80; #如果硬性要求全部走https协议，这一行去除listen 443 ssl http2; #如果硬性要求全部走https协议，这里去除sslserver_name chandao.test.com;#ssl on; #如果硬性要求全部走https协议，这里开启ssl onssl_certificate /usr/local/nginx/ssl_cert/test.com/chandao.test.com.cer;ssl_certificate_key /usr/local/nginx/ssl_cert/test.com/chandao.test.com.key;#ssl性能调优#nginx 1.13.0支持了TLSv1.3,TLSv1.3相比之前的TLSv1.2、TLSv1.1等性能大幅提升ssl_protocols TLSv1 TLSv1.1 TLSv1.2;ssl_ciphers EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;ssl_prefer_server_ciphers on;ssl_session_timeout 10m;#使用ssl_session_cache优化https下Nginx的性能ssl_session_cache builtin:1000 shared:SSL:10m;#OCSP Stapling 开启。OCSP是用于在线查询证书吊销情况的服务，使用OCSP Stapling能将证书有效状态的信息缓存到服务器，提高 TLS 握手速度ssl_stapling on;#OCSP Stapling 验证开启ssl_stapling_verify on;</code></pre><p>完整例子：</p><pre class=" language-lang-shell"><code class="language-lang-shell">server {  listen 80;  #如果硬性要求全部走https协议，这一行去除  listen       443 ssl http2;    #如果硬性要求全部走https协议，这里去除ssl  server_name chandao.test.com;  access_log off;  index index.html index.htm index.php;  root /data/wwwroot/chandao;  #ssl on;   #如果硬性要求全部走https协议，这里开启ssl on  ssl_certificate   /usr/local/nginx/ssl_cert/test.com/chandao.test.com.cer;  ssl_certificate_key  /usr/local/nginx/ssl_cert/test.com/chandao.test.com.key;  #ssl性能调优  #nginx 1.13.0支持了TLSv1.3,TLSv1.3相比之前的TLSv1.2、TLSv1.1等性能大幅提升  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;  ssl_ciphers EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;  ssl_prefer_server_ciphers on;  ssl_session_timeout 10m;  #使用ssl_session_cache优化https下Nginx的性能  ssl_session_cache builtin:1000 shared:SSL:10m;  #OCSP Stapling 开启。OCSP是用于在线查询证书吊销情况的服务，使用OCSP Stapling能将证书有效状态的信息缓存到服务器，提高 TLS 握手速度  ssl_stapling on;  #OCSP Stapling 验证开启  ssl_stapling_verify on;   #error_page 404 /404.html;  #error_page 502 /502.html;  location ~ [^/]\.php(/|$) {    #fastcgi_pass remote_php_ip:9000;    fastcgi_pass unix:/dev/shm/php-cgi.sock;    fastcgi_index index.php;    include fastcgi.conf;  }  location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|mp4|ico)$ {    expires 30d;    access_log off;  }  location ~ .*\.(js|css)?$ {    expires 7d;    access_log off;  }  location ~ /\.ht {    deny all;  }}</code></pre><p>6.重启nginx<br>保存退出后，通过nginx -t来检查配置文件是否正确，有错误的话改之即可。配置文件检测正确之后，通过service nginx force-reload来重载配置文件。</p><pre class=" language-lang-shell"><code class="language-lang-shell">nginx -tsystemctl restart nginx</code></pre></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+            <tag> acmesh </tag>
+            
+            <tag> 域名证书 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Java位运算原理及使用讲解</title>
+      <link href="/posts/7670a0f.html"/>
+      <url>/posts/7670a0f.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p>日常开发中位运算不是很常用，但是巧妙的使用位运算可以大量减少运行开销，优化算法。举个例子，翻转操作比较常见，比如初始值为1，操作一次变为0，再操作一次变为1。可能的做法是使用三木运算符，判断原始值为1还是0，如果是1，设置为0，否则设置为0.但是使用位运算，不用判断原始值，直接改变值就可以：<code>1^num</code>,num为原始值。当然，一条语句可能对代码没什么影响，但是在高重复，大数据量的情况下将会节省很多开销。</p><span id="more"></span><h1 id="1-位运算符"><a href="#1-位运算符" class="headerlink" title="1. 位运算符"></a>1. 位运算符</h1><h2 id="1-1-java支持的位运算符："><a href="#1-1-java支持的位运算符：" class="headerlink" title="1.1 java支持的位运算符："></a>1.1 java支持的位运算符：</h2><p>&amp;：按位与。</p><p>|：按位或。</p><p>~：按位非。</p><p>^：按位异或。</p><p>&lt;&lt;：左位移运算符。</p><p>&gt;&gt;：右位移运算符。</p><p>&lt;&lt;&lt;：无符号右移运算符。</p><p>位运 算 符 中 ,除 ～ 以 外 ,其余 均 为 二 元 运 算 符 。 操 作 数 只 能 为 整 型 和字 符 型 数 据 。</p><p>Java使用 补 码 来 表 示 二 进 制 数 ,在补 码 表 示 中 ,最高 位 为 符号 位 ,正数 的 符 号 位 为 0,负数 为 1。补 码 的 规 定 如 下 :</p><p>对 正 数 来 说 ,最高位为 0,其余 各 位 代 表 数 值 本 身 (以二 进制 表 示 ),如 +42的补码 为 00101010。</p><p>对 负 数 而 言 ,把该 数 绝 对 值 的 补 码 按 位 取 反 ,然后 对 整 个数 加 1,即得 该 数的 补 码 。 如 -1的补 码 为11111111111111111111111111111111(00000000000000000000000000000001按 位 取 反 11111111111111111111111111111110+1=11111111111111111111111111111111 )。为何有那么多0、1，java中int是32位的。</p><h2 id="1-2-按位与（-amp-）"><a href="#1-2-按位与（-amp-）" class="headerlink" title="1.2  按位与（&amp;）"></a>1.2  按位与（&amp;）</h2><p>按位与的运算规则</p><div class="table-container"><table><thead><tr><th>操作数1</th><th>0</th><th>0</th><th>1</th><th>1</th></tr></thead><tbody><tr><td>操作数2</td><td>0</td><td>1</td><td>0</td><td>1</td></tr><tr><td>按位与</td><td>0</td><td>0</td><td>0</td><td>1</td></tr></tbody></table></div><p>规则总结：只有两个操作数对应位同为1时，结果为1，其余全为0. （或者是只要有一个操作数为0，结果就为0）。</p><p>举例：</p><p><img src="/posts/7670a0f/Center.png" alt="img"></p><p><img src="/posts/7670a0f/Center-20211229200705116.png" alt="img"></p><p><img src="/posts/7670a0f/Center-20211229200704972.png" alt="img"></p><h2 id="1-3-按位或（-）"><a href="#1-3-按位或（-）" class="headerlink" title="1.3 按位或（|）"></a>1.3 按位或（|）</h2><p>按位或的运算规则</p><div class="table-container"><table><thead><tr><th>操作数1</th><th>0</th><th>0</th><th>1</th><th>1</th></tr></thead><tbody><tr><td>操作数2</td><td>0</td><td>1</td><td>0</td><td>1</td></tr><tr><td>按位或</td><td>0</td><td>1</td><td>1</td><td>1</td></tr></tbody></table></div><p>规则总结：只有两个操作数对应位同为0时，结果为0，其余全为1.（或者是只要有一个操作数为1，结果就为1）。</p><h2 id="1-4按位非（-）"><a href="#1-4按位非（-）" class="headerlink" title="1.4按位非（~）"></a>1.4按位非（~）</h2><p>按位非的运算规则</p><div class="table-container"><table><thead><tr><th>操作数</th><th>0</th><th>1</th></tr></thead><tbody><tr><td>按位或</td><td>1</td><td>0</td></tr></tbody></table></div><p>在求负数的源码中使用过。</p><h2 id="1-5-按位异或（-）"><a href="#1-5-按位异或（-）" class="headerlink" title="1.5 按位异或（^）"></a>1.5 按位异或（^）</h2><p>按位异或的运算规则</p><div class="table-container"><table><thead><tr><th>操作数1</th><th>0</th><th>0</th><th>1</th><th>1</th></tr></thead><tbody><tr><td>操作数2</td><td>0</td><td>1</td><td>0</td><td>1</td></tr><tr><td>按位异或</td><td>0</td><td>1</td><td>1</td><td>0</td></tr></tbody></table></div><p>规则总结：异：1.</p><h2 id="1-6-左位移（-lt-lt-）"><a href="#1-6-左位移（-lt-lt-）" class="headerlink" title="1.6 左位移（<<）"></a>1.6 左位移（&lt;&lt;）</h2><p>算术右移（&gt;&gt;）: 符号位不变，低位补0。如：2&lt;&lt;2结果为8。</p><p><img src="/posts/7670a0f/Center-20211229200705119.png" alt="img"></p><p>当移动的位数超过数字本身的位数时，那么不就都需要补0操作，实际上不是的，java不可能做那么浪费资源的事情。在真正执行位移前，其对要移动的位数做了一些预处理，比如32处理为0，-1处理为31.</p><h2 id="1-7-右位移（-gt-gt-）"><a href="#1-7-右位移（-gt-gt-）" class="headerlink" title="1.7 右位移（>>）"></a>1.7 右位移（&gt;&gt;）</h2><p>低位溢出，符号位不变，并用符号位补溢出的高位。如：-6&gt;&gt;2结果为-2。</p><p><img src="/posts/7670a0f/Center-20211229200705083.png" alt="img"></p><h2 id="1-8-无符号右移（-gt-gt-gt-）"><a href="#1-8-无符号右移（-gt-gt-gt-）" class="headerlink" title="1.8 无符号右移（>>>）"></a>1.8 无符号右移（&gt;&gt;&gt;）</h2><p>低位溢出，高位补0。注意，无符号右移（&gt;&gt;&gt;）中的符号位（最高位）也跟着变，无符号的意思是将符号位当作数字位看待。如：-1&gt;&gt;&gt;1结果为2147483647。这个数字应该比较熟悉，看两个输出语句就知道是什么了：</p><p><code>System.out.println(Integer.toBinaryString(-1&gt;&gt;&gt;1));</code></p><p><code>System.out.println(Integer.toBinaryString(Integer.MAX_VALUE));</code></p><p>输出结果为：</p><p>1111111111111111111111111111111</p><p>1111111111111111111111111111111</p><p>-1&gt;&gt;&gt;1竟然得到了int所能表示的最大整数，精彩。</p><p><img src="/posts/7670a0f/Center-20211229200704949.png" alt="img"></p><p>除了使用-1&gt;&gt;&gt;1能得到Integer.MAX_VALUE，以下的也能得到同样的结果：</p><p>​    //maxInt</p><p>​    System.<em>out</em>.println(~(1 &lt;&lt; 31));</p><p>​    System.<em>out</em>.println((1 &lt;&lt; -1)-1);</p><p>​    System.<em>out</em>.println(~(1 &lt;&lt; -1));</p><p>使用位运算往往能很巧妙的实现某些算法完成一些复杂的功能。</p><h1 id="常见使用"><a href="#常见使用" class="headerlink" title="常见使用"></a>常见使用</h1><h2 id="1-m-2-n"><a href="#1-m-2-n" class="headerlink" title="1.   m*2^n"></a>1.   m*2^n</h2><p>可以使用m&lt;&lt;n求得结果，如：</p><p>​    System.<em>out</em>.println(“2^3=” + (1&lt;&lt;3));//2^3=8</p><p>​    System.<em>out</em>.println(“3<em>2^3=” + (3&lt;&lt;3));//3</em>2^3=24</p><p>计算结果是不是很正确呢？如果非要说2&lt;&lt;-1为什么不等于0.5，前面说过，位运算的操作数只能是整型和字符型。在求int所能表示的最小值时，可以使用</p><p>//minInt</p><p>System.<em>out</em>.println(1 &lt;&lt; 31);</p><p>System.<em>out</em>.println(1 &lt;&lt; -1);</p><p>可以发现左移31位和-1位所得的结果是一样的，同理，左移30位和左移-2所得的结果也是一样的。移动一个负数位，是不是等同于右移该负数的绝对值位呢？输出一下就能发现不是的。java中int所能表示的最大数值是31位，加上符号位共32位。在这里可以有这样的位移法则：</p><p>法则一：任何数左移（右移）32的倍数位等于该数本身。</p><p>法则二：在位移运算m&lt;&lt;n的计算中，若n为正数，则实际移动的位数为n%32，若n为负数，则实际移动的位数为(32+n%32)，右移，同理。</p><p>左移是乘以2的幂，对应着右移则是除以2的幂。</p><h2 id="2-判断一个数n的奇偶性"><a href="#2-判断一个数n的奇偶性" class="headerlink" title="2.   判断一个数n的奇偶性"></a>2.   判断一个数n的奇偶性</h2><p>n&amp;1 == 1?”奇数”:”偶数”</p><p>为什么与1能判断奇偶？所谓的二进制就是满2进1，那么好了，偶数的最低位肯定是0（恰好满2，对不对？），同理，奇数的最低位肯定是1.int类型的1，前31位都是0，无论是1&amp;0还是0&amp;0结果都是0，那么有区别的就是1的最低位上的1了，若n的二进制最低位是1（奇数）与上1，结果为1，反则结果为0.</p><h2 id="3-不用临时变量交换两个数"><a href="#3-不用临时变量交换两个数" class="headerlink" title="3.   不用临时变量交换两个数"></a>3.   不用临时变量交换两个数</h2><p>在int[]数组首尾互换中，是不看到过这样的代码：</p><pre><code></code></pre><ol><li><code>public static int[] reverse(int[] nums){</code></li><li><code>int i = 0;</code></li><li><code>int j = nums.length-1;</code></li><li><code>while(j&gt;i){</code></li><li><code>nums[i]= nums[i]^nums[j];</code></li><li><code>nums[j] = nums[j]^nums[i];</code></li><li><code>nums[i] = nums[i]^nums[j];</code></li><li><code>j--;</code></li><li><code>i++;</code></li><li><code>}</code></li><li><code>return nums;</code></li><li><code>}</code></li></ol><p>连续三次使用异或，并没有临时变量就完成了两个数字交换，怎么实现的呢？</p><p><img src="/posts/7670a0f/Center-20211229200705072.png" alt="img"></p><p>上面的计算主要遵循了一个计算公式：b^(a^b)=a。</p><p>我们可以对以上公式做如下的推导：</p><p>任何数异或本身结果为0.且有定理a^b=b^a。异或是一个无顺序的运算符，则b^a^b=b^b^a，结果为0^a。</p><p>再次列出异或的计算表:</p><div class="table-container"><table><thead><tr><th>操作数1</th><th>0</th><th>0</th><th>1</th><th>1</th></tr></thead><tbody><tr><td>操作数2</td><td>0</td><td>1</td><td>0</td><td>1</td></tr><tr><td>按位异或</td><td>0</td><td>1</td><td>1</td><td>0</td></tr></tbody></table></div><p>可以发现，异或0具有保持的特点，而异或1具有翻转的特点。使用这些特点可以进行取数的操作。</p><p>​     那么0^a，使用异或0具有保持的特点，最终结果就是a。</p><p>其实java中的异或运算法则完全遵守数学中的计算法则：</p><p>①  a ^ a =0</p><p>②  a ^ b =b ^ a</p><p>③  a ^b ^ c = a ^ (b ^ c) = (a ^ b) ^ c;</p><p>④  d = a ^b ^ c 可以推出 a = d ^ b ^ c.</p><p>⑤  a ^ b ^a = b.</p><h2 id="4-取绝对值"><a href="#4-取绝对值" class="headerlink" title="4.   取绝对值"></a>4.   取绝对值</h2><p>(a^(a&gt;&gt;31))-(a&gt;&gt;31)</p><p>先整理一下使用位运算取绝对值的思路：若a为正数，则不变，需要用异或0保持的特点；若a为负数，则其补码为源码翻转每一位后+1，先求其源码，补码-1后再翻转每一位，此时需要使用异或1具有翻转的特点。</p><p>任何正数右移31后只剩符号位0，最终结果为0，任何负数右移31后也只剩符号位1，溢出的31位截断，空出的31位补符号位1，最终结果为-1.右移31操作可以取得任何整数的符号位。</p><p>那么综合上面的步骤，可得到公式。a&gt;&gt;31取得a的符号，若a为正数，a&gt;&gt;31等于0，a^0=a，不变；若a为负数,a&gt;&gt;31等于-1 ，a^-1翻转每一位.</p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> 位运算 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>夜中云谷</title>
+      <link href="/posts/b10a7a0e.html"/>
+      <url>/posts/b10a7a0e.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p><img src="/posts/b10a7a0e/IMG_0119.jpg" alt="IMG_0119"></p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 夜景 </tag>
+            
+            <tag> 图记 </tag>
+            
+            <tag> 天安云谷 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>关于itsNeko开源博客食用方法</title>
+      <link href="/posts/itsneko-opensource-blog.html"/>
+      <url>/posts/itsneko-opensource-blog.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><div class="note info">前言：本文是关于itsNeko开源博客食用方法详解，感谢使用本开源博客。时间过的好快，还好我都记录下来了。</div><h3 id="itsNeko开源介绍"><a href="#itsNeko开源介绍" class="headerlink" title="itsNeko开源介绍"></a>itsNeko开源介绍</h3><ul><li>基于<br>itsNeko开源博客是基于Hexo博客Matery主题魔改，感谢各位对本博客的喜爱与支持。</li><li>作者<br>Hello，itsNeko，我是本博客的作者，itsNeko博主博客: <a href="https://dyfa.top/" target="_blank">itsNeko博客~</a></li><li>赞赏<br>如果你觉得本开源博客还可以，欢迎大家的赞赏，赞赏二维码见页面：<a href="https://dyfa.top/donate/" target="_blank">赞赏itsNeko开源博主~</a></li><li>提示<br>本博客为纯静态，无数据库，文章使用markdown格式，图片存在json里面，整体打包上传至服务器即可。</li><li>建议<br>最好懂一点编程知识，建议使用VsCode，善于使用<code>“ ctrl+F ”</code>快捷键定位然后修改自定义内容。</li></ul><h3 id="源码下载及命令"><a href="#源码下载及命令" class="headerlink" title="源码下载及命令"></a>源码下载及命令</h3><ul><li>本开源博客源码已公开在在博主的GitHub仓库，国内也可使用Gitee，希望得到各位的<code>小星星，Star</code>。</li><li>GitHub仓库：<a href="https://github.com/nekodeng/hexo-theme-itsneko.git" target="_blank">itsNeko开源博客源码GitHub地址</a></li><li><p>Gitee仓库：<a href="https://gitee.com/nekodeng/hexo-theme-itsneko.git" target="_blank">itsNeko开源博客源码Gitee地址</a></p></li><li><p>首先，新建一个文件夹名为“ <code>nekoblog</code> ”，在该文件夹下打开git bash，执行命令行</p></li></ul><pre><code>git clone https://github.com/nekodeng/hexo-theme-itsneko.git或者使用国内的giteegit clone https://gitee.com/nekodeng/hexo-theme-itsneko.git</code></pre><ul><li>将下载的整个文件夹在VsCode中打开，在终端中依次执行以下命令行</li></ul><pre><code>npm installhexo cleanhexo ghexo s</code></pre><ul><li>然后在浏览器中，打开“ <a href="http://localhost:4000/">http://localhost:4000/</a> ”，即可实时预览网站，再依次修改网站内容。</li></ul><p>注意：依次执行完上述4条命令后，若遇到报错极大概率是npm install的问题，也可能是网络问题，建议删除整个“ node_modules ”文件夹，然后重新执行上述命令行。</p><h3 id="各页面配置详解"><a href="#各页面配置详解" class="headerlink" title="各页面配置详解"></a>各页面配置详解</h3><h4 id="首页"><a href="#首页" class="headerlink" title="首页"></a>首页</h4><h5 id="1、网站标题描述等"><a href="#1、网站标题描述等" class="headerlink" title="1、网站标题描述等"></a>1、网站标题描述等</h5><p>在<code>/nekoblog/_config.yml</code>文件中，使用“ ctrl+F ”快捷键定位到<code>“ Site ”</code>，然后自行修改内容。</p><h5 id="2、logo图片与logo字体"><a href="#2、logo图片与logo字体" class="headerlink" title="2、logo图片与logo字体"></a>2、logo图片与logo字体</h5><ul><li>logo图片:<br>在<code>/themes/_config.yml</code>文件中，使用“ ctrl+F ”快捷键定位到<code>“ 配置网站favicon和网站LOGO ”</code>，然后自行修改图片并注意图片格式（此处建议图片大小为180*116最佳）。</li><li>logo字体:<br>在<code>/themes/layout/_partial/header.ejs</code>文件中，使用“ ctrl+F ”快捷键定位到<code>“ itsNeko-openSource-Blog ”</code>，然后自行修改大屏幕和小屏幕下logo字体（此处建议小屏下字体数目不宜过多）。 </li></ul><h5 id="3、banner图上打字效果字体"><a href="#3、banner图上打字效果字体" class="headerlink" title="3、banner图上打字效果字体"></a>3、banner图上打字效果字体</h5><p>在<code>/themes/_config.yml</code>文件中，使用“ ctrl+F ”快捷键定位到<code>“ sub1 ”</code>，然后自行修改。</p><h5 id="4、《质数的孤独》内容部分"><a href="#4、《质数的孤独》内容部分" class="headerlink" title="4、《质数的孤独》内容部分"></a>4、《质数的孤独》内容部分</h5><p>在<code>/themes/layout/_widget/dream.ejs</code>文件中，使用“ ctrl+F ”快捷键定位到<code>“ 《质数的孤独》 ”</code>，然后自行修改标题和内容。</p><h5 id="5、公告栏作者等内容部分"><a href="#5、公告栏作者等内容部分" class="headerlink" title="5、公告栏作者等内容部分"></a>5、公告栏作者等内容部分</h5><p>在<code>/themes/layout/index.ejs</code>文件中，使用“ ctrl+F ”快捷键定位到<code>“ 公告文字栏开始 ”</code>，然后自行修改内容。</p><h5 id="6、footer内容部分"><a href="#6、footer内容部分" class="headerlink" title="6、footer内容部分"></a>6、footer内容部分</h5><p>在<code>/themes/layout/_partial/footer.ejs</code>文件中，使用“ ctrl+F ”快捷键定位到<code>“ 版权信息 ”</code>，然后自行修改各类内容；此处还要在<code>/themes/_config.yml</code>文件中，使用“ ctrl+F ”快捷键定位到<code>“ socialLink ”</code>，然后自行修改。</p><h4 id="关于"><a href="#关于" class="headerlink" title="关于"></a>关于</h4><h5 id="1、配置个人信息"><a href="#1、配置个人信息" class="headerlink" title="1、配置个人信息"></a>1、配置个人信息</h5><p>在<code>/themes/_config.yml</code>文件中，使用“ ctrl+F ”快捷键定位到<code>“ profile ”</code>，然后自行修改头像、职业和个人介绍。</p><h5 id="2、个人介绍内容"><a href="#2、个人介绍内容" class="headerlink" title="2、个人介绍内容"></a>2、个人介绍内容</h5><p>在<code>/themes/layout/about.ejs</code>文件中，使用“ ctrl+F ”快捷键定位到<code>“ 关于我哦 ”</code>，然后自行个人介绍介绍。</p><h4 id="相册"><a href="#相册" class="headerlink" title="相册"></a>相册</h4><h5 id="1、页面介绍"><a href="#1、页面介绍" class="headerlink" title="1、页面介绍"></a>1、页面介绍</h5><p>在<code>/themes/layout/galley.ejs</code>文件中，使用“ ctrl+F ”快捷键定位到<code>“ itsNeko开源博客相册 ”</code>，然后自行修改此内容。</p><h5 id="2、相册数据"><a href="#2、相册数据" class="headerlink" title="2、相册数据"></a>2、相册数据</h5><p>相册是存在json里面的，在<code>/nekoblog/source/_data/galley.json</code>文件中。一个相册就是在一个{}对象内的json数据。</p><h5 id="3、新建一个相册流程"><a href="#3、新建一个相册流程" class="headerlink" title="3、新建一个相册流程"></a>3、新建一个相册流程</h5><ul><li>首先，找到<code>/nekoblog/source/galley</code>文件夹。</li><li>复制已存在的“ itsNeko博主的绘画作品 ”文件夹，并取名。</li><li>打开新取名文件夹下的index.md文件，然后修改title字段必须与新取名文件夹名称相同，否则运行报错。</li><li>然后，在<code>/nekoblog/source/_data/galley.json</code>文件中，复制已存在的{}对象内的json数据，与第一段并以逗号区隔，然后修改新相册的各类内容。并注意：<code>name，url_name，album内的title这三个字段内容必须与新取名文件夹名称相同，否则运行报错。</code></li></ul><h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><h5 id="增加友情链接"><a href="#增加友情链接" class="headerlink" title="增加友情链接"></a>增加友情链接</h5><ul><li>友链信息是存储在<code>/nekoblog/source/_data/friends.json</code>文件中，一个友链就是在一个{}对象内的json数据，自行增添。</li></ul><h5 id="增加网址收藏"><a href="#增加网址收藏" class="headerlink" title="增加网址收藏"></a>增加网址收藏</h5><ul><li>网址收藏信息是存储在<code>/nekoblog/source/_data/collection.json</code>文件中，一个网址信息就是在一个{}对象内的json数据，自行增添。</li></ul><h4 id="其余"><a href="#其余" class="headerlink" title="其余"></a>其余</h4><p>其余页面自定义修改的内容不多，或者没必要修改，这里给出其余页面的对应文件，可自行根据需要定位到对应页面文件中进行修改。</p><ul><li><code>书单 -&gt; /themes/layout/books.ejs</code></li><li><code>留言板 -&gt; /themes/layout/contact.ejs</code></li><li><code>实战项目 -&gt; /themes/layout/project.ejs</code></li><li><code>博客打赏记录 -&gt; /themes/layout/donate.ejs</code></li><li><code>ticktack -&gt; /themes/layout/ticktack.ejs</code></li><li><code>实战项目 -&gt; /themes/layout/project.ejs</code></li><li><code>vlog -&gt; /themes/layout/videos.ejs</code><br>使用“ ctrl+F ”快捷键定位到<code>“ src=”//player.bilibili ”</code>，然后自行修改两个视频的src，建议使用B站的外链。</li><li><code>music -&gt; /themes/layout/musics.ejs</code><br>使用“ ctrl+F ”快捷键定位到<code>“ id=” ”</code>，然后自行修改两个歌单的id，建议使用网易云和QQ音乐的外链。</li><li><code>urls.txt -&gt; /nekoblog/urls.txt</code>将内容替换成自己网站的url地址即可。</li><li><code>网站2个_config.yml文件 -&gt; 主要是网站的总体配置，自行打开两个文件然后只修改里面的包含个人信息的部分，其余不动。</code></li></ul><h3 id="撰写第一篇文章"><a href="#撰写第一篇文章" class="headerlink" title="撰写第一篇文章"></a>撰写第一篇文章</h3><ul><li>修改完个人信息后，你便可以撰写属于你的第一篇文章啦。</li><li>文章采用markdown语法，所有文章存储在<code>/nekoblog/source/_posts</code>文件夹中。</li><li>这里我已给出常用的两类文章模板，可直接复制粘贴然后（修改文章名，链接后缀建议用英文，标签建议只用一个，分类，时间，以及文章banner图片）形成新的文章。</li></ul><h3 id="怎样开通评论"><a href="#怎样开通评论" class="headerlink" title="怎样开通评论"></a>怎样开通评论</h3><ul><li>本开源博客使用valine评论，环境以及搭好，只需填写valine配置数据即可。</li><li>自行根据网上教程得到配置数据，关键词 “ Hexo 博客添加 Valine 评论系统 ”，教程之一：<a href="https://www.zhyong.cn/posts/95cb/" target="_blank">Hexo 博客添加 Valine 评论系统</a></li><li>注意：本开源博客中已经搭好了环境，<code>比如valine.min.js，valine.ejs等文件已经存在，不用再根据教程添加这些文件</code>，只需根据教程步骤配置其余，然后获取到 APP ID 和 APP KEY。</li><li>然后，将获取到的 APP ID 和 APP KEY，在<code>/themes/_config.yml</code>文件中，使用“ ctrl+F ”快捷键定位到<code>“ valine ”</code>，然后自行修改appId，appKey值即可。</li><li>多说一句，若最后评论功能总是报错，不知道怎么弄，那么建议一切根据外链教程（这个不行，换个完整版教程）操作，可替换本博客已经存在的环境文件，<code>学会自己独立使用浏览器解决问题</code>。</li></ul><h3 id="网站怎样上线"><a href="#网站怎样上线" class="headerlink" title="网站怎样上线"></a>网站怎样上线</h3><ul><li><p><code>免费版 使用gitee免费托管</code><br>关键词，“ Hexo部署到Gitee ”，随机教程：<a href="https://blog.csdn.net/qq_38157825/article/details/112783631" target="_blank">Hexo 部署到 Gitee</a></p></li><li><p><code>收费版 自行购买域名服务器</code><br>关键词，“ Hexo部署到自己服务器 ”</p></li></ul><h3 id="七零八碎补充"><a href="#七零八碎补充" class="headerlink" title="七零八碎补充"></a>七零八碎补充</h3><p>可自行根据需要定位到对应文件中进行修改。</p><ul><li><p><code>赞赏二维码图片 -&gt; /themes/source/medias/reward</code></p></li><li><p><code>鼠标左键点击文字 -&gt; /themes/source/js/click_show_text.js</code></p></li><li><p><code>网站标题栏和footer栏背景颜色 -&gt; /themes/source/css/matery.css</code><br>在该文件中使用“ ctrl+F ”快捷键定位到<code>“ 网站标题栏和footer栏背景颜色 ”</code>，然后自行修改颜色。</p></li><li><p><code>各大页面banner图 -&gt; 若你不想使用默认图片，将以下代码复制到对应页面ejs文件中并修改图片链接即可。</code></p><code></code></li><code></code></ul><code><pre><code>    &lt;style&gt;      /* banner背景图 */      .bg-cover {          background-image: url("图片链接地址")!important;      }    &lt;/style&gt;</code></pre><h3 id="怎样联系itsNeko"><a href="#怎样联系itsNeko" class="headerlink" title="怎样联系itsNeko"></a>怎样联系itsNeko</h3><ul><li>留言：itsNeko博客地址:<a href="https://dyfa.top/" target="_blank">itsNeko博客~</a></li><li>邮箱：nekodeng@qq.com</li><li>QQ: 2018854221</li></ul></code></body></html>]]></content>
+      
+      
+      <categories>
+          
+          <category> itsNeko博客食用方法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 关于itsNeko开源博客 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>这是技术文章模板</title>
+      <link href="/posts/articletemplate.html"/>
+      <url>/posts/articletemplate.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><div class="note info">前言，技术文章前言技术文章前言技术文章前言技术文章前言技术文章前言技术文章前言技术文章前言技术文章前言技术文章前言技术文章前言技术文章前言技术文章前言技术文章前言。</div><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><ul><li>项目1</li><li>项目2</li><li>项目3</li></ul><p>正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文正文</p><p><img src="/posts/articletemplate/图片url" alt="图片介绍"></p><p><code>正文一些需要高亮色的文字</code></p><p><a href="链接地址" class="LinkCard" target="_blank">引入链接</a></p></body></html>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 技术 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>gulp-imagemin在压缩图片</title>
+      <link href="/posts/1009bbf4.html"/>
+      <url>/posts/1009bbf4.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p>经过各种研（bai）究（du），找到了一种方案：采用<code>gulp + gulp-imagemin</code>，对图片进行压缩，结合hexo进行对应图片压缩。<br><span id="more"></span></p><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre class=" language-lang-sh"><code class="language-lang-sh">npm install gulp --save-devnpm install gulp-imagemin --save-devnpm install imagemin-pngquant --save-dev# 当然也可以--save  记得要给gulp全局安装下，npm命令不行，就是用cnpmnpm install gulp -g # 只有gulp要全局安装下</code></pre><h3 id="gulpfile"><a href="#gulpfile" class="headerlink" title="gulpfile"></a>gulpfile</h3><p>在package.json同名目录下，增加gulpfile.js对应的入口js文件</p><pre class=" language-lang-javascript"><code class="language-lang-javascript">import gulp from 'gulp';import imagemin from 'gulp-imagemin';import pngquant from 'imagemin-pngquant';// 定义一个任务 第一个参数为名称，后面时要执行的动作gulp.task('minify-images', function (done) {    gulp.src('public/p/**/*.{JPG,jpg,PNG,png,GIF,gif,SVG,svg,JPEG,jpeg}')        .pipe(imagemin({            optimizationLevel: 3,            progressive: true,            usa:[pngquant()]        }))        .pipe(gulp.dest('public/p/'))    done();});// 定义default ，后面将多个任务序列化并行执行，我们只有一个gulp.task('default', gulp.series(gulp.parallel('minify-images')), function () {    console.info("----------gulp Finished----------");});</code></pre><p>执行命令<code>gulp</code> 默认情况下，代表<code>gulp default</code>就执行你上面的default任务</p><p>当然你也可以制定任务名称：<code>gulp minify-images</code> 执行指定task</p><p>然后再hexo状态下：</p><pre class=" language-lang-sh"><code class="language-lang-sh">hexo clean hexo ggulp# 输出如下：[22:46:42] Using gulpfile ~/Desktop/blogfile/gulpfile.js[22:46:42] Starting 'default'...[22:46:42] Starting 'minify-images'...[22:46:42] Finished 'minify-images' after 74 ms[22:46:42] Finished 'default' after 99 ms</code></pre><p>那说明成功了</p><h3 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h3><ul><li>引入语法问题，插件需要使用es6语法，故此你的package.json 需要增加一个参数<code>"type": "module"</code>如此你可以再gulpfile.js中使用es6的import语法</li></ul></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> gulp </tag>
+            
+            <tag> 压缩图片 </tag>
+            
+            <tag> gulp-imagemin </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图记——今日午餐</title>
+      <link href="/posts/dbbc4a4a.html"/>
+      <url>/posts/dbbc4a4a.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p><img src="/posts/dbbc4a4a/IMG_0073.JPG" alt="今日午餐"></p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 图记 </tag>
+            
+            <tag> 生活 </tag>
+            
+            <tag> 午餐 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>虚拟机类加载机制-类加载时机</title>
+      <link href="/posts/8239.html"/>
+      <url>/posts/8239.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p>在 Java 语言里面，类型的加载、连接和初始化过程都是在程序运行期间完成的，这种策略虽然会令类加载时稍微增加一些性能开销，但是会为 Java 应用程序提供高度的灵活性，Java 里天生可以动态扩展的语言特性就是依赖于运行期动态加载和动态连接这个特点实现的。</p><span id="more"></span><p>例如，如果编写一个面向接口的应用程序，可以等到运行时再指定其实际的实现类；用户可以通过 Java 预定义的和自定义类加载器，让一个本地的应用程序可以在运行时从网络或其他地方加载一个二进制流作为程序代码的一部分，这种组装应用程序的方式目前已广泛应用于 Java 程序之中。从最基础的 Applet、JSP 到相对复杂的 OSGI 技术，都使用了 Java 语言运行期类加载的特性。</p><h2 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h2><p>生命周期：加载（Loading）、验证（Verification）、准备（Preparation）、解析（Resolution）、初始化（Initialzation）、使用（Using）和卸载（Unloading）7 个阶段。</p><p><img src="/posts/8239/20160719124551909.jpeg" alt="生命周期"></p><p>什么情况下需要开始进行类加载过程的第一阶段呢？没有明确约束，虚拟机自由把握；</p><p>而初始化阶段有严格规范，以下五种情况必须理解对类进行初始化。</p><ol><li>遇到new（new关键词实例化），getstatic（读取类的static字段），putstatic（设置类的static字段，被final修饰、已在编译期就把结果放入了常量池的字段除外），invokestatic（调用一个类的静态方法）</li><li>使用<code>java.lang.reflect</code>包的方法对类进行反射调用</li><li>初始化一个类，会先初始化它的父类</li><li>虚拟机启动时，会先初始化执行的主类（main方法）</li><li>JDK1.7的<code>java.lang.invoke.MethodHandle</code>的方法去获取句柄</li></ol><p><strong><em>有且仅有</em></strong>这五种情况，除此之外都是被动引用，不会触发初始化，举3个例子</p><ul><li>对于静态字段，只有定义这个字段的类才会被初始化，例如父类定义的静态字段，通过子类去使用父类的静态字段，那么只有父类会初始化，子类不会</li><li>数组类型定义使用时，类似<code>SubClass[]</code>不会进行初始化</li><li>被finla修饰的静态字段，会进行常量传播优化，实际上这个字段已经和这个类没啥关系了</li></ul><p>初始化第三种情况下，对于接口有个特例情况：一个类初始化时要求父类全部初始化，而接口，不要求其父接口全部都完成初始化，只有在使用到才会初始化。</p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> jvm </tag>
+            
+            <tag> 类加载 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>环形链表——LeetCode141</title>
+      <link href="/posts/1426.html"/>
+      <url>/posts/1426.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p>给定一个链表，判断链表中是否有环。</p><p>如果链表中有某个节点，可以通过连续跟踪 next 指针再次到达，则链表中存在环。 为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。注意：pos 不作为参数进行传递，仅仅是为了标识链表的实际情况。<br>如果链表中存在环，则返回 true 。 否则，返回 false 。<br>LeetCode-141 链接：<a href="https://leetcode-cn.com/problems/linked-list-cycle">https://leetcode-cn.com/problems/linked-list-cycle</a></p><span id="more"></span> <p>示例 1：</p><p><img src="/posts/1426/circularlinkedlist.png" alt="环形链表-示例1"></p><pre><code>输入：head = [3,2,0,-4], pos = 1输出：true解释：链表中有一个环，其尾部连接到第二个节点。</code></pre><p>示例 2：</p><p><img src="/posts/1426/circularlinkedlist_test2.png" alt="环形链表-示例2"></p><pre><code>输入：head = [1,2], pos = 0输出：true解释：链表中有一个环，其尾部连接到第一个节点。</code></pre><p>示例 3：</p><p><img src="/posts/1426/circularlinkedlist_test3.png" alt="环形链表-示例3"></p><pre><code>输入：head = [1], pos = -1输出：false解释：链表中没有环。</code></pre><p>提示：</p><pre><code>链表中节点的数目范围是 [0, 104]-105 &lt;= Node.val &lt;= 105pos 为 -1 或者链表中的一个 有效索引 。</code></pre><h3 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h3><ol><li>Hash表</li></ol><p>最容易想到的方法是遍历所有节点，每次遍历到一个节点时，判断该节点此前是否被访问过。</p><p>具体地，我们可以使用哈希表来存储所有已经访问过的节点。每次我们到达一个节点，如果该节点已经存在于哈希表中，则说明该链表是环形链表，否则就将该节点加入哈希表中。重复这一过程，直到我们遍历完整个链表即可。</p><p>代码实现：</p><pre class=" language-lang-java"><code class="language-lang-java">public class Solution {    public boolean hasCycle(ListNode head) {        Set<ListNode> seen = new HashSet<ListNode>();        while (head != null) {            if (!seen.add(head)) {                return true;            }            head = head.next;        }        return false;    }}</code></pre><p>复杂度分析</p><p>时间复杂度：<code>O(N)</code>，其中 <code>N</code>是链表中的节点数。最坏情况下我们需要遍历每个节点一次。<br>空间复杂度：<code>O(N)</code>，其中<code>N</code>是链表中的节点数。主要为哈希表的开销，最坏情况下我们需要将每个节点插入到哈希表中一次。</p><ol><li>快慢指针</li></ol><p>方法需要读者对「Floyd 判圈算法」（又称龟兔赛跑算法）有所了解。</p><p>假想「乌龟」和「兔子」在链表上移动，「兔子」跑得快，「乌龟」跑得慢。当「乌龟」和「兔子」从链表上的同一个节点开始移动时，如果该链表中没有环，那么「兔子」将一直处于「乌龟」的前方；如果该链表中有环，那么「兔子」会先于「乌龟」进入环，并且一直在环内移动。等到「乌龟」进入环时，由于「兔子」的速度快，它一定会在某个时刻与乌龟相遇，即套了「乌龟」若干圈。</p><p>我们可以根据上述思路来解决本题。具体地，我们定义两个指针，一快一满。慢指针每次只移动一步，而快指针每次移动两步。初始时，慢指针在位置 head，而快指针在位置 head.next。这样一来，如果在移动的过程中，快指针反过来追上慢指针，就说明该链表为环形链表。否则快指针将到达链表尾部，该链表不为环形链表。</p><p><img src="/posts/1426/2.png" alt="龟兔赛跑"></p><blockquote><p>为什么我们要规定初始时慢指针在位置 head，快指针在位置 head.next，而不是两个指针都在位置 head（即与「乌龟」和「兔子」中的叙述相同）？</p></blockquote><ul><li>观察下面的代码，我们使用的是 while 循环，循环条件先于循环体。由于循环条件一定是判断快慢指针是否重合，如果我们将两个指针初始都置于 head，那么 while 循环就不会执行。因此，我们可以假想一个在 head 之前的虚拟节点，慢指针从虚拟节点移动一步到达 head，快指针从虚拟节点移动两步到达 head.next，这样我们就可以使用 while 循环了。</li><li>当然，我们也可以使用 do-while 循环。此时，我们就可以把快慢指针的初始值都置为 head。</li></ul><p>代码实现：</p><pre class=" language-lang-java"><code class="language-lang-java">public class Solution {    public boolean hasCycle(ListNode head) {        if (head == null || head.next == null) {            return false;        }        ListNode slow = head;        ListNode fast = head.next;        while (slow != fast) {            if (fast == null || fast.next == null) {                return false;            }            slow = slow.next;            fast = fast.next.next;        }        return true;    }}</code></pre><p>复杂度分析</p><p>时间复杂度：<code>O(N)</code>，其中 <code>N</code> 是链表中的节点数。<br>当链表中不存在环时，快指针将先于慢指针到达链表尾部，链表中每个节点至多被访问两次。<br>当链表中存在环时，每一轮移动后，快慢指针的距离将减小一。而初始距离为环的长度，因此至多移动<br><code>N</code>轮。<br>空间复杂度：<code>O(1)</code>。我们只使用了两个指针的额外空间。</p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 快慢指针 </tag>
+            
+            <tag> 环形链表 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>寻找重复数——LeetCode287</title>
+      <link href="/posts/44752.html"/>
+      <url>/posts/44752.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p>给定一个包含 n + 1 个整数的数组 nums ，其数字都在 1 到 n 之间（包括 1 和 n），可知至少存在一个重复的整数。<br>假设 nums 只有 一个重复的整数 ，找出 这个重复的数 。<br>你设计的解决方案必须不修改数组 nums 且只用常量级 O(1) 的额外空间。<br>Leetcode-287 链接：<a href="https://leetcode-cn.com/problems/find-the-duplicate-number">https://leetcode-cn.com/problems/find-the-duplicate-number</a><br><span id="more"></span><br>示例 1：</p><pre class=" language-lang-sh"><code class="language-lang-sh">输入：nums = [1,3,4,2,2]输出：2</code></pre><p>示例 2：</p><pre class=" language-lang-sh"><code class="language-lang-sh">输入：nums = [3,1,3,4,2]输出：3</code></pre><p>示例 3：</p><pre class=" language-lang-sh"><code class="language-lang-sh">输入：nums = [1,1]输出：1</code></pre><p>示例 4：</p><pre><code>输入：nums = [1,1,2]输出：1</code></pre><p>提示：</p><pre class=" language-lang-sh"><code class="language-lang-sh">1 <= n <= 105nums.length == n + 11 <= nums[i] <= n</code></pre><p>nums 中 只有一个整数 出现 两次或多次 ，其余整数均只出现 一次</p><h3 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h3><ol><li>二分法</li></ol><p>针对用例<code>[1,3,4,2,2]</code></p><p>定义一个<code>cnt</code>数组用来存储小于等于 索引 <code>i</code> 的总数</p><p>如果知道 cnt 数组随数字 index 逐渐增大具有单调性，那么当num[index] 那么我们就可以直接利用二分查找来找到重复的数</p><div class="table-container"><table><thead><tr><th style="text-align:center">nums</th><th style="text-align:center">1</th><th style="text-align:center">2</th><th style="text-align:center">3</th><th style="text-align:center">4</th></tr></thead><tbody><tr><td style="text-align:center">cnt</td><td style="text-align:center">1</td><td style="text-align:center">3</td><td style="text-align:center">4</td><td style="text-align:center">5</td></tr></tbody></table></div><p>小于等于1的一个</p><p>小于等于2的三个</p><p>小于等于3的四个</p><p>小于等于4的五个</p><p>由此可见：我们的目标是2，target满足: target前面的 <code>cnt[i] &lt;=  i</code>, 目标值target之后的 <code>cnt[i] &gt; i</code></p><p>实际上可以归纳为：</p><ul><li><p>如果测试用例的数组中 <code>target</code> 出现了两次，其余的数各出现了一次，这个时候肯定满足上文提及的性质，因为小于 <code>target</code> 的数 i 满足 <code>cnt[i]=i</code>，大于等于 <code>target</code> 的数 <code>j</code>满足 <code>cnt[j]=j+1</code>。</p></li><li><p>如果测试用例的数组中<code>target</code>出现了三次及以上，那么必然有一些数不在 <code>nums</code> 数组中了，这个时候相当于我们用<code>target</code>去替换了这些数，我们考虑替换的时候对<code>cnt[]</code>数组的影响。如果替换的数<code>i</code>小于 <code>target</code> ，那么在数<code>i</code>到<code>target</code>区间的值，均减一，其他不变，满足条件。如果替换的数 <code>j</code> 大于等于 <code>target</code>，那么<code>target</code>到 数<code>j</code>区间内值均加一，其他不变，亦满足条件。</p></li></ul><p>因此不管多个重复还是两个重复，数组都满足那个性质。</p><p>代码实现：</p><pre class=" language-lang-java"><code class="language-lang-java">class Solution {    public int findDuplicate(int[] nums) {        int n = nums.length;        int l = 1, r = n - 1, ans = -1;        while (l <= r) {           # 右移动一位，相关于除以2，取中间值            int mid = (l + r) >> 1;            int cnt = 0;            for (int i = 0; i < n; ++i) {              # 将小于等于中间值都加起来                if (nums[i] <= mid) {                    cnt++;                }            }           # 如果此时的cnt总数小于等于mid，那说明不在mid左边            if (cnt <= mid) {               # 把左边拉到中间                l = mid + 1;            } else {                # 否则把右边拉到中间                r = mid - 1;                # 记录答案                ans = mid;            }        }        return ans;    }}</code></pre><p>复杂度分析</p><p>时间复杂度：<code>O(n * logn)</code>，其中 n为nums 数组的长度。二分查找最多需要二分<code>O(logn)</code>次，每次判断的时候需要<code>O(n)</code> 遍历 nums 数组求解小于等于mid 的数的个数，因此总时间复杂度为<code>O(n * logn)</code>。</p><p>空间复杂度：<code>O(1)</code>。我们只需要常数空间存放若干变量。</p><ol><li>快慢指针</li></ol><p>我们对 nums数组建图，每个位置 <code>i</code> 连一条 <code>i→nums[i]</code> 的边。由于存在的重复的数字<br><code>target</code>因此 <code>target</code>这个位置一定有起码两条指向它的边，因此整张图一定存在环，且我们要找到的<br><code>target</code>就是这个环的入口.</p><p>我们先设置慢指针<code>slow 和快指针</code> <code>fast</code> ，慢指针每次走一步，快指针每次走两步，根据「Floyd 判圈算法」两个指针在有环的情况下一定会相遇，此时我们再将 <code>slow</code> 放置起点<code>0</code>，两个指针每次同时移动一步，相遇的点就是答案。</p><p>代码实现：</p><pre class=" language-lang-java"><code class="language-lang-java">class Solution {    public int findDuplicate(int[] nums) {        int slow = 0, fast = 0;          # 找环的入口        do {            slow = nums[slow];            fast = nums[nums[fast]];        } while (slow != fast);        # 重置slow为起点        slow = 0;        while (slow != fast) {            slow = nums[slow];            fast = nums[fast];        }        # 再次相遇 就是环入口        return slow;    }}</code></pre><p>复杂度分析</p><p>时间复杂度：<code>O(n)</code>。「Floyd 判圈算法」时间复杂度为线性的时间复杂度。<br>空间复杂度：<code>O(1)</code>。我们只需要常数空间存放若干变量。</p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> leetcode </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 二分法 </tag>
+            
+            <tag> 快慢指针 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图记——晚霞的尾巴</title>
+      <link href="/posts/4ee64d66.html"/>
+      <url>/posts/4ee64d66.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p><img src="/posts/4ee64d66/IMG_0027.jpg" alt="晚霞的尾巴"></p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 晚霞 </tag>
+            
+            <tag> 云谷 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图记——武康大楼</title>
+      <link href="/posts/9b051724.html"/>
+      <url>/posts/9b051724.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p><img src="/posts/9b051724/IMG_4609.jpg" alt="武康大楼"></p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 武康大楼 </tag>
+            
+            <tag> 上海 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>往昔时光-我们</title>
+      <link href="/posts/51719.html"/>
+      <url>/posts/51719.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p><img src="/posts/51719/IMG_4766.JPG" alt="今夕"></p><p>小时候我们唯一的合照</p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 我们 </tag>
+            
+            <tag> 年轻 </tag>
+            
+            <tag> 年幼 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图记——上海外滩</title>
+      <link href="/posts/ec5868f5.html"/>
+      <url>/posts/ec5868f5.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p><img src="/posts/ec5868f5/IMG_4615.JPG" alt="朦胧的外滩"></p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 上海外滩 </tag>
+            
+            <tag> 夜景 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>这是随笔文章模板</title>
+      <link href="/posts/essay-demo.html"/>
+      <url>/posts/essay-demo.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><h4 id="这是博主的随笔板块，后续会更新文章，目前弄好了模板格式"><a href="#这是博主的随笔板块，后续会更新文章，目前弄好了模板格式" class="headerlink" title="这是博主的随笔板块，后续会更新文章，目前弄好了模板格式~"></a>这是博主的随笔板块，后续会更新文章，目前弄好了模板格式~</h4><div class="ipage">    <div class="ititle">节选自《你若安好便是晴天》- 前言</div>  <div class="izhengwen">  <p>几场梅雨，几卷荷风，江南已是烟水迷离。小院里湿润的青苔在雨中纯净生长。这个季节，许多人都在打听关于莲荷的消息，以及茉莉在黄昏浮动的神秘幽香。不知多少人会记得有个女子，曾经走过人间四月天，又与莲开的夏季有过相濡以沫的约定。</p>  <p>一个人，一本书，一杯茶，一帘梦。有时候，寂寞是这样叫人心动，也只有此刻，世事才会如此波澜不惊。凉风吹起书页，这烟雨让尘封在书卷里的词章和故事弥漫着潮湿的气息。独倚幽窗，看转角处的青石小巷，一柄久违的油纸伞，遮住了低过屋檐的光阴。</p>  <p>时光微凉，那一场远去的往事被春水浸泡，秋风吹拂，早已洗去铅华，清绝明净。以为历经人生匆匆聚散，尝过尘世种种烟火，应该承担岁月带给我们的沧桑。可流年分明安然无恙，而山石草木是这样毫发无伤。只是曾经许过地老天荒的城，在细雨中越发地清瘦单薄。</p>  <p>青梅煎好的茶水，还是当年的味道；而我们等候的人，不会再来。后来才知道，那一袭素色白衣的女子已化身为燕，去寻觅水乡旧巢。她走过的地方，有一树一树的花开，她呢喃的梁间，还留着余温犹存的梦。有人说，她是个冰洁的女子，所以无论人世如何变迁，她都有着美丽的容颜。有人说，她是个理智的女子，不管面临怎样的诱惑，最后都可以全身而退。</p>  <p>她叫林徽因，出生于杭州，是许多人梦中期待的白莲。她在雨雾之都伦敦，发生过一场空前绝后的康桥之恋。她爱过三个男子，爱得清醒，也爱得平静。徐志摩为她徜徉在康桥，深情地等待一场旧梦可以归来。梁思成与她携手走过千山万水，为完成使命而相约白头。金岳霖为她终身不娶，痴心不改地守候一世。可她懂得人生飘忽不定，要学会随遇而安。</p>  </div></div></body></html>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随笔 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图记——直插云霄</title>
+      <link href="/posts/6617d304.html"/>
+      <url>/posts/6617d304.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p><img src="/posts/6617d304/IMG_4526.JPG" alt="直插云霄"></p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 上海 </tag>
+            
+            <tag> 三叉戟 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图记——大厦</title>
+      <link href="/posts/dfa3267e.html"/>
+      <url>/posts/dfa3267e.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p><img src="/posts/dfa3267e/IMG_4474.JPG" alt="大厦"></p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 上海 </tag>
+            
+            <tag> 陆家嘴 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2019年全家合照</title>
+      <link href="/posts/598af32f.html"/>
+      <url>/posts/598af32f.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p>2019年合照</p><span id="more"></span><p><img src="/posts/598af32f/DSC_1123.JPG" alt="DSC_1123"></p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 合照 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>往昔时光-大学</title>
+      <link href="/posts/4166.html"/>
+      <url>/posts/4166.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p><img src="/posts/4166/IMG_3952.JPG" alt="学位授予"></p><p>梦想的起点</p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 往昔时光 </tag>
+            
+            <tag> 大学 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2018年全家合照</title>
+      <link href="/posts/f7e262be.html"/>
+      <url>/posts/f7e262be.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p>在2018年的全家合照</p><span id="more"></span><p><img src="/posts/f7e262be/caff8c228d8d54a9bfce949ec7ea786.jpg" alt="caff8c228d8d54a9bfce949ec7ea786"></p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 合照 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>往昔时光-可爱的他们</title>
+      <link href="/posts/43666.html"/>
+      <url>/posts/43666.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p><img src="/posts/43666/IMG_3586.JPG" alt="可爱的他们"></p><p>可爱的他们</p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 往昔时光 </tag>
+            
+            <tag> 高中 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>往昔时光-大学实习</title>
+      <link href="/posts/48940.html"/>
+      <url>/posts/48940.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><html><head></head><body><p><img src="/posts/48940/IMG_2498.JPG" alt="实习"></p><p>参观实习</p><p><img src="/posts/48940/IMG_2473.JPG" alt="流体机械"></p></body></html>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 大学 </tag>
+            
+            <tag> 往昔 </tag>
+            
+            <tag> 实习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>

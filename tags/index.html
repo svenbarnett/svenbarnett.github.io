@@ -1,0 +1,1708 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="标签, psw,彭思文,siwen,思文,sven,java,study,solution,blog">
+    <meta name="description" content="所行皆过往，所愿皆成真">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="baidu-site-verification" content="code-8VjAnGhv8m" />
+    <meta name="google-site-verification" content="An02eAw6rCWBVutF85tRr02GvZox5D4Pqd9PKFRzvBs" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>标签 | 人间日常</title>
+    
+    <script>
+        // 隐藏
+        //右键
+        // document.oncontextmenu = function (event){
+        //     if(window.event){
+        //     event = window.event;
+        //     }try{
+        //     var the = event.srcElement;
+        //     if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")){
+        //     return false;
+        //     }
+        //     return true;
+        //     }catch (e){
+        //     return false;
+        //     }
+        // }
+
+        //debugger部分
+            // setInterval(function() {
+            // check();
+            // }, 500);
+            // var check = function() {
+            //     function doCheck(a) {
+            //     if (('' + a / a)['length'] !== 1 || a % 20 === 0) {
+            //         (function() {}['constructor']('debugger')());
+            //     } else {
+            //         (function() {}['constructor']('debugger')());
+            //     }
+            //     doCheck(++a);
+            //     }
+            //     try {
+            //     doCheck(0);
+            //     } catch (err) {}
+            // };
+            // check();
+
+            // ctrl+s保存
+            // document.onkeydown = function() {
+            //     if ((e.ctrlKey) && (e.keyCode == 83)) { //ctrl+s
+            //         return false;
+            //     }
+            // }
+            // window.addEventListener("keydown", function(e) {
+            //     //可以判断是不是mac，如果是mac,ctrl变为花键
+            //     //event.preventDefault() 方法阻止元素发生默认的行为。
+            //     if((e.key=='s'||e.key=='S')&&(navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
+            //         e.preventDefault();
+            //     }
+            // }, false);
+            // F12
+            // document.onkeydown = function(){
+            //     if(window.event && window.event.keyCode == 123) {
+            //         event.keyCode=0;
+            //         event.returnValue=false;
+            //     }
+            //     if(window.event && window.event.keyCode == 13) {
+            //         window.event.keyCode = 505;
+            //     }
+            //     if(window.event && window.event.keyCode == 8) {
+            //         window.event.returnValue=false;
+            //     }
+            // }
+        //宽高
+        // var threshold = 160; // 打开控制台的宽或高阈值  
+        // // 每秒检查一次  
+        // window.setInterval(function() {  
+        //     if (window.outerWidth - window.innerWidth > threshold ||   
+        //     window.outerHeight - window.innerHeight > threshold) {  
+        //         // 如果打开控制台，则刷新页面  
+        //         window.location.reload();  
+        //     }  
+        // }, 1e3);
+
+        //debug调试时跳转页面
+        // var element = new Image();
+        // Object.defineProperty(element,'id',{get:function(){window.location.href="/tenfour/homepage/"}});
+        // console.log(element);
+    </script>
+    
+    <link rel="icon" type="image/jpeg" href="/medias/avatar.jpg">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <link type='text/css' rel="stylesheet" href="/css/font-awesome.min.css"/>
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    <!-- <script src="/js/foropensource.js"></script> -->
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https'){
+           bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+          }
+          else{
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+          }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="人间日常" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<!-- 提示：若要开启春节或者圣诞主题样式，直接给body标签添加一个class为
+class="themespring" -->
+<body>
+    <!-- 网站全局深色模式设置开始 -->
+    <script>
+        if (localStorage.getItem('dark') === '1') {
+        document.body.classList.add('dark');
+        }
+        //  else if (new Date().getHours() >= 22 || new Date().getHours() < 7) {
+        // document.body.classList.add('dark');
+        // } 
+        else if (matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+        }
+    </script>
+    <a onclick="switchNightMode()" id="sma">
+        <i class="fa fa-moon-o" id="nightMode" aria-hidden="true"></i>
+    </a>
+    <!-- 网站全局深色模式设置结束 -->
+
+    <!-- 网站主题切换模式开始 -->
+    <!-- 中国节日按钮开始 -->
+    <script>
+        if (localStorage.getItem('themespring') === '1') {
+            document.body.classList.add('themespring');
+        }
+        else if (matchMedia('(prefers-color-scheme: themespring)').matches) {
+            document.body.classList.add('themespring');
+        }
+    </script>
+    <div onclick="switchSpringThemes()" id="switchspring">
+        <img class="chunjiepic" src="/medias/spring-img/denglong.png" title="春节主题" />
+    </div>
+    <!-- 中国节日按钮结束  -->
+    <!-- 网站主题切换模式结束 -->
+
+    <!-- header模块开始 -->
+<header class="navbar-fixed" id="header-active">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.webp" class="logo-img" alt="LOGO">
+                    
+                    <!-- 大屏幕下logo字体 -->
+                    <span class="bigwidth">Pengsiwen-Blog</span>
+                    <!-- 小屏幕下logo字体 -->
+                    <span class="smallwidth">Pengsiwen</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/gallery" class="waves-effect waves-light">
+      
+      <span>相册</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.webp" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">人间日常</div>
+        <div class="logo-desc">
+            
+            所行皆过往，所愿皆成真
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+				<i class="fas fa-fw"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/gallery" class="waves-effect waves-light">
+			
+				<i class="fas fa-fw"></i>
+			
+			相册
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+        <style>
+          .brand-logo .waves-effect {
+            font-size: 24px;
+            font-style: oblique;
+            color: #fadca6;
+          }
+        </style>
+        
+        
+    </nav>
+</header>
+<!-- header模块结束 -->
+
+<!-- 春节主题模式样式开始 -->
+<style>
+    .denglong {
+        display: none;
+    }
+    body.themespring .denglong {
+        display: block;
+    }
+    @media only screen and (min-width: 1124px) {
+        .nav-menu {
+            padding-right: 0px;
+        }
+        body.themespring .nav-menu {
+            padding-right: 96px;
+        }
+    }
+    @media only screen and (max-width: 760px) {
+        .deng-box, .deng-box1 {
+            width: 40%;
+        }
+        body.themespring .right {
+            float: left!important;
+        }
+    }
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+        .right {
+            float: left!important;
+        }
+    }
+    .deng-box {
+        position: fixed;
+        top: -40px;
+        right: -20px;
+        z-index: 999;
+    }
+    .deng-box1 {
+        position: fixed;
+        top: -30px;
+        right: 10px;
+        z-index: 999;
+    }
+    .deng-box1 .deng {
+        position: relative;
+        width: 120px;
+        height: 90px;
+        margin: 50px;
+        background: #d8000f;
+        background: rgba(216, 0, 15, 0.8);
+        border-radius: 50% 50%;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: swing 5s infinite ease-in-out;
+        box-shadow: -5px 5px 30px 4px rgba(252, 144, 61, 1);
+    }
+    .deng {
+        position: relative;
+        width: 120px;
+        height: 90px;
+        margin: 50px;
+        background: #d8000f;
+        background: rgba(216, 0, 15, 0.8);
+        border-radius: 50% 50%;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: swing 3s infinite ease-in-out;
+        box-shadow: -5px 5px 50px 4px rgba(250, 108, 0, 1);
+    }
+    .deng-a {
+        width: 100px;
+        height: 90px;
+        background: #d8000f;
+        background: rgba(216, 0, 15, 0.1);
+        margin: 12px 8px 8px 10px;
+        border-radius: 50% 50%;
+        border: 2px solid #dc8f03;
+    }
+    .deng-b {
+        width: 45px;
+        height: 90px;
+        background: #d8000f;
+        background: rgba(216, 0, 15, 0.1);
+        margin: -4px 8px 8px 26px;
+        border-radius: 50% 50%;
+        border: 2px solid #dc8f03;
+    }
+    .xian {
+        position: absolute;
+        top: -20px;
+        left: 60px;
+        width: 2px;
+        height: 20px;
+        background: #dc8f03;
+    }
+    .shui-a {
+        position: relative;
+        width: 5px;
+        height: 20px;
+        margin: -5px 0 0 59px;
+        -webkit-animation: swing 4s infinite ease-in-out;
+        -webkit-transform-origin: 50% -45px;
+        background: #ffa500;
+        border-radius: 0 0 5px 5px;
+    }
+    .shui-b {
+        position: absolute;
+        top: 14px;
+        left: -2px;
+        width: 10px;
+        height: 10px;
+        background: #dc8f03;
+        border-radius: 50%;
+    }
+    .shui-c {
+        position: absolute;
+        top: 18px;
+        left: -2px;
+        width: 10px;
+        height: 35px;
+        background: #ffa500;
+        border-radius: 0 0 0 5px;
+    }
+    .deng:before {
+        position: absolute;
+        top: -7px;
+        left: 29px;
+        height: 12px;
+        width: 60px;
+        content: " ";
+        display: block;
+        z-index: 999;
+        border-radius: 5px 5px 0 0;
+        border: solid 1px #dc8f03;
+        background: #ffa500;
+        background: linear-gradient(to right, #dc8f03, #ffa500, #dc8f03, #ffa500, #dc8f03);
+    }
+    .deng:after {
+        position: absolute;
+        bottom: -7px;
+        left: 10px;
+        height: 12px;
+        width: 60px;
+        content: " ";
+        display: block;
+        margin-left: 20px;
+        border-radius: 0 0 5px 5px;
+        border: solid 1px #dc8f03;
+        background: #ffa500;
+        background: linear-gradient(to right, #dc8f03, #ffa500, #dc8f03, #ffa500, #dc8f03);
+    }
+    @font-face {
+        font-family: "华文行楷";
+        src: url('/fonts/华文行楷.ttf');
+    }
+    .deng-t {
+        font-family: 华文行楷;
+        font-size: 26px;
+        color: #dc8f03;
+        font-weight: bold;
+        line-height: 44px;
+        text-align: center;
+    }
+    .night .deng-t,
+    .night .deng-box,
+    .night .deng-box1 {
+        background: transparent !important;
+    }
+    @-moz-keyframes swing {
+        0% {
+                -moz-transform: rotate(-10deg)
+        }
+        50% {
+             -moz-transform: rotate(10deg)
+        }
+        100% {
+                -moz-transform: rotate(-10deg)
+        }
+    }
+    @-webkit-keyframes swing {
+        0% {
+                -webkit-transform: rotate(-10deg)
+        }
+        50% {
+                -webkit-transform: rotate(10deg)
+        }
+        100% {
+                -webkit-transform: rotate(-10deg)
+        }
+    }
+</style>
+<div class="denglong">
+    <div class="deng-box">
+        <div class="deng">
+            <div class="xian"></div>
+            <div class="deng-a">
+                <div class="deng-b"><div class="deng-t" id="dtone">喜迎</div></div>
+            </div>
+            <div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div>
+        </div>
+    </div>
+    <div class="deng-box1">
+        <div class="deng">
+            <div class="xian"></div>
+            <div class="deng-a">
+                <div class="deng-b"><div class="deng-t" id="dttwo">春节</div></div>
+            </div>
+            <div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div>
+        </div>
+    </div>
+</div>
+<!-- 春节主题模式样式结束 -->
+
+    <div class="bg-cover pd-header about-cover">
+    <div class="container">
+        <div class="row">
+    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+        <div class="brand">
+            <div class="title center-align">
+                
+                    tags
+                 
+            </div>
+
+            <div class="description center-align">
+                
+                <span id="subtitle"></span>
+                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+                <script>
+                    var typed = new Typed("#subtitle", {
+                        strings: ['欢迎阅读我的博客，也欢迎大家的赞赏',''],
+                        startDelay: 200,
+                        typeSpeed: 120,
+                        loop: true,
+                        backSpeed: 50,
+                        showCursor: true
+                    });
+                </script>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // 每天切换 banner 图.  Switch banner image every day.
+    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
+    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
+</script>
+
+
+    </div>
+    <div class="mohuxiaoguo"></div>
+</div>
+
+
+<style>
+    #sma {
+        bottom: 166px;
+    }
+    #switchspring {
+        bottom: 230px;
+    }
+    .bg-cover::before {
+        background-image: url(https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/grid.png);
+    }
+    body.dark .bg-cover .description {
+        opacity: 0.8;
+    }
+    body.dark .bg-cover .title {
+        color: rgba(255, 255, 255, 0.85);
+    }
+</style>
+<main class="content">
+
+    
+
+<div id="tags" class="container chip-container">
+    <div class="card">
+        <!-- 福袋按钮 -->
+        <div class="caishendeng">        
+            <div class="guguxian">
+                <img class="caishenpic gugus" src="/medias/spring-img/gugu.png" />
+            </div>              
+        </div>
+        <!-- 圣诞按钮 -->
+        <div class="shengdandeng">        
+            <div class="shengdanxian">
+                <img class="shengdanpic fudai" src="/medias/christmas-img/shoutao.png" />
+            </div>              
+        </div>
+        <div class="card-content">
+            <!-- <div class="tag-title center-align">
+                <i class="fas fa-tags"></i>&nbsp;&nbsp;文章标签
+
+                <div class="notice">
+                    <div class="notice-content" id="poem"></div>
+                    <div class="notice-content" id="info"></div>
+                </div>
+                <script>
+                    $.get("https://v1.hitokoto.cn?c=d&c=h",function(data,status){if(status=='success'){$('#poem').html(data.hitokoto);if(data.from_who!=null){$('#info').html(data.from_who+" · "+"《 "+data.from+" 》");}else{$('#info').html(" “ "+data.from+" ” ");}}else{$('#poem').html("获取出错啦");}});
+                </script>
+            </div> -->
+            <div class="tag-chips">
+                
+                
+                <a href="/tags/%E5%90%88%E7%85%A7/" title="合照: 2">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="合照" style="background-color: #F9EBEA;">🔖&nbsp;合照
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E7%96%AB%E6%83%85/" title="疫情: 2">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="疫情" style="background-color: #F5EEF8;">🔖&nbsp;疫情
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E6%98%A5%E8%8A%82/" title="春节: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="春节" style="background-color: #D5F5E3;">🔖&nbsp;春节
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E7%83%9F%E8%8A%B1/" title="烟花: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="烟花" style="background-color: #E8F8F5;">🔖&nbsp;烟花
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%85%83%E5%AE%B5%E8%8A%82/" title="元宵节: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="元宵节" style="background-color: #FEF9E7;">🔖&nbsp;元宵节
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/QQ/" title="QQ: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="QQ" style="background-color: #F8F9F9;">🔖&nbsp;QQ
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E9%82%A3%E4%BA%9B%E5%B9%B4/" title="那些年: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="那些年" style="background-color: #82E0AA;">🔖&nbsp;那些年
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/Apollo/" title="Apollo: 2">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="Apollo" style="background-color: #D7BDE2;">🔖&nbsp;Apollo
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/Spring/" title="Spring: 2">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="Spring" style="background-color: #A3E4D7;">🔖&nbsp;Spring
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE/" title="动态配置: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="动态配置" style="background-color: #85C1E9;">🔖&nbsp;动态配置
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E8%81%9A%E4%BC%9A/" title="聚会: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="聚会" style="background-color: #F8C471;">🔖&nbsp;聚会
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E6%82%BC%E5%BF%B5/" title="悼念: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="悼念" style="background-color: #F9E79F;">🔖&nbsp;悼念
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%A9%9A%E7%A4%BC/" title="婚礼: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="婚礼" style="background-color: #D7BDE2;">🔖&nbsp;婚礼
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E6%B8%B8%E5%9B%AD%E5%A9%9A%E7%A4%BC/" title="游园婚礼: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="游园婚礼" style="background-color: #82E0AA;">🔖&nbsp;游园婚礼
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/" title="文件下载: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="文件下载" style="background-color: #F8F9F9;">🔖&nbsp;文件下载
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/P2P/" title="P2P: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="P2P" style="background-color: #E8F8F5;">🔖&nbsp;P2P
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%88%86%E7%89%87%E4%B8%8B%E8%BD%BD/" title="分片下载: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="分片下载" style="background-color: #FEF9E7;">🔖&nbsp;分片下载
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/linux/" title="linux: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="linux" style="background-color: #85C1E9;">🔖&nbsp;linux
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/acmesh/" title="acmesh: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="acmesh" style="background-color: #E8F8F5;">🔖&nbsp;acmesh
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%9F%9F%E5%90%8D%E8%AF%81%E4%B9%A6/" title="域名证书: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="域名证书" style="background-color: #D5F5E3;">🔖&nbsp;域名证书
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/leetcode/" title="leetcode: 5">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="leetcode" style="background-color: #82E0AA;">🔖&nbsp;leetcode
+                        <span class="tag-length">5</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E7%AE%97%E6%B3%95/" title="算法: 5">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="算法" style="background-color: #F9EBEA;">🔖&nbsp;算法
+                        <span class="tag-length">5</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E8%B4%AA%E5%BF%83/" title="贪心: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="贪心" style="background-color: #F9EBEA;">🔖&nbsp;贪心
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" title="动态规划: 2">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="动态规划" style="background-color: #F8C471;">🔖&nbsp;动态规划
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E4%BA%8C%E5%88%86%E6%B3%95/" title="二分法: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="二分法" style="background-color: #D7BDE2;">🔖&nbsp;二分法
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%BF%AB%E6%85%A2%E6%8C%87%E9%92%88/" title="快慢指针: 2">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="快慢指针" style="background-color: #F8F9F9;">🔖&nbsp;快慢指针
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/gulp/" title="gulp: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="gulp" style="background-color: #D7BDE2;">🔖&nbsp;gulp
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%8E%8B%E7%BC%A9%E5%9B%BE%E7%89%87/" title="压缩图片: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="压缩图片" style="background-color: #FFF;">🔖&nbsp;压缩图片
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/gulp-imagemin/" title="gulp-imagemin: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="gulp-imagemin" style="background-color: #D7BDE2;">🔖&nbsp;gulp-imagemin
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/Java/" title="Java: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="Java" style="background-color: #FFF;">🔖&nbsp;Java
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" title="位运算: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="位运算" style="background-color: #D5F5E3;">🔖&nbsp;位运算
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E6%AD%A3%E5%88%99/" title="正则: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="正则" style="background-color: #D5F5E3;">🔖&nbsp;正则
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/js/" title="js: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="js" style="background-color: #A3E4D7;">🔖&nbsp;js
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%8E%BB%E9%99%A4%E9%9B%B6/" title="去除零: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="去除零" style="background-color: #A3E4D7;">🔖&nbsp;去除零
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/jvm/" title="jvm: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="jvm" style="background-color: #A3E4D7;">🔖&nbsp;jvm
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD/" title="类加载: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="类加载" style="background-color: #85C1E9;">🔖&nbsp;类加载
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/jvm%E8%B0%83%E4%BC%98/" title="jvm调优: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="jvm调优" style="background-color: #85C1E9;">🔖&nbsp;jvm调优
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E6%B7%B7%E5%90%88%E6%A8%A1%E5%BC%8F/" title="混合模式: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="混合模式" style="background-color: #82E0AA;">🔖&nbsp;混合模式
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E8%A7%A3%E9%87%8A%E6%A8%A1%E5%BC%8F/" title="解释模式: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="解释模式" style="background-color: #F5EEF8;">🔖&nbsp;解释模式
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E7%BA%AF%E7%BC%96%E8%AF%91%E6%A8%A1%E5%BC%8F/" title="纯编译模式: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="纯编译模式" style="background-color: #F9EBEA;">🔖&nbsp;纯编译模式
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/" title="环形链表: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="环形链表" style="background-color: #82E0AA;">🔖&nbsp;环形链表
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%BE%80%E6%98%94%E6%97%B6%E5%85%89/" title="往昔时光: 2">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="往昔时光" style="background-color: #85C1E9;">🔖&nbsp;往昔时光
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%A4%A7%E5%AD%A6/" title="大学: 2">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="大学" style="background-color: #FFF;">🔖&nbsp;大学
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E9%AB%98%E4%B8%AD/" title="高中: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="高中" style="background-color: #A3E4D7;">🔖&nbsp;高中
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%BE%80%E6%98%94/" title="往昔: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="往昔" style="background-color: #E8F8F5;">🔖&nbsp;往昔
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%AE%9E%E4%B9%A0/" title="实习: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="实习" style="background-color: #D5F5E3;">🔖&nbsp;实习
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E6%88%91%E4%BB%AC/" title="我们: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="我们" style="background-color: #FFF;">🔖&nbsp;我们
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%B9%B4%E8%BD%BB/" title="年轻: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="年轻" style="background-color: #82E0AA;">🔖&nbsp;年轻
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%B9%B4%E5%B9%BC/" title="年幼: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="年幼" style="background-color: #A3E4D7;">🔖&nbsp;年幼
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E6%A0%91/" title="树: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="树" style="background-color: #FEF9E7;">🔖&nbsp;树
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/dfs/" title="dfs: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="dfs" style="background-color: #F8F9F9;">🔖&nbsp;dfs
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/bfs/" title="bfs: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="bfs" style="background-color: #D7BDE2;">🔖&nbsp;bfs
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E6%AD%A6%E5%BA%B7%E5%A4%A7%E6%A5%BC/" title="武康大楼: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="武康大楼" style="background-color: #D7BDE2;">🔖&nbsp;武康大楼
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E4%B8%8A%E6%B5%B7/" title="上海: 3">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="上海" style="background-color: #82E0AA;">🔖&nbsp;上海
+                        <span class="tag-length">3</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E9%99%86%E5%AE%B6%E5%98%B4/" title="陆家嘴: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="陆家嘴" style="background-color: #FEF9E7;">🔖&nbsp;陆家嘴
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E4%B8%89%E5%8F%89%E6%88%9F/" title="三叉戟: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="三叉戟" style="background-color: #D5F5E3;">🔖&nbsp;三叉戟
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E4%B8%8A%E6%B5%B7%E5%A4%96%E6%BB%A9/" title="上海外滩: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="上海外滩" style="background-color: #D5F5E3;">🔖&nbsp;上海外滩
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%A4%9C%E6%99%AF/" title="夜景: 2">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="夜景" style="background-color: #F9EBEA;">🔖&nbsp;夜景
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E6%99%9A%E9%9C%9E/" title="晚霞: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="晚霞" style="background-color: #D7BDE2;">🔖&nbsp;晚霞
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E4%BA%91%E8%B0%B7/" title="云谷: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="云谷" style="background-color: #FFF;">🔖&nbsp;云谷
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%9B%9E%E6%BA%AF/" title="回溯: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="回溯" style="background-color: #85C1E9;">🔖&nbsp;回溯
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E7%9F%A9%E9%98%B5/" title="矩阵: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="矩阵" style="background-color: #82E0AA;">🔖&nbsp;矩阵
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E6%B7%B1%E5%BA%A6%E9%81%8D%E5%8E%86/" title="深度遍历: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="深度遍历" style="background-color: #F9EBEA;">🔖&nbsp;深度遍历
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%B9%BF%E5%BA%A6%E9%81%8D%E5%8E%86/" title="广度遍历: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="广度遍历" style="background-color: #F8C471;">🔖&nbsp;广度遍历
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%9B%BE%E8%AE%B0/" title="图记: 2">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="图记" style="background-color: #D5F5E3;">🔖&nbsp;图记
+                        <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%A4%A9%E5%AE%89%E4%BA%91%E8%B0%B7/" title="天安云谷: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="天安云谷" style="background-color: #D7BDE2;">🔖&nbsp;天安云谷
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E7%94%9F%E6%B4%BB/" title="生活: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="生活" style="background-color: #FFF;">🔖&nbsp;生活
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%8D%88%E9%A4%90/" title="午餐: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="午餐" style="background-color: #D5F5E3;">🔖&nbsp;午餐
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%8D%95%E8%AF%8D%E6%8E%A5%E9%BE%99/" title="单词接龙: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="单词接龙" style="background-color: #F9EBEA;">🔖&nbsp;单词接龙
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E5%85%B3%E4%BA%8EitsNeko%E5%BC%80%E6%BA%90%E5%8D%9A%E5%AE%A2/" title="关于itsNeko开源博客: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="关于itsNeko开源博客" style="background-color: #E8F8F5;">🔖&nbsp;关于itsNeko开源博客
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E6%8A%80%E6%9C%AF/" title="技术: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="技术" style="background-color: #F8F9F9;">🔖&nbsp;技术
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/%E9%9A%8F%E7%AC%94/" title="随笔: 1">
+                    <span class="chip center-align waves-effect waves-light
+                     chip-default "
+                            data-tagname="随笔" style="background-color: #FFF;">🔖&nbsp;随笔
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <link rel="stylesheet" type="text/css" href="/libs/jqcloud/jqcloud.css">
+<style type="text/css">
+    #tag-wordcloud {
+        width: 100%;
+        height: 300px;
+    }
+</style>
+
+<div class="container">
+    <div class="card">
+        <div id="tag-wordcloud" class="card-content"></div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/libs/jqcloud/jqcloud-1.0.4.min.js"></script>
+<script type="text/javascript">
+    
+
+    $('#tag-wordcloud').jQCloud([{"text":"合照","weight":2,"link":"/tags/合照/"},{"text":"疫情","weight":2,"link":"/tags/疫情/"},{"text":"春节","weight":1,"link":"/tags/春节/"},{"text":"烟花","weight":1,"link":"/tags/烟花/"},{"text":"元宵节","weight":1,"link":"/tags/元宵节/"},{"text":"QQ","weight":1,"link":"/tags/QQ/"},{"text":"那些年","weight":1,"link":"/tags/那些年/"},{"text":"Apollo","weight":2,"link":"/tags/Apollo/"},{"text":"Spring","weight":2,"link":"/tags/Spring/"},{"text":"动态配置","weight":1,"link":"/tags/动态配置/"},{"text":"聚会","weight":1,"link":"/tags/聚会/"},{"text":"悼念","weight":1,"link":"/tags/悼念/"},{"text":"婚礼","weight":1,"link":"/tags/婚礼/"},{"text":"游园婚礼","weight":1,"link":"/tags/游园婚礼/"},{"text":"文件下载","weight":1,"link":"/tags/文件下载/"},{"text":"P2P","weight":1,"link":"/tags/P2P/"},{"text":"分片下载","weight":1,"link":"/tags/分片下载/"},{"text":"linux","weight":1,"link":"/tags/linux/"},{"text":"acmesh","weight":1,"link":"/tags/acmesh/"},{"text":"域名证书","weight":1,"link":"/tags/域名证书/"},{"text":"leetcode","weight":5,"link":"/tags/leetcode/"},{"text":"算法","weight":5,"link":"/tags/算法/"},{"text":"贪心","weight":1,"link":"/tags/贪心/"},{"text":"动态规划","weight":2,"link":"/tags/动态规划/"},{"text":"二分法","weight":1,"link":"/tags/二分法/"},{"text":"快慢指针","weight":2,"link":"/tags/快慢指针/"},{"text":"gulp","weight":1,"link":"/tags/gulp/"},{"text":"压缩图片","weight":1,"link":"/tags/压缩图片/"},{"text":"gulp-imagemin","weight":1,"link":"/tags/gulp-imagemin/"},{"text":"Java","weight":1,"link":"/tags/Java/"},{"text":"位运算","weight":1,"link":"/tags/位运算/"},{"text":"正则","weight":1,"link":"/tags/正则/"},{"text":"js","weight":1,"link":"/tags/js/"},{"text":"去除零","weight":1,"link":"/tags/去除零/"},{"text":"jvm","weight":1,"link":"/tags/jvm/"},{"text":"类加载","weight":1,"link":"/tags/类加载/"},{"text":"jvm调优","weight":1,"link":"/tags/jvm调优/"},{"text":"混合模式","weight":1,"link":"/tags/混合模式/"},{"text":"解释模式","weight":1,"link":"/tags/解释模式/"},{"text":"纯编译模式","weight":1,"link":"/tags/纯编译模式/"},{"text":"环形链表","weight":1,"link":"/tags/环形链表/"},{"text":"往昔时光","weight":2,"link":"/tags/往昔时光/"},{"text":"大学","weight":2,"link":"/tags/大学/"},{"text":"高中","weight":1,"link":"/tags/高中/"},{"text":"往昔","weight":1,"link":"/tags/往昔/"},{"text":"实习","weight":1,"link":"/tags/实习/"},{"text":"我们","weight":1,"link":"/tags/我们/"},{"text":"年轻","weight":1,"link":"/tags/年轻/"},{"text":"年幼","weight":1,"link":"/tags/年幼/"},{"text":"树","weight":1,"link":"/tags/树/"},{"text":"dfs","weight":1,"link":"/tags/dfs/"},{"text":"bfs","weight":1,"link":"/tags/bfs/"},{"text":"武康大楼","weight":1,"link":"/tags/武康大楼/"},{"text":"上海","weight":3,"link":"/tags/上海/"},{"text":"陆家嘴","weight":1,"link":"/tags/陆家嘴/"},{"text":"三叉戟","weight":1,"link":"/tags/三叉戟/"},{"text":"上海外滩","weight":1,"link":"/tags/上海外滩/"},{"text":"夜景","weight":2,"link":"/tags/夜景/"},{"text":"晚霞","weight":1,"link":"/tags/晚霞/"},{"text":"云谷","weight":1,"link":"/tags/云谷/"},{"text":"回溯","weight":1,"link":"/tags/回溯/"},{"text":"矩阵","weight":1,"link":"/tags/矩阵/"},{"text":"深度遍历","weight":1,"link":"/tags/深度遍历/"},{"text":"广度遍历","weight":1,"link":"/tags/广度遍历/"},{"text":"图记","weight":2,"link":"/tags/图记/"},{"text":"天安云谷","weight":1,"link":"/tags/天安云谷/"},{"text":"生活","weight":1,"link":"/tags/生活/"},{"text":"午餐","weight":1,"link":"/tags/午餐/"},{"text":"单词接龙","weight":1,"link":"/tags/单词接龙/"},{"text":"关于itsNeko开源博客","weight":1,"link":"/tags/关于itsNeko开源博客/"},{"text":"技术","weight":1,"link":"/tags/技术/"},{"text":"随笔","weight":1,"link":"/tags/随笔/"}], {
+        autoResize: true
+    });
+</script>
+
+    
+
+</main>
+
+
+    <style>
+  footer {
+    position: relative;
+  }
+
+  .page-footer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+</style>
+<footer class="page-footer bg-color">
+  
+
+  <div class="container row center-align"
+    style="margin-bottom: 0px !important;">
+    <!-- 版权信息 -->
+    <div class="col s12 m6 l6 copy-right">
+      Copyright&nbsp;&copy;
+      <span id="year">2014</span>
+      <a>SIWEN.PENG</a>
+      <br>
+      
+      
+      
+      
+      
+ 
+      
+     
+      
+      <span id="icp">
+        <a href="https://beian.miit.gov.cn/" target="_blank">
+          <img src="/medias/icp.png"
+            style="vertical-align: text-bottom;width: 16px;height: 16px;" />
+          湘ICP备2020021380号-1
+        </a>
+      </span>
+      
+    </div>
+    <div class="col s12 m3 l3 social-link ">
+
+
+    <a href="mailto:pengsiwen_2@163.com" class="tooltipped" target="_blank" data-tooltip="pengsiwen_2@163.com" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=3197544360" class="tooltipped" target="_blank" data-tooltip="3197544360" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+</div>
+  </div>
+  <!-- 波浪条waveline -->
+  <div class="wavelinefooter">
+    <style>
+      .wavelinefooter {
+        background: url(/medias/wave.png) 0 0 repeat-x;
+        height: 3px;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: -3px;
+        background-size: 10px 3px;
+      }
+    </style>
+  </div>
+</footer>
+
+<!-- 底部进度条 -->
+<div class="progress-bar" style="z-index: 999"></div>
+
+    <!-- 搜索遮罩框 -->
+<style>
+#searchInput::-webkit-input-placeholder { /* WebKit browsers */ 
+    font-size:16px;
+} 
+#searchInput:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+    font-size:16px;
+} 
+#searchInput::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+    font-size:16px;
+} 
+#searchInput:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+    font-size:16px;
+} 
+#searchInput {
+    margin-top: 6px;
+    margin-bottom: 12px;
+    text-indent: 4px;
+    font-size: 14px;
+}
+</style>
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;站内搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input" autofocus="autofocus" />
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+<!-- 点击搜索按钮后input框自动获取焦点 -->
+
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+    
+    <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?83fbb968d837cac86cb15c97ddd8cdd4";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+    <!--动态线条背景-->
+    <script type="text/javascript" color="122 103 158" opacity='0.12' zIndex="-2" count="100" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+    </script>
+ 
+    <script type="text/javascript" src="/js/click_show_text.js"></script>
+    <script src="/js/linkcard.js"></script>
+
+    <script src="/js/activate-power-mode.js"></script>
+    <script>
+        POWERMODE.colorful = true; // make power mode colorful
+        POWERMODE.shake = false; // turn off shake
+        document.body.addEventListener('input', POWERMODE);
+    </script>
+
+    <!-- 百度统计代码 -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!----------节日判断,进行网站修饰，比如春节圣诞或变灰色的清明等----- -->
+    <script>
+        // 判断今天是哪个节假日或特殊纪念日进行网站修饰，比如春节圣诞或变灰色的清明等
+        var curMonth = new Date().getMonth() + 1; //月
+        var curDate = new Date().getDate(); //日
+        function cancelguajian() {
+            // 判断如果是变灰色的纪念日则将小挂件隐藏
+            var guajianone = document.getElementsByClassName('caishendeng');
+            var guajiantwo = document.getElementsByClassName('labelmz');
+            var guajianthree = document.getElementsByClassName('friendmz');
+            var denglong = document.getElementsByClassName('denglong');
+            for(var i = 0; i < guajianone.length; i++) {
+                guajianone[i].style.display = "none"
+            };
+            for(var j = 0; j < guajiantwo.length; j++) {
+                guajiantwo[j].style.display = "none"
+            }
+            for(var k = 0; k < guajianthree.length; k++) {
+                guajianthree[k].style.display = "none"
+            };
+            for(var x = 0; x < denglong.length; x++) {
+                denglong[x].style.display = "none"
+            };
+            document.getElementById('switchchristmas').style.display = "none";
+            document.getElementById('switchspring').style.display = "none";
+            document.getElementById('xiaomaozitx').style.display = "none";
+        }
+        // --------------以下节日为公历，每年固定--------------
+        if(curMonth == 1 && curDate == 1) {
+            // 1月1日为元旦节
+            document.body.classList.add('themespring');
+            document.getElementById('dtone').innerHTML = "快乐";
+            document.getElementById('dttwo').innerHTML = "元旦";
+        }
+        else if(curMonth == 9 && curDate == 29) {
+            // 9月30日为全国烈士纪念日，设在国庆前一天
+            document.getElementsByTagName('html')[0].classList.add('gray');
+            document.getElementById('popupbb').style.display = "block";
+            document.getElementById('jinianci').innerHTML = "今天是“ 9月30日 ”，“ 全国烈士纪念日 ”。定为每年的9月30日,正好是国庆前一天,让全国人民永远不要忘记先有无数先烈的前赴后继、奋勇献身,才有我们国家今天的繁荣富强、文明进步。"
+            document.getElementById('switchchristmas').style.display = "none";
+            document.getElementById('switchspring').style.display = "none";
+            // document.body.classList.add('themespring');
+            document.getElementById('dtone').innerHTML = "缅怀";
+            document.getElementById('dttwo').innerHTML = "烈士";
+            cancelguajian();
+        }
+        // 10月1日为国庆节
+        else if(
+          curMonth == 10 && curDate == 1
+          || curMonth == 10 && curDate == 2
+          || curMonth == 10 && curDate == 3
+          || curMonth == 10 && curDate == 4
+          || curMonth == 10 && curDate == 5
+          || curMonth == 10 && curDate == 6
+          || curMonth == 10 && curDate == 7) {
+            document.body.classList.add('themespring');
+            document.getElementById('dtone').innerHTML = "欢度";
+            document.getElementById('dttwo').innerHTML = "国庆";
+            document.getElementById('index-video').src = "https://txmov2.a.yximgs.com/upic/2021/09/30/15/BMjAyMTA5MzAxNTE5MDhfMTg1ODk2MDg4N181ODA5MjQ1NDkyMV8xXzM=_b_Bef514871cf947c46c11bc54a3ed3faa9.mp4?pkey=AAWo-kOQESq9j_AMCO-BT6jTPS090PuVHWtyuSQ8cddkgMmI3V-P9uWMDY13QrPuCjtWVbch_01wRcj6Rtm5w0AkLhgVTMSceLLiRYjlWUfLDNNLX3jISKEscl9uNXUnYcM&tag=1-1632986688-xpcwebprofile-0-ongrobirtl-58c917acab52d13f&clientCacheKey=3xajcj9u8fubzm4_b.mp4";
+            document.getElementById('popupbb').style.display = "block"
+            document.getElementById('tujis').style.display = "block";
+            // document.getElementById('fights').style.display = "none";
+            document.getElementById('jinianci').style.textAlign = "center";
+            document.getElementById('jinianci').innerHTML = "《 国庆日🚩》<br> 十月惊雷震九重，国富民强聩耳聋。<br>城头城下聚农工，神州处处花潮涌。<br>而今白鹿奋清风，山长水远不知踪。"
+          }
+        else if(curMonth == 12 && curDate == 13) {
+            // 12月13日为国家公祭日
+            document.getElementsByTagName('html')[0].classList.add('gray');
+            // document.body.classList.add('themespring');
+            document.getElementById('dtone').innerHTML = "国家";
+            document.getElementById('dttwo').innerHTML = "公祭";
+            document.getElementById('jinianci').innerHTML = "今天是 “ 12月13日 ”，南京大屠杀死难者 “ 国家公祭日 ”。国行公祭，法立典章。铸兹宝鼎，祀我国殇。永矢弗谖，祈愿和平。中华圆梦，民族复兴。";
+            document.getElementById('popupbb').style.display = "block";
+            document.getElementById('switchchristmas').style.display = "none";
+            document.getElementById('switchspring').style.display = "none";
+            cancelguajian();
+        }
+
+        else if(curMonth == 5 && curDate == 22) {
+            // 2021年5月22日袁隆平院士逝世，云南大理发生6级地震
+            document.getElementsByTagName('html')[0].classList.add('gray');
+            document.body.classList.add('dark');
+            // document.body.classList.add('themespring');
+            document.getElementById('dtone').innerHTML = "地震";
+            document.getElementById('dttwo').innerHTML = "袁老";
+            document.getElementById('jinianci').innerHTML = "今天是 “ 2021年5月22日 ”，杂交水稻之父、共和国勋章获得者袁隆平逝世，享年91岁，记忆中您还是小学课本里的爷爷形象，.......还有21日晚云南大理州遭受地震的大家，要好好地...";
+            document.getElementById('popupbb').style.display = "block";
+            document.getElementById('switchchristmas').style.display = "none";
+            document.getElementById('switchspring').style.display = "none";
+            cancelguajian();
+        }
+
+        else if(curMonth == 12 && curDate == 25) {
+            // 12月25日为圣诞节
+            document.body.classList.add('themechris');
+        }
+        // --------------以下节日为农历，每年不固定--------------
+        else if(curMonth == 4 && curDate == 4) {
+            // 2021年4月4日为清明节
+            document.getElementsByTagName('html')[0].classList.add('gray');
+            document.getElementById('switchchristmas').style.display = "none";
+            document.getElementById('switchspring').style.display = "none";
+            document.getElementById('popupbb').style.display = "block";
+            document.getElementById('jinianci').innerHTML = "今天是“ 4月4日 ”，“ 清明节 ”，正是郊外踏青春游与行清墓祭的好时节。燕子来时新社,梨花落后清明。"
+            // document.body.classList.add('themespring');
+            document.getElementById('dtone').innerHTML = "安康";
+            document.getElementById('dttwo').innerHTML = "清明";
+            cancelguajian();
+        }
+        else if(curMonth == 1 && curDate == 31) {
+            // 2021春节除夕为1月31日
+            document.body.classList.add('themespring');
+            document.getElementById('dtone').innerHTML = "快乐";
+            document.getElementById('dttwo').innerHTML = "除夕";
+        }
+        else if(curMonth == 2) {
+            // 2021春节为2月1日开始
+            document.body.classList.add('themespring');
+        }
+        else if(curMonth == 6 && curDate == 14) {
+            // 2021端午节为6月14日
+            document.body.classList.add('themespring');
+            document.getElementById('dtone').innerHTML = "安康";
+            document.getElementById('dttwo').innerHTML = "端午";
+        }
+        else if(curMonth == 9 && curDate == 21) {
+            // 2021中秋节为9月21日
+            document.body.classList.add('themespring');
+            document.getElementById('dtone').innerHTML = "团圆";
+            document.getElementById('dttwo').innerHTML = "中秋";
+        }
+    </script>
+
+    <!-- 实现tab切换点击标题显示下划线和颜色改变效果 -->
+    <script>
+        $(function () {
+            var nowUrl = window.location.href
+            var homeTab = $('nav ul li a[href="/"] span'),
+                cateTab = $('nav ul li a[href="/categories"] span'),
+                recordTab = $('nav ul li a[href="/record"] span'),
+                tagsTab = $('nav ul li a[href="/tags"] span'),
+                archivesTab = $('nav ul li a[href="/archives"] span'),
+                countTab = $('nav ul li a[href="/count"] span'),
+                aboutTab = $('nav ul li a[href="/about"] span'),
+                videoTab = $('nav ul li a[href="/videos"] span'),
+                musicTab = $('nav ul li a[href="/musics"] span'),
+                galleryTab = $('nav ul li a[href="/gallery"] span'),
+                essayTab = $('nav ul li a[href="/essay"] span'),
+                booksTab = $('nav ul li a[href="/books"] span'),
+                tiktokTab = $('nav ul li a[href="/tiktok"] span'),
+                contactTab = $('nav ul li a[href="/contact"] span'),
+                friendsTab = $('nav ul li a[href="/friends"] span'),
+                collectionTab = $('nav ul li a[href="/collection"] span'),
+                projectTab = $('nav ul li a[href="/project"] span'),
+                donateTab = $('nav ul li a[href="/donate"] span'),
+                olympusTab = $('nav ul li a[href="/olympus"] span'),
+                lakersTab = $('nav ul li a[href="/lakers-championship"] span'),
+                hotreviewTab = $('nav ul li a[href="/hotreview"] span'),
+                ticktackTab = $('nav ul li a[href="/ticktack"] span'),
+                friendcircleTab = $('nav ul li a[href="/friendcircle"] span'),
+                chromedragonTab = $('nav ul li a[href="/chromedragon"] span'),
+                voteTab = $('nav ul li a[href="/vote"] span'),
+                // 获取二级菜单项
+                achivesTab = $('nav .nav-menu .nav-item:nth-of-type(3) > a > span'),
+                qingdanTab = $('nav .nav-menu .nav-item:nth-of-type(5) > a > span'),
+                linksTab = $('nav .nav-menu .nav-item:nth-of-type(7) > a > span'),
+                labTab = $('nav .nav-menu .nav-item:nth-of-type(8) > a > span');
+
+            if(nowUrl.indexOf("categories") >= 0) {
+                cateTab.addClass("aitems")
+            } else if (nowUrl.indexOf("posts") >= 0) {
+                homeTab.removeClass("aitems")
+            } else if (nowUrl.indexOf("record") >= 0) {
+                recordTab.addClass("aitems")
+                achivesTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("tags") >= 0) {
+                tagsTab.addClass("aitems")
+                achivesTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("archives") >= 0) {
+                archivesTab.addClass("aitems")
+                achivesTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("count") >= 0) {
+                countTab.addClass("aitems")
+                achivesTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("videos") >= 0) {
+                videoTab.addClass("aitems")
+                qingdanTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("musics") >= 0) {
+                musicTab.addClass("aitems")
+                qingdanTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("gallery") >= 0) {
+                galleryTab.addClass("aitems")
+                qingdanTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("essay") >= 0) {
+                essayTab.addClass("aitems")
+                qingdanTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("books") >= 0) {
+                booksTab.addClass("aitems")
+                qingdanTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("tiktok") >= 0) {
+                tiktokTab.addClass("aitems")
+                qingdanTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("contact") >= 0) {
+                contactTab.addClass("aitems")
+            } else if (nowUrl.indexOf("about") >= 0) {
+                aboutTab.addClass("aitems")
+            } else if (nowUrl.indexOf("friends") >= 0) {
+                friendsTab.addClass("aitems")
+                linksTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("collection") >= 0) {
+                collectionTab.addClass("aitems")
+                linksTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("project") >= 0) {
+                projectTab.addClass("aitems")
+                linksTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("donate") >= 0) {
+                donateTab.addClass("aitems")
+                linksTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("olympus") >= 0) {
+                olympusTab.addClass("aitems")
+                linksTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("lakers-championship") >= 0) {
+                lakersTab.addClass("aitems")
+                linksTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("hotreview") >= 0) {
+                hotreviewTab.addClass("aitems")
+                labTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("ticktack") >= 0) {
+                ticktackTab.addClass("aitems")
+                labTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("friendcircle") >= 0) {
+                friendcircleTab.addClass("aitems")
+                labTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("chromedragon") >= 0) {
+                chromedragonTab.addClass("aitems")
+                labTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("vote") >= 0) {
+                voteTab.addClass("aitems")
+                labTab.addClass("erjiitems")
+            } 
+            else {
+                homeTab.addClass("aitems")
+            }
+        });
+    </script>
+</body>
+</html>

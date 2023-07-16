@@ -1,0 +1,1619 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Spring生命周期">
+    <meta name="description" content="所行皆过往，所愿皆成真">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="baidu-site-verification" content="code-8VjAnGhv8m" />
+    <meta name="google-site-verification" content="An02eAw6rCWBVutF85tRr02GvZox5D4Pqd9PKFRzvBs" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>从Apollo动态配置原理学Spring(二) | 人间日常</title>
+    
+    <script>
+        // 隐藏
+        //右键
+        // document.oncontextmenu = function (event){
+        //     if(window.event){
+        //     event = window.event;
+        //     }try{
+        //     var the = event.srcElement;
+        //     if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")){
+        //     return false;
+        //     }
+        //     return true;
+        //     }catch (e){
+        //     return false;
+        //     }
+        // }
+
+        //debugger部分
+            // setInterval(function() {
+            // check();
+            // }, 500);
+            // var check = function() {
+            //     function doCheck(a) {
+            //     if (('' + a / a)['length'] !== 1 || a % 20 === 0) {
+            //         (function() {}['constructor']('debugger')());
+            //     } else {
+            //         (function() {}['constructor']('debugger')());
+            //     }
+            //     doCheck(++a);
+            //     }
+            //     try {
+            //     doCheck(0);
+            //     } catch (err) {}
+            // };
+            // check();
+
+            // ctrl+s保存
+            // document.onkeydown = function() {
+            //     if ((e.ctrlKey) && (e.keyCode == 83)) { //ctrl+s
+            //         return false;
+            //     }
+            // }
+            // window.addEventListener("keydown", function(e) {
+            //     //可以判断是不是mac，如果是mac,ctrl变为花键
+            //     //event.preventDefault() 方法阻止元素发生默认的行为。
+            //     if((e.key=='s'||e.key=='S')&&(navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
+            //         e.preventDefault();
+            //     }
+            // }, false);
+            // F12
+            // document.onkeydown = function(){
+            //     if(window.event && window.event.keyCode == 123) {
+            //         event.keyCode=0;
+            //         event.returnValue=false;
+            //     }
+            //     if(window.event && window.event.keyCode == 13) {
+            //         window.event.keyCode = 505;
+            //     }
+            //     if(window.event && window.event.keyCode == 8) {
+            //         window.event.returnValue=false;
+            //     }
+            // }
+        //宽高
+        // var threshold = 160; // 打开控制台的宽或高阈值  
+        // // 每秒检查一次  
+        // window.setInterval(function() {  
+        //     if (window.outerWidth - window.innerWidth > threshold ||   
+        //     window.outerHeight - window.innerHeight > threshold) {  
+        //         // 如果打开控制台，则刷新页面  
+        //         window.location.reload();  
+        //     }  
+        // }, 1e3);
+
+        //debug调试时跳转页面
+        // var element = new Image();
+        // Object.defineProperty(element,'id',{get:function(){window.location.href="/tenfour/homepage/"}});
+        // console.log(element);
+    </script>
+    
+    <link rel="icon" type="image/jpeg" href="/medias/avatar.jpg">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <link type='text/css' rel="stylesheet" href="/css/font-awesome.min.css"/>
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    <!-- <script src="/js/foropensource.js"></script> -->
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https'){
+           bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+          }
+          else{
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+          }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="人间日常" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<!-- 提示：若要开启春节或者圣诞主题样式，直接给body标签添加一个class为
+class="themespring" -->
+<body>
+    <!-- 网站全局深色模式设置开始 -->
+    <script>
+        if (localStorage.getItem('dark') === '1') {
+        document.body.classList.add('dark');
+        }
+        //  else if (new Date().getHours() >= 22 || new Date().getHours() < 7) {
+        // document.body.classList.add('dark');
+        // } 
+        else if (matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+        }
+    </script>
+    <a onclick="switchNightMode()" id="sma">
+        <i class="fa fa-moon-o" id="nightMode" aria-hidden="true"></i>
+    </a>
+    <!-- 网站全局深色模式设置结束 -->
+
+    <!-- 网站主题切换模式开始 -->
+    <!-- 中国节日按钮开始 -->
+    <script>
+        if (localStorage.getItem('themespring') === '1') {
+            document.body.classList.add('themespring');
+        }
+        else if (matchMedia('(prefers-color-scheme: themespring)').matches) {
+            document.body.classList.add('themespring');
+        }
+    </script>
+    <div onclick="switchSpringThemes()" id="switchspring">
+        <img class="chunjiepic" src="/medias/spring-img/denglong.png" title="春节主题" />
+    </div>
+    <!-- 中国节日按钮结束  -->
+    <!-- 网站主题切换模式结束 -->
+
+    <!-- header模块开始 -->
+<header class="navbar-fixed" id="header-active">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.webp" class="logo-img" alt="LOGO">
+                    
+                    <!-- 大屏幕下logo字体 -->
+                    <span class="bigwidth">Pengsiwen-Blog</span>
+                    <!-- 小屏幕下logo字体 -->
+                    <span class="smallwidth">Pengsiwen</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/gallery" class="waves-effect waves-light">
+      
+      <span>相册</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.webp" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">人间日常</div>
+        <div class="logo-desc">
+            
+            所行皆过往，所愿皆成真
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+				<i class="fas fa-fw"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/gallery" class="waves-effect waves-light">
+			
+				<i class="fas fa-fw"></i>
+			
+			相册
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+        <style>
+          .brand-logo .waves-effect {
+            font-size: 24px;
+            font-style: oblique;
+            color: #fadca6;
+          }
+        </style>
+        
+        
+    </nav>
+</header>
+<!-- header模块结束 -->
+
+<!-- 春节主题模式样式开始 -->
+<style>
+    .denglong {
+        display: none;
+    }
+    body.themespring .denglong {
+        display: block;
+    }
+    @media only screen and (min-width: 1124px) {
+        .nav-menu {
+            padding-right: 0px;
+        }
+        body.themespring .nav-menu {
+            padding-right: 96px;
+        }
+    }
+    @media only screen and (max-width: 760px) {
+        .deng-box, .deng-box1 {
+            width: 40%;
+        }
+        body.themespring .right {
+            float: left!important;
+        }
+    }
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+        .right {
+            float: left!important;
+        }
+    }
+    .deng-box {
+        position: fixed;
+        top: -40px;
+        right: -20px;
+        z-index: 999;
+    }
+    .deng-box1 {
+        position: fixed;
+        top: -30px;
+        right: 10px;
+        z-index: 999;
+    }
+    .deng-box1 .deng {
+        position: relative;
+        width: 120px;
+        height: 90px;
+        margin: 50px;
+        background: #d8000f;
+        background: rgba(216, 0, 15, 0.8);
+        border-radius: 50% 50%;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: swing 5s infinite ease-in-out;
+        box-shadow: -5px 5px 30px 4px rgba(252, 144, 61, 1);
+    }
+    .deng {
+        position: relative;
+        width: 120px;
+        height: 90px;
+        margin: 50px;
+        background: #d8000f;
+        background: rgba(216, 0, 15, 0.8);
+        border-radius: 50% 50%;
+        -webkit-transform-origin: 50% -100px;
+        -webkit-animation: swing 3s infinite ease-in-out;
+        box-shadow: -5px 5px 50px 4px rgba(250, 108, 0, 1);
+    }
+    .deng-a {
+        width: 100px;
+        height: 90px;
+        background: #d8000f;
+        background: rgba(216, 0, 15, 0.1);
+        margin: 12px 8px 8px 10px;
+        border-radius: 50% 50%;
+        border: 2px solid #dc8f03;
+    }
+    .deng-b {
+        width: 45px;
+        height: 90px;
+        background: #d8000f;
+        background: rgba(216, 0, 15, 0.1);
+        margin: -4px 8px 8px 26px;
+        border-radius: 50% 50%;
+        border: 2px solid #dc8f03;
+    }
+    .xian {
+        position: absolute;
+        top: -20px;
+        left: 60px;
+        width: 2px;
+        height: 20px;
+        background: #dc8f03;
+    }
+    .shui-a {
+        position: relative;
+        width: 5px;
+        height: 20px;
+        margin: -5px 0 0 59px;
+        -webkit-animation: swing 4s infinite ease-in-out;
+        -webkit-transform-origin: 50% -45px;
+        background: #ffa500;
+        border-radius: 0 0 5px 5px;
+    }
+    .shui-b {
+        position: absolute;
+        top: 14px;
+        left: -2px;
+        width: 10px;
+        height: 10px;
+        background: #dc8f03;
+        border-radius: 50%;
+    }
+    .shui-c {
+        position: absolute;
+        top: 18px;
+        left: -2px;
+        width: 10px;
+        height: 35px;
+        background: #ffa500;
+        border-radius: 0 0 0 5px;
+    }
+    .deng:before {
+        position: absolute;
+        top: -7px;
+        left: 29px;
+        height: 12px;
+        width: 60px;
+        content: " ";
+        display: block;
+        z-index: 999;
+        border-radius: 5px 5px 0 0;
+        border: solid 1px #dc8f03;
+        background: #ffa500;
+        background: linear-gradient(to right, #dc8f03, #ffa500, #dc8f03, #ffa500, #dc8f03);
+    }
+    .deng:after {
+        position: absolute;
+        bottom: -7px;
+        left: 10px;
+        height: 12px;
+        width: 60px;
+        content: " ";
+        display: block;
+        margin-left: 20px;
+        border-radius: 0 0 5px 5px;
+        border: solid 1px #dc8f03;
+        background: #ffa500;
+        background: linear-gradient(to right, #dc8f03, #ffa500, #dc8f03, #ffa500, #dc8f03);
+    }
+    @font-face {
+        font-family: "华文行楷";
+        src: url('/fonts/华文行楷.ttf');
+    }
+    .deng-t {
+        font-family: 华文行楷;
+        font-size: 26px;
+        color: #dc8f03;
+        font-weight: bold;
+        line-height: 44px;
+        text-align: center;
+    }
+    .night .deng-t,
+    .night .deng-box,
+    .night .deng-box1 {
+        background: transparent !important;
+    }
+    @-moz-keyframes swing {
+        0% {
+                -moz-transform: rotate(-10deg)
+        }
+        50% {
+             -moz-transform: rotate(10deg)
+        }
+        100% {
+                -moz-transform: rotate(-10deg)
+        }
+    }
+    @-webkit-keyframes swing {
+        0% {
+                -webkit-transform: rotate(-10deg)
+        }
+        50% {
+                -webkit-transform: rotate(10deg)
+        }
+        100% {
+                -webkit-transform: rotate(-10deg)
+        }
+    }
+</style>
+<div class="denglong">
+    <div class="deng-box">
+        <div class="deng">
+            <div class="xian"></div>
+            <div class="deng-a">
+                <div class="deng-b"><div class="deng-t" id="dtone">喜迎</div></div>
+            </div>
+            <div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div>
+        </div>
+    </div>
+    <div class="deng-box1">
+        <div class="deng">
+            <div class="xian"></div>
+            <div class="deng-a">
+                <div class="deng-b"><div class="deng-t" id="dttwo">春节</div></div>
+            </div>
+            <div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div>
+        </div>
+    </div>
+</div>
+<!-- 春节主题模式样式结束 -->
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/banner/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">从Apollo动态配置原理学Spring(二)</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="container content">
+    
+    <style>
+    #switchspring {
+        bottom: 223px!important;
+    }
+    @media only screen and (max-width: 601px) {
+        #switchspring {
+            bottom: 178px!important;
+        }
+    }
+    #switchchristmas {
+        bottom: 281px!important;
+    }
+    @media only screen and (max-width: 601px) {
+        #switchchristmas {
+            bottom: 235px!important;
+        }
+    }
+    .ititle {
+        margin: 15px 0;
+        text-align:center;
+        font-family: 'Architects Daughter', cursive;
+    }
+    .ipage {
+        line-height: 30px;
+        margin: 0 auto;
+        padding: 15px 32px 29px;
+        background-color: #f9f9f9;
+        box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.26);
+        -moz-border-radius-bottomleft: 20px 500px;
+        -moz-border-radius-bottomright: 500px 30px;
+        -moz-border-radius-topright: 5px 100px;	
+        -webkit-border-bottom-left-radius: 20px 500px;
+        -webkit-border-bottom-right-radius: 64px 10px;
+        -webkit-border-top-right-radius: 5px 100px;    
+        border-bottom-left-radius: 20px 500px;
+        border-bottom-right-radius: 64px 10px;
+        border-top-right-radius: 5px 100px;           
+        -webkit-background-size: 100% 30px;
+        -moz-box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.2);
+        -webkit-box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.2);
+        text-shadow: 0 1px 0 #F6EF97;
+        position: relative;
+    }
+.izhengwen {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    height: auto;
+    background: repeating-linear-gradient(to bottom, #f9f9f9, #f9f9f9 31px, #6BA2D8 1px, #f9f9f9);
+    background-size: 100% 32px;
+}
+.izhengwen p {
+    letter-spacing: .1rem;
+}
+#articleContent p {
+    margin: 0
+}
+.ititle {
+    font-family: 'Architects Daughter', cursive;
+    font-size: 1.45rem!important;
+    padding: 10px auto;
+}
+.izhengwen p {
+    position: relative;
+    line-height: 2.2rem!important;
+    text-indent: 2em;
+    font-family: 'Architects Daughter', cursive!important;
+    font-size: 1.45rem!important;
+}
+.ipage::before {
+    content: " ";
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    bottom: 0;
+    right: 52px;
+    z-index: 4;
+    width: 4px;
+    height: 100%;
+    border-left: 1px solid #fca1a1;
+}
+.izhengwen p:nth-child(odd):before {
+    content: " ";
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: -16px;
+    z-index: 3;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    box-shadow: inset 0px 2px 5px 0px rgba(0, 0, 0, 0.26);
+}
+.ipage:after {
+    content: " ";
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 52px;
+    z-index: 3;
+    width: 4px;
+    height: 100%;
+    border-left: 4px double #fca1a1;
+}
+.ipage p {
+    padding: 0 2em;
+    color: #333!important;
+}
+body.dark .ipage {
+    opacity: 0.85;
+}
+/*小屏幕下(手机类)的样式*/
+@media only screen and (max-width: 600px) {
+    .ipage {
+        padding: 15px 23px 29px;
+    }
+    .ipage:after {
+        left: 36px;
+    }
+    .ipage::before {
+        right: 36px;    
+    }
+    .ipage p, .ititle {
+        padding: 0 0.9em;
+    }
+
+}
+h3 {
+    font-size: 1.32rem;
+    font-weight: 400;
+    color: #101012;
+    transition: 0.8s;
+    cursor: pointer;
+}
+h3:hover {
+    transform: translateX(15px);
+}
+</style>
+
+<!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        
+        <div class="card-content article-info">
+            <!-- 福袋按钮 -->
+            <div class="caishendeng">        
+                <div class="guguxian wenzhangxian">
+                    <img class="caishenpic gugus" src="/medias/spring-img/caishen.png" />
+                </div>              
+            </div>
+            <!-- 圣诞按钮 -->
+            <div class="shengdandeng">        
+                <div class="shengdanxian" style="left: 50%;">
+                    <img class="shengdanpic fudai" src="/medias/christmas-img/shengdanren4.png" />
+                </div>              
+            </div>
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Apollo/">
+                                <span class="chip bg-color">Apollo</span>
+                            </a>
+                        
+                            <a href="/tags/Spring/">
+                                <span class="chip bg-color">Spring</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Java/" class="post-category">
+                                Java
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-02-26
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.1k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    7 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <html><head></head><body><blockquote>
+<p>Apollo动态配置其实本质就是利用Spring Bean 的生命周期的扩展点，这个扩展点超级多，不可能全部列出来，只说核心的扩展点。这也就是为什么 Spring 的扩展性很好的原因，开了很多的口子，尽可能让某个功能高内聚松耦合，用户需要哪个功能就用哪个，而不是直接来一个大而全的东西。</p>
+</blockquote>
+<p>我们先通过学习核心的，然后后续对照Apollo用到了哪些再对照，就会发现很多地方就能理解的很好了</p>
+<span id="more"></span>
+<p><strong>什么是 Spring Bean 的生命周期</strong></p>
+<p>对于普通的 Java 对象，当 new 的时候创建对象，然后该对象就能够使用了。一旦该对象不再被使用，则由 Java 自动进行垃圾回收。</p>
+<p>而 Spring 中的对象是 bean，bean 和普通的 Java 对象没啥大的区别，只不过 Spring 不再自己去 new 对象了，而是由 IoC 容器去帮助我们实例化对象并且管理它，我们需要哪个对象，去问 IoC 容器要即可。IoC 其实就是解决对象之间的耦合问题，Spring Bean 的生命周期完全由容器控制。</p>
+<h2 id="Spring-Bean-的生命周期"><a href="#Spring-Bean-的生命周期" class="headerlink" title="Spring Bean 的生命周期"></a>Spring Bean 的生命周期</h2><p>这里要提一下，这里我们说的 Spring Bean 的生命周期主要指的是 singleton bean，对于 prototype 的 bean ，Spring 在创建好交给使用者之后则不会再管理后续的生命周期。</p>
+<p>我们也来复习下 Spring 中的 bean 的作用域有哪些?</p>
+<ul>
+<li><code>singleton</code> : 唯一 bean 实例，Spring 中的 bean 默认都是单例的。</li>
+<li><code>prototype</code> : 每次请求都会创建一个新的 bean 实例。</li>
+<li><code>request</code> : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP request 内有效。</li>
+<li><code>session</code> : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP session 内有效。</li>
+<li><code>global-session</code>： 全局 session 作用域，仅仅在基于 Portlet 的 web 应用中才有意义，Spring5 已经没有了。Portlet 是能够生成语义代码（例如：HTML）片段的小型 Java Web 插件。它们基于 portlet 容器，可以像 servlet 一样处理 HTTP 请求。但是，与 servlet 不同，每个 portlet 都有不同的会话。</li>
+</ul>
+<p>我们知道对于普通的 Java 对象来说，它们的生命周期就是：</p>
+<ul>
+<li>实例化</li>
+<li>该对象不再被使用时通过垃圾回收机制进行回收</li>
+</ul>
+<p>而对于 Spring Bean 的生命周期来说：</p>
+<ul>
+<li>实例化 Instantiation</li>
+<li>属性赋值 Populate</li>
+<li>初始化 Initialization</li>
+<li>销毁 Destruction</li>
+</ul>
+<p>实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁</p>
+<p>只有四个步骤，这样拆解的话是不是感觉也不难？不像其他人写的那样直接一上来就各种 BeanPostProcessor、BeanFactoryPostProcessor 全部怼进流程里去，别说读者看着头大，自己写的可能短时间内还记得流程，隔个一段时间，你可能都不知道自己写了个啥。</p>
+<p>通过 Bean 创建流程入口<code>AbstractApplicationContext#refresh()</code> 方法的 <code>finishBeanFactoryInitialization(beanFactory)</code> 处带大家跟一下源码，想了想还是不带入过多的代码进来，直接给到最终的主要逻辑。</p>
+<pre class=" language-lang-java"><code class="language-lang-java">protected Object doCreateBean(String beanName, RootBeanDefinition mbd, @Nullable Object[] args) throws BeanCreationException {
+    BeanWrapper instanceWrapper = null;
+    if (mbd.isSingleton()) {
+        instanceWrapper = (BeanWrapper)this.factoryBeanInstanceCache.remove(beanName);
+    }
+    if (instanceWrapper == null) {
+        // 实例化阶段
+        instanceWrapper = this.createBeanInstance(beanName, mbd, args);
+    }
+    ...
+    Object exposedObject = bean;
+
+    try {
+        // 属性赋值阶段
+        this.populateBean(beanName, mbd, instanceWrapper);
+        // 初始化阶段
+        exposedObject = this.initializeBean(beanName, exposedObject, mbd);
+    } catch (Throwable var18) {
+        ...
+    }
+    ...
+}
+</code></pre>
+<p>至于销毁，是在容器关闭时调用的，详见 <code>ConfigurableApplicationContext#close()</code></p>
+<p>是不是很清爽了？至于 BeanPostProcessor、BeanFactoryPostProcessor 以及其他的类，只不过是对主流程四个步骤的一系列扩展点而已。</p>
+<h2 id="Spring-Bean-的生命周期的扩展点"><a href="#Spring-Bean-的生命周期的扩展点" class="headerlink" title="Spring Bean 的生命周期的扩展点"></a>Spring Bean 的生命周期的扩展点</h2><p>Spring Bean 的生命周期的扩展点超级多，老周这里不可能全部列出来，只说核心的扩展点。这也就是为什么 Spring 的扩展性很好的原因，开了很多的口子，尽可能让某个功能高内聚松耦合，用户需要哪个功能就用哪个，而不是直接来一个大而全的东西。</p>
+<p><strong>Bean 自身的方法</strong></p>
+<p>比如构造函数、getter/setter 以及 init-method 和 destory-method 所指定的方法等，也就对应着上文说的实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁四个阶段。</p>
+<p><img src="/posts/4c633c0c/20210707002134280.png" alt="阶段示意图"></p>
+<p><strong>容器级的方法（BeanPostProcessor 一系列接口）</strong></p>
+<p>主要是后处理器方法，比如下图的 <code>InstantiationAwareBeanPostProcessor</code>、<code>BeanPostProcessor</code> 接口方法。这些接口的实现类是独立于 Bean 的，并且会注册到 Spring 容器中。在 Spring 容器创建任何 Bean 的时候，这些后处理器都会发生作用。</p>
+<p><img src="/posts/4c633c0c/20210707225212729.png" alt="扩展点"></p>
+<p> <strong>InstantiationAwareBeanPostProcessor 源码分析</strong></p>
+<p>我们翻一下源码发现 InstantiationAwareBeanPostProcessor 是继承了 BeanPostProcessor</p>
+<p><img src="/posts/4c633c0c/20210707230505579.png" alt="InstantiationAwareBeanPostProcessor "></p>
+<p><img src="/posts/4c633c0c/20210707230919307.png" alt="BeanPostProcessor"></p>
+<ul>
+<li><code>InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation</code> 调用点</li>
+</ul>
+<blockquote>
+<p>Object postProcessBeforeInstantiation(Class&lt;?&gt; beanClass, String beanName)<br>返回值：如果返回的不为null，那么后续的Bean的创建流程【实例化、初始化afterProperties】都不会执行，而是直接使用返回的快捷Bean，此时的正常执行顺序如下：<br>InstantiationAwareBeanPostProcessor接口中的postProcessBeforeInstantiation，在实例化之前调用。<br>BeanPostProcessor接口中的postProcessAfterInitialization，在实例化之后调用。</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/20210707233026943.png" alt="createbean"></p>
+<p><img src="/posts/4c633c0c/20210707235533784.png" alt="resolveBeforeInstantiation"></p>
+<p><img src="/posts/4c633c0c/20210708000228655.png" alt="applyBean"></p>
+<p>总之，postProcessBeforeInstantiation 在 doCreateBean 之前调用，也就是在 bean 实例化之前调用的，英文源码注释解释道该方法的返回值会替换原本的 Bean 作为代理，这也是 <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=AOP&amp;spm=1001.2101.3001.7020">AOP</a> 等功能实现的关键点。</p>
+<ul>
+<li><code>InstantiationAwareBeanPostProcessor#postProcessAfterInstantiation</code> 调用点</li>
+</ul>
+<blockquote>
+<p>boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException<br>正常情况下在实例化之后在执行populateBean之前调用<br>返回值：如果有指定的bean的时候返回false，那么后续的属性填充和属性依赖注入【populateBean】将不会执行，同时后续的postProcessPropertyValues将不会执行,但是初始化和BeanPostProcessor的仍然会执行。</p>
+</blockquote>
+<p><img src="/posts/4c633c0c/20210708005050274.png" alt="populateBean"></p>
+<p>public PropertyValues postProcessPropertyValues(PropertyValues pvs, PropertyDescriptor[] pds, Object bean, String beanName)<br>实例化之后调用，在方法applyPropertyValues【属性填充】之前<br>返回值：如果返回null，那么将不会进行后续的属性填充，比如依赖注入等，如果返回的pvs额外的添加了属性，那么后续会填充到该类对应的属性中。<br>pvs：PropertyValues对象，用于封装指定类的对象，简单来说就是PropertyValue的集合，里面相当于以key-value形式存放类的属性和值。<br>pds：PropertyDescriptor对象数组，PropertyDescriptor相当于存储类的属性，不过可以调用set，get方法设置和获取对应属性的值。</p>
+<p><img src="/posts/4c633c0c/20210708010057366.png" alt="postProcessPropertyValues"></p>
+<p><strong>BeanPostProcessor 源码分析</strong></p>
+<blockquote>
+<p>org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#doCreateBean</p>
+</blockquote>
+<p><img src="/posts/4c633c0c/20210708232740951.png" alt="在这里插入图片描述"><br>进入初始化接口：</p>
+<p><img src="/posts/4c633c0c/20210708233139731.png" alt="在这里插入图片描述"><br>我们先来看</p>
+<blockquote>
+<p>org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#applyBeanPostProcessorsBeforeInitialization</p>
+</blockquote>
+<p><img src="/posts/4c633c0c/20210708233742525.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>首先获取到所有的后置处理器 getBeanPostProcessors()</li>
+<li>在 for 循环中依次调用后置处理器的方法 <code>processor.postProcessBeforeInitialization(result, beanName);</code></li>
+<li>进入 postProcessBeforeInitialization 方法</li>
+</ul>
+<blockquote>
+<p>org.springframework.context.support.ApplicationContextAwareProcessor#postProcessBeforeInitialization</p>
+</blockquote>
+<p><img src="/posts/4c633c0c/20210708234443215.png" alt="在这里插入图片描述"></p>
+<p>进入 <code>invokeAwareInterfaces(bean);</code> 方法，当前 bean 实现了 ApplicationContextAware 接口。</p>
+<p><img src="/posts/4c633c0c/20210708234639952.png" alt="在这里插入图片描述"></p>
+<ul>
+<li><code>ApplicationContextAwareProcessor#postProcessBeforeInitialization</code> 首先判断此 bean 是不是各种的Aware，如果是它列举的那几个 Aware 就获取 Bean 工厂的权限，可以向容器中导入相关的上下文环境，目的是为了 Bean 实例能够获取到相关的上下文，如果不是它列举的几个 Aware，那就调用 <code>invokeAwareInterfaces(bean)</code>，向容器中添加相关接口的上下文环境。</li>
+</ul>
+<p><strong>3.3 工厂后处理器方法（BeanFactoryProcessor 一系列接口）</strong></p>
+<p>包括 <code>AspectJWeavingEnabler</code>、<code>CustomAutowireConfigurer</code>、<code>ConfigurationClassPostProcessor</code> 等。这些都是 Spring 框架中已经实现好的 BeanFactoryPostProcessor，用来实现某些特定的功能。</p>
+<p>我们知道 Spring IoC 容器初始化的关键环节就在 <code>org.springframework.context.support.AbstractApplicationContext#refresh</code> 方法中 ，容器创建的主体流程都在这个方法里面，这个方法是真的重要！！！</p>
+<p>对于工厂后处理器方法老周这里直接带你看 <code>invokeBeanFactoryPostProcessors(beanFactory);</code> 方法，这个方法处理的是 <code>BeanFactoryPostProcessor</code> 接口的 Bean。调用方法如下：</p>
+<p><img src="/posts/4c633c0c/20210709231013239.png" alt="在这里插入图片描述"><br>跟到最重要的方法里去，代码虽长，但逻辑中规中矩。</p>
+<p><code>BeanFactoryPostProcessor</code>：一切处理 BeanFactory 的父接口<br><code>BeanDefinitionRegistryPostProcessor</code>：实现了 BeanFactoryPostProcessor 接口的接口</p>
+<p><img src="/posts/4c633c0c/20210709233225102.png" alt="在这里插入图片描述"><br>流程说明：</p>
+<ul>
+<li>调用 BeanDefinitionRegistryPostProcessor#postProcessBeanDefinitionRegistry(registry) 方法。参数 beanFactoryPostProcessors 传入的优先处理掉。然后获取容器注册的，对于这些 Bean 按照 PriorityOrdered 接口、Ordered、没有排序接口的实例分别进行处理。</li>
+<li>调用 BeanFactoryPostProcessor#postProcessBeanFactory(beanFactory) 方法。备注：BeanDefinitionRegistryPostProcessor 属于 BeanFactoryPostProcessor 子接口。先处理属于 BeanDefinitionRegistryPostProcessor 接口实例的 postProcessBeanFactory(beanFactory) 方法，然后获取容器注册的。对于这些 Bean 按照 PriorityOrdered 接口、Ordered、没有排序接口的实例分别进行处理。</li>
+</ul>
+</body></html>
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">SIWEN.PENG</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://www.pswen.cn/posts/4c633c0c.html">https://www.pswen.cn/posts/4c633c0c.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">SIWEN.PENG</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Apollo/">
+                                    <span class="chip bg-color">Apollo</span>
+                                </a>
+                            
+                                <a href="/tags/Spring/">
+                                    <span class="chip bg-color">Spring</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="qq,wechat,weibo,douban" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/posts/3255df9f.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/banner/1.jpg" class="responsive-img" alt="希望传递温暖，让异乡变家乡">
+                        
+                        <!-- 福袋按钮 -->
+                        <div class="caishendeng">        
+                            <div class="caishenxian wenzhangxian">
+                                <img class="caishenpic lala" src="/medias/spring-img/fish.png" />
+                            </div>              
+                        </div>
+                        <span class="card-title">
+                          <!-- 文章卡片hover线条效果 -->
+                          <span class="titlesline"></span>
+                          希望传递温暖，让异乡变家乡
+                        </span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            希望480的同学在全国各地遇到来出差的同学都主动约一下，让大家都能感受四面八方同学的温暖！！！
+
+在深圳合気屋下沙店聚一下
+
+回去路上还挺远
+
+后面K了一下歌
+
+
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-18
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%9D%82%E8%AE%B0/" class="post-category">
+                                    杂记
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%81%9A%E4%BC%9A/">
+                        <span class="chip bg-color">聚会</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/e352a76e.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/banner/0.jpg" class="responsive-img" alt="从Apollo动态配置原理学Spring(一)">
+                        
+                        <!-- 福袋按钮 -->
+                        <div class="caishendeng">        
+                            <div class="caishenxian wenzhangxian">
+                                <img class="caishenpic lala" src="/medias/spring-img/fish.png" />
+                            </div>              
+                        </div>
+                        <span class="card-title">
+                          <!-- 文章卡片hover线条效果 -->
+                          <span class="titlesline"></span>
+                          从Apollo动态配置原理学Spring(一)
+                        </span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+最近工作碰到需要写一个类似携程Apollo的动态配置功能，以此系统学习该原理，熟练掌握下Spring的各种机制
+
+Apollo动态配置原理简述
+Apollo配置中心动态生效机制，是基于Http长轮询请求和Spring扩展机制实现的，在Sp
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Apollo/">
+                        <span class="chip bg-color">Apollo</span>
+                    </a>
+                    
+                    <a href="/tags/Spring/">
+                        <span class="chip bg-color">Spring</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE/">
+                        <span class="chip bg-color">动态配置</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+<style>
+  .articles .row .article {
+    position: relative;
+  }
+</style>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('30')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 人间日常<br />'
+            + '文章作者: SIWEN.PENG<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+
+    
+</main>
+
+
+
+
+    <style>
+  footer {
+    position: relative;
+  }
+
+  .page-footer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+</style>
+<footer class="page-footer bg-color">
+  
+
+  <div class="container row center-align"
+    style="margin-bottom: 0px !important;">
+    <!-- 版权信息 -->
+    <div class="col s12 m6 l6 copy-right">
+      Copyright&nbsp;&copy;
+      <span id="year">2014</span>
+      <a>SIWEN.PENG</a>
+      <br>
+      
+      
+      
+      
+      
+ 
+      
+     
+      
+      <span id="icp">
+        <a href="https://beian.miit.gov.cn/" target="_blank">
+          <img src="/medias/icp.png"
+            style="vertical-align: text-bottom;width: 16px;height: 16px;" />
+          湘ICP备2020021380号-1
+        </a>
+      </span>
+      
+    </div>
+    <div class="col s12 m3 l3 social-link ">
+
+
+    <a href="mailto:pengsiwen_2@163.com" class="tooltipped" target="_blank" data-tooltip="pengsiwen_2@163.com" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=3197544360" class="tooltipped" target="_blank" data-tooltip="3197544360" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+</div>
+  </div>
+  <!-- 波浪条waveline -->
+  <div class="wavelinefooter">
+    <style>
+      .wavelinefooter {
+        background: url(/medias/wave.png) 0 0 repeat-x;
+        height: 3px;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: -3px;
+        background-size: 10px 3px;
+      }
+    </style>
+  </div>
+</footer>
+
+<!-- 底部进度条 -->
+<div class="progress-bar" style="z-index: 999"></div>
+
+    <!-- 搜索遮罩框 -->
+<style>
+#searchInput::-webkit-input-placeholder { /* WebKit browsers */ 
+    font-size:16px;
+} 
+#searchInput:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+    font-size:16px;
+} 
+#searchInput::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+    font-size:16px;
+} 
+#searchInput:-ms-input-placeholder { /* Internet Explorer 10+ */ 
+    font-size:16px;
+} 
+#searchInput {
+    margin-top: 6px;
+    margin-bottom: 12px;
+    text-indent: 4px;
+    font-size: 14px;
+}
+</style>
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;站内搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input" autofocus="autofocus" />
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+<!-- 点击搜索按钮后input框自动获取焦点 -->
+
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+    
+    <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?83fbb968d837cac86cb15c97ddd8cdd4";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+    <!--动态线条背景-->
+    <script type="text/javascript" color="122 103 158" opacity='0.12' zIndex="-2" count="100" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+    </script>
+ 
+    <script type="text/javascript" src="/js/click_show_text.js"></script>
+    <script src="/js/linkcard.js"></script>
+
+    <script src="/js/activate-power-mode.js"></script>
+    <script>
+        POWERMODE.colorful = true; // make power mode colorful
+        POWERMODE.shake = false; // turn off shake
+        document.body.addEventListener('input', POWERMODE);
+    </script>
+
+    <!-- 百度统计代码 -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!----------节日判断,进行网站修饰，比如春节圣诞或变灰色的清明等----- -->
+    <script>
+        // 判断今天是哪个节假日或特殊纪念日进行网站修饰，比如春节圣诞或变灰色的清明等
+        var curMonth = new Date().getMonth() + 1; //月
+        var curDate = new Date().getDate(); //日
+        function cancelguajian() {
+            // 判断如果是变灰色的纪念日则将小挂件隐藏
+            var guajianone = document.getElementsByClassName('caishendeng');
+            var guajiantwo = document.getElementsByClassName('labelmz');
+            var guajianthree = document.getElementsByClassName('friendmz');
+            var denglong = document.getElementsByClassName('denglong');
+            for(var i = 0; i < guajianone.length; i++) {
+                guajianone[i].style.display = "none"
+            };
+            for(var j = 0; j < guajiantwo.length; j++) {
+                guajiantwo[j].style.display = "none"
+            }
+            for(var k = 0; k < guajianthree.length; k++) {
+                guajianthree[k].style.display = "none"
+            };
+            for(var x = 0; x < denglong.length; x++) {
+                denglong[x].style.display = "none"
+            };
+            document.getElementById('switchchristmas').style.display = "none";
+            document.getElementById('switchspring').style.display = "none";
+            document.getElementById('xiaomaozitx').style.display = "none";
+        }
+        // --------------以下节日为公历，每年固定--------------
+        if(curMonth == 1 && curDate == 1) {
+            // 1月1日为元旦节
+            document.body.classList.add('themespring');
+            document.getElementById('dtone').innerHTML = "快乐";
+            document.getElementById('dttwo').innerHTML = "元旦";
+        }
+        else if(curMonth == 9 && curDate == 29) {
+            // 9月30日为全国烈士纪念日，设在国庆前一天
+            document.getElementsByTagName('html')[0].classList.add('gray');
+            document.getElementById('popupbb').style.display = "block";
+            document.getElementById('jinianci').innerHTML = "今天是“ 9月30日 ”，“ 全国烈士纪念日 ”。定为每年的9月30日,正好是国庆前一天,让全国人民永远不要忘记先有无数先烈的前赴后继、奋勇献身,才有我们国家今天的繁荣富强、文明进步。"
+            document.getElementById('switchchristmas').style.display = "none";
+            document.getElementById('switchspring').style.display = "none";
+            // document.body.classList.add('themespring');
+            document.getElementById('dtone').innerHTML = "缅怀";
+            document.getElementById('dttwo').innerHTML = "烈士";
+            cancelguajian();
+        }
+        // 10月1日为国庆节
+        else if(
+          curMonth == 10 && curDate == 1
+          || curMonth == 10 && curDate == 2
+          || curMonth == 10 && curDate == 3
+          || curMonth == 10 && curDate == 4
+          || curMonth == 10 && curDate == 5
+          || curMonth == 10 && curDate == 6
+          || curMonth == 10 && curDate == 7) {
+            document.body.classList.add('themespring');
+            document.getElementById('dtone').innerHTML = "欢度";
+            document.getElementById('dttwo').innerHTML = "国庆";
+            document.getElementById('index-video').src = "https://txmov2.a.yximgs.com/upic/2021/09/30/15/BMjAyMTA5MzAxNTE5MDhfMTg1ODk2MDg4N181ODA5MjQ1NDkyMV8xXzM=_b_Bef514871cf947c46c11bc54a3ed3faa9.mp4?pkey=AAWo-kOQESq9j_AMCO-BT6jTPS090PuVHWtyuSQ8cddkgMmI3V-P9uWMDY13QrPuCjtWVbch_01wRcj6Rtm5w0AkLhgVTMSceLLiRYjlWUfLDNNLX3jISKEscl9uNXUnYcM&tag=1-1632986688-xpcwebprofile-0-ongrobirtl-58c917acab52d13f&clientCacheKey=3xajcj9u8fubzm4_b.mp4";
+            document.getElementById('popupbb').style.display = "block"
+            document.getElementById('tujis').style.display = "block";
+            // document.getElementById('fights').style.display = "none";
+            document.getElementById('jinianci').style.textAlign = "center";
+            document.getElementById('jinianci').innerHTML = "《 国庆日🚩》<br> 十月惊雷震九重，国富民强聩耳聋。<br>城头城下聚农工，神州处处花潮涌。<br>而今白鹿奋清风，山长水远不知踪。"
+          }
+        else if(curMonth == 12 && curDate == 13) {
+            // 12月13日为国家公祭日
+            document.getElementsByTagName('html')[0].classList.add('gray');
+            // document.body.classList.add('themespring');
+            document.getElementById('dtone').innerHTML = "国家";
+            document.getElementById('dttwo').innerHTML = "公祭";
+            document.getElementById('jinianci').innerHTML = "今天是 “ 12月13日 ”，南京大屠杀死难者 “ 国家公祭日 ”。国行公祭，法立典章。铸兹宝鼎，祀我国殇。永矢弗谖，祈愿和平。中华圆梦，民族复兴。";
+            document.getElementById('popupbb').style.display = "block";
+            document.getElementById('switchchristmas').style.display = "none";
+            document.getElementById('switchspring').style.display = "none";
+            cancelguajian();
+        }
+
+        else if(curMonth == 5 && curDate == 22) {
+            // 2021年5月22日袁隆平院士逝世，云南大理发生6级地震
+            document.getElementsByTagName('html')[0].classList.add('gray');
+            document.body.classList.add('dark');
+            // document.body.classList.add('themespring');
+            document.getElementById('dtone').innerHTML = "地震";
+            document.getElementById('dttwo').innerHTML = "袁老";
+            document.getElementById('jinianci').innerHTML = "今天是 “ 2021年5月22日 ”，杂交水稻之父、共和国勋章获得者袁隆平逝世，享年91岁，记忆中您还是小学课本里的爷爷形象，.......还有21日晚云南大理州遭受地震的大家，要好好地...";
+            document.getElementById('popupbb').style.display = "block";
+            document.getElementById('switchchristmas').style.display = "none";
+            document.getElementById('switchspring').style.display = "none";
+            cancelguajian();
+        }
+
+        else if(curMonth == 12 && curDate == 25) {
+            // 12月25日为圣诞节
+            document.body.classList.add('themechris');
+        }
+        // --------------以下节日为农历，每年不固定--------------
+        else if(curMonth == 4 && curDate == 4) {
+            // 2021年4月4日为清明节
+            document.getElementsByTagName('html')[0].classList.add('gray');
+            document.getElementById('switchchristmas').style.display = "none";
+            document.getElementById('switchspring').style.display = "none";
+            document.getElementById('popupbb').style.display = "block";
+            document.getElementById('jinianci').innerHTML = "今天是“ 4月4日 ”，“ 清明节 ”，正是郊外踏青春游与行清墓祭的好时节。燕子来时新社,梨花落后清明。"
+            // document.body.classList.add('themespring');
+            document.getElementById('dtone').innerHTML = "安康";
+            document.getElementById('dttwo').innerHTML = "清明";
+            cancelguajian();
+        }
+        else if(curMonth == 1 && curDate == 31) {
+            // 2021春节除夕为1月31日
+            document.body.classList.add('themespring');
+            document.getElementById('dtone').innerHTML = "快乐";
+            document.getElementById('dttwo').innerHTML = "除夕";
+        }
+        else if(curMonth == 2) {
+            // 2021春节为2月1日开始
+            document.body.classList.add('themespring');
+        }
+        else if(curMonth == 6 && curDate == 14) {
+            // 2021端午节为6月14日
+            document.body.classList.add('themespring');
+            document.getElementById('dtone').innerHTML = "安康";
+            document.getElementById('dttwo').innerHTML = "端午";
+        }
+        else if(curMonth == 9 && curDate == 21) {
+            // 2021中秋节为9月21日
+            document.body.classList.add('themespring');
+            document.getElementById('dtone').innerHTML = "团圆";
+            document.getElementById('dttwo').innerHTML = "中秋";
+        }
+    </script>
+
+    <!-- 实现tab切换点击标题显示下划线和颜色改变效果 -->
+    <script>
+        $(function () {
+            var nowUrl = window.location.href
+            var homeTab = $('nav ul li a[href="/"] span'),
+                cateTab = $('nav ul li a[href="/categories"] span'),
+                recordTab = $('nav ul li a[href="/record"] span'),
+                tagsTab = $('nav ul li a[href="/tags"] span'),
+                archivesTab = $('nav ul li a[href="/archives"] span'),
+                countTab = $('nav ul li a[href="/count"] span'),
+                aboutTab = $('nav ul li a[href="/about"] span'),
+                videoTab = $('nav ul li a[href="/videos"] span'),
+                musicTab = $('nav ul li a[href="/musics"] span'),
+                galleryTab = $('nav ul li a[href="/gallery"] span'),
+                essayTab = $('nav ul li a[href="/essay"] span'),
+                booksTab = $('nav ul li a[href="/books"] span'),
+                tiktokTab = $('nav ul li a[href="/tiktok"] span'),
+                contactTab = $('nav ul li a[href="/contact"] span'),
+                friendsTab = $('nav ul li a[href="/friends"] span'),
+                collectionTab = $('nav ul li a[href="/collection"] span'),
+                projectTab = $('nav ul li a[href="/project"] span'),
+                donateTab = $('nav ul li a[href="/donate"] span'),
+                olympusTab = $('nav ul li a[href="/olympus"] span'),
+                lakersTab = $('nav ul li a[href="/lakers-championship"] span'),
+                hotreviewTab = $('nav ul li a[href="/hotreview"] span'),
+                ticktackTab = $('nav ul li a[href="/ticktack"] span'),
+                friendcircleTab = $('nav ul li a[href="/friendcircle"] span'),
+                chromedragonTab = $('nav ul li a[href="/chromedragon"] span'),
+                voteTab = $('nav ul li a[href="/vote"] span'),
+                // 获取二级菜单项
+                achivesTab = $('nav .nav-menu .nav-item:nth-of-type(3) > a > span'),
+                qingdanTab = $('nav .nav-menu .nav-item:nth-of-type(5) > a > span'),
+                linksTab = $('nav .nav-menu .nav-item:nth-of-type(7) > a > span'),
+                labTab = $('nav .nav-menu .nav-item:nth-of-type(8) > a > span');
+
+            if(nowUrl.indexOf("categories") >= 0) {
+                cateTab.addClass("aitems")
+            } else if (nowUrl.indexOf("posts") >= 0) {
+                homeTab.removeClass("aitems")
+            } else if (nowUrl.indexOf("record") >= 0) {
+                recordTab.addClass("aitems")
+                achivesTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("tags") >= 0) {
+                tagsTab.addClass("aitems")
+                achivesTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("archives") >= 0) {
+                archivesTab.addClass("aitems")
+                achivesTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("count") >= 0) {
+                countTab.addClass("aitems")
+                achivesTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("videos") >= 0) {
+                videoTab.addClass("aitems")
+                qingdanTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("musics") >= 0) {
+                musicTab.addClass("aitems")
+                qingdanTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("gallery") >= 0) {
+                galleryTab.addClass("aitems")
+                qingdanTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("essay") >= 0) {
+                essayTab.addClass("aitems")
+                qingdanTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("books") >= 0) {
+                booksTab.addClass("aitems")
+                qingdanTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("tiktok") >= 0) {
+                tiktokTab.addClass("aitems")
+                qingdanTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("contact") >= 0) {
+                contactTab.addClass("aitems")
+            } else if (nowUrl.indexOf("about") >= 0) {
+                aboutTab.addClass("aitems")
+            } else if (nowUrl.indexOf("friends") >= 0) {
+                friendsTab.addClass("aitems")
+                linksTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("collection") >= 0) {
+                collectionTab.addClass("aitems")
+                linksTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("project") >= 0) {
+                projectTab.addClass("aitems")
+                linksTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("donate") >= 0) {
+                donateTab.addClass("aitems")
+                linksTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("olympus") >= 0) {
+                olympusTab.addClass("aitems")
+                linksTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("lakers-championship") >= 0) {
+                lakersTab.addClass("aitems")
+                linksTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("hotreview") >= 0) {
+                hotreviewTab.addClass("aitems")
+                labTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("ticktack") >= 0) {
+                ticktackTab.addClass("aitems")
+                labTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("friendcircle") >= 0) {
+                friendcircleTab.addClass("aitems")
+                labTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("chromedragon") >= 0) {
+                chromedragonTab.addClass("aitems")
+                labTab.addClass("erjiitems")
+            } else if (nowUrl.indexOf("vote") >= 0) {
+                voteTab.addClass("aitems")
+                labTab.addClass("erjiitems")
+            } 
+            else {
+                homeTab.addClass("aitems")
+            }
+        });
+    </script>
+</body>
+</html>
