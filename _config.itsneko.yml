@@ -184,8 +184,8 @@ clicklove:
 # 在”关于”页面中配置个人信息，包括头像、职业和个人介绍.
 profile:
   avatar: /medias/avatar.jpg
-  career: itsNeko开源博客
-  introduction: '这里是个人简介，你好，这里是itsNeko开源博客'
+  career: 彭思文个人博客
+  introduction: '这里是个人简介，你好，这里是彭思文的个人博客'
 
 # config my projects informations in about page.
 # If you don't want to display this `My Projects` content, you can deactivate or delete this configuration.
