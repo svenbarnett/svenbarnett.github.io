@@ -1107,7 +1107,7 @@ body.dark .publish-date {
 
 /*文章详情样式*/
 #artDetail {
-    margin-top: -60px;
+    margin-top: 0;
 }
 /* 修改小屏幕下文章详情table样式. */
 @media only screen and (max-width: 550px) {
