@@ -1,3412 +1,1079 @@
 <!DOCTYPE HTML>
 <html lang="zh-CN">
-
-
 <head>
-    <meta charset="utf-8">
-    <meta name="keywords" content="psw,彭思文,siwen,思文,sven,java,study,solution,blog">
-    <meta name="description" content="所行皆过往，所愿皆成真">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="renderer" content="webkit|ie-stand|ie-comp">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="baidu-site-verification" content="code-8VjAnGhv8m" />
-    <meta name="google-site-verification" content="An02eAw6rCWBVutF85tRr02GvZox5D4Pqd9PKFRzvBs" />
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <meta charset="utf-8">
+  
+  <title>人间日常 | 所行皆过往，所愿皆成真</title>
+
+  
+  <meta name="author" content="SIWEN.PENG">
+  
+
+  
+  <meta name="description" content="所行皆过往，所愿皆成真">
+  
+
+  
+  <meta name="keywords" content="psw,彭思文,siwen,思文,sven,java,study,solution,blog">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1,user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  
+
+  <meta property="og:site_name" content="人间日常"/>
+
+  
+  <meta property="og:image" content="/avatar.jpg"/>
+  
+
+  <link href="/avatar.jpg" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="人间日常" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/custom.css" media="screen" type="text/css">
+  
+  
+  
+
+  <script src="//sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
-    <title>人间日常</title>
-    
-    <script>
-        // 隐藏
-        //右键
-        // document.oncontextmenu = function (event){
-        //     if(window.event){
-        //     event = window.event;
-        //     }try{
-        //     var the = event.srcElement;
-        //     if (!((the.tagName == "INPUT" && the.type.toLowerCase() == "text") || the.tagName == "TEXTAREA")){
-        //     return false;
-        //     }
-        //     return true;
-        //     }catch (e){
-        //     return false;
-        //     }
-        // }
-
-        //debugger部分
-            // setInterval(function() {
-            // check();
-            // }, 500);
-            // var check = function() {
-            //     function doCheck(a) {
-            //     if (('' + a / a)['length'] !== 1 || a % 20 === 0) {
-            //         (function() {}['constructor']('debugger')());
-            //     } else {
-            //         (function() {}['constructor']('debugger')());
-            //     }
-            //     doCheck(++a);
-            //     }
-            //     try {
-            //     doCheck(0);
-            //     } catch (err) {}
-            // };
-            // check();
-
-            // ctrl+s保存
-            // document.onkeydown = function() {
-            //     if ((e.ctrlKey) && (e.keyCode == 83)) { //ctrl+s
-            //         return false;
-            //     }
-            // }
-            // window.addEventListener("keydown", function(e) {
-            //     //可以判断是不是mac，如果是mac,ctrl变为花键
-            //     //event.preventDefault() 方法阻止元素发生默认的行为。
-            //     if((e.key=='s'||e.key=='S')&&(navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)){
-            //         e.preventDefault();
-            //     }
-            // }, false);
-            // F12
-            // document.onkeydown = function(){
-            //     if(window.event && window.event.keyCode == 123) {
-            //         event.keyCode=0;
-            //         event.returnValue=false;
-            //     }
-            //     if(window.event && window.event.keyCode == 13) {
-            //         window.event.keyCode = 505;
-            //     }
-            //     if(window.event && window.event.keyCode == 8) {
-            //         window.event.returnValue=false;
-            //     }
-            // }
-        //宽高
-        // var threshold = 160; // 打开控制台的宽或高阈值  
-        // // 每秒检查一次  
-        // window.setInterval(function() {  
-        //     if (window.outerWidth - window.innerWidth > threshold ||   
-        //     window.outerHeight - window.innerHeight > threshold) {  
-        //         // 如果打开控制台，则刷新页面  
-        //         window.location.reload();  
-        //     }  
-        // }, 1e3);
-
-        //debug调试时跳转页面
-        // var element = new Image();
-        // Object.defineProperty(element,'id',{get:function(){window.location.href="/tenfour/homepage/"}});
-        // console.log(element);
-    </script>
-    
-    <link rel="icon" type="image/jpeg" href="/medias/avatar.jpg">
-
-    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
-    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
-    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
-    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/matery.css">
-    <link rel="stylesheet" type="text/css" href="/css/my.css">
-    <link type='text/css' rel="stylesheet" href="/css/font-awesome.min.css"/>
-    
-    <script src="/libs/jquery/jquery.min.js"></script>
-    <!-- <script src="/js/foropensource.js"></script> -->
-    <script>
-        (function(){
-            var bp = document.createElement('script');
-            var curProtocol = window.location.protocol.split(':')[0];
-            if (curProtocol === 'https'){
-           bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-          }
-          else{
-          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-          }
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(bp, s);
-        })();
-    </script>
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="人间日常" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
-
-
-<!-- 提示：若要开启春节或者圣诞主题样式，直接给body标签添加一个class为
-class="themespring" -->
 <body>
-    <!-- 网站全局深色模式设置开始 -->
-    <script>
-        if (localStorage.getItem('dark') === '1') {
-        document.body.classList.add('dark');
-        }
-        //  else if (new Date().getHours() >= 22 || new Date().getHours() < 7) {
-        // document.body.classList.add('dark');
-        // } 
-        else if (matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-        }
-    </script>
-    <a onclick="switchNightMode()" id="sma">
-        <i class="fa fa-moon-o" id="nightMode" aria-hidden="true"></i>
-    </a>
-    <!-- 网站全局深色模式设置结束 -->
 
-    <!-- 网站主题切换模式开始 -->
-    <!-- 中国节日按钮开始 -->
-    <script>
-        if (localStorage.getItem('themespring') === '1') {
-            document.body.classList.add('themespring');
-        }
-        else if (matchMedia('(prefers-color-scheme: themespring)').matches) {
-            document.body.classList.add('themespring');
-        }
-    </script>
-    <div onclick="switchSpringThemes()" id="switchspring">
-        <img class="chunjiepic" src="/medias/spring-img/denglong.png" title="春节主题" />
-    </div>
-    <!-- 中国节日按钮结束  -->
-    <!-- 网站主题切换模式结束 -->
+<div class="blog">
+  <div class="content">
 
-    <!-- header模块开始 -->
-<header class="navbar-fixed" id="header-active">
-    <nav id="headNav" class="bg-color nav-transparent">
-        <div id="navContainer" class="nav-wrapper container">
-            <div class="brand-logo">
-                <a href="/" class="waves-effect waves-light">
-                    
-                    <img src="/medias/logo.webp" class="logo-img" alt="LOGO">
-                    
-                    <!-- 大屏幕下logo字体 -->
-                    <span class="bigwidth">人间日常</span>
-                    <!-- 小屏幕下logo字体 -->
-                    <span class="smallwidth">人间日常</span>
-                </a>
-            </div>
-            
-
-<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
-<ul class="right nav-menu">
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/index.html" class="waves-effect waves-light">
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">人间日常</a>
+    </h1>
+    <p class="site-description">所行皆过往，所愿皆成真</p>
+    <span class="site-description" id="jinrishici-sentence">正在加载今日诗词....</span>
+  </div>
+  <nav class="site-navigation">
+    <ul>
       
-      <span>首页</span>
-    </a>
-    
-  </li>
-  
-  <li class="hide-on-med-and-down nav-item">
-    
-    <a href="/gallery/index.html" class="waves-effect waves-light">
+        <li><a href="/">主页</a></li>
       
-      <span>相册</span>
-    </a>
-    
-  </li>
-  
-  <li>
-    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
-      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
-    </a>
-  </li>
-</ul>
-
-
-<div id="mobile-nav" class="side-nav sidenav">
-
-    <div class="mobile-head bg-color">
-        
-        <img src="/medias/logo.webp" class="logo-img circle responsive-img">
-        
-        <div class="logo-name">人间日常</div>
-        <div class="logo-desc">
-            
-            所行皆过往，所愿皆成真
-            
-        </div>
-    </div>
-
-    
-
-    <ul class="menu-list mobile-menu-list">
-        
-        <li class="m-nav-item">
-	  
-		<a href="/index.html" class="waves-effect waves-light">
-			
-				<i class="fas fa-fw"></i>
-			
-			首页
-		</a>
-          
-        </li>
-        
-        <li class="m-nav-item">
-	  
-		<a href="/gallery/index.html" class="waves-effect waves-light">
-			
-				<i class="fas fa-fw"></i>
-			
-			相册
-		</a>
-          
-        </li>
-        
-        
+        <li><a href="/archives/index.html">归档</a></li>
+      
+        <li><a href="/pics/index.html">图记</a></li>
+      
     </ul>
-</div>
-
-
-        </div>
-        <style>
-          .brand-logo .waves-effect {
-            font-size: 24px;
-            font-style: oblique;
-            color: #fadca6;
-          }
-        </style>
-        
-        
-    </nav>
+  </nav>
 </header>
-<!-- header模块结束 -->
 
-<!-- 春节主题模式样式开始 -->
-<style>
-    .denglong {
-        display: none;
-    }
-    body.themespring .denglong {
-        display: block;
-    }
-    @media only screen and (min-width: 1124px) {
-        .nav-menu {
-            padding-right: 0px;
-        }
-        body.themespring .nav-menu {
-            padding-right: 96px;
-        }
-    }
-    @media only screen and (max-width: 760px) {
-        .deng-box, .deng-box1 {
-            width: 40%;
-        }
-        body.themespring .right {
-            float: left!important;
-        }
-    }
-    @media only screen and (min-width: 768px) and (max-width: 1024px) {
-        .right {
-            float: left!important;
-        }
-    }
-    .deng-box {
-        position: fixed;
-        top: -40px;
-        right: -20px;
-        z-index: 999;
-    }
-    .deng-box1 {
-        position: fixed;
-        top: -30px;
-        right: 10px;
-        z-index: 999;
-    }
-    .deng-box1 .deng {
-        position: relative;
-        width: 120px;
-        height: 90px;
-        margin: 50px;
-        background: #d8000f;
-        background: rgba(216, 0, 15, 0.8);
-        border-radius: 50% 50%;
-        -webkit-transform-origin: 50% -100px;
-        -webkit-animation: swing 5s infinite ease-in-out;
-        box-shadow: -5px 5px 30px 4px rgba(252, 144, 61, 1);
-    }
-    .deng {
-        position: relative;
-        width: 120px;
-        height: 90px;
-        margin: 50px;
-        background: #d8000f;
-        background: rgba(216, 0, 15, 0.8);
-        border-radius: 50% 50%;
-        -webkit-transform-origin: 50% -100px;
-        -webkit-animation: swing 3s infinite ease-in-out;
-        box-shadow: -5px 5px 50px 4px rgba(250, 108, 0, 1);
-    }
-    .deng-a {
-        width: 100px;
-        height: 90px;
-        background: #d8000f;
-        background: rgba(216, 0, 15, 0.1);
-        margin: 12px 8px 8px 10px;
-        border-radius: 50% 50%;
-        border: 2px solid #dc8f03;
-    }
-    .deng-b {
-        width: 45px;
-        height: 90px;
-        background: #d8000f;
-        background: rgba(216, 0, 15, 0.1);
-        margin: -4px 8px 8px 26px;
-        border-radius: 50% 50%;
-        border: 2px solid #dc8f03;
-    }
-    .xian {
-        position: absolute;
-        top: -20px;
-        left: 60px;
-        width: 2px;
-        height: 20px;
-        background: #dc8f03;
-    }
-    .shui-a {
-        position: relative;
-        width: 5px;
-        height: 20px;
-        margin: -5px 0 0 59px;
-        -webkit-animation: swing 4s infinite ease-in-out;
-        -webkit-transform-origin: 50% -45px;
-        background: #ffa500;
-        border-radius: 0 0 5px 5px;
-    }
-    .shui-b {
-        position: absolute;
-        top: 14px;
-        left: -2px;
-        width: 10px;
-        height: 10px;
-        background: #dc8f03;
-        border-radius: 50%;
-    }
-    .shui-c {
-        position: absolute;
-        top: 18px;
-        left: -2px;
-        width: 10px;
-        height: 35px;
-        background: #ffa500;
-        border-radius: 0 0 0 5px;
-    }
-    .deng:before {
-        position: absolute;
-        top: -7px;
-        left: 29px;
-        height: 12px;
-        width: 60px;
-        content: " ";
-        display: block;
-        z-index: 999;
-        border-radius: 5px 5px 0 0;
-        border: solid 1px #dc8f03;
-        background: #ffa500;
-        background: linear-gradient(to right, #dc8f03, #ffa500, #dc8f03, #ffa500, #dc8f03);
-    }
-    .deng:after {
-        position: absolute;
-        bottom: -7px;
-        left: 10px;
-        height: 12px;
-        width: 60px;
-        content: " ";
-        display: block;
-        margin-left: 20px;
-        border-radius: 0 0 5px 5px;
-        border: solid 1px #dc8f03;
-        background: #ffa500;
-        background: linear-gradient(to right, #dc8f03, #ffa500, #dc8f03, #ffa500, #dc8f03);
-    }
-    @font-face {
-        font-family: "华文行楷";
-        src: url('/fonts/华文行楷.ttf');
-    }
-    .deng-t {
-        font-family: 华文行楷;
-        font-size: 26px;
-        color: #dc8f03;
-        font-weight: bold;
-        line-height: 44px;
-        text-align: center;
-    }
-    .night .deng-t,
-    .night .deng-box,
-    .night .deng-box1 {
-        background: transparent !important;
-    }
-    @-moz-keyframes swing {
-        0% {
-                -moz-transform: rotate(-10deg)
-        }
-        50% {
-             -moz-transform: rotate(10deg)
-        }
-        100% {
-                -moz-transform: rotate(-10deg)
-        }
-    }
-    @-webkit-keyframes swing {
-        0% {
-                -webkit-transform: rotate(-10deg)
-        }
-        50% {
-                -webkit-transform: rotate(10deg)
-        }
-        100% {
-                -webkit-transform: rotate(-10deg)
-        }
-    }
-</style>
-<div class="denglong">
-    <div class="deng-box">
-        <div class="deng">
-            <div class="xian"></div>
-            <div class="deng-a">
-                <div class="deng-b"><div class="deng-t" id="dtone">喜迎</div></div>
-            </div>
-            <div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div>
-        </div>
-    </div>
-    <div class="deng-box1">
-        <div class="deng">
-            <div class="xian"></div>
-            <div class="deng-a">
-                <div class="deng-b"><div class="deng-t" id="dttwo">春节</div></div>
-            </div>
-            <div class="shui shui-a"><div class="shui-c"></div><div class="shui-b"></div></div>
-        </div>
-    </div>
-</div>
-<!-- 春节主题模式样式结束 -->
-
-    <!-- 
-<style>
-    .carousel-control {
-        width: 45px;
-        height: 45px;
-        line-height: 55px;
-        border-radius: 45px;
-        background: transparent;
-        cursor: pointer;
-        z-index: 100;
-    }
-
-    #prev-cover {
-        position: absolute;
-        top: 48%;
-        left: 8px;
-    }
-
-    #next-cover {
-        position: absolute;
-        top: 48%;
-        right: 8px;;
-    }
-
-    #prev-cover i {
-        margin-right: 3px;
-    }
-
-    #next-cover i {
-        margin-left: 3px;
-    }
-
-    .carousel-control:hover {
-        background-color: rgba(0, 0, 0, .4);
-    }
-
-    .carousel-control i {
-        color: #fff;
-        font-size: 2.4rem;
-    }
-</style>
-
-
-
-<div class="carousel carousel-slider center index-cover" data-indicators="true" style="margin-top: -64px;">
+    <main class="site-main posts-loop">
     
-        <div id="prev-cover" class="left waves-effect carousel-control">
-            <i class="icon fa fa-angle-left"></i>
-        </div>
-        <div id="next-cover" class="right waves-effect carousel-control">
-            <i class="icon fa fa-angle-right"></i>
-        </div>
-    
+  <article>
 
-    <div class="carousel-item red white-text bg-cover about-cover">
-        <div class="container">
-            <div class="row">
-    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
-        <div class="brand">
-            <div class="title center-align">
-                
-                    所行皆过往，所愿皆成真
-                 
-            </div>
-
-            <div class="description center-align">
-                
-                <span id="subtitle"></span>
-                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
-                <script>
-                    var typed = new Typed("#subtitle", {
-                        strings: ['欢迎阅读我的博客，也欢迎大家的赞赏',''],
-                        startDelay: 200,
-                        typeSpeed: 120,
-                        loop: true,
-                        backSpeed: 50,
-                        showCursor: true
-                    });
-                </script>
-                
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<script>
-    // 每天切换 banner 图.  Switch banner image every day.
-    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
-    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
-</script>
-
-
-
-            <div class="cover-btns">
-                <a href="#indexCard" class="waves-effect waves-light btn">
-                    <i class="fa fa-angle-double-down"></i>开始阅读
-                </a>
-
-                
-            </div>
-            <div class="cover-social-link">
-
-
-    <a href="mailto:pengsiwen_2@163.com" class="tooltipped" target="_blank" data-tooltip="pengsiwen_2@163.com" data-position="top" data-delay="50">
-        <i class="fas fa-envelope-open"></i>
-    </a>
-
-
-
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=3197544360" class="tooltipped" target="_blank" data-tooltip="3197544360" data-position="top" data-delay="50">
-        <i class="fab fa-qq"></i>
-    </a>
-
-
-
-</div>
-        </div>
-    </div>
-
-    
-        
-
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/2.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">老同学,聚会,传递温暖</div>
-                            <div class="description center-align">
-                                
-                                    老同学见面，欢迎幸芷
-
-他们嘲笑我的发型，邻家小哥的发型 很奇怪吗？不奇怪吧。
-
-吃完饭，大家一起去找个地方按摩，说实话，这日子挺奢侈，哈哈哈哈
-
-这店太正规了，我就没按摩了（开玩笑）
-感谢幸芷特意带过来的长沙风格礼物，感谢！
-
-期待下次的
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/a387.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/2.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">室友“羊”了</div>
-                            <div class="description center-align">
-                                
-                                    室友这几天不舒服，就测了，果不其然🐑了，我应该是很危险了。
-
-
-
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/850ce73f.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/2.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">疫情三年，是时候结束了！</div>
-                            <div class="description center-align">
-                                
-                                    
-疫情三年，什么变化了？什么没有变化呢？
-
-疫情三年变化的是，出现了健康码、行程码、核酸检测
-疫情三年变化的是，到处都贴起了二维码、出行限制、经济发展滞缓
-
-
-三年疫情，突然放开，大家还是有些许不适应
-还是习惯的过门卡掏出手机，还是习惯每天
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/d223f900.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/0.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">被围绕的区域——LeetCode130</div>
-                            <div class="description center-align">
-                                
-                                    给你一个 m x n 的矩阵 board ，由若干字符 'X' 和 'O' ，找到所有被 'X' 围绕的区域，并将这些区域里所有的 'O' 用 'X' 填充。
-
-
-示例1
-输入：board = [["X","X","X","X"],["X"
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/52a5c0f5.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/1.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">JVM调优——X参数,方法内联</div>
-                            <div class="description center-align">
-                                
-                                    JVM的-X参数是非标准参数，在不同版本的JVM中，参数可能会有所不同，可以通过java -X查看非标准参数
-> java -X
-
-    -Xbatch           禁用后台编译
-    -Xbootclasspath/a:
   
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/638c83fa.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/3.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">巧妙使用正则——去除小数点后多余的零</div>
-                            <div class="description center-align">
-                                
-                                    直接上代码
-const arr=['1200.00100','1200.00000','1200.','1200','1200.10000','0.120010000','0.000011111']
-const regexp=/(?:\.0
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/9195a466.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/3.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">单词接龙——leetcode127</div>
-                            <div class="description center-align">
-                                
-                                    题目描述字典 wordList 中从单词 beginWord 和 endWord 的 转换序列 是一个按下述规格形成的序列：序列中第一个单词是 beginWord 。序列中最后一个单词是 endWord。每次转换只能改变一个字母。转换过程中
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/fbb9fe6d.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/2.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">买卖股票的最佳时机 II——LeetCode122</div>
-                            <div class="description center-align">
-                                
-                                    题目描述给定一个数组 prices ，其中 prices[i] 是一支给定股票第 i 天的价格。
-设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。
-注意：你不能同时参与多笔交易（你必须在再次购买前出
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/f883163f.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/0.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">路径总和 II——LeetCode113</div>
-                            <div class="description center-align">
-                                
-                                    题目描述给你二叉树的根节点 root 和一个整数目标和 targetSum ，找出所有 从根节点到叶子节点 路径总和等于给定目标和的路径。
-叶子节点 是指没有子节点的节点。
-示例 1：
-
-输入：root = [5,4,8,11,null,1
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/7d31a8bc.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/0.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">复原IP地址——LeetCode93</div>
-                            <div class="description center-align">
-                                
-                                    题目描述有效 IP 地址 正好由四个整数（每个整数位于 0 到 255 之间组成，且不能含有前导 0），整数之间用 ‘.’ 分隔。
-例如：”0.1.2.201” 和 “192.168.1.1” 是 有效 IP 地址，但是 “0.011.25
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/ab179abd.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/2.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">最长回文子串——Leetcode5</div>
-                            <div class="description center-align">
-                                
-                                    题目描述给你一个字符串 s，找到 s 中最长的回文子串。 
-
-示例 1：
-输入：s = "babad"
-输出："bab"
-解释："aba" 同样是符合题意的答案。
-
-示例 2：
-输入：s = "cbbd"
-输出："bb"
-
-示例 3：
-输入
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/dfd6ab93.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/3.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">linux生产免费的域名证书</div>
-                            <div class="description center-align">
-                                
-                                    简单来说acme.sh 实现了 acme 协议, 可以从 let‘s encrypt 生成免费的证书。acme.sh 有以下特点：一个纯粹用Shell（Unix shell）语言编写的ACME协议客户端。完整的ACME协议实施。 支持ACM
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/4425fc35.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/3.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">夜中云谷</div>
-                            <div class="description center-align">
-                                
-                                    
-
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/b10a7a0e.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/1.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">gulp-imagemin在压缩图片</div>
-                            <div class="description center-align">
-                                
-                                    经过各种研（bai）究（du），找到了一种方案：采用gulp + gulp-imagemin，对图片进行压缩，结合hexo进行对应图片压缩。
-安装npm install gulp --save-dev
-npm install gulp-im
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/1009bbf4.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/3.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">图记——今日午餐</div>
-                            <div class="description center-align">
-                                
-                                    
-
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/dbbc4a4a.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/0.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">图记——晚霞的尾巴</div>
-                            <div class="description center-align">
-                                
-                                    
-
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/4ee64d66.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/0.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">图记——武康大楼</div>
-                            <div class="description center-align">
-                                
-                                    
-
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/9b051724.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/3.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">往昔时光-我们</div>
-                            <div class="description center-align">
-                                
-                                    
-小时候我们唯一的合照
-
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/51719.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/2.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">图记——上海外滩</div>
-                            <div class="description center-align">
-                                
-                                    
-
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/ec5868f5.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/1.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">图记——直插云霄</div>
-                            <div class="description center-align">
-                                
-                                    
-
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/6617d304.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/1.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">图记——大厦</div>
-                            <div class="description center-align">
-                                
-                                    
-
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/dfa3267e.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/3.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">往昔时光-大学</div>
-                            <div class="description center-align">
-                                
-                                    
-梦想的起点
-
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/4166.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/2.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">往昔时光-可爱的他们</div>
-                            <div class="description center-align">
-                                
-                                    
-可爱的他们
-
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/43666.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-            
-            <div class="carousel-item amber white-text carousel-post bg-cover"
-                 style="background-image: url('/medias/banner/1.jpg');">
-                <div class="container">
-                    <div class="row">
-                        <div class="col s10 offset-s1">
-                            <div class="title center-align">往昔时光-大学实习</div>
-                            <div class="description center-align">
-                                
-                                    
-参观实习
-
-
-                                
-                            </div>
-                            <div class="cover-btns">
-                                <a href="/posts/48940.html" class="waves-effect waves-light btn"
-                                   target="_blank">
-                                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
     
-</div>
-
-<script>
-    $(function () {
-        let coverSlider = $('.carousel');
-
-        //用户触摸轮播自动 restartPlay 是否生效
-        let initUserPressedOrDraggedActive = false
-
-        //用户触摸轮播自动 restartPlay
-        function initUserPressedOrDragged(instance) {
-            setInterval(() => {
-                if (instance.pressed || instance.dragged) {
-                    // console.log('initUserPressedOrDragged: ',instance.pressed,instance.dragged)
-                    restartPlay()
-                }
-            }, 1000)
-        }
-
-        coverSlider.carousel({
-            duration: Number('120'),
-            fullWidth: true,
-            indicators: 'true' === 'true',
-            onCycleTo() {
-                if (!initUserPressedOrDraggedActive) {
-                    // console.log('initUserPressedOrDraggedActive')
-                    initUserPressedOrDragged(this)
-                    initUserPressedOrDraggedActive = true
-                }
-            },
-        })
-
-        let carouselIntervalId;
-        
-        // Loop to call the next cover article picture.
-        let autoCarousel = function () {
-            carouselIntervalId = setInterval(function () {
-                coverSlider.carousel('next');
-            }, 5000);
-        };
-        autoCarousel();
-        
-
-        function restartPlay() {
-            
-            clearInterval(carouselIntervalId);
-            autoCarousel();
-            
-        };
-
-        
-        // prev and next cover post.
-        $('#prev-cover').click(function () {
-            coverSlider.carousel('prev');
-            restartPlay();
-        });
-        $('#next-cover').click(function () {
-            coverSlider.carousel('next');
-            restartPlay();
-        });
-        
-    });
-</script>
-
- -->
-
-<style>
-  /* 主页背景图 */
-  .bg-cover {
-    background-image: url("/medias/banner/wy1.JPG") !important;
-  }
-</style>
-
-<style>
-  @media only screen and (max-width: 601px) {
-    #switchspring {
-      bottom: 178px !important;
-    }
-  }
-
-  #switchspring {
-    bottom: 232px;
-  }
-
-  .hurens {
-    color: #926fec;
-    font-size: 1.08rem;
-  }
-
-  body.dark .hurens {
-    color: #926fec !important;
-  }
-</style>
-
-<main class="content">
+    <h3 class="article-title"><a href="/posts/a387.html"><span>老同学,聚会,传递温暖</span></a></h3>
+    
   
-  <div id="indexCard" class="index-card">
-    <div class="container ">
-      <!-- 王小波语录栏开始 -->
-      <div class="card huahuacard">
-        <div class="card-content">
-          
-          <style>
-  .yulunr {
-    text-indent: 2rem;
-  }
-</style>
-<div class="dream yuludream">
-    <div class="row">
-        <!-- 王小波语录开始 -->
-        <div class="col l12 m12 s12 text datext">
-            <!-- 福袋按钮 -->
-            <div class="caishendeng">        
-                <div class="caishenxian fudaixian">
-                    <img class="caishenpic fudai" src="/medias/spring-img/fudai.png" />
-                </div>              
-            </div>
-            <div class="title center-align">
-              《质数的孤独》
-            </div>
-            <div class="yulunr">越长大，越觉得孤独竟是生命的必然，每个人都是质数列中孤单却特别的存在。或许，说不上特别，也就算个普普通通，再或者说，用＂普通＂都夸张了些。我们都是那孤独的质数，我们都承受着质数的孤独。——保罗·乔尔达诺 《质数的孤独》</div>
-        </div>
-        <!-- 王小波语录栏结束 -->
-    </div>
-</div>
 
-          
-
-          
-
-          
-
-          
-        </div>
-        <!-- 旋转樱花 -->
-        <div class="yinghua yhleft">
-          <div class="yinghualine">
-            <img class="yinghuapic" src="/medias/yinghua.png" />
-          </div>
-          <style>
-            .yinghua {
-              position: absolute;
-              bottom: 32px;
-            }
-
-            .yhleft {
-              left: 15%;
-            }
-
-            .yinghualine {
-              position: absolute;
-              top: 0px;
-              right: 20%;
-              width: 2px;
-              height: 32px;
-              background: #dc8f03;
-              transform-origin: 50% 100px;
-              animation: swing 3.5s infinite ease-in-out;
-              -webkit-transform-origin: 50% 100px;
-              -webkit-animation: swing 3.5s infinite ease-in-out;
-            }
-
-            .yinghuapic {
-              width: 28px;
-              height: 28px;
-              -webkit-animation: rotate 2s linear 0s infinite;
-              animation: rotate 2s linear 0s infinite;
-              position: absolute;
-              top: -14px;
-              left: -14px;
-              z-index: 9;
-            }
-          </style>
-        </div>
-      </div>
-      <!-- 王小波语录栏结束 -->
-
-      <!-- 全局通知公告播报栏开始 -->
-      <style>
-        .notices {
-          padding: 20px;
-          color: #969696;
-          position: relative;
-          display: inline-block;
-          border-radius: 10px;
-          font-size: 16px;
-        }
-
-        .rows .col.offset-l2 {
-          margin-left: 0px !important;
-        }
-
-        .textsst {
-          padding: 20px;
-          font-size: 1.08rem;
-          text-indent: 2rem;
-          font-family: 'Architects Daughter', cursive !important;
-        }
-
-        .textsst p {
-          font-size: 16px;
-        }
-      </style>
-      <div class="card huahuacard">
-        <div class="dream">
-          <div class="row rows">
-            <div class="notices col l12 offset-l2 m12 offset-m1 s12 offset-s1">
-              <div class="caishendeng">
-                <div class="caishenxian">
-                  <img class="caishenpic" src="/medias/spring-img/caishen.png" />
-                </div>
-              </div>
-              <!-- 全局通知公告播报栏开始 -->
-              <style>
-                .notices {
-                  padding: 20px;
-                  color: #969696;
-                  position: relative;
-                  display: inline-block;
-                  border-radius: 10px;
-                  font-size: 16px;
-                }
-
-                .rows .col.offset-l2 {
-                  margin-left: 0px !important;
-                }
-
-                .textsst {
-                  padding: 20px;
-                  font-size: 1.08rem;
-                  text-indent: 2rem;
-                  font-family: 'Architects Daughter', cursive !important;
-                }
-
-                .textsst p {
-                  font-size: 16px;
-                }
-              </style>
-              <!-- 公告文字栏开始 -->
-              <div class="textsst">
-               <p>暂无公告</p>
-              </div>
-              <!-- 公告文字栏结束 -->
-              <!-- 旋转樱花 -->
-              <div class="yinghua yhright">
-                <div class="yinghualine">
-                  <img class="yinghuapic" src="/medias/yinghua.png" />
-                </div>
-                <style>
-                  .yinghua {
-                    position: absolute;
-                    bottom: 32px;
-                  }
-
-                  .yhright {
-                    right: 12%;
-                  }
-
-                  .yinghualine {
-                    position: absolute;
-                    top: 0px;
-                    right: 20%;
-                    width: 2px;
-                    height: 32px;
-                    background: #dc8f03;
-                    transform-origin: 50% 100px;
-                    animation: swing 3.5s infinite ease-in-out;
-                    -webkit-transform-origin: 50% 100px;
-                    -webkit-animation: swing 3.5s infinite ease-in-out;
-                  }
-
-                  .yinghuapic {
-                    width: 28px;
-                    height: 28px;
-                    -webkit-animation: rotate 2s linear 0s infinite;
-                    animation: rotate 2s linear 0s infinite;
-                    position: absolute;
-                    top: -14px;
-                    left: -14px;
-                    z-index: 9;
-                  }
-                </style>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- 全局通知公告播报栏结束 -->
-    </div>
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/a387.html" rel="bookmark">
+        <time class="entry-date published" datetime="2023-07-30T10:18:05.000Z">
+          2023-07-30
+        </time>
+      </a>
+    </span>
   </div>
 
-  
 
   
 
-  <!-- 所有文章卡片开始 -->
-  <article id="articles" class="container articles">
-    <div class="row article-row">
+  <div class="article-content">
+    <div class="article-cover">
       
-      <div class="article col s12 m6 l4">
-        <div class="card">
-          <!-- 推荐文章置顶模块效果开始 -->
-          
-          <!-- 推荐文章置顶模块效果结束 -->
-          <a href="/posts/a387.html">
-            <div class="card-image">
-
-              
-              <img src="/posts/a387/微信图片_20230730181447.jpg" class="responsive-img" alt="老同学,聚会,传递温暖">
-              
-              <!-- 福袋按钮 -->
-              <div class="caishendeng">
-                <div class="caishenxian fudaixian">
-                  <img class="caishenpic lala" src="/medias/spring-img/fish.png" />
-                </div>
-              </div>
-              <span class="card-title">
-                老同学,聚会,传递温暖
-                <!-- 文章卡片hover线条效果 -->
-                <span class="titlesline">
-                  <style>
-                    .titlesline {
-                      width: 0px;
-                      height: 4px;
-                      background-color: #fadca6;
-                      border-radius: 2px;
-                      position: absolute;
-                      top: 10px;
-                      left: 24px;
-                    }
-
-                    body.dark .titlesline {
-                      filter: brightness(.7);
-                    }
-
-                    article .card .titlesline {
-                      transition: all 0.36s ease;
-                    }
-
-                    article .card-image:hover .titlesline {
-                      width: 36px;
-                    }
-                  </style>
-                </span>
-              </span>
-            </div>
-          </a>
-
-          <div class="card-content article-content">
-            <div class="summary block-with-text">
-              
-              老同学见面，欢迎幸芷
-
-他们嘲笑我的发型，邻家小哥的发型 很奇怪吗？不奇怪吧。
-
-吃完饭，大家一起去找个地方按摩，说实话，这日子挺奢侈，哈哈哈哈
-
-这店太正规了，我就没按摩了（开玩笑）
-感谢幸芷特意带过来的长沙风格礼物，感谢！
-
-期待下次的
-              
-            </div>
-            <div class="publish-info">
-              <span class="publish-date">
-                <i class="far fa-clock fa-fw icon-date"></i>2023-07-30
-              </span>
-              <span class="publish-author">
-                
-                <i class="fas fa-user fa-fw"></i>
-                SIWEN.PENG
-                
-              </span>
-            </div>
-          </div>
-
-          
-          <div class="card-action article-tags">
-            
-            <a href="/tags/%E8%81%9A%E4%BC%9A/">
-              <span class="chip bg-color">聚会</span>
-            </a>
-            
-            <a href="/tags/%E8%80%81%E5%90%8C%E5%AD%A6/">
-              <span class="chip bg-color">老同学</span>
-            </a>
-            
-          </div>
-          
-        </div>
-      </div>
-      
-      <div class="article col s12 m6 l4">
-        <div class="card">
-          <!-- 推荐文章置顶模块效果开始 -->
-          
-          <!-- 推荐文章置顶模块效果结束 -->
-          <a href="/posts/8905.html">
-            <div class="card-image">
-
-              
-              
-              <img src="/medias/banner/0.jpg" class="responsive-img"
-                alt="《c++之路》用户定义的类型--User-Defined Types">
-              
-              <!-- 福袋按钮 -->
-              <div class="caishendeng">
-                <div class="caishenxian fudaixian">
-                  <img class="caishenpic lala" src="/medias/spring-img/fish.png" />
-                </div>
-              </div>
-              <span class="card-title">
-                《c++之路》用户定义的类型--User-Defined Types
-                <!-- 文章卡片hover线条效果 -->
-                <span class="titlesline">
-                  <style>
-                    .titlesline {
-                      width: 0px;
-                      height: 4px;
-                      background-color: #fadca6;
-                      border-radius: 2px;
-                      position: absolute;
-                      top: 10px;
-                      left: 24px;
-                    }
-
-                    body.dark .titlesline {
-                      filter: brightness(.7);
-                    }
-
-                    article .card .titlesline {
-                      transition: all 0.36s ease;
-                    }
-
-                    article .card-image:hover .titlesline {
-                      width: 36px;
-                    }
-                  </style>
-                </span>
-              </span>
-            </div>
-          </a>
-
-          <div class="card-content article-content">
-            <div class="summary block-with-text">
-              
-              c++除了内置类型外，还支持用户自定义类型，以便用户可以方便的编写高级应用程序，此处我们主要学习struct, union,enum,class
-
-enum枚举应用：在实际中，有些值无论数值或者字符型的，取值在一个固定范围内，设计者提前知道
-              
-            </div>
-            <div class="publish-info">
-              <span class="publish-date">
-                <i class="far fa-clock fa-fw icon-date"></i>2023-07-29
-              </span>
-              <span class="publish-author">
-                
-                <i class="fas fa-user fa-fw"></i>
-                SIWEN.PENG
-                
-              </span>
-            </div>
-          </div>
-
-          
-          <div class="card-action article-tags">
-            
-            <a href="/tags/c/">
-              <span class="chip bg-color">c++</span>
-            </a>
-            
-            <a href="/tags/Types/">
-              <span class="chip bg-color">Types</span>
-            </a>
-            
-          </div>
-          
-        </div>
-      </div>
-      
-      <div class="article col s12 m6 l4">
-        <div class="card">
-          <!-- 推荐文章置顶模块效果开始 -->
-          
-          <!-- 推荐文章置顶模块效果结束 -->
-          <a href="/posts/1726970c.html">
-            <div class="card-image">
-
-              
-              
-              <img src="/medias/banner/2.jpg" class="responsive-img"
-                alt="文件下载原理详解和解决方案">
-              
-              <!-- 福袋按钮 -->
-              <div class="caishendeng">
-                <div class="caishenxian fudaixian">
-                  <img class="caishenpic lala" src="/medias/spring-img/fish.png" />
-                </div>
-              </div>
-              <span class="card-title">
-                文件下载原理详解和解决方案
-                <!-- 文章卡片hover线条效果 -->
-                <span class="titlesline">
-                  <style>
-                    .titlesline {
-                      width: 0px;
-                      height: 4px;
-                      background-color: #fadca6;
-                      border-radius: 2px;
-                      position: absolute;
-                      top: 10px;
-                      left: 24px;
-                    }
-
-                    body.dark .titlesline {
-                      filter: brightness(.7);
-                    }
-
-                    article .card .titlesline {
-                      transition: all 0.36s ease;
-                    }
-
-                    article .card-image:hover .titlesline {
-                      width: 36px;
-                    }
-                  </style>
-                </span>
-              </span>
-            </div>
-          </a>
-
-          <div class="card-content article-content">
-            <div class="summary block-with-text">
-              
-              对于文件服务器通常会面临大量文件下载请求，除了带宽、IO等硬件上的约束条件外，在极度消耗影响资源情况下，非常容易对文件服务器造成压力，导致服务器崩溃，故此需要通过一些技术手段保证服务器稳定，并且也能持有一定下载速度。
-
-文件下载的几种优化方
-              
-            </div>
-            <div class="publish-info">
-              <span class="publish-date">
-                <i class="far fa-clock fa-fw icon-date"></i>2023-07-08
-              </span>
-              <span class="publish-author">
-                
-                <i class="fas fa-user fa-fw"></i>
-                SIWEN.PENG
-                
-              </span>
-            </div>
-          </div>
-
-          
-          <div class="card-action article-tags">
-            
-            <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/">
-              <span class="chip bg-color">文件下载</span>
-            </a>
-            
-            <a href="/tags/P2P/">
-              <span class="chip bg-color">P2P</span>
-            </a>
-            
-            <a href="/tags/%E5%88%86%E7%89%87%E4%B8%8B%E8%BD%BD/">
-              <span class="chip bg-color">分片下载</span>
-            </a>
-            
-          </div>
-          
-        </div>
-      </div>
-      
-      <div class="article col s12 m6 l4">
-        <div class="card">
-          <!-- 推荐文章置顶模块效果开始 -->
-          
-          <!-- 推荐文章置顶模块效果结束 -->
-          <a href="/posts/ceb24869.html">
-            <div class="card-image">
-
-              
-              
-              <img src="/medias/banner/3.jpg" class="responsive-img"
-                alt="参加斐哥婚礼">
-              
-              <!-- 福袋按钮 -->
-              <div class="caishendeng">
-                <div class="caishenxian fudaixian">
-                  <img class="caishenpic lala" src="/medias/spring-img/fish.png" />
-                </div>
-              </div>
-              <span class="card-title">
-                参加斐哥婚礼
-                <!-- 文章卡片hover线条效果 -->
-                <span class="titlesline">
-                  <style>
-                    .titlesline {
-                      width: 0px;
-                      height: 4px;
-                      background-color: #fadca6;
-                      border-radius: 2px;
-                      position: absolute;
-                      top: 10px;
-                      left: 24px;
-                    }
-
-                    body.dark .titlesline {
-                      filter: brightness(.7);
-                    }
-
-                    article .card .titlesline {
-                      transition: all 0.36s ease;
-                    }
-
-                    article .card-image:hover .titlesline {
-                      width: 36px;
-                    }
-                  </style>
-                </span>
-              </span>
-            </div>
-          </a>
-
-          <div class="card-content article-content">
-            <div class="summary block-with-text">
-              
-              周末参加了斐哥和晓念婚礼…
-
-仪式现场：
-
-新郎新娘互相的说的话：
-
-咱们的合影：
-
-这些都是真花
-
-晚上烟花：
-
-最后恭喜斐哥、晓念新婚快乐！！！
-
-              
-            </div>
-            <div class="publish-info">
-              <span class="publish-date">
-                <i class="far fa-clock fa-fw icon-date"></i>2023-05-14
-              </span>
-              <span class="publish-author">
-                
-                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                
-                <a href="/categories/%E6%9D%82%E8%AE%B0/" class="post-category">
-                  杂记
-                </a>
-                
-                
-              </span>
-            </div>
-          </div>
-
-          
-          <div class="card-action article-tags">
-            
-            <a href="/tags/%E5%A9%9A%E7%A4%BC/">
-              <span class="chip bg-color">婚礼</span>
-            </a>
-            
-            <a href="/tags/%E6%B8%B8%E5%9B%AD%E5%A9%9A%E7%A4%BC/">
-              <span class="chip bg-color">游园婚礼</span>
-            </a>
-            
-          </div>
-          
-        </div>
-      </div>
-      
-      <div class="article col s12 m6 l4">
-        <div class="card">
-          <!-- 推荐文章置顶模块效果开始 -->
-          
-          <!-- 推荐文章置顶模块效果结束 -->
-          <a href="/posts/15a97059.html">
-            <div class="card-image">
-
-              
-              
-              <img src="/medias/banner/0.jpg" class="responsive-img"
-                alt="世界少了一个人，而我失去了爷爷">
-              
-              <!-- 福袋按钮 -->
-              <div class="caishendeng">
-                <div class="caishenxian fudaixian">
-                  <img class="caishenpic lala" src="/medias/spring-img/fish.png" />
-                </div>
-              </div>
-              <span class="card-title">
-                世界少了一个人，而我失去了爷爷
-                <!-- 文章卡片hover线条效果 -->
-                <span class="titlesline">
-                  <style>
-                    .titlesline {
-                      width: 0px;
-                      height: 4px;
-                      background-color: #fadca6;
-                      border-radius: 2px;
-                      position: absolute;
-                      top: 10px;
-                      left: 24px;
-                    }
-
-                    body.dark .titlesline {
-                      filter: brightness(.7);
-                    }
-
-                    article .card .titlesline {
-                      transition: all 0.36s ease;
-                    }
-
-                    article .card-image:hover .titlesline {
-                      width: 36px;
-                    }
-                  </style>
-                </span>
-              </span>
-            </div>
-          </a>
-
-          <div class="card-content article-content">
-            <div class="summary block-with-text">
-              
-              我的爷爷于2023年03月27日10:36分去世了。
-
-简要生平我的爷爷，彭明辉，出生于1938年，享年85岁。在我爸的悼念中写道：
-
-父亲大人出生于1938年5月14日贫农家庭，高小文化，1954年起参加潭湾初级社，六联乡高级社，横烟大队
-              
-            </div>
-            <div class="publish-info">
-              <span class="publish-date">
-                <i class="far fa-clock fa-fw icon-date"></i>2023-03-28
-              </span>
-              <span class="publish-author">
-                
-                <i class="fas fa-user fa-fw"></i>
-                SIWEN.PENG
-                
-              </span>
-            </div>
-          </div>
-
-          
-          <div class="card-action article-tags">
-            
-            <a href="/tags/%E6%82%BC%E5%BF%B5/">
-              <span class="chip bg-color">悼念</span>
-            </a>
-            
-          </div>
-          
-        </div>
-      </div>
-      
-      <div class="article col s12 m6 l4">
-        <div class="card">
-          <!-- 推荐文章置顶模块效果开始 -->
-          
-          <!-- 推荐文章置顶模块效果结束 -->
-          <a href="/posts/3255df9f.html">
-            <div class="card-image">
-
-              
-              
-              <img src="/medias/banner/1.jpg" class="responsive-img"
-                alt="希望传递温暖，让异乡变家乡">
-              
-              <!-- 福袋按钮 -->
-              <div class="caishendeng">
-                <div class="caishenxian fudaixian">
-                  <img class="caishenpic lala" src="/medias/spring-img/fish.png" />
-                </div>
-              </div>
-              <span class="card-title">
-                希望传递温暖，让异乡变家乡
-                <!-- 文章卡片hover线条效果 -->
-                <span class="titlesline">
-                  <style>
-                    .titlesline {
-                      width: 0px;
-                      height: 4px;
-                      background-color: #fadca6;
-                      border-radius: 2px;
-                      position: absolute;
-                      top: 10px;
-                      left: 24px;
-                    }
-
-                    body.dark .titlesline {
-                      filter: brightness(.7);
-                    }
-
-                    article .card .titlesline {
-                      transition: all 0.36s ease;
-                    }
-
-                    article .card-image:hover .titlesline {
-                      width: 36px;
-                    }
-                  </style>
-                </span>
-              </span>
-            </div>
-          </a>
-
-          <div class="card-content article-content">
-            <div class="summary block-with-text">
-              
-              希望480的同学在全国各地遇到来出差的同学都主动约一下，让大家都能感受四面八方同学的温暖！！！
-
-在深圳合気屋下沙店聚一下
-
-回去路上还挺远
-
-后面K了一下歌
-
-
-              
-            </div>
-            <div class="publish-info">
-              <span class="publish-date">
-                <i class="far fa-clock fa-fw icon-date"></i>2023-03-18
-              </span>
-              <span class="publish-author">
-                
-                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                
-                <a href="/categories/%E6%9D%82%E8%AE%B0/" class="post-category">
-                  杂记
-                </a>
-                
-                
-              </span>
-            </div>
-          </div>
-
-          
-          <div class="card-action article-tags">
-            
-            <a href="/tags/%E8%81%9A%E4%BC%9A/">
-              <span class="chip bg-color">聚会</span>
-            </a>
-            
-          </div>
-          
-        </div>
-      </div>
-      
-      <div class="article col s12 m6 l4">
-        <div class="card">
-          <!-- 推荐文章置顶模块效果开始 -->
-          
-          <!-- 推荐文章置顶模块效果结束 -->
-          <a href="/posts/4c633c0c.html">
-            <div class="card-image">
-
-              
-              
-              <img src="/medias/banner/0.jpg" class="responsive-img"
-                alt="从Apollo动态配置原理学Spring(二)">
-              
-              <!-- 福袋按钮 -->
-              <div class="caishendeng">
-                <div class="caishenxian fudaixian">
-                  <img class="caishenpic lala" src="/medias/spring-img/fish.png" />
-                </div>
-              </div>
-              <span class="card-title">
-                从Apollo动态配置原理学Spring(二)
-                <!-- 文章卡片hover线条效果 -->
-                <span class="titlesline">
-                  <style>
-                    .titlesline {
-                      width: 0px;
-                      height: 4px;
-                      background-color: #fadca6;
-                      border-radius: 2px;
-                      position: absolute;
-                      top: 10px;
-                      left: 24px;
-                    }
-
-                    body.dark .titlesline {
-                      filter: brightness(.7);
-                    }
-
-                    article .card .titlesline {
-                      transition: all 0.36s ease;
-                    }
-
-                    article .card-image:hover .titlesline {
-                      width: 36px;
-                    }
-                  </style>
-                </span>
-              </span>
-            </div>
-          </a>
-
-          <div class="card-content article-content">
-            <div class="summary block-with-text">
-              
-              
-Apollo动态配置其实本质就是利用Spring Bean 的生命周期的扩展点，这个扩展点超级多，不可能全部列出来，只说核心的扩展点。这也就是为什么 Spring 的扩展性很好的原因，开了很多的口子，尽可能让某个功能高内聚松耦合，用户需要
-              
-            </div>
-            <div class="publish-info">
-              <span class="publish-date">
-                <i class="far fa-clock fa-fw icon-date"></i>2023-02-26
-              </span>
-              <span class="publish-author">
-                
-                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                
-                <a href="/categories/Java/" class="post-category">
-                  Java
-                </a>
-                
-                
-              </span>
-            </div>
-          </div>
-
-          
-          <div class="card-action article-tags">
-            
-            <a href="/tags/Apollo/">
-              <span class="chip bg-color">Apollo</span>
-            </a>
-            
-            <a href="/tags/Spring/">
-              <span class="chip bg-color">Spring</span>
-            </a>
-            
-          </div>
-          
-        </div>
-      </div>
-      
-      <div class="article col s12 m6 l4">
-        <div class="card">
-          <!-- 推荐文章置顶模块效果开始 -->
-          
-          <!-- 推荐文章置顶模块效果结束 -->
-          <a href="/posts/e352a76e.html">
-            <div class="card-image">
-
-              
-              
-              <img src="/medias/banner/0.jpg" class="responsive-img"
-                alt="从Apollo动态配置原理学Spring(一)">
-              
-              <!-- 福袋按钮 -->
-              <div class="caishendeng">
-                <div class="caishenxian fudaixian">
-                  <img class="caishenpic lala" src="/medias/spring-img/fish.png" />
-                </div>
-              </div>
-              <span class="card-title">
-                从Apollo动态配置原理学Spring(一)
-                <!-- 文章卡片hover线条效果 -->
-                <span class="titlesline">
-                  <style>
-                    .titlesline {
-                      width: 0px;
-                      height: 4px;
-                      background-color: #fadca6;
-                      border-radius: 2px;
-                      position: absolute;
-                      top: 10px;
-                      left: 24px;
-                    }
-
-                    body.dark .titlesline {
-                      filter: brightness(.7);
-                    }
-
-                    article .card .titlesline {
-                      transition: all 0.36s ease;
-                    }
-
-                    article .card-image:hover .titlesline {
-                      width: 36px;
-                    }
-                  </style>
-                </span>
-              </span>
-            </div>
-          </a>
-
-          <div class="card-content article-content">
-            <div class="summary block-with-text">
-              
-              
-最近工作碰到需要写一个类似携程Apollo的动态配置功能，以此系统学习该原理，熟练掌握下Spring的各种机制
-
-Apollo动态配置原理简述
-Apollo配置中心动态生效机制，是基于Http长轮询请求和Spring扩展机制实现的，在Sp
-              
-            </div>
-            <div class="publish-info">
-              <span class="publish-date">
-                <i class="far fa-clock fa-fw icon-date"></i>2023-02-23
-              </span>
-              <span class="publish-author">
-                
-                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                
-                <a href="/categories/Java/" class="post-category">
-                  Java
-                </a>
-                
-                
-              </span>
-            </div>
-          </div>
-
-          
-          <div class="card-action article-tags">
-            
-            <a href="/tags/Apollo/">
-              <span class="chip bg-color">Apollo</span>
-            </a>
-            
-            <a href="/tags/Spring/">
-              <span class="chip bg-color">Spring</span>
-            </a>
-            
-            <a href="/tags/%E5%8A%A8%E6%80%81%E9%85%8D%E7%BD%AE/">
-              <span class="chip bg-color">动态配置</span>
-            </a>
-            
-          </div>
-          
-        </div>
-      </div>
-      
-      <div class="article col s12 m6 l4">
-        <div class="card">
-          <!-- 推荐文章置顶模块效果开始 -->
-          
-          <!-- 推荐文章置顶模块效果结束 -->
-          <a href="/posts/75466bf9.html">
-            <div class="card-image">
-
-              
-              
-              <img src="/medias/banner/1.jpg" class="responsive-img"
-                alt="QQ上线了24周年注册全球排名这个活动">
-              
-              <!-- 福袋按钮 -->
-              <div class="caishendeng">
-                <div class="caishenxian fudaixian">
-                  <img class="caishenpic lala" src="/medias/spring-img/fish.png" />
-                </div>
-              </div>
-              <span class="card-title">
-                QQ上线了24周年注册全球排名这个活动
-                <!-- 文章卡片hover线条效果 -->
-                <span class="titlesline">
-                  <style>
-                    .titlesline {
-                      width: 0px;
-                      height: 4px;
-                      background-color: #fadca6;
-                      border-radius: 2px;
-                      position: absolute;
-                      top: 10px;
-                      left: 24px;
-                    }
-
-                    body.dark .titlesline {
-                      filter: brightness(.7);
-                    }
-
-                    article .card .titlesline {
-                      transition: all 0.36s ease;
-                    }
-
-                    article .card-image:hover .titlesline {
-                      width: 36px;
-                    }
-                  </style>
-                </span>
-              </span>
-            </div>
-          </a>
-
-          <div class="card-content article-content">
-            <div class="summary block-with-text">
-              
-              2023年2月10日是QQ24周年的日子，在这天QQ上线了24周年注册全球排名这个活动，玩家可以在这里看到自己是什么时候创建的账号，并且还可以看到自己的排名信息哦。
-
-
-QQ24周年全球排名查看攻略这个活动的查看有着两种方式，分别如下：
-1
-              
-            </div>
-            <div class="publish-info">
-              <span class="publish-date">
-                <i class="far fa-clock fa-fw icon-date"></i>2023-02-10
-              </span>
-              <span class="publish-author">
-                
-                <i class="fas fa-user fa-fw"></i>
-                SIWEN.PENG
-                
-              </span>
-            </div>
-          </div>
-
-          
-          <div class="card-action article-tags">
-            
-            <a href="/tags/QQ/">
-              <span class="chip bg-color">QQ</span>
-            </a>
-            
-            <a href="/tags/%E9%82%A3%E4%BA%9B%E5%B9%B4/">
-              <span class="chip bg-color">那些年</span>
-            </a>
-            
-          </div>
-          
-        </div>
-      </div>
-      
-      <div class="article col s12 m6 l4">
-        <div class="card">
-          <!-- 推荐文章置顶模块效果开始 -->
-          
-          <!-- 推荐文章置顶模块效果结束 -->
-          <a href="/posts/277fd0ba.html">
-            <div class="card-image">
-
-              
-              
-              <img src="/medias/banner/2.jpg" class="responsive-img"
-                alt="元宵节，放了烟花">
-              
-              <!-- 福袋按钮 -->
-              <div class="caishendeng">
-                <div class="caishenxian fudaixian">
-                  <img class="caishenpic lala" src="/medias/spring-img/fish.png" />
-                </div>
-              </div>
-              <span class="card-title">
-                元宵节，放了烟花
-                <!-- 文章卡片hover线条效果 -->
-                <span class="titlesline">
-                  <style>
-                    .titlesline {
-                      width: 0px;
-                      height: 4px;
-                      background-color: #fadca6;
-                      border-radius: 2px;
-                      position: absolute;
-                      top: 10px;
-                      left: 24px;
-                    }
-
-                    body.dark .titlesline {
-                      filter: brightness(.7);
-                    }
-
-                    article .card .titlesline {
-                      transition: all 0.36s ease;
-                    }
-
-                    article .card-image:hover .titlesline {
-                      width: 36px;
-                    }
-                  </style>
-                </span>
-              </span>
-            </div>
-          </a>
-
-          <div class="card-content article-content">
-            <div class="summary block-with-text">
-              
-              烟花又称[花炮]、烟火、焰火、[炮仗]，根据《中国[烟花爆竹]标准—安全与质量》对烟花爆竹的定义为：以烟火药为原料，用于产生声光色的娱乐用品。中国劳动人民较早发明，常用于盛大的典礼或表演中。
-烟花其实和爆竹的结构类似，其结构都包含黑[火药]
-              
-            </div>
-            <div class="publish-info">
-              <span class="publish-date">
-                <i class="far fa-clock fa-fw icon-date"></i>2023-02-08
-              </span>
-              <span class="publish-author">
-                
-                <i class="fas fa-user fa-fw"></i>
-                SIWEN.PENG
-                
-              </span>
-            </div>
-          </div>
-
-          
-          <div class="card-action article-tags">
-            
-            <a href="/tags/%E7%83%9F%E8%8A%B1/">
-              <span class="chip bg-color">烟花</span>
-            </a>
-            
-            <a href="/tags/%E5%85%83%E5%AE%B5%E8%8A%82/">
-              <span class="chip bg-color">元宵节</span>
-            </a>
-            
-          </div>
-          
-        </div>
-      </div>
-      
-      <div class="article col s12 m6 l4">
-        <div class="card">
-          <!-- 推荐文章置顶模块效果开始 -->
-          
-          <!-- 推荐文章置顶模块效果结束 -->
-          <a href="/posts/ebb8427d.html">
-            <div class="card-image">
-
-              
-              
-              <img src="/medias/banner/0.jpg" class="responsive-img"
-                alt="2023兔年春节">
-              
-              <!-- 福袋按钮 -->
-              <div class="caishendeng">
-                <div class="caishenxian fudaixian">
-                  <img class="caishenpic lala" src="/medias/spring-img/fish.png" />
-                </div>
-              </div>
-              <span class="card-title">
-                2023兔年春节
-                <!-- 文章卡片hover线条效果 -->
-                <span class="titlesline">
-                  <style>
-                    .titlesline {
-                      width: 0px;
-                      height: 4px;
-                      background-color: #fadca6;
-                      border-radius: 2px;
-                      position: absolute;
-                      top: 10px;
-                      left: 24px;
-                    }
-
-                    body.dark .titlesline {
-                      filter: brightness(.7);
-                    }
-
-                    article .card .titlesline {
-                      transition: all 0.36s ease;
-                    }
-
-                    article .card-image:hover .titlesline {
-                      width: 36px;
-                    }
-                  </style>
-                </span>
-              </span>
-            </div>
-          </a>
-
-          <div class="card-content article-content">
-            <div class="summary block-with-text">
-              
-              1. 春节年前，家县城进行烟花表演：
-估计是增加了延迟拍摄
-
-
-
-还是得加滤镜啊
-
-2. 大伯家客厅搞了个“灯”
-3. 玩游戏的小外甥
-4. 外婆家合照
-5. 老表们
-6. 主公，我是忠臣特别说明:服务员也太不走心，少拍了一个人都说挺好，那
-              
-            </div>
-            <div class="publish-info">
-              <span class="publish-date">
-                <i class="far fa-clock fa-fw icon-date"></i>2023-02-04
-              </span>
-              <span class="publish-author">
-                
-                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                
-                <a href="/categories/%E6%9D%82%E8%AE%B0/" class="post-category">
-                  杂记
-                </a>
-                
-                
-              </span>
-            </div>
-          </div>
-
-          
-          <div class="card-action article-tags">
-            
-            <a href="/tags/%E6%98%A5%E8%8A%82/">
-              <span class="chip bg-color">春节</span>
-            </a>
-            
-          </div>
-          
-        </div>
-      </div>
-      
-      <div class="article col s12 m6 l4">
-        <div class="card">
-          <!-- 推荐文章置顶模块效果开始 -->
-          
-          <!-- 推荐文章置顶模块效果结束 -->
-          <a href="/posts/850ce73f.html">
-            <div class="card-image">
-
-              
-              <img src="/posts/850ce73f/image-20221219212509735.png" class="responsive-img" alt="室友“羊”了">
-              
-              <!-- 福袋按钮 -->
-              <div class="caishendeng">
-                <div class="caishenxian fudaixian">
-                  <img class="caishenpic lala" src="/medias/spring-img/fish.png" />
-                </div>
-              </div>
-              <span class="card-title">
-                室友“羊”了
-                <!-- 文章卡片hover线条效果 -->
-                <span class="titlesline">
-                  <style>
-                    .titlesline {
-                      width: 0px;
-                      height: 4px;
-                      background-color: #fadca6;
-                      border-radius: 2px;
-                      position: absolute;
-                      top: 10px;
-                      left: 24px;
-                    }
-
-                    body.dark .titlesline {
-                      filter: brightness(.7);
-                    }
-
-                    article .card .titlesline {
-                      transition: all 0.36s ease;
-                    }
-
-                    article .card-image:hover .titlesline {
-                      width: 36px;
-                    }
-                  </style>
-                </span>
-              </span>
-            </div>
-          </a>
-
-          <div class="card-content article-content">
-            <div class="summary block-with-text">
-              
-              室友这几天不舒服，就测了，果不其然🐑了，我应该是很危险了。
-
-
-
-              
-            </div>
-            <div class="publish-info">
-              <span class="publish-date">
-                <i class="far fa-clock fa-fw icon-date"></i>2022-12-19
-              </span>
-              <span class="publish-author">
-                
-                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                
-                <a href="/categories/%E6%9D%82%E8%AE%B0/" class="post-category">
-                  杂记
-                </a>
-                
-                
-              </span>
-            </div>
-          </div>
-
-          
-          <div class="card-action article-tags">
-            
-            <a href="/tags/%E7%96%AB%E6%83%85/">
-              <span class="chip bg-color">疫情</span>
-            </a>
-            
-          </div>
-          
-        </div>
-      </div>
-      
-      <div class="article col s12 m6 l4">
-        <div class="card">
-          <!-- 推荐文章置顶模块效果开始 -->
-          
-          <!-- 推荐文章置顶模块效果结束 -->
-          <a href="/posts/d223f900.html">
-            <div class="card-image">
-
-              
-              <img src="/posts/d223f900/image-20221212210631735.png" class="responsive-img" alt="疫情三年，是时候结束了！">
-              
-              <!-- 福袋按钮 -->
-              <div class="caishendeng">
-                <div class="caishenxian fudaixian">
-                  <img class="caishenpic lala" src="/medias/spring-img/fish.png" />
-                </div>
-              </div>
-              <span class="card-title">
-                疫情三年，是时候结束了！
-                <!-- 文章卡片hover线条效果 -->
-                <span class="titlesline">
-                  <style>
-                    .titlesline {
-                      width: 0px;
-                      height: 4px;
-                      background-color: #fadca6;
-                      border-radius: 2px;
-                      position: absolute;
-                      top: 10px;
-                      left: 24px;
-                    }
-
-                    body.dark .titlesline {
-                      filter: brightness(.7);
-                    }
-
-                    article .card .titlesline {
-                      transition: all 0.36s ease;
-                    }
-
-                    article .card-image:hover .titlesline {
-                      width: 36px;
-                    }
-                  </style>
-                </span>
-              </span>
-            </div>
-          </a>
-
-          <div class="card-content article-content">
-            <div class="summary block-with-text">
-              
-              
-疫情三年，什么变化了？什么没有变化呢？
-
-疫情三年变化的是，出现了健康码、行程码、核酸检测
-疫情三年变化的是，到处都贴起了二维码、出行限制、经济发展滞缓
-
-
-三年疫情，突然放开，大家还是有些许不适应
-还是习惯的过门卡掏出手机，还是习惯每天
-              
-            </div>
-            <div class="publish-info">
-              <span class="publish-date">
-                <i class="far fa-clock fa-fw icon-date"></i>2022-12-12
-              </span>
-              <span class="publish-author">
-                
-                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                
-                <a href="/categories/%E6%9D%82%E8%AE%B0/" class="post-category">
-                  杂记
-                </a>
-                
-                
-              </span>
-            </div>
-          </div>
-
-          
-          <div class="card-action article-tags">
-            
-            <a href="/tags/%E7%96%AB%E6%83%85/">
-              <span class="chip bg-color">疫情</span>
-            </a>
-            
-          </div>
-          
-        </div>
-      </div>
-      
-      <div class="article col s12 m6 l4">
-        <div class="card">
-          <!-- 推荐文章置顶模块效果开始 -->
-          
-          <!-- 推荐文章置顶模块效果结束 -->
-          <a href="/posts/52a5c0f5.html">
-            <div class="card-image">
-
-              
-              <img src="/posts/52a5c0f5/xogrid.jpg" class="responsive-img" alt="被围绕的区域——LeetCode130">
-              
-              <!-- 福袋按钮 -->
-              <div class="caishendeng">
-                <div class="caishenxian fudaixian">
-                  <img class="caishenpic lala" src="/medias/spring-img/fish.png" />
-                </div>
-              </div>
-              <span class="card-title">
-                被围绕的区域——LeetCode130
-                <!-- 文章卡片hover线条效果 -->
-                <span class="titlesline">
-                  <style>
-                    .titlesline {
-                      width: 0px;
-                      height: 4px;
-                      background-color: #fadca6;
-                      border-radius: 2px;
-                      position: absolute;
-                      top: 10px;
-                      left: 24px;
-                    }
-
-                    body.dark .titlesline {
-                      filter: brightness(.7);
-                    }
-
-                    article .card .titlesline {
-                      transition: all 0.36s ease;
-                    }
-
-                    article .card-image:hover .titlesline {
-                      width: 36px;
-                    }
-                  </style>
-                </span>
-              </span>
-            </div>
-          </a>
-
-          <div class="card-content article-content">
-            <div class="summary block-with-text">
-              
-              给你一个 m x n 的矩阵 board ，由若干字符 'X' 和 'O' ，找到所有被 'X' 围绕的区域，并将这些区域里所有的 'O' 用 'X' 填充。
-
-
-示例1
-输入：board = [["X","X","X","X"],["X"
-              
-            </div>
-            <div class="publish-info">
-              <span class="publish-date">
-                <i class="far fa-clock fa-fw icon-date"></i>2022-02-08
-              </span>
-              <span class="publish-author">
-                
-                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                
-                <a href="/categories/LeetCode/" class="post-category">
-                  LeetCode
-                </a>
-                
-                <a href="/categories/LeetCode/%E7%AE%97%E6%B3%95/" class="post-category">
-                  算法
-                </a>
-                
-                <a href="/categories/LeetCode/%E7%AE%97%E6%B3%95/java/" class="post-category">
-                  java
-                </a>
-                
-                
-              </span>
-            </div>
-          </div>
-
-          
-          <div class="card-action article-tags">
-            
-            <a href="/tags/%E7%9F%A9%E9%98%B5/">
-              <span class="chip bg-color">矩阵</span>
-            </a>
-            
-            <a href="/tags/%E6%B7%B1%E5%BA%A6%E9%81%8D%E5%8E%86/">
-              <span class="chip bg-color">深度遍历</span>
-            </a>
-            
-            <a href="/tags/%E5%B9%BF%E5%BA%A6%E9%81%8D%E5%8E%86/">
-              <span class="chip bg-color">广度遍历</span>
-            </a>
-            
-          </div>
-          
-        </div>
-      </div>
-      
-      <div class="article col s12 m6 l4">
-        <div class="card">
-          <!-- 推荐文章置顶模块效果开始 -->
-          
-          <!-- 推荐文章置顶模块效果结束 -->
-          <a href="/posts/638c83fa.html">
-            <div class="card-image">
-
-              
-              <img src="/posts/638c83fa/logo" class="responsive-img" alt="JVM调优——X参数,方法内联">
-              
-              <!-- 福袋按钮 -->
-              <div class="caishendeng">
-                <div class="caishenxian fudaixian">
-                  <img class="caishenpic lala" src="/medias/spring-img/fish.png" />
-                </div>
-              </div>
-              <span class="card-title">
-                JVM调优——X参数,方法内联
-                <!-- 文章卡片hover线条效果 -->
-                <span class="titlesline">
-                  <style>
-                    .titlesline {
-                      width: 0px;
-                      height: 4px;
-                      background-color: #fadca6;
-                      border-radius: 2px;
-                      position: absolute;
-                      top: 10px;
-                      left: 24px;
-                    }
-
-                    body.dark .titlesline {
-                      filter: brightness(.7);
-                    }
-
-                    article .card .titlesline {
-                      transition: all 0.36s ease;
-                    }
-
-                    article .card-image:hover .titlesline {
-                      width: 36px;
-                    }
-                  </style>
-                </span>
-              </span>
-            </div>
-          </a>
-
-          <div class="card-content article-content">
-            <div class="summary block-with-text">
-              
-              JVM的-X参数是非标准参数，在不同版本的JVM中，参数可能会有所不同，可以通过java -X查看非标准参数
-> java -X
-
-    -Xbatch           禁用后台编译
-    -Xbootclasspath/a:
-  
-              
-            </div>
-            <div class="publish-info">
-              <span class="publish-date">
-                <i class="far fa-clock fa-fw icon-date"></i>2022-01-12
-              </span>
-              <span class="publish-author">
-                
-                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                
-                <a href="/categories/java/" class="post-category">
-                  java
-                </a>
-                
-                
-              </span>
-            </div>
-          </div>
-
-          
-          <div class="card-action article-tags">
-            
-            <a href="/tags/jvm%E8%B0%83%E4%BC%98/">
-              <span class="chip bg-color">jvm调优</span>
-            </a>
-            
-            <a href="/tags/%E6%B7%B7%E5%90%88%E6%A8%A1%E5%BC%8F/">
-              <span class="chip bg-color">混合模式</span>
-            </a>
-            
-            <a href="/tags/%E8%A7%A3%E9%87%8A%E6%A8%A1%E5%BC%8F/">
-              <span class="chip bg-color">解释模式</span>
-            </a>
-            
-            <a href="/tags/%E7%BA%AF%E7%BC%96%E8%AF%91%E6%A8%A1%E5%BC%8F/">
-              <span class="chip bg-color">纯编译模式</span>
-            </a>
-            
-          </div>
-          
-        </div>
-      </div>
+      <img src="/images/loading.svg" data-original="/posts/a387/微信图片_20230730181447.jpg" class="cover-img" alt="老同学,聚会,传递温暖">
       
     </div>
-  </article>
-  <!-- 所有文章卡片结束 -->
-</main>
-
-
-<div class="container paging">
-    <div class="row">
-        <div class="col s6 m4 l4">
-            
-            <a class="left btn-floating btn-large disabled">
-                <i class="fas fa-angle-left"></i>
-            </a>
-            
-        </div>
-        <div class="page-info col m4 l4 hide-on-small-only">
-            <div class="center-align b-text-gray">1 / 3</div>
-        </div>
-        <div class="col s6 m4 l4">
-            
-            <a href="/page/2/"
-               class="right btn-floating btn-large waves-effect waves-light bg-color" style="float: right!important;">
-                <i class="fas fa-angle-right"></i>
-            </a>
-            
-        </div>
-    </div>
-</div>
-
-
-
-
-    <style>
-  footer {
-    position: relative;
-  }
-
-  .page-footer {
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-</style>
-<footer class="page-footer bg-color">
-  
-
-  <div class="container row center-align"
-    style="margin-bottom: 0px !important;">
-    <!-- 版权信息 -->
-    <div class="col s12 m6 l6 copy-right">
-      Copyright&nbsp;&copy;
-      <span id="year">2014</span>
-      <a>SIWEN.PENG</a>
-      <br>
+    <div class="entry">
       
-      
-      
-      
-      
- 
-      
-     
-      
-      <span id="icp">
-        <a href="https://beian.miit.gov.cn/" target="_blank">
-          <img src="/medias/icp.png"
-            style="vertical-align: text-bottom;width: 16px;height: 16px;" />
-          湘ICP备2020021380号-1
-        </a>
-      </span>
+        <html><head></head><body><p>老同学见面，欢迎幸芷</p></body></html>
+        
+          <p><a class="excerpt-btn" href="/posts/a387.html"><span>阅读全文</span></a></p>
+        
       
     </div>
-    <div class="col s12 m3 l3 social-link ">
 
-
-    <a href="mailto:pengsiwen_2@163.com" class="tooltipped" target="_blank" data-tooltip="pengsiwen_2@163.com" data-position="top" data-delay="50">
-        <i class="fas fa-envelope-open"></i>
-    </a>
-
-
-
-    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=3197544360" class="tooltipped" target="_blank" data-tooltip="3197544360" data-position="top" data-delay="50">
-        <i class="fab fa-qq"></i>
-    </a>
-
-
-
-</div>
   </div>
-  <!-- 波浪条waveline -->
-  <div class="wavelinefooter">
-    <style>
-      .wavelinefooter {
-        background: url(/medias/wave.png) 0 0 repeat-x;
-        height: 3px;
-        width: 100%;
-        position: absolute;
-        left: 0;
-        top: -3px;
-        background-size: 10px 3px;
-      }
-    </style>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/聚会/">聚会</a><a href="/tags/老同学/">老同学</a>
+    </span>
+    
+
+    </div>
+
+    
   </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/posts/8905.html"><span>《c++之路》用户定义的类型--User-Defined Types</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/8905.html" rel="bookmark">
+        <time class="entry-date published" datetime="2023-07-29T13:41:08.000Z">
+          2023-07-29
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="article-cover">
+      
+    </div>
+    <div class="entry">
+      
+        <html><head></head><body><p>c++除了内置类型外，还支持用户自定义类型，以便用户可以方便的编写高级应用程序，此处我们主要学习<code>struct</code>, <code>union</code>,<code>enum</code>,<code>class</code></p></body></html>
+        
+          <p><a class="excerpt-btn" href="/posts/8905.html"><span>阅读全文</span></a></p>
+        
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/c/">c++</a><a href="/tags/Types/">Types</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/posts/1726970c.html"><span>文件下载原理详解和解决方案</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/1726970c.html" rel="bookmark">
+        <time class="entry-date published" datetime="2023-07-08T13:41:08.000Z">
+          2023-07-08
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="article-cover">
+      
+    </div>
+    <div class="entry">
+      
+        <html><head></head><body><p>对于文件服务器通常会面临大量文件下载请求，除了带宽、IO等硬件上的约束条件外，在极度消耗影响资源情况下，非常容易对文件服务器造成压力，导致服务器崩溃，故此需要通过一些技术手段保证服务器稳定，并且也能持有一定下载速度。</p></body></html>
+        
+          <p><a class="excerpt-btn" href="/posts/1726970c.html"><span>阅读全文</span></a></p>
+        
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/文件下载/">文件下载</a><a href="/tags/P2P/">P2P</a><a href="/tags/分片下载/">分片下载</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/posts/ceb24869.html"><span>参加斐哥婚礼</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/ceb24869.html" rel="bookmark">
+        <time class="entry-date published" datetime="2023-05-14T13:16:04.000Z">
+          2023-05-14
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="article-cover">
+      
+    </div>
+    <div class="entry">
+      
+        <html><head></head><body><p>周末参加了斐哥和晓念婚礼…</p></body></html>
+        
+          <p><a class="excerpt-btn" href="/posts/ceb24869.html"><span>阅读全文</span></a></p>
+        
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/杂记/">杂记</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/婚礼/">婚礼</a><a href="/tags/游园婚礼/">游园婚礼</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/posts/15a97059.html"><span>世界少了一个人，而我失去了爷爷</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/15a97059.html" rel="bookmark">
+        <time class="entry-date published" datetime="2023-03-28T14:07:43.000Z">
+          2023-03-28
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="article-cover">
+      
+    </div>
+    <div class="entry">
+      
+        <html><head></head><body><p>我的爷爷于2023年03月27日10:36分去世了。</p></body></html>
+        
+          <p><a class="excerpt-btn" href="/posts/15a97059.html"><span>阅读全文</span></a></p>
+        
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/悼念/">悼念</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/posts/3255df9f.html"><span>希望传递温暖，让异乡变家乡</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/3255df9f.html" rel="bookmark">
+        <time class="entry-date published" datetime="2023-03-18T11:16:54.000Z">
+          2023-03-18
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="article-cover">
+      
+    </div>
+    <div class="entry">
+      
+        <html><head></head><body><p>希望480的同学在全国各地遇到来出差的同学都主动约一下，让大家都能感受四面八方同学的温暖！！！</p></body></html>
+        
+          <p><a class="excerpt-btn" href="/posts/3255df9f.html"><span>阅读全文</span></a></p>
+        
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/杂记/">杂记</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/聚会/">聚会</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/posts/4c633c0c.html"><span>从Apollo动态配置原理学Spring(二)</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/4c633c0c.html" rel="bookmark">
+        <time class="entry-date published" datetime="2023-02-26T12:39:24.000Z">
+          2023-02-26
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="article-cover">
+      
+    </div>
+    <div class="entry">
+      
+        <html><head></head><body><blockquote>
+<p>Apollo动态配置其实本质就是利用Spring Bean 的生命周期的扩展点，这个扩展点超级多，不可能全部列出来，只说核心的扩展点。这也就是为什么 Spring 的扩展性很好的原因，开了很多的口子，尽可能让某个功能高内聚松耦合，用户需要哪个功能就用哪个，而不是直接来一个大而全的东西。</p>
+</blockquote>
+<p>我们先通过学习核心的，然后后续对照Apollo用到了哪些再对照，就会发现很多地方就能理解的很好了</p></body></html>
+        
+          <p><a class="excerpt-btn" href="/posts/4c633c0c.html"><span>阅读全文</span></a></p>
+        
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/Java/">Java</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/Apollo/">Apollo</a><a href="/tags/Spring/">Spring</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/posts/e352a76e.html"><span>从Apollo动态配置原理学Spring(一)</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/e352a76e.html" rel="bookmark">
+        <time class="entry-date published" datetime="2023-02-23T14:29:54.000Z">
+          2023-02-23
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="article-cover">
+      
+    </div>
+    <div class="entry">
+      
+        <html><head></head><body><blockquote>
+<p>最近工作碰到需要写一个类似携程Apollo的动态配置功能，以此系统学习该原理，熟练掌握下Spring的各种机制</p>
+</blockquote>
+<p><strong>Apollo动态配置原理简述</strong></p>
+<p>Apollo配置中心动态生效机制，是基于Http长轮询请求和Spring扩展机制实现的，在Spring容器启动过程中，Apollo通过自定义的<code>BeanPostProcessor</code>和<code>BeanFactoryPostProcessor</code>將参数中包含<code>${…}</code>占位符和<code>@Value</code>注解的Bean注册到Apollo框架中定义的注册表中。然后通过Http长轮询不断的去获取服务端的配置信息，一旦配置发生变化，Apollo会根据变化的配置的Key找到对应的Bean，然后修改Bean的属性，从而实现了配置动态生效的特性。</p>
+<p>需要注意的是，Apollo在配置变化后，只能修改Bean的属性，例如我们数据源的属性发生变化，新创建的Connection对象是没问题的，但是连接池中已经创建的Connection对象相关信息是不能动态修改的，所以依然需要重启应用。</p></body></html>
+        
+          <p><a class="excerpt-btn" href="/posts/e352a76e.html"><span>阅读全文</span></a></p>
+        
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/Java/">Java</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/Apollo/">Apollo</a><a href="/tags/Spring/">Spring</a><a href="/tags/动态配置/">动态配置</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/posts/75466bf9.html"><span>QQ上线了24周年注册全球排名这个活动</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/75466bf9.html" rel="bookmark">
+        <time class="entry-date published" datetime="2023-02-10T12:58:50.000Z">
+          2023-02-10
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="article-cover">
+      
+    </div>
+    <div class="entry">
+      
+        <html><head></head><body><p>2023年2月10日是QQ24周年的日子，在这天QQ上线了24周年注册全球排名这个活动，玩家可以在这里看到自己是什么时候创建的账号，并且还可以看到自己的排名信息哦。</p></body></html>
+        
+          <p><a class="excerpt-btn" href="/posts/75466bf9.html"><span>阅读全文</span></a></p>
+        
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/QQ/">QQ</a><a href="/tags/那些年/">那些年</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/posts/277fd0ba.html"><span>元宵节，放了烟花</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/277fd0ba.html" rel="bookmark">
+        <time class="entry-date published" datetime="2023-02-08T14:29:06.000Z">
+          2023-02-08
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="article-cover">
+      
+    </div>
+    <div class="entry">
+      
+        <html><head></head><body><p>烟花又称[花炮]、烟火、焰火、[炮仗]，根据《中国[烟花爆竹]标准—安全与质量》对烟花爆竹的定义为：以烟火药为原料，用于产生声光色的娱乐用品。中国劳动人民较早发明，常用于盛大的典礼或表演中。</p>
+<p>烟花其实和爆竹的结构类似，其结构都包含黑[火药]和药引。为了达到好的表演效果，[焰火]和[礼花弹]中填充了大量用于发射以及爆炸的火药，例如，一个直径为20厘米的礼花弹在发射后，要上升到大概200米的高空才会爆炸，而这些星星点点覆盖的[半径]大约可以有80米左右。</p></body></html>
+        
+          <p><a class="excerpt-btn" href="/posts/277fd0ba.html"><span>阅读全文</span></a></p>
+        
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/烟花/">烟花</a><a href="/tags/元宵节/">元宵节</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/posts/ebb8427d.html"><span>2023兔年春节</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/ebb8427d.html" rel="bookmark">
+        <time class="entry-date published" datetime="2023-02-04T07:27:08.000Z">
+          2023-02-04
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="article-cover">
+      
+    </div>
+    <div class="entry">
+      
+        <html><head></head><body><h3 id="1-春节年前，家县城进行烟花表演："><a href="#1-春节年前，家县城进行烟花表演：" class="headerlink" title="1. 春节年前，家县城进行烟花表演："></a>1. 春节年前，家县城进行烟花表演：</h3><p><img src="/images/loading.svg" data-original="/posts/ebb8427d/IMG_0650.PNG" alt="烟花表演1"></p>
+<p>估计是增加了延迟拍摄</p></body></html>
+        
+          <p><a class="excerpt-btn" href="/posts/ebb8427d.html"><span>阅读全文</span></a></p>
+        
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/杂记/">杂记</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/春节/">春节</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/posts/850ce73f.html"><span>室友“羊”了</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/850ce73f.html" rel="bookmark">
+        <time class="entry-date published" datetime="2022-12-19T12:46:23.000Z">
+          2022-12-19
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="article-cover">
+      
+      <img src="/images/loading.svg" data-original="/posts/850ce73f/image-20221219212509735.png" class="cover-img" alt="室友“羊”了">
+      
+    </div>
+    <div class="entry">
+      
+        <html><head></head><body><p>室友这几天不舒服，就测了，果不其然🐑了，我应该是很危险了。</p></body></html>
+        
+          <p><a class="excerpt-btn" href="/posts/850ce73f.html"><span>阅读全文</span></a></p>
+        
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/杂记/">杂记</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/疫情/">疫情</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/posts/d223f900.html"><span>疫情三年，是时候结束了！</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/d223f900.html" rel="bookmark">
+        <time class="entry-date published" datetime="2022-12-12T12:56:26.000Z">
+          2022-12-12
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="article-cover">
+      
+      <img src="/images/loading.svg" data-original="/posts/d223f900/image-20221212210631735.png" class="cover-img" alt="疫情三年，是时候结束了！">
+      
+    </div>
+    <div class="entry">
+      
+        <html><head></head><body><blockquote>
+<p>疫情三年，什么变化了？什么没有变化呢？</p>
+</blockquote>
+<p>疫情三年变化的是，出现了健康码、行程码、核酸检测</p>
+<p>疫情三年变化的是，到处都贴起了二维码、出行限制、经济发展滞缓</p></body></html>
+        
+          <p><a class="excerpt-btn" href="/posts/d223f900.html"><span>阅读全文</span></a></p>
+        
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/杂记/">杂记</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/疫情/">疫情</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/posts/52a5c0f5.html"><span>被围绕的区域——LeetCode130</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/52a5c0f5.html" rel="bookmark">
+        <time class="entry-date published" datetime="2022-02-08T11:56:55.000Z">
+          2022-02-08
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="article-cover">
+      
+      <img src="/images/loading.svg" data-original="/posts/52a5c0f5/xogrid.jpg" class="cover-img" alt="被围绕的区域——LeetCode130">
+      
+    </div>
+    <div class="entry">
+      
+        <html><head></head><body><p>给你一个 <code>m x n</code> 的矩阵 <code>board</code> ，由若干字符 <code>'X'</code> 和 <code>'O'</code> ，找到所有被 <code>'X'</code> 围绕的区域，并将这些区域里所有的 <code>'O'</code> 用 <code>'X'</code> 填充。</p>
+<p><img src="/images/loading.svg" data-original="/posts/52a5c0f5/xogrid.jpg" alt="img"></p></body></html>
+        
+          <p><a class="excerpt-btn" href="/posts/52a5c0f5.html"><span>阅读全文</span></a></p>
+        
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/LeetCode/">LeetCode</a>, <a href="/categories/LeetCode/算法/">算法</a>, <a href="/categories/LeetCode/算法/java/">java</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/矩阵/">矩阵</a><a href="/tags/深度遍历/">深度遍历</a><a href="/tags/广度遍历/">广度遍历</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/posts/638c83fa.html"><span>JVM调优——X参数,方法内联</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/posts/638c83fa.html" rel="bookmark">
+        <time class="entry-date published" datetime="2022-01-12T15:06:08.000Z">
+          2022-01-12
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="article-cover">
+      
+      <img src="/images/loading.svg" data-original="/posts/638c83fa/logo" class="cover-img" alt="JVM调优——X参数,方法内联">
+      
+    </div>
+    <div class="entry">
+      
+        <html><head></head><body><p>JVM的<code>-X</code>参数是非标准参数，在不同版本的JVM中，参数可能会有所不同，可以通过<code>java -X</code>查看非标准参数<br></p></body></html>
+        
+          <p><a class="excerpt-btn" href="/posts/638c83fa.html"><span>阅读全文</span></a></p>
+        
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+      
+
+    <span class="post-categories">
+      <i class="icon-categories"></i>
+        <a href="/categories/java/">java</a>
+    </span>
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/jvm调优/">jvm调优</a><a href="/tags/混合模式/">混合模式</a><a href="/tags/解释模式/">解释模式</a><a href="/tags/纯编译模式/">纯编译模式</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+
+<nav class="pagination">
+  
+  
+  <a href="/page/2/" class="pagination-next">下一页</a>
+  
+</nav>
+    </main>
+
+    <footer class="site-footer">
+  <p class="mp">
+    <img alt="关注我" src="/mp.png" style="border-radius: 10px;" no-lazy>
+  </p>
+  <p class="site-info">
+    湘ICP备2020021380号-1 
+    </br>
+    
+    &copy; 2014 - 2023 SIWEN.PENG
+    
+  </p>
 </footer>
-
-<!-- 底部进度条 -->
-<div class="progress-bar" style="z-index: 999"></div>
-
-    <!-- 搜索遮罩框 -->
-<style>
-#searchInput::-webkit-input-placeholder { /* WebKit browsers */ 
-    font-size:16px;
-} 
-#searchInput:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
-    font-size:16px;
-} 
-#searchInput::-moz-placeholder { /* Mozilla Firefox 19+ */ 
-    font-size:16px;
-} 
-#searchInput:-ms-input-placeholder { /* Internet Explorer 10+ */ 
-    font-size:16px;
-} 
-#searchInput {
-    margin-top: 6px;
-    margin-bottom: 12px;
-    text-indent: 4px;
-    font-size: 14px;
-}
-</style>
-<div id="searchModal" class="modal">
-    <div class="modal-content">
-        <div class="search-header">
-            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;站内搜索</span>
-            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
-                   class="search-input" autofocus="autofocus" />
-        </div>
-        <div id="searchResult"></div>
-    </div>
-</div>
-
-<script src="/js/search.js"></script>
-<script type="text/javascript">
-$(function () {
-    searchFunc("/search.xml", 'searchInput', 'searchResult');
-});
-</script>
-
-<!-- 点击搜索按钮后input框自动获取焦点 -->
-
-
-    <!-- 回到顶部按钮 -->
-<div id="backTop" class="top-scroll">
-    <a class="btn-floating btn-large waves-effect waves-light">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-</div>
-
-
-    <script src="/libs/materialize/materialize.min.js"></script>
-    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
-    <script src="/libs/aos/aos.js"></script>
-    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
-    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
-    <script src="/js/matery.js"></script>
     
-    <!-- Baidu Analytics -->
-
+    
 <script>
     var _hmt = _hmt || [];
-    (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?83fbb968d837cac86cb15c97ddd8cdd4";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
+    ( function () {
+        var hm = document.createElement( "script" );
+        hm.src = "//hm.baidu.com/hm.js?83fbb968d837cac86cb15c97ddd8cdd4";
+        var s = document.getElementsByTagName( "script" )[ 0 ];
+        s.parentNode.insertBefore( hm, s );
+    } )();
 </script>
 
-    <!-- Baidu Push -->
+  </div>
+</div>
 
-<script>
-    (function () {
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        } else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-</script>
-
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <script src="/libs/instantpage/instantpage.js" type="module"></script>
-    
-
-    <!--动态线条背景-->
-    <script type="text/javascript" color="122 103 158" opacity='0.12' zIndex="-2" count="100" src="/js/canvas-nest.min.js">
-    </script>
- 
-    <script type="text/javascript" src="/js/click_show_text.js"></script>
-    <script src="/js/linkcard.js"></script>
-
-    <script src="/js/activate-power-mode.js"></script>
-    <script>
-        POWERMODE.colorful = true; // make power mode colorful
-        POWERMODE.shake = false; // turn off shake
-        document.body.addEventListener('input', POWERMODE);
-    </script>
-
-    <!-- 百度统计代码 -->
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "";
-          var s = document.getElementsByTagName("script")[0]; 
-          s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
-
-    <script src="/js/vue.js"></script>
-
-    <!----------节日判断,进行网站修饰，比如春节圣诞或变灰色的清明等----- -->
-    <script>
-        // 判断今天是哪个节假日或特殊纪念日进行网站修饰，比如春节圣诞或变灰色的清明等
-        var curMonth = new Date().getMonth() + 1; //月
-        var curDate = new Date().getDate(); //日
-        function cancelguajian() {
-            // 判断如果是变灰色的纪念日则将小挂件隐藏
-            var guajianone = document.getElementsByClassName('caishendeng');
-            var guajiantwo = document.getElementsByClassName('labelmz');
-            var guajianthree = document.getElementsByClassName('friendmz');
-            var denglong = document.getElementsByClassName('denglong');
-            for(var i = 0; i < guajianone.length; i++) {
-                guajianone[i].style.display = "none"
-            };
-            for(var j = 0; j < guajiantwo.length; j++) {
-                guajiantwo[j].style.display = "none"
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
             }
-            for(var k = 0; k < guajianthree.length; k++) {
-                guajianthree[k].style.display = "none"
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
             };
-            for(var x = 0; x < denglong.length; x++) {
-                denglong[x].style.display = "none"
-            };
-            document.getElementById('switchchristmas').style.display = "none";
-            document.getElementById('switchspring').style.display = "none";
-            document.getElementById('xiaomaozitx').style.display = "none";
-        }
-        // --------------以下节日为公历，每年固定--------------
-        if(curMonth == 1 && curDate == 1) {
-            // 1月1日为元旦节
-            document.body.classList.add('themespring');
-            document.getElementById('dtone').innerHTML = "快乐";
-            document.getElementById('dttwo').innerHTML = "元旦";
-        }
-        else if(curMonth == 9 && curDate == 29) {
-            // 9月30日为全国烈士纪念日，设在国庆前一天
-            document.getElementsByTagName('html')[0].classList.add('gray');
-            document.getElementById('popupbb').style.display = "block";
-            document.getElementById('jinianci').innerHTML = "今天是“ 9月30日 ”，“ 全国烈士纪念日 ”。定为每年的9月30日,正好是国庆前一天,让全国人民永远不要忘记先有无数先烈的前赴后继、奋勇献身,才有我们国家今天的繁荣富强、文明进步。"
-            document.getElementById('switchchristmas').style.display = "none";
-            document.getElementById('switchspring').style.display = "none";
-            // document.body.classList.add('themespring');
-            document.getElementById('dtone').innerHTML = "缅怀";
-            document.getElementById('dttwo').innerHTML = "烈士";
-            cancelguajian();
-        }
-        // 10月1日为国庆节
-        else if(
-          curMonth == 10 && curDate == 1
-          || curMonth == 10 && curDate == 2
-          || curMonth == 10 && curDate == 3
-          || curMonth == 10 && curDate == 4
-          || curMonth == 10 && curDate == 5
-          || curMonth == 10 && curDate == 6
-          || curMonth == 10 && curDate == 7) {
-            document.body.classList.add('themespring');
-            document.getElementById('dtone').innerHTML = "欢度";
-            document.getElementById('dttwo').innerHTML = "国庆";
-            document.getElementById('index-video').src = "https://txmov2.a.yximgs.com/upic/2021/09/30/15/BMjAyMTA5MzAxNTE5MDhfMTg1ODk2MDg4N181ODA5MjQ1NDkyMV8xXzM=_b_Bef514871cf947c46c11bc54a3ed3faa9.mp4?pkey=AAWo-kOQESq9j_AMCO-BT6jTPS090PuVHWtyuSQ8cddkgMmI3V-P9uWMDY13QrPuCjtWVbch_01wRcj6Rtm5w0AkLhgVTMSceLLiRYjlWUfLDNNLX3jISKEscl9uNXUnYcM&tag=1-1632986688-xpcwebprofile-0-ongrobirtl-58c917acab52d13f&clientCacheKey=3xajcj9u8fubzm4_b.mp4";
-            document.getElementById('popupbb').style.display = "block"
-            document.getElementById('tujis').style.display = "block";
-            // document.getElementById('fights').style.display = "none";
-            document.getElementById('jinianci').style.textAlign = "center";
-            document.getElementById('jinianci').innerHTML = "《 国庆日🚩》<br> 十月惊雷震九重，国富民强聩耳聋。<br>城头城下聚农工，神州处处花潮涌。<br>而今白鹿奋清风，山长水远不知踪。"
-          }
-        else if(curMonth == 12 && curDate == 13) {
-            // 12月13日为国家公祭日
-            document.getElementsByTagName('html')[0].classList.add('gray');
-            // document.body.classList.add('themespring');
-            document.getElementById('dtone').innerHTML = "国家";
-            document.getElementById('dttwo').innerHTML = "公祭";
-            document.getElementById('jinianci').innerHTML = "今天是 “ 12月13日 ”，南京大屠杀死难者 “ 国家公祭日 ”。国行公祭，法立典章。铸兹宝鼎，祀我国殇。永矢弗谖，祈愿和平。中华圆梦，民族复兴。";
-            document.getElementById('popupbb').style.display = "block";
-            document.getElementById('switchchristmas').style.display = "none";
-            document.getElementById('switchspring').style.display = "none";
-            cancelguajian();
-        }
-
-        else if(curMonth == 5 && curDate == 22) {
-            // 2021年5月22日袁隆平院士逝世，云南大理发生6级地震
-            document.getElementsByTagName('html')[0].classList.add('gray');
-            document.body.classList.add('dark');
-            // document.body.classList.add('themespring');
-            document.getElementById('dtone').innerHTML = "地震";
-            document.getElementById('dttwo').innerHTML = "袁老";
-            document.getElementById('jinianci').innerHTML = "今天是 “ 2021年5月22日 ”，杂交水稻之父、共和国勋章获得者袁隆平逝世，享年91岁，记忆中您还是小学课本里的爷爷形象，.......还有21日晚云南大理州遭受地震的大家，要好好地...";
-            document.getElementById('popupbb').style.display = "block";
-            document.getElementById('switchchristmas').style.display = "none";
-            document.getElementById('switchspring').style.display = "none";
-            cancelguajian();
-        }
-
-        else if(curMonth == 12 && curDate == 25) {
-            // 12月25日为圣诞节
-            document.body.classList.add('themechris');
-        }
-        // --------------以下节日为农历，每年不固定--------------
-        else if(curMonth == 4 && curDate == 4) {
-            // 2021年4月4日为清明节
-            document.getElementsByTagName('html')[0].classList.add('gray');
-            document.getElementById('switchchristmas').style.display = "none";
-            document.getElementById('switchspring').style.display = "none";
-            document.getElementById('popupbb').style.display = "block";
-            document.getElementById('jinianci').innerHTML = "今天是“ 4月4日 ”，“ 清明节 ”，正是郊外踏青春游与行清墓祭的好时节。燕子来时新社,梨花落后清明。"
-            // document.body.classList.add('themespring');
-            document.getElementById('dtone').innerHTML = "安康";
-            document.getElementById('dttwo').innerHTML = "清明";
-            cancelguajian();
-        }
-        else if(curMonth == 1 && curDate == 31) {
-            // 2021春节除夕为1月31日
-            document.body.classList.add('themespring');
-            document.getElementById('dtone').innerHTML = "快乐";
-            document.getElementById('dttwo').innerHTML = "除夕";
-        }
-        else if(curMonth == 2) {
-            // 2021春节为2月1日开始
-            document.body.classList.add('themespring');
-        }
-        else if(curMonth == 6 && curDate == 14) {
-            // 2021端午节为6月14日
-            document.body.classList.add('themespring');
-            document.getElementById('dtone').innerHTML = "安康";
-            document.getElementById('dttwo').innerHTML = "端午";
-        }
-        else if(curMonth == 9 && curDate == 21) {
-            // 2021中秋节为9月21日
-            document.body.classList.add('themespring');
-            document.getElementById('dtone').innerHTML = "团圆";
-            document.getElementById('dttwo').innerHTML = "中秋";
-        }
-    </script>
-
-    <!-- 实现tab切换点击标题显示下划线和颜色改变效果 -->
-    <script>
-        $(function () {
-            var nowUrl = window.location.href
-            var homeTab = $('nav ul li a[href="/"] span'),
-                cateTab = $('nav ul li a[href="/categories"] span'),
-                recordTab = $('nav ul li a[href="/record"] span'),
-                tagsTab = $('nav ul li a[href="/tags"] span'),
-                archivesTab = $('nav ul li a[href="/archives"] span'),
-                countTab = $('nav ul li a[href="/count"] span'),
-                aboutTab = $('nav ul li a[href="/about"] span'),
-                videoTab = $('nav ul li a[href="/videos"] span'),
-                musicTab = $('nav ul li a[href="/musics"] span'),
-                galleryTab = $('nav ul li a[href="/gallery"] span'),
-                essayTab = $('nav ul li a[href="/essay"] span'),
-                booksTab = $('nav ul li a[href="/books"] span'),
-                tiktokTab = $('nav ul li a[href="/tiktok"] span'),
-                contactTab = $('nav ul li a[href="/contact"] span'),
-                friendsTab = $('nav ul li a[href="/friends"] span'),
-                collectionTab = $('nav ul li a[href="/collection"] span'),
-                projectTab = $('nav ul li a[href="/project"] span'),
-                donateTab = $('nav ul li a[href="/donate"] span'),
-                olympusTab = $('nav ul li a[href="/olympus"] span'),
-                lakersTab = $('nav ul li a[href="/lakers-championship"] span'),
-                hotreviewTab = $('nav ul li a[href="/hotreview"] span'),
-                ticktackTab = $('nav ul li a[href="/ticktack"] span'),
-                friendcircleTab = $('nav ul li a[href="/friendcircle"] span'),
-                chromedragonTab = $('nav ul li a[href="/chromedragon"] span'),
-                voteTab = $('nav ul li a[href="/vote"] span'),
-                // 获取二级菜单项
-                achivesTab = $('nav .nav-menu .nav-item:nth-of-type(3) > a > span'),
-                qingdanTab = $('nav .nav-menu .nav-item:nth-of-type(5) > a > span'),
-                linksTab = $('nav .nav-menu .nav-item:nth-of-type(7) > a > span'),
-                labTab = $('nav .nav-menu .nav-item:nth-of-type(8) > a > span');
-
-            if(nowUrl.indexOf("categories") >= 0) {
-                cateTab.addClass("aitems")
-            } else if (nowUrl.indexOf("posts") >= 0) {
-                homeTab.removeClass("aitems")
-            } else if (nowUrl.indexOf("record") >= 0) {
-                recordTab.addClass("aitems")
-                achivesTab.addClass("erjiitems")
-            } else if (nowUrl.indexOf("tags") >= 0) {
-                tagsTab.addClass("aitems")
-                achivesTab.addClass("erjiitems")
-            } else if (nowUrl.indexOf("archives") >= 0) {
-                archivesTab.addClass("aitems")
-                achivesTab.addClass("erjiitems")
-            } else if (nowUrl.indexOf("count") >= 0) {
-                countTab.addClass("aitems")
-                achivesTab.addClass("erjiitems")
-            } else if (nowUrl.indexOf("videos") >= 0) {
-                videoTab.addClass("aitems")
-                qingdanTab.addClass("erjiitems")
-            } else if (nowUrl.indexOf("musics") >= 0) {
-                musicTab.addClass("aitems")
-                qingdanTab.addClass("erjiitems")
-            } else if (nowUrl.indexOf("gallery") >= 0) {
-                galleryTab.addClass("aitems")
-                qingdanTab.addClass("erjiitems")
-            } else if (nowUrl.indexOf("essay") >= 0) {
-                essayTab.addClass("aitems")
-                qingdanTab.addClass("erjiitems")
-            } else if (nowUrl.indexOf("books") >= 0) {
-                booksTab.addClass("aitems")
-                qingdanTab.addClass("erjiitems")
-            } else if (nowUrl.indexOf("tiktok") >= 0) {
-                tiktokTab.addClass("aitems")
-                qingdanTab.addClass("erjiitems")
-            } else if (nowUrl.indexOf("contact") >= 0) {
-                contactTab.addClass("aitems")
-            } else if (nowUrl.indexOf("about") >= 0) {
-                aboutTab.addClass("aitems")
-            } else if (nowUrl.indexOf("friends") >= 0) {
-                friendsTab.addClass("aitems")
-                linksTab.addClass("erjiitems")
-            } else if (nowUrl.indexOf("collection") >= 0) {
-                collectionTab.addClass("aitems")
-                linksTab.addClass("erjiitems")
-            } else if (nowUrl.indexOf("project") >= 0) {
-                projectTab.addClass("aitems")
-                linksTab.addClass("erjiitems")
-            } else if (nowUrl.indexOf("donate") >= 0) {
-                donateTab.addClass("aitems")
-                linksTab.addClass("erjiitems")
-            } else if (nowUrl.indexOf("olympus") >= 0) {
-                olympusTab.addClass("aitems")
-                linksTab.addClass("erjiitems")
-            } else if (nowUrl.indexOf("lakers-championship") >= 0) {
-                lakersTab.addClass("aitems")
-                linksTab.addClass("erjiitems")
-            } else if (nowUrl.indexOf("hotreview") >= 0) {
-                hotreviewTab.addClass("aitems")
-                labTab.addClass("erjiitems")
-            } else if (nowUrl.indexOf("ticktack") >= 0) {
-                ticktackTab.addClass("aitems")
-                labTab.addClass("erjiitems")
-            } else if (nowUrl.indexOf("friendcircle") >= 0) {
-                friendcircleTab.addClass("aitems")
-                labTab.addClass("erjiitems")
-            } else if (nowUrl.indexOf("chromedragon") >= 0) {
-                chromedragonTab.addClass("aitems")
-                labTab.addClass("erjiitems")
-            } else if (nowUrl.indexOf("vote") >= 0) {
-                voteTab.addClass("aitems")
-                labTab.addClass("erjiitems")
-            } 
-            else {
-                homeTab.addClass("aitems")
-            }
-        });
-    </script>
-</body>
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body>
 </html>
