@@ -40,6 +40,11 @@
   <% } %>
 
   <div class="article-content">
+    <div class="article-cover">
+      <% if (item.cover) { %>
+      <img src="<%- url_for_img(url_for(item.path), item.cover) %>" class="cover-img" alt="<%= item.title %>">
+      <% } %>
+    </div>
     <div class="entry">
       <% if (item.excerpt && index){ %>
         <%- item.excerpt %>
