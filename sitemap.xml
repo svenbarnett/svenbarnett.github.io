@@ -119,15 +119,6 @@
   </url>
   
   <url>
-    <loc>https://www.pswen.cn/gallery/index.html</loc>
-    
-    <lastmod>2023-08-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.pswen.cn/posts/fbb9fe6d.html</loc>
     
     <lastmod>2023-08-12</lastmod>
@@ -164,7 +155,7 @@
   </url>
   
   <url>
-    <loc>https://www.pswen.cn/categories/index.html</loc>
+    <loc>https://www.pswen.cn/collection/index.html</loc>
     
     <lastmod>2023-08-12</lastmod>
     
@@ -173,7 +164,7 @@
   </url>
   
   <url>
-    <loc>https://www.pswen.cn/collection/index.html</loc>
+    <loc>https://www.pswen.cn/categories/index.html</loc>
     
     <lastmod>2023-08-12</lastmod>
     
@@ -219,6 +210,15 @@
   
   <url>
     <loc>https://www.pswen.cn/friends/index.html</loc>
+    
+    <lastmod>2023-08-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pswen.cn/gallery/index.html</loc>
     
     <lastmod>2023-08-12</lastmod>
     
@@ -353,34 +353,7 @@
   </url>
   
   <url>
-    <loc>https://www.pswen.cn/posts/638c83fa.html</loc>
-    
-    <lastmod>2023-08-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.pswen.cn/posts/9195a466.html</loc>
-    
-    <lastmod>2023-08-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.pswen.cn/posts/dfd6ab93.html</loc>
-    
-    <lastmod>2023-08-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.pswen.cn/posts/8239.html</loc>
     
     <lastmod>2023-08-12</lastmod>
     
@@ -408,6 +381,24 @@
   
   <url>
     <loc>https://www.pswen.cn/posts/626e.html</loc>
+    
+    <lastmod>2023-08-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pswen.cn/posts/638c83fa.html</loc>
+    
+    <lastmod>2023-08-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pswen.cn/posts/9195a466.html</loc>
     
     <lastmod>2023-08-12</lastmod>
     
@@ -444,6 +435,15 @@
   
   <url>
     <loc>https://www.pswen.cn/posts/1009bbf4.html</loc>
+    
+    <lastmod>2023-08-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.pswen.cn/posts/8239.html</loc>
     
     <lastmod>2023-08-12</lastmod>
     

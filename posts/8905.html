@@ -101,28 +101,13 @@
 <h2 id="enum"><a href="#enum" class="headerlink" title="enum"></a>enum</h2><p>枚举应用：在实际中，有些值无论数值或者字符型的，取值在一个固定范围内，设计者提前知道其取值，但是每个变量只能取其中之一的值，这时可以考虑使用枚举类型。例如：一周有七天；一周有12门课，访问数据类型指定为固定的几个类型。这些都可以使用枚举类型。</p>
 <p>枚举定义： enum 枚举类型名{枚举元素1,枚举元素2,枚举元素3…};</p>
 <p>枚举变量的声明：同结构体和联合体一样，枚举变量也可以用不同的方式说明，即先声明后定义或者直接在声明时定义。</p>
-<pre class=" language-lang-c++"><code class="language-lang-c++">enum weekend {
-    Monday,
-    Tuesday,
-    Wednesday,
-    Thursday,
-    Friday,
-    Saturday,
-    Sunday
-};
-</code></pre>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre class=" language-hljs c++"><span class="hljs-keyword">enum</span> <span class="hljs-title class_"><code class="language-hljs c++"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">weekend</span> {<br>    Monday,<br>    Tuesday,<br>    Wednesday,<br>    Thursday,<br>    Friday,<br>    Saturday,<br>    Sunday<br>};<br></code></pre></td></tr></tbody></table></figure>
 <h2 id="struct"><a href="#struct" class="headerlink" title="struct"></a>struct</h2><p>-有时用户需要将不同类型的数据结合到一起，这时我们不能使用数组，因为数组必须是同一类型的数据，这样就诞生了结构体类型，结构体使我们把有相互联系的不同类型的数据组合到一起，它相当于高级语言中的记录。定义一个结构体类型的两种形式：一种是声明和定义一起；另一种是声明和定义分开。</p>
 <ul>
 <li>struct 结构体类型名{类型1 成员1;类型2 成员2;…}结构体变量名；</li>
 <li>struct 结构体类型名{类型1 成员1;类型2 成员2;…}; struct 类型名 结构体变量名;（C++可以省略struct 关键字）</li>
 </ul>
-<pre class=" language-lang-c++"><code class="language-lang-c++">struct {
-    int num;
-    char name[10];
-    char sex;
-    char job;
-};
-</code></pre>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre class=" language-hljs c++"><span class="hljs-keyword">struct</span> {<br>	<span class="hljs-type">int</span> num;<br>	<span class="hljs-type">char</span> name[<span class="hljs-number">10</span>];<br>	<span class="hljs-type">char</span> sex;<br>	<span class="hljs-type"><code class="language-hljs c++"><span class="hljs-keyword">struct</span> {<br>	<span class="hljs-type">int</span> num;<br>	<span class="hljs-type">char</span> name[<span class="hljs-number">10</span>];<br>	<span class="hljs-type">char</span> sex;<br>	<span class="hljs-type">char</span> job;<br>};<br></code></pre></td></tr></tbody></table></figure>
 <h2 id="union"><a href="#union" class="headerlink" title="union"></a>union</h2><p>有时我们需要使几种不同类型的变量存放在同一内存单元中。例如，把一个整型变量、一个字符型变量、一个双精度型变量放在同一个地址开始的内存单元。这时我们就可以使用共用体union。共用体类型的一般声明形式：</p>
 <ul>
 <li>声明：union 共用体类型名{成员列表};</li>
@@ -136,11 +121,7 @@
 <li>共用体变量的地址和它的成员的地址都是同一地址。</li>
 <li>不能对共用体变量名赋值，不能企图用变量名来得到一个值；不能再定义共用体变量时对它初始化；不能用共用体变量名做函数参数。</li>
 </ul>
-<pre class=" language-lang-c++"><code class="language-lang-c++">union P{
- int grade;
- char position[10];
-} category;
-</code></pre>
+<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre class=" language-hljs c++"><span class="hljs-keyword">union</span> <span class="hljs-title class_">P</span>{<br> <span class="hljs-type">int</span> grade;<br> <span class="hljs-type">char</span> position[<span class="hljs-number"><code class="language-hljs c++"><span class="hljs-keyword">union</span> <span class="hljs-title class_">P</span>{<br> <span class="hljs-type">int</span> grade;<br> <span class="hljs-type">char</span> position[<span class="hljs-number">10</span>];<br>} category;<br></code></pre></td></tr></tbody></table></figure>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>struct，enum和union是C语言中的三种数据类型。</p>
 <p>struct是一种复合数据类型，它可以用来组合不同类型的变量，并将它们存储在一起。例如：</p>
 <p>struct student { int age; char name[20]; } s1;</p>

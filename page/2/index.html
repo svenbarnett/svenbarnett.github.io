@@ -234,20 +234,7 @@
     <div class="entry">
       
         <html><head></head><body><p>直接上代码</p>
-<pre><code class="lang-jsx">const arr=['1200.00100','1200.00000','1200.','1200','1200.10000','0.120010000','0.000011111']
-const regexp=/(?:\.0*|(\.\d+?)0+)$/
-arr.forEach((item)=&gt;{
-    console.log(item.replace(regexp,'$1'))
-})
-
-// &gt; 1200.001
-// &gt; 1200
-// &gt; 1200
-// &gt; 1200
-// &gt; 1200.1
-// &gt; 0.12001
-// &gt; 0.000011111
-</code></pre></body></html>
+<figure class="highlight jsx"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> arr=[<span class="hljs-string">'1200.00100'</span>,<span class="hljs-string">'1200.00000'</span>,<span class="hljs-string">'1200.'</span>,<span class="hljs-string">'1200'</span>,<span class="hljs-string">'1200.10000'</span>,<span class="hljs-string">'0.120010000'</span>,<span class="hljs-string">'0.000011111'</span>]<br><span class="hljs-keyword">const</span> regexp=<span class="hljs-regexp">/(?:\.0*|(\.\d+?)0+)$/</span><br>arr.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">item</span>)=&gt;</span>{<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(item.<span class="hljs-title function_">replace</span>(regexp,<span class="hljs-string">'$1'</span>))<br>})<br><br><span class="hljs-comment">// &gt; 1200.001</span><br><span class="hljs-comment">// &gt; 1200</span><br><span class="hljs-comment">// &gt; 1200</span><br><span class="hljs-comment">// &gt; 1200</span><br><span class="hljs-comment">// &gt; 1200.1</span><br><span class="hljs-comment">// &gt; 0.12001</span><br><span class="hljs-comment">// &gt; 0.000011111</span><br></code></pre></td></tr></tbody></table></figure></body></html>
         
           <p><a class="excerpt-btn" href="/posts/9195a466.html"><span>阅读全文</span></a></p>
         
