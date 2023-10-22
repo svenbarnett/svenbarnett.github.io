@@ -99,13 +99,46 @@
     <div class="entry">
       
         <html><head></head><body><p>经过各种研（bai）究（du），找到了一种方案：采用<code>gulp + gulp-imagemin</code>，对图片进行压缩，结合hexo进行对应图片压缩。<br><span id="more"></span></p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre class=" language-hljs sh">npm install gulp --save-dev<br>npm install gulp-imagemin --save-dev<br>npm install imagemin-pngquant --save-dev<br><span class="hljs-comment"># 当然也可以--save  记得要给gulp全局安装下，npm命令不行，就是用cnpm</span><br>npm install gulp -g <span class="hljs-comment"><code class="language-hljs sh">npm install gulp --save-dev<br>npm install gulp-imagemin --save-dev<br>npm install imagemin-pngquant --save-dev<br><span class="hljs-comment"># 当然也可以--save  记得要给gulp全局安装下，npm命令不行，就是用cnpm</span><br>npm install gulp -g <span class="hljs-comment"># 只有gulp要全局安装下</span><br></code></pre></td></tr></tbody></table></figure>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre class=" language-lang-sh"><code class="language-lang-sh">npm install gulp --save-dev
+npm install gulp-imagemin --save-dev
+npm install imagemin-pngquant --save-dev
+# 当然也可以--save  记得要给gulp全局安装下，npm命令不行，就是用cnpm
+npm install gulp -g # 只有gulp要全局安装下
+</code></pre>
 <h3 id="gulpfile"><a href="#gulpfile" class="headerlink" title="gulpfile"></a>gulpfile</h3><p>在package.json同名目录下，增加gulpfile.js对应的入口js文件</p>
-<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre class=" language-hljs javascript"><span class="hljs-keyword">import</span> gulp <span class="hljs-keyword">from</span> <span class="hljs-string">'gulp'</span>;<br><span class="hljs-keyword">import</span> imagemin <span class="hljs-keyword">from</span> <span class="hljs-string">'gulp-imagemin'</span>;<br><span class="hljs-keyword">import</span> pngquant <span class="hljs-keyword">from</span> <span class="hljs-string">'imagemin-pngquant'</span>;<br><br><span class="hljs-comment">// 定义一个任务 第一个参数为名称，后面时要执行的动作</span><br>gulp.<span class="hljs-title function_">task</span>(<span class="hljs-string">'minify-images'</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">done</span>) {<br>    gulp.<span class="hljs-title function_">src</span>(<span class="hljs-string">'public/p/**/*.{JPG,jpg,PNG,png,GIF,gif,SVG,svg,JPEG,jpeg}'</span>)<br>		.<span class="hljs-title function_">pipe</span>(<span class="hljs-title function_">imagemin</span>({<br>			<span class="hljs-attr">optimizationLevel</span>: <span class="hljs-number">3</span>,<br>			<span class="hljs-attr">progressive</span>: <span class="hljs-literal">true</span>,<br>			<span class="hljs-attr">usa</span>:[<span class="hljs-title function_">pngquant</span>()]<br>		}))<br>		.<span class="hljs-title function_">pipe</span>(gulp.<span class="hljs-title function_">dest</span>(<span class="hljs-string">'public/p/'</span>))<br>    <span class="hljs-title function_">done</span>();<br>});<br><span class="hljs-comment">// 定义default ，后面将多个任务序列化并行执行，我们只有一个</span><br>gulp.<span class="hljs-title function_">task</span>(<span class="hljs-string">'default'</span>, gulp.<span class="hljs-title function_">series</span>(gulp.<span class="hljs-title function_">parallel</span>(<span class="hljs-string">'minify-images'</span>)), <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">info</span>(<span class="hljs-string"><code class="language-hljs javascript"><span class="hljs-keyword">import</span> gulp <span class="hljs-keyword">from</span> <span class="hljs-string">'gulp'</span>;<br><span class="hljs-keyword">import</span> imagemin <span class="hljs-keyword">from</span> <span class="hljs-string">'gulp-imagemin'</span>;<br><span class="hljs-keyword">import</span> pngquant <span class="hljs-keyword">from</span> <span class="hljs-string">'imagemin-pngquant'</span>;<br><br><span class="hljs-comment">// 定义一个任务 第一个参数为名称，后面时要执行的动作</span><br>gulp.<span class="hljs-title function_">task</span>(<span class="hljs-string">'minify-images'</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">done</span>) {<br>    gulp.<span class="hljs-title function_">src</span>(<span class="hljs-string">'public/p/**/*.{JPG,jpg,PNG,png,GIF,gif,SVG,svg,JPEG,jpeg}'</span>)<br>		.<span class="hljs-title function_">pipe</span>(<span class="hljs-title function_">imagemin</span>({<br>			<span class="hljs-attr">optimizationLevel</span>: <span class="hljs-number">3</span>,<br>			<span class="hljs-attr">progressive</span>: <span class="hljs-literal">true</span>,<br>			<span class="hljs-attr">usa</span>:[<span class="hljs-title function_">pngquant</span>()]<br>		}))<br>		.<span class="hljs-title function_">pipe</span>(gulp.<span class="hljs-title function_">dest</span>(<span class="hljs-string">'public/p/'</span>))<br>    <span class="hljs-title function_">done</span>();<br>});<br><span class="hljs-comment">// 定义default ，后面将多个任务序列化并行执行，我们只有一个</span><br>gulp.<span class="hljs-title function_">task</span>(<span class="hljs-string">'default'</span>, gulp.<span class="hljs-title function_">series</span>(gulp.<span class="hljs-title function_">parallel</span>(<span class="hljs-string">'minify-images'</span>)), <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) {<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">info</span>(<span class="hljs-string">"----------gulp Finished----------"</span>);<br>});<br></code></pre></td></tr></tbody></table></figure>
+<pre class=" language-lang-javascript"><code class="language-lang-javascript">import gulp from 'gulp';
+import imagemin from 'gulp-imagemin';
+import pngquant from 'imagemin-pngquant';
+
+// 定义一个任务 第一个参数为名称，后面时要执行的动作
+gulp.task('minify-images', function (done) {
+    gulp.src('public/p/**/*.{JPG,jpg,PNG,png,GIF,gif,SVG,svg,JPEG,jpeg}')
+        .pipe(imagemin({
+            optimizationLevel: 3,
+            progressive: true,
+            usa:[pngquant()]
+        }))
+        .pipe(gulp.dest('public/p/'))
+    done();
+});
+// 定义default ，后面将多个任务序列化并行执行，我们只有一个
+gulp.task('default', gulp.series(gulp.parallel('minify-images')), function () {
+    console.info("----------gulp Finished----------");
+});
+</code></pre>
 <p>执行命令<code>gulp</code> 默认情况下，代表<code>gulp default</code>就执行你上面的default任务</p>
 <p>当然你也可以制定任务名称：<code>gulp minify-images</code> 执行指定task</p>
 <p>然后再hexo状态下：</p>
-<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre class=" language-hljs sh">hexo clean <br>hexo g<br>gulp<br><span class="hljs-comment"># 输出如下：</span><br>[22:46:42] Using gulpfile ~/Desktop/blogfile/gulpfile.js<br>[22:46:42] Starting <span class="hljs-string">'default'</span>...<br>[22:46:42] Starting <span class="hljs-string">'minify-images'</span>...<br>[22:46:42] Finished <span class="hljs-string">'minify-images'</span> after 74 ms<br>[22:46:42] Finished <span class="hljs-string"><code class="language-hljs sh">hexo clean <br>hexo g<br>gulp<br><span class="hljs-comment"># 输出如下：</span><br>[22:46:42] Using gulpfile ~/Desktop/blogfile/gulpfile.js<br>[22:46:42] Starting <span class="hljs-string">'default'</span>...<br>[22:46:42] Starting <span class="hljs-string">'minify-images'</span>...<br>[22:46:42] Finished <span class="hljs-string">'minify-images'</span> after 74 ms<br>[22:46:42] Finished <span class="hljs-string">'default'</span> after 99 ms<br></code></pre></td></tr></tbody></table></figure>
+<pre class=" language-lang-sh"><code class="language-lang-sh">hexo clean 
+hexo g
+gulp
+# 输出如下：
+[22:46:42] Using gulpfile ~/Desktop/blogfile/gulpfile.js
+[22:46:42] Starting 'default'...
+[22:46:42] Starting 'minify-images'...
+[22:46:42] Finished 'minify-images' after 74 ms
+[22:46:42] Finished 'default' after 99 ms
+</code></pre>
 <p>那说明成功了</p>
 <h3 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h3><ul>
 <li>引入语法问题，插件需要使用es6语法，故此你的package.json 需要增加一个参数<code>"type": "module"</code>如此你可以再gulpfile.js中使用es6的import语法</li>

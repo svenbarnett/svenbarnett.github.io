@@ -128,7 +128,29 @@
 <p>实例化 -&gt; 属性赋值 -&gt; 初始化 -&gt; 销毁</p>
 <p>只有四个步骤，这样拆解的话是不是感觉也不难？不像其他人写的那样直接一上来就各种 BeanPostProcessor、BeanFactoryPostProcessor 全部怼进流程里去，别说读者看着头大，自己写的可能短时间内还记得流程，隔个一段时间，你可能都不知道自己写了个啥。</p>
 <p>通过 Bean 创建流程入口<code>AbstractApplicationContext#refresh()</code> 方法的 <code>finishBeanFactoryInitialization(beanFactory)</code> 处带大家跟一下源码，想了想还是不带入过多的代码进来，直接给到最终的主要逻辑。</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre class=" language-hljs java"><span class="hljs-keyword">protected</span> Object <span class="hljs-title function_">doCreateBean</span><span class="hljs-params">(String beanName, RootBeanDefinition mbd, <span class="hljs-meta">@Nullable</span> Object[] args)</span> <span class="hljs-keyword">throws</span> BeanCreationException {<br>    <span class="hljs-type">BeanWrapper</span> <span class="hljs-variable">instanceWrapper</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">if</span> (mbd.isSingleton()) {<br>        instanceWrapper = (BeanWrapper)<span class="hljs-built_in">this</span>.factoryBeanInstanceCache.remove(beanName);<br>    }<br>    <span class="hljs-keyword">if</span> (instanceWrapper == <span class="hljs-literal">null</span>) {<br>    	<span class="hljs-comment">// 实例化阶段</span><br>        instanceWrapper = <span class="hljs-built_in">this</span>.createBeanInstance(beanName, mbd, args);<br>    }<br>    ...<br>    <span class="hljs-type">Object</span> <span class="hljs-variable">exposedObject</span> <span class="hljs-operator">=</span> bean;<br><br>    <span class="hljs-keyword">try</span> {<br>    	<span class="hljs-comment">// 属性赋值阶段</span><br>        <span class="hljs-built_in">this</span>.populateBean(beanName, mbd, instanceWrapper);<br>        <span class="hljs-comment">// 初始化阶段</span><br>        exposedObject = <span class="hljs-built_in">this</span>.initializeBean(beanName, exposedObject, mbd);<br>    } <span class="hljs-keyword"><code class="language-hljs java"><span class="hljs-keyword">protected</span> Object <span class="hljs-title function_">doCreateBean</span><span class="hljs-params">(String beanName, RootBeanDefinition mbd, <span class="hljs-meta">@Nullable</span> Object[] args)</span> <span class="hljs-keyword">throws</span> BeanCreationException {<br>    <span class="hljs-type">BeanWrapper</span> <span class="hljs-variable">instanceWrapper</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">if</span> (mbd.isSingleton()) {<br>        instanceWrapper = (BeanWrapper)<span class="hljs-built_in">this</span>.factoryBeanInstanceCache.remove(beanName);<br>    }<br>    <span class="hljs-keyword">if</span> (instanceWrapper == <span class="hljs-literal">null</span>) {<br>    	<span class="hljs-comment">// 实例化阶段</span><br>        instanceWrapper = <span class="hljs-built_in">this</span>.createBeanInstance(beanName, mbd, args);<br>    }<br>    ...<br>    <span class="hljs-type">Object</span> <span class="hljs-variable">exposedObject</span> <span class="hljs-operator">=</span> bean;<br><br>    <span class="hljs-keyword">try</span> {<br>    	<span class="hljs-comment">// 属性赋值阶段</span><br>        <span class="hljs-built_in">this</span>.populateBean(beanName, mbd, instanceWrapper);<br>        <span class="hljs-comment">// 初始化阶段</span><br>        exposedObject = <span class="hljs-built_in">this</span>.initializeBean(beanName, exposedObject, mbd);<br>    } <span class="hljs-keyword">catch</span> (Throwable var18) {<br>        ...<br>    }<br>    ...<br>}<br></code></pre></td></tr></tbody></table></figure>
+<pre class=" language-lang-java"><code class="language-lang-java">protected Object doCreateBean(String beanName, RootBeanDefinition mbd, @Nullable Object[] args) throws BeanCreationException {
+    BeanWrapper instanceWrapper = null;
+    if (mbd.isSingleton()) {
+        instanceWrapper = (BeanWrapper)this.factoryBeanInstanceCache.remove(beanName);
+    }
+    if (instanceWrapper == null) {
+        // 实例化阶段
+        instanceWrapper = this.createBeanInstance(beanName, mbd, args);
+    }
+    ...
+    Object exposedObject = bean;
+
+    try {
+        // 属性赋值阶段
+        this.populateBean(beanName, mbd, instanceWrapper);
+        // 初始化阶段
+        exposedObject = this.initializeBean(beanName, exposedObject, mbd);
+    } catch (Throwable var18) {
+        ...
+    }
+    ...
+}
+</code></pre>
 <p>至于销毁，是在容器关闭时调用的，详见 <code>ConfigurableApplicationContext#close()</code></p>
 <p>是不是很清爽了？至于 BeanPostProcessor、BeanFactoryPostProcessor 以及其他的类，只不过是对主流程四个步骤的一系列扩展点而已。</p>
 <h2 id="Spring-Bean-的生命周期的扩展点"><a href="#Spring-Bean-的生命周期的扩展点" class="headerlink" title="Spring Bean 的生命周期的扩展点"></a>Spring Bean 的生命周期的扩展点</h2><p>Spring Bean 的生命周期的扩展点超级多，老周这里不可能全部列出来，只说核心的扩展点。这也就是为什么 Spring 的扩展性很好的原因，开了很多的口子，尽可能让某个功能高内聚松耦合，用户需要哪个功能就用哪个，而不是直接来一个大而全的东西。</p>

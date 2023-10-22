@@ -102,22 +102,83 @@
 <p>例如：”0.1.2.201” 和 “192.168.1.1” 是 有效 IP 地址，但是 “0.011.255.245”、”192.168.1.312” 和 “192.168@1.1” 是 无效 IP 地址。<br>给定一个只包含数字的字符串 s ，用以表示一个 IP 地址，返回所有可能的有效 IP 地址，这些地址可以通过在 s 中插入 ‘.’ 来形成。你不能重新排序或删除 s 中的任何数字。你可以按 任何 顺序返回答案。</p>
 <span id="more"></span>
 <h2 id="用例"><a href="#用例" class="headerlink" title="用例"></a>用例</h2><p>示例 1：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre class=" language-hljs plaintext"><code class="language-hljs plaintext">输入：s = "25525511135"<br>输出：["255.255.11.135","255.255.111.35"]<br></code></pre></td></tr></tbody></table></figure>
+<pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：s = "25525511135"
+输出：["255.255.11.135","255.255.111.35"]
+</code></pre>
 <p>示例 2：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre class=" language-hljs plaintext"><code class="language-hljs plaintext">输入：s = "0000"<br>输出：["0.0.0.0"]<br></code></pre></td></tr></tbody></table></figure>
+<pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：s = "0000"
+输出：["0.0.0.0"]
+</code></pre>
 <p>示例 3：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre class=" language-hljs plaintext"><code class="language-hljs plaintext">输入：s = "1111"<br>输出：["1.1.1.1"]<br></code></pre></td></tr></tbody></table></figure>
+<pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：s = "1111"
+输出：["1.1.1.1"]
+</code></pre>
 <p>示例 4：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre class=" language-hljs plaintext"><code class="language-hljs plaintext">输入：s = "010010"<br>输出：["0.10.0.10","0.100.1.0"]<br></code></pre></td></tr></tbody></table></figure>
+<pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：s = "010010"
+输出：["0.10.0.10","0.100.1.0"]
+</code></pre>
 <p>示例 5：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre class=" language-hljs plaintext"><code class="language-hljs plaintext">输入：s = "101023"<br>输出：["1.0.10.23","1.0.102.3","10.1.0.23","10.10.2.3","101.0.2.3"]<br></code></pre></td></tr></tbody></table></figure>
+<pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：s = "101023"
+输出：["1.0.10.23","1.0.102.3","10.1.0.23","10.10.2.3","101.0.2.3"]
+</code></pre>
 <p>提示：</p>
 <p>0 &lt;= s.length &lt;= 20<br>s 仅由数字组成</p>
 <h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>由于我们需要找出所有可能复原出的 IP 地址，因此可以考虑使用<strong>回溯</strong>的方法，对<strong>所有可能的字符串分隔方式</strong>进行搜索，并筛选出满足要求的作为答案。</p>
 <p>设题目中给出的字符串为 s。我们用递归函数 <code>dfs(segId,segStart)</code> 表示我们正在从<code>s[segStart]</code>的位置开始，搜索 IP 地址中的第 segId 段，其中<code>segId∈{0,1,2,3}</code>。由于 IP 地址的每一段必须是 <code>[0, 255]</code>中的整数，因此我们从 segStart 开始，从小到大依次枚举当前这一段 IP 地址的结束位置segEnd。如果满足要求，就递归地进行下一段搜索，调用递归函数<code>dfs(segId+1,segEnd+1)</code>。</p>
 <p>特别地，由于 IP 地址的每一段不能有前导零，因此如果 <code>s[segStart]</code> 等于字符 0，那么 IP 地址的第 segId 段只能为 0，需要作为特殊情况进行考虑。</p>
 <p>在搜索的过程中，如果我们已经得到了全部的 4 段 IP 地址（即segId=4），并且遍历完了整个字符串（即 <code>segStart=∣s∣</code>，其中 <code>|s|</code>表示字符串 s 的长度），那么就复原出了一种满足题目要求的 IP 地址，我们将其加入答案。在其它的时刻，如果提前遍历完了整个字符串，那么我们需要结束搜索，回溯到上一步。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre class=" language-hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">SEG_COUNT</span> <span class="hljs-operator">=</span> <span class="hljs-number">4</span>;<br>    List&lt;String&gt; ans = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;String&gt;();<br>    <span class="hljs-type">int</span>[] segments = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[SEG_COUNT];<br><br>    <span class="hljs-keyword">public</span> List&lt;String&gt; <span class="hljs-title function_">restoreIpAddresses</span><span class="hljs-params">(String s)</span> {<br>        segments = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[SEG_COUNT];<br>        dfs(s, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">return</span> ans;<br>    }<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">dfs</span><span class="hljs-params">(String s, <span class="hljs-type">int</span> segId, <span class="hljs-type">int</span> segStart)</span> {<br>        <span class="hljs-comment">// 如果找到了 4 段 IP 地址并且遍历完了字符串，那么就是一种答案</span><br>        <span class="hljs-keyword">if</span> (segId == SEG_COUNT) {<br>            <span class="hljs-keyword">if</span> (segStart == s.length()) {<br>                <span class="hljs-type">StringBuffer</span> <span class="hljs-variable">ipAddr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuffer</span>();<br>                <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; SEG_COUNT; ++i) {<br>                    ipAddr.append(segments[i]);<br>                    <span class="hljs-keyword">if</span> (i != SEG_COUNT - <span class="hljs-number">1</span>) {<br>                        ipAddr.append(<span class="hljs-string">'.'</span>);<br>                    }<br>                }<br>                ans.add(ipAddr.toString());<br>            }<br>            <span class="hljs-keyword">return</span>;<br>        }<br><br>        <span class="hljs-comment">// 如果还没有找到 4 段 IP 地址就已经遍历完了字符串，那么提前回溯</span><br>        <span class="hljs-keyword">if</span> (segStart == s.length()) {<br>            <span class="hljs-keyword">return</span>;<br>        }<br><br>        <span class="hljs-comment">// 由于不能有前导零，如果当前数字为 0，那么这一段 IP 地址只能为 0</span><br>        <span class="hljs-keyword">if</span> (s.charAt(segStart) == <span class="hljs-string">'0'</span>) {<br>            segments[segId] = <span class="hljs-number">0</span>;<br>            dfs(s, segId + <span class="hljs-number">1</span>, segStart + <span class="hljs-number">1</span>);<br>        }<br><br>        <span class="hljs-comment">// 一般情况，枚举每一种可能性并递归</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">addr</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">segEnd</span> <span class="hljs-operator">=</span> segStart; segEnd &lt; s.length(); ++segEnd) {<br>            addr = addr * <span class="hljs-number">10</span> + (s.charAt(segEnd) - <span class="hljs-string">'0'</span>);<br>            <span class="hljs-keyword">if</span> (addr &gt; <span class="hljs-number">0</span> &amp;&amp; addr &lt;= <span class="hljs-number">0xFF</span>) {<br>                segments[segId] = addr;<br>                dfs(s, segId + <span class="hljs-number">1</span>, segEnd + <span class="hljs-number">1</span>);<br>            } <span class="hljs-keyword">else</span> {<br>                <span class="hljs-keyword"><code class="language-hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">SEG_COUNT</span> <span class="hljs-operator">=</span> <span class="hljs-number">4</span>;<br>    List&lt;String&gt; ans = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;String&gt;();<br>    <span class="hljs-type">int</span>[] segments = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[SEG_COUNT];<br><br>    <span class="hljs-keyword">public</span> List&lt;String&gt; <span class="hljs-title function_">restoreIpAddresses</span><span class="hljs-params">(String s)</span> {<br>        segments = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[SEG_COUNT];<br>        dfs(s, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">return</span> ans;<br>    }<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">dfs</span><span class="hljs-params">(String s, <span class="hljs-type">int</span> segId, <span class="hljs-type">int</span> segStart)</span> {<br>        <span class="hljs-comment">// 如果找到了 4 段 IP 地址并且遍历完了字符串，那么就是一种答案</span><br>        <span class="hljs-keyword">if</span> (segId == SEG_COUNT) {<br>            <span class="hljs-keyword">if</span> (segStart == s.length()) {<br>                <span class="hljs-type">StringBuffer</span> <span class="hljs-variable">ipAddr</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuffer</span>();<br>                <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; SEG_COUNT; ++i) {<br>                    ipAddr.append(segments[i]);<br>                    <span class="hljs-keyword">if</span> (i != SEG_COUNT - <span class="hljs-number">1</span>) {<br>                        ipAddr.append(<span class="hljs-string">'.'</span>);<br>                    }<br>                }<br>                ans.add(ipAddr.toString());<br>            }<br>            <span class="hljs-keyword">return</span>;<br>        }<br><br>        <span class="hljs-comment">// 如果还没有找到 4 段 IP 地址就已经遍历完了字符串，那么提前回溯</span><br>        <span class="hljs-keyword">if</span> (segStart == s.length()) {<br>            <span class="hljs-keyword">return</span>;<br>        }<br><br>        <span class="hljs-comment">// 由于不能有前导零，如果当前数字为 0，那么这一段 IP 地址只能为 0</span><br>        <span class="hljs-keyword">if</span> (s.charAt(segStart) == <span class="hljs-string">'0'</span>) {<br>            segments[segId] = <span class="hljs-number">0</span>;<br>            dfs(s, segId + <span class="hljs-number">1</span>, segStart + <span class="hljs-number">1</span>);<br>        }<br><br>        <span class="hljs-comment">// 一般情况，枚举每一种可能性并递归</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">addr</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">segEnd</span> <span class="hljs-operator">=</span> segStart; segEnd &lt; s.length(); ++segEnd) {<br>            addr = addr * <span class="hljs-number">10</span> + (s.charAt(segEnd) - <span class="hljs-string">'0'</span>);<br>            <span class="hljs-keyword">if</span> (addr &gt; <span class="hljs-number">0</span> &amp;&amp; addr &lt;= <span class="hljs-number">0xFF</span>) {<br>                segments[segId] = addr;<br>                dfs(s, segId + <span class="hljs-number">1</span>, segEnd + <span class="hljs-number">1</span>);<br>            } <span class="hljs-keyword">else</span> {<br>                <span class="hljs-keyword">break</span>;<br>            }<br>        }<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><pre class=" language-lang-java"><code class="language-lang-java">class Solution {
+    static final int SEG_COUNT = 4;
+    List<String> ans = new ArrayList<String>();
+    int[] segments = new int[SEG_COUNT];
+
+    public List<String> restoreIpAddresses(String s) {
+        segments = new int[SEG_COUNT];
+        dfs(s, 0, 0);
+        return ans;
+    }
+
+    public void dfs(String s, int segId, int segStart) {
+        // 如果找到了 4 段 IP 地址并且遍历完了字符串，那么就是一种答案
+        if (segId == SEG_COUNT) {
+            if (segStart == s.length()) {
+                StringBuffer ipAddr = new StringBuffer();
+                for (int i = 0; i < SEG_COUNT; ++i) {
+                    ipAddr.append(segments[i]);
+                    if (i != SEG_COUNT - 1) {
+                        ipAddr.append('.');
+                    }
+                }
+                ans.add(ipAddr.toString());
+            }
+            return;
+        }
+
+        // 如果还没有找到 4 段 IP 地址就已经遍历完了字符串，那么提前回溯
+        if (segStart == s.length()) {
+            return;
+        }
+
+        // 由于不能有前导零，如果当前数字为 0，那么这一段 IP 地址只能为 0
+        if (s.charAt(segStart) == '0') {
+            segments[segId] = 0;
+            dfs(s, segId + 1, segStart + 1);
+        }
+
+        // 一般情况，枚举每一种可能性并递归
+        int addr = 0;
+        for (int segEnd = segStart; segEnd < s.length(); ++segEnd) {
+            addr = addr * 10 + (s.charAt(segEnd) - '0');
+            if (addr > 0 && addr <= 0xFF) {
+                segments[segId] = addr;
+                dfs(s, segId + 1, segEnd + 1);
+            } else {
+                break;
+            }
+        }
+    }
+}
+</code></pre>
 <h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><p>复杂度分析</p>
 <p>我们用SEG_COUNT=4 表示 IP 地址的段数。</p>
 <p>时间复杂度：<code>O(3^SEG_COUNT × ∣s∣)</code>。由于 IP 地址的每一段的位数不会超过 3，因此在递归的每一层，我们最多只会深入到下一层的 33 种情况。由于 SEG_COUNT=4，对应着递归的最大层数. 如果我们复原出了一种满足题目要求的 IP 地址，那么需要 <code>O(∣s∣)</code>的时间将其加入答案数组中，因此总时间复杂度为<code>O(3 ^SEG_COUNT ×∣s∣)</code>。</p>

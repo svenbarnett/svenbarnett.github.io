@@ -102,12 +102,18 @@
 <p>叶子节点 是指没有子节点的节点。<br><span id="more"></span></p>
 <p>示例 1：</p>
 <p><img src="/images/loading.svg" data-original="/posts/7d31a8bc/pathsumii1.jpg" alt=""></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre class=" language-hljs plaintext"><code class="language-hljs plaintext">输入：root = [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum = 22<br>输出：[[5,4,11,2],[5,8,4,5]]<br></code></pre></td></tr></tbody></table></figure>
+<pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：root = [5,4,8,11,null,13,4,7,2,null,null,5,1], targetSum = 22
+输出：[[5,4,11,2],[5,8,4,5]]
+</code></pre>
 <p>示例 2：</p>
 <p><img src="/images/loading.svg" data-original="/posts/7d31a8bc/pathsum2.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre class=" language-hljs plaintext"><code class="language-hljs plaintext">输入：root = [1,2,3], targetSum = 5<br>输出：[]<br></code></pre></td></tr></tbody></table></figure>
+<pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：root = [1,2,3], targetSum = 5
+输出：[]
+</code></pre>
 <p>示例 3：</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre class=" language-hljs plaintext"><code class="language-hljs plaintext">输入：root = [1,2], targetSum = 0<br>输出：[]<br></code></pre></td></tr></tbody></table></figure>
+<pre class=" language-lang-plaintext"><code class="language-lang-plaintext">输入：root = [1,2], targetSum = 0
+输出：[]
+</code></pre>
 <p>提示：</p>
 <p>树中节点总数在范围 [0, 5000] 内<br>-1000 &lt;= Node.val &lt;= 1000<br>-1000 &lt;= targetSum &lt;= 1000</p>
 <h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><h2 id="dfs解法"><a href="#dfs解法" class="headerlink" title="dfs解法"></a>dfs解法</h2><ul>
@@ -119,7 +125,30 @@
 <li><p>代码实现</p>
 </li>
 </ul>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre class=" language-hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {<br>    List&lt;List&lt;Integer&gt;&gt; ret = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;List&lt;Integer&gt;&gt;();<br>    Deque&lt;Integer&gt; path = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;Integer&gt;();<br><br>    <span class="hljs-keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="hljs-title function_">pathSum</span><span class="hljs-params">(TreeNode root, <span class="hljs-type">int</span> targetSum)</span> {<br>        dfs(root, targetSum);<br>        <span class="hljs-keyword">return</span> ret;<br>    }<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">dfs</span><span class="hljs-params">(TreeNode root, <span class="hljs-type">int</span> targetSum)</span> {<br>        <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) {<br>            <span class="hljs-keyword">return</span>;<br>        }<br>        path.offerLast(root.val);<br>        targetSum -= root.val;<br>        <span class="hljs-keyword">if</span> (root.left == <span class="hljs-literal">null</span> &amp;&amp; root.right == <span class="hljs-literal">null</span> &amp;&amp; targetSum == <span class="hljs-number">0</span>) {<br>            ret.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_"><code class="language-hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {<br>    List&lt;List&lt;Integer&gt;&gt; ret = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;List&lt;Integer&gt;&gt;();<br>    Deque&lt;Integer&gt; path = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;Integer&gt;();<br><br>    <span class="hljs-keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="hljs-title function_">pathSum</span><span class="hljs-params">(TreeNode root, <span class="hljs-type">int</span> targetSum)</span> {<br>        dfs(root, targetSum);<br>        <span class="hljs-keyword">return</span> ret;<br>    }<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">dfs</span><span class="hljs-params">(TreeNode root, <span class="hljs-type">int</span> targetSum)</span> {<br>        <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) {<br>            <span class="hljs-keyword">return</span>;<br>        }<br>        path.offerLast(root.val);<br>        targetSum -= root.val;<br>        <span class="hljs-keyword">if</span> (root.left == <span class="hljs-literal">null</span> &amp;&amp; root.right == <span class="hljs-literal">null</span> &amp;&amp; targetSum == <span class="hljs-number">0</span>) {<br>            ret.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span><Integer>(path));<br>        }<br>        dfs(root.left, targetSum);<br>        dfs(root.right, targetSum);<br>        path.pollLast();<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
+<pre class=" language-lang-java"><code class="language-lang-java">class Solution {
+    List<List<Integer>> ret = new LinkedList<List<Integer>>();
+    Deque<Integer> path = new LinkedList<Integer>();
+
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        dfs(root, targetSum);
+        return ret;
+    }
+
+    public void dfs(TreeNode root, int targetSum) {
+        if (root == null) {
+            return;
+        }
+        path.offerLast(root.val);
+        targetSum -= root.val;
+        if (root.left == null && root.right == null && targetSum == 0) {
+            ret.add(new LinkedList<Integer>(path));
+        }
+        dfs(root.left, targetSum);
+        dfs(root.right, targetSum);
+        path.pollLast();
+    }
+}
+</code></pre>
 <ul>
 <li>复杂度分析</li>
 </ul>
@@ -134,7 +163,56 @@
 <ul>
 <li>代码实现</li>
 </ul>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre class=" language-hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {<br>    List&lt;List&lt;Integer&gt;&gt; ret = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;List&lt;Integer&gt;&gt;();<br>    Map&lt;TreeNode, TreeNode&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;TreeNode, TreeNode&gt;();<br><br>    <span class="hljs-keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="hljs-title function_">pathSum</span><span class="hljs-params">(TreeNode root, <span class="hljs-type">int</span> targetSum)</span> {<br>        <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) {<br>            <span class="hljs-keyword">return</span> ret;<br>        }<br><br>        Queue&lt;TreeNode&gt; queueNode = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;TreeNode&gt;();<br>        Queue&lt;Integer&gt; queueSum = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;Integer&gt;();<br>        queueNode.offer(root);<br>        queueSum.offer(<span class="hljs-number">0</span>);<br><br>        <span class="hljs-keyword">while</span> (!queueNode.isEmpty()) {<br>            <span class="hljs-type">TreeNode</span> <span class="hljs-variable">node</span> <span class="hljs-operator">=</span> queueNode.poll();<br>            <span class="hljs-type">int</span> <span class="hljs-variable">rec</span> <span class="hljs-operator">=</span> queueSum.poll() + node.val;<br><br>            <span class="hljs-keyword">if</span> (node.left == <span class="hljs-literal">null</span> &amp;&amp; node.right == <span class="hljs-literal">null</span>) {<br>                <span class="hljs-keyword">if</span> (rec == targetSum) {<br>                    getPath(node);<br>                }<br>            } <span class="hljs-keyword">else</span> {<br>                <span class="hljs-keyword">if</span> (node.left != <span class="hljs-literal">null</span>) {<br>                    map.put(node.left, node);<br>                    queueNode.offer(node.left);<br>                    queueSum.offer(rec);<br>                }<br>                <span class="hljs-keyword">if</span> (node.right != <span class="hljs-literal">null</span>) {<br>                    map.put(node.right, node);<br>                    queueNode.offer(node.right);<br>                    queueSum.offer(rec);<br>                }<br>            }<br>        }<br><br>        <span class="hljs-keyword">return</span> ret;<br>    }<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">getPath</span><span class="hljs-params">(TreeNode node)</span> {<br>        List&lt;Integer&gt; temp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;Integer&gt;();<br>        <span class="hljs-keyword">while</span> (node != <span class="hljs-literal">null</span>) {<br>            temp.add(node.val);<br>            node = map.get(node);<br>        }<br>        Collections.reverse(temp);<br>        ret.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_"><code class="language-hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> {<br>    List&lt;List&lt;Integer&gt;&gt; ret = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;List&lt;Integer&gt;&gt;();<br>    Map&lt;TreeNode, TreeNode&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;TreeNode, TreeNode&gt;();<br><br>    <span class="hljs-keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="hljs-title function_">pathSum</span><span class="hljs-params">(TreeNode root, <span class="hljs-type">int</span> targetSum)</span> {<br>        <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) {<br>            <span class="hljs-keyword">return</span> ret;<br>        }<br><br>        Queue&lt;TreeNode&gt; queueNode = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;TreeNode&gt;();<br>        Queue&lt;Integer&gt; queueSum = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;Integer&gt;();<br>        queueNode.offer(root);<br>        queueSum.offer(<span class="hljs-number">0</span>);<br><br>        <span class="hljs-keyword">while</span> (!queueNode.isEmpty()) {<br>            <span class="hljs-type">TreeNode</span> <span class="hljs-variable">node</span> <span class="hljs-operator">=</span> queueNode.poll();<br>            <span class="hljs-type">int</span> <span class="hljs-variable">rec</span> <span class="hljs-operator">=</span> queueSum.poll() + node.val;<br><br>            <span class="hljs-keyword">if</span> (node.left == <span class="hljs-literal">null</span> &amp;&amp; node.right == <span class="hljs-literal">null</span>) {<br>                <span class="hljs-keyword">if</span> (rec == targetSum) {<br>                    getPath(node);<br>                }<br>            } <span class="hljs-keyword">else</span> {<br>                <span class="hljs-keyword">if</span> (node.left != <span class="hljs-literal">null</span>) {<br>                    map.put(node.left, node);<br>                    queueNode.offer(node.left);<br>                    queueSum.offer(rec);<br>                }<br>                <span class="hljs-keyword">if</span> (node.right != <span class="hljs-literal">null</span>) {<br>                    map.put(node.right, node);<br>                    queueNode.offer(node.right);<br>                    queueSum.offer(rec);<br>                }<br>            }<br>        }<br><br>        <span class="hljs-keyword">return</span> ret;<br>    }<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">getPath</span><span class="hljs-params">(TreeNode node)</span> {<br>        List&lt;Integer&gt; temp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;Integer&gt;();<br>        <span class="hljs-keyword">while</span> (node != <span class="hljs-literal">null</span>) {<br>            temp.add(node.val);<br>            node = map.get(node);<br>        }<br>        Collections.reverse(temp);<br>        ret.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span><Integer>(temp));<br>    }<br>}<br></code></pre></td></tr></tbody></table></figure>
+<pre class=" language-lang-java"><code class="language-lang-java">class Solution {
+    List<List<Integer>> ret = new LinkedList<List<Integer>>();
+    Map<TreeNode, TreeNode> map = new HashMap<TreeNode, TreeNode>();
+
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        if (root == null) {
+            return ret;
+        }
+
+        Queue<TreeNode> queueNode = new LinkedList<TreeNode>();
+        Queue<Integer> queueSum = new LinkedList<Integer>();
+        queueNode.offer(root);
+        queueSum.offer(0);
+
+        while (!queueNode.isEmpty()) {
+            TreeNode node = queueNode.poll();
+            int rec = queueSum.poll() + node.val;
+
+            if (node.left == null && node.right == null) {
+                if (rec == targetSum) {
+                    getPath(node);
+                }
+            } else {
+                if (node.left != null) {
+                    map.put(node.left, node);
+                    queueNode.offer(node.left);
+                    queueSum.offer(rec);
+                }
+                if (node.right != null) {
+                    map.put(node.right, node);
+                    queueNode.offer(node.right);
+                    queueSum.offer(rec);
+                }
+            }
+        }
+
+        return ret;
+    }
+
+    public void getPath(TreeNode node) {
+        List<Integer> temp = new LinkedList<Integer>();
+        while (node != null) {
+            temp.add(node.val);
+            node = map.get(node);
+        }
+        Collections.reverse(temp);
+        ret.add(new LinkedList<Integer>(temp));
+    }
+}
+</code></pre>
 <ul>
 <li>复杂度分析</li>
 </ul>

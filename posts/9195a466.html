@@ -99,7 +99,20 @@
     <div class="entry">
       
         <html><head></head><body><p>直接上代码</p>
-<figure class="highlight jsx"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre class=" language-hljs jsx"><span class="hljs-keyword">const</span> arr=[<span class="hljs-string">'1200.00100'</span>,<span class="hljs-string">'1200.00000'</span>,<span class="hljs-string">'1200.'</span>,<span class="hljs-string">'1200'</span>,<span class="hljs-string">'1200.10000'</span>,<span class="hljs-string">'0.120010000'</span>,<span class="hljs-string">'0.000011111'</span>]<br><span class="hljs-keyword">const</span> regexp=<span class="hljs-regexp">/(?:\.0*|(\.\d+?)0+)$/</span><br>arr.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">item</span>)=&gt;</span>{<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(item.<span class="hljs-title function_">replace</span>(regexp,<span class="hljs-string">'$1'</span>))<br>})<br><br><span class="hljs-comment">// &gt; 1200.001</span><br><span class="hljs-comment">// &gt; 1200</span><br><span class="hljs-comment">// &gt; 1200</span><br><span class="hljs-comment">// &gt; 1200</span><br><span class="hljs-comment">// &gt; 1200.1</span><br><span class="hljs-comment">// &gt; 0.12001</span><br><span class="hljs-comment"><code class="language-hljs jsx"><span class="hljs-keyword">const</span> arr=[<span class="hljs-string">'1200.00100'</span>,<span class="hljs-string">'1200.00000'</span>,<span class="hljs-string">'1200.'</span>,<span class="hljs-string">'1200'</span>,<span class="hljs-string">'1200.10000'</span>,<span class="hljs-string">'0.120010000'</span>,<span class="hljs-string">'0.000011111'</span>]<br><span class="hljs-keyword">const</span> regexp=<span class="hljs-regexp">/(?:\.0*|(\.\d+?)0+)$/</span><br>arr.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">item</span>)=&gt;</span>{<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(item.<span class="hljs-title function_">replace</span>(regexp,<span class="hljs-string">'$1'</span>))<br>})<br><br><span class="hljs-comment">// &gt; 1200.001</span><br><span class="hljs-comment">// &gt; 1200</span><br><span class="hljs-comment">// &gt; 1200</span><br><span class="hljs-comment">// &gt; 1200</span><br><span class="hljs-comment">// &gt; 1200.1</span><br><span class="hljs-comment">// &gt; 0.12001</span><br><span class="hljs-comment">// > 0.000011111</span><br></code></pre></td></tr></tbody></table></figure>
+<pre class=" language-lang-jsx"><code class="language-lang-jsx">const arr=['1200.00100','1200.00000','1200.','1200','1200.10000','0.120010000','0.000011111']
+const regexp=/(?:\.0*|(\.\d+?)0+)$/
+arr.forEach((item)=>{
+    console.log(item.replace(regexp,'$1'))
+})
+
+// > 1200.001
+// > 1200
+// > 1200
+// > 1200
+// > 1200.1
+// > 0.12001
+// > 0.000011111
+</code></pre>
 <span id="more"></span>
 <p>正则可视化：</p>
 <p><img src="/images/loading.svg" data-original="/posts/9195a466/image.svg" alt="image"></p>
@@ -117,14 +130,16 @@
 <li><p>普通捕获组</p>
 <p>从正则表达式左侧开始，每出现一个左括号”(“记做一个分组，分组编号从 1 开始。0 代表整个表达式。</p>
 <p>对于时间字符串：2017-04-25，表达式如下</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre class=" language-hljs js">(\\d{<span class="hljs-number">4</span>})-((\\d{<span class="hljs-number">2</span>})-(\\d{<span class="hljs-number"><code class="language-hljs js">(\\d{<span class="hljs-number">4</span>})-((\\d{<span class="hljs-number">2</span>})-(\\d{<span class="hljs-number">2</span>}))<br></code></pre></td></tr></tbody></table></figure>
+<pre class=" language-lang-js"><code class="language-lang-js">(\\d{4})-((\\d{2})-(\\d{2}))
+</code></pre>
 <p>有 4 个左括号，所以有 4 个分组:</p>
 <p>| 编号 | 捕获组                    | 匹配       |<br>| :—- | :———————————— | :————- |<br>| 0    | (\d{4})-((\d{2})-(\d{2})) | 2017-04-25 |<br>| 1    | (\d{4})                   | 2017       |<br>| 2    | ((\d{2})-(\d{2}))         | 04-25      |<br>| 3    | (\d{2})                   | 04         |<br>| 4    | (\d{2})                   | 25         |</p>
 </li>
 <li><p>命名捕获组</p>
 <p>每个以左括号开始的捕获组，都紧跟着 <strong>?</strong>，而后才是正则表达式。</p>
 <p>对于时间字符串：2017-04-25，表达式如下:</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre class=" language-hljs js">(?&lt;year&gt;\\d{<span class="hljs-number">4</span>})-(?&lt;md&gt;(?&lt;month&gt;\\d{<span class="hljs-number">2</span>})-(?&lt;date&gt;\\d{<span class="hljs-number"><code class="language-hljs js">(?&lt;year&gt;\\d{<span class="hljs-number">4</span>})-(?&lt;md&gt;(?&lt;month&gt;\\d{<span class="hljs-number">2</span>})-(?&lt;date&gt;\\d{<span class="hljs-number">2</span>}))<br></code></pre></td></tr></tbody></table></figure>
+<pre class=" language-lang-js"><code class="language-lang-js">(?<year>\\d{4})-(?<md>(?<month>\\d{2})-(?<date>\\d{2}))
+</code></pre>
 <p>有 4 个命名的捕获组，分别是:</p>
 <p>| 编号 | 名称  | 捕获组                        | 匹配       |<br>| :—- | :—— | :—————————————— | :————- |<br>| 0    | 0     | (?\d{4})-(?(?\d{2})-(?\d{2})) | 2017-04-25 |<br>| 1    | year  | (?\d{4})-                     | 2017       |<br>| 2    | md    | (?(?\d{2})-(?\d{2}))          | 04-25      |<br>| 3    | month | (?\d{2})                      | 04         |<br>| 4    | date  | (?\d{2})                      | 25         |</p>
 <p>命名的捕获组同样也可以使用编号获取相应值。</p>
@@ -132,7 +147,8 @@
 </ul>
 <h2 id="非捕获组"><a href="#非捕获组" class="headerlink" title="非捕获组"></a>非捕获组</h2><p>在左括号后紧跟 <code>?:</code>，而后再加上正则表达式，构成非捕获组 <strong>(?:Expression)</strong>。</p>
 <p>对于时间字符串：2017-04-25，表达式如下:</p>
-<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre class=" language-hljs js">(?:\\d{<span class="hljs-number">4</span>})-((\\d{<span class="hljs-number">2</span>})-(\\d{<span class="hljs-number"><code class="language-hljs js">(?:\\d{<span class="hljs-number">4</span>})-((\\d{<span class="hljs-number">2</span>})-(\\d{<span class="hljs-number">2</span>}))<br></code></pre></td></tr></tbody></table></figure>
+<pre class=" language-lang-js"><code class="language-lang-js">(?:\\d{4})-((\\d{2})-(\\d{2}))
+</code></pre>
 <p>这个正则表达式虽然有四个左括号，理论上有 4 个捕获组。但是第一组 <strong>(?:\d{4})</strong>，其实是被忽略的。当使用 matcher.group(4) 时，系统会报错。</p>
 <div class="table-container">
 <table>
@@ -171,11 +187,28 @@
 <p><strong>非贪婪匹配</strong>：就是匹配到结果就好，就少的匹配字符。如上面使用模式p匹配字符串str，结果就是匹配到：<strong>abc</strong>(ab*c)。</p>
 <p>问号可以表示重复前面内容的0次或一次，也就是要么不出现，要么出现一次</p>
 <p>示例1：</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre class=" language-hljs java"><span class="hljs-type">string</span> <span class="hljs-variable">pattern1</span> <span class="hljs-operator">=</span> @<span class="hljs-string">"a.*?c"</span>;   <span class="hljs-comment">// non-greedy match </span><br><span class="hljs-type">Regex</span> <span class="hljs-variable">regex</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Regex</span>(pattern1);<br>regex.Match(<span class="hljs-string">"abcabc"</span>); <span class="hljs-comment"><code class="language-hljs java"><span class="hljs-type">string</span> <span class="hljs-variable">pattern1</span> <span class="hljs-operator">=</span> @<span class="hljs-string">"a.*?c"</span>;   <span class="hljs-comment">// non-greedy match </span><br><span class="hljs-type">Regex</span> <span class="hljs-variable">regex</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Regex</span>(pattern1);<br>regex.Match(<span class="hljs-string">"abcabc"</span>); <span class="hljs-comment">// return "abc"</span><br><br>## 结果：abc<br></code></pre></td></tr></tbody></table></figure>
+<pre class=" language-lang-java"><code class="language-lang-java">string pattern1 = @"a.*?c";   // non-greedy match 
+Regex regex = new Regex(pattern1);
+regex.Match("abcabc"); // return "abc"
+
+## 结果：abc
+</code></pre>
 <p>示例2：</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre class=" language-hljs python"><span class="hljs-keyword">import</span> re<br>s=<span class="hljs-string">'hello 1234567 world'</span><br>res = re.<span class="hljs-keyword">match</span>(<span class="hljs-string">'he.*?(\d).*rld$'</span>,s)<br><span class="hljs-built_in">print</span>(res.group(<span class="hljs-number">1</span>))<br><br><span class="hljs-comment"><code class="language-hljs python"><span class="hljs-keyword">import</span> re<br>s=<span class="hljs-string">'hello 1234567 world'</span><br>res = re.<span class="hljs-keyword">match</span>(<span class="hljs-string">'he.*?(\d).*rld$'</span>,s)<br><span class="hljs-built_in">print</span>(res.group(<span class="hljs-number">1</span>))<br><br><span class="hljs-comment">## 结果：123456</span><br></code></pre></td></tr></tbody></table></figure>
+<pre class=" language-lang-python"><code class="language-lang-python">import re
+s='hello 1234567 world'
+res = re.match('he.*?(\d).*rld$',s)
+print(res.group(1))
+
+## 结果：123456
+</code></pre>
 <p>常用非贪婪表达式</p>
-<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre class=" language-hljs plaintext"><code class="language-hljs plaintext">*? 重复任意次，但尽可能少重复<br>+? 重复1次或更多次，但尽可能少重复<br>?? 重复0次或1次，但尽可能少重复<br>{n,m}? 重复n到m次，但尽可能少重复<br>{n,}? 重复n次以上，但尽可能少重复<br></code></pre></td></tr></tbody></table></figure></body></html>
+<pre class=" language-lang-plaintext"><code class="language-lang-plaintext">*? 重复任意次，但尽可能少重复
++? 重复1次或更多次，但尽可能少重复
+?? 重复0次或1次，但尽可能少重复
+{n,m}? 重复n到m次，但尽可能少重复
+{n,}? 重复n次以上，但尽可能少重复
+</code></pre>
+</body></html>
       
     </div>
 
