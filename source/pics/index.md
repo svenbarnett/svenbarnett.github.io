@@ -1,6 +1,12 @@
 ---
 title: 图记
 photos:
+  - /pics/2023/IMG_1033.JPG
+  - /pics/2023/IMG_0953.JPG
+  - /pics/2023/IMG_0966.jpg
+  - /pics/2023/IMG_0992.JPG
+  - /pics/2023/IMG_1015.jpg
+  - /pics/2023/IMG_1027.jpg
   - /pics/2023/IMG_0803.jpg
   - /pics/2023/IMG_0801.jpg
   - /pics/2023/IMG_0681.jpg
